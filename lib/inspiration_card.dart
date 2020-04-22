@@ -1,6 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:patta/data_model/inspiration_card.dart';
+import 'package:patta/util.dart';
+import 'package:wc_flutter_share/wc_flutter_share.dart';
 
 class InspirationCard extends StatelessWidget {
   final InspirationCardModel data;
@@ -114,7 +117,18 @@ class InspirationCard extends StatelessWidget {
                                 Icons.share,
                                 color: Color(0xff6d695f),
                               ),
-                              onPressed: () {},
+                              onPressed: () async {
+                                final String extension =
+                                    extractFileExtension(data.imageUrl);
+                                var response = await http.get(data.imageUrl);
+                                await WcFlutterShare.share(
+                                  sharePopupTitle: 'Share Inspiration',
+                                  mimeType: 'image/$extension',
+                                  fileName: 'Inspiration of the day.$extension',
+                                  bytesOfFile: response.bodyBytes,
+                                  text: data.text,
+                                );
+                              },
                             ),
                           ),
                         ],
