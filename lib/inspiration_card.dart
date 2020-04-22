@@ -61,7 +61,10 @@ class InspirationCard extends StatelessWidget {
                       errorWidget: (context, url, error) => Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Center(
-                          child: Icon(Icons.error),
+                          child: Icon(
+                            Icons.error,
+                            color: Color(0xff6d695f),
+                          ),
                         ),
                       ),
                       imageUrl: data.imageUrl,
