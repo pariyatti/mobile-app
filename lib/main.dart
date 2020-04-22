@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patta/api/api.dart' as api;
+import 'package:patta/data_model/inspiration_card.dart';
 import 'package:patta/inspiration_card.dart';
 
 void main() => runApp(MyApp());
@@ -29,11 +30,31 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
       ),
-      body: ListView(
-        children: api
-            .fetchToday()
-            .map((cardData) => InspirationCard(data: cardData))
-            .toList(),
+      body: FutureBuilder<List<InspirationCardModel>>(
+        future: api.fetchToday(),
+        builder: (
+          BuildContext context,
+          AsyncSnapshot<List<InspirationCardModel>> snapshot,
+        ) {
+          if (snapshot.hasData) {
+            return ListView(
+              children: snapshot.data
+                  .map((card) => InspirationCard(data: card))
+                  .toList(),
+            );
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Icon(
+                Icons.error,
+                color: Color(0xff6d695f),
+              ),
+            );
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
       ),
     );
   }
