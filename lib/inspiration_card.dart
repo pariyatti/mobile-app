@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:patta/data_model/inspiration_card.dart';
 
@@ -112,7 +111,7 @@ class InspirationCard extends StatelessWidget {
                             child: MaterialButton(
                               padding: EdgeInsets.zero,
                               child: Icon(
-                                CupertinoIcons.share_solid,
+                                Icons.share,
                                 color: Color(0xff6d695f),
                               ),
                               onPressed: () {},
