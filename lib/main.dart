@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patta/data_model/inspiration_card.dart';
 import 'package:patta/inspiration_card.dart';
 
 void main() => runApp(MyApp());
@@ -31,13 +32,12 @@ class MyHomePage extends StatelessWidget {
       body: Column(
         children: <Widget>[
           InspirationCard(
-            text:
-                '\"We are shaped by our thoughts; we become what we think. When the mind is pure, joy follows like a shadow that never leaves.\"',
-//                    imageUrl: 'http://139.59.41.132/uploads/card/image/393b47a8-b002-4ff5-95f6-dd6df497cf69/bluesky.jpeg',
-//            imageUrl: 'https://images.unsplash.com/photo-1587321819113-cc19ebc6e5e3',
-//                    imageUrl: 'https://i.picsum.photos/id/9/250/250.jpg',
-            imageUrl:
-                'https://images.fatherly.com/wp-content/uploads/2019/01/scooby.jpg?q=65&enable=upscale&w=600',
+            data: InspirationCardModel(
+              text:
+                  '\"We are shaped by our thoughts; we become what we think. When the mind is pure, joy follows like a shadow that never leaves.\"',
+              imageUrl:
+                  'https://images.fatherly.com/wp-content/uploads/2019/01/scooby.jpg?q=65&enable=upscale&w=600',
+            ),
           ),
         ],
       ),

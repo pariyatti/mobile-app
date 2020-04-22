@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:patta/data_model/inspiration_card.dart';
 
 class InspirationCard extends StatelessWidget {
-  final String text;
-  final String imageUrl;
+  final InspirationCardModel data;
 
-  InspirationCard({Key key, this.text, this.imageUrl}) : super(key: key);
+  InspirationCard({Key key, this.data}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +64,7 @@ class InspirationCard extends StatelessWidget {
                           child: Icon(Icons.error),
                         ),
                       ),
-                      imageUrl: imageUrl,
+                      imageUrl: data.imageUrl,
                       imageBuilder: (context, imageProvider) {
                         return Row(
                           mainAxisSize: MainAxisSize.max,
@@ -82,7 +82,7 @@ class InspirationCard extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        text,
+                        data.text,
                         style: TextStyle(
                           inherit: true,
                           fontSize: 20.0,
