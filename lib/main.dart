@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primaryColor: Color(0xffdcd3c0),
+        accentColor: Color(0xff6d695f),
       ),
       home: MyHomePage(title: 'Pariyatti'),
     );
@@ -28,7 +29,13 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xfff4efe7),
       appBar: AppBar(
-        title: Text(title),
+        title: Text(
+          title,
+          style: TextStyle(
+            inherit: true,
+            color: Color(0xff6d695f),
+          ),
+        ),
       ),
       body: FutureBuilder<List<InspirationCardModel>>(
         future: api.fetchToday(),
