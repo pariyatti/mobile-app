@@ -58,9 +58,26 @@ class MyHomePage extends StatelessWidget {
             );
           } else if (snapshot.hasError) {
             return Center(
-              child: Icon(
-                Icons.error,
-                color: Color(0xff6d695f),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Icon(
+                      Icons.error,
+                      color: Color(0xff6d695f),
+                    ),
+                  ),
+                  Text(
+                    'Some error occured, can you please try again later!',
+                    style: TextStyle(
+                      inherit: true,
+                      color: Color(0xff6d695f),
+                      fontSize: 16.0,
+                    ),
+                  )
+                ],
               ),
             );
           } else {
