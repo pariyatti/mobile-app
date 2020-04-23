@@ -37,16 +37,23 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
       ),
-      body: FutureBuilder<List<InspirationCardModel>>(
+      body: FutureBuilder<List<CardModel>>(
         future: api.fetchToday(),
         builder: (
           BuildContext context,
-          AsyncSnapshot<List<InspirationCardModel>> snapshot,
+          AsyncSnapshot<List<CardModel>> snapshot,
         ) {
           if (snapshot.hasData) {
             return ListView(
               children: snapshot.data
-                  .map((card) => InspirationCard(data: card))
+                  .map((card) {
+                    if (card is InspirationCardModel) {
+                      return InspirationCard(data: card);
+                    } else {
+                      return null;
+                    }
+                  })
+                  .where((widget) => (widget != null))
                   .toList(),
             );
           } else if (snapshot.hasError) {
