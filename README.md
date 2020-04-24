@@ -8,6 +8,7 @@ The Pariyatti mobile app.
 
 ## Dev Setup
 
+- Install Java: `sudo apt-get install openjdk-14-jdk` or `sudo apt-get install openjdk-11-jdk`
 - Install Android Studio: https://developer.android.com/studio
 - Install Flutter: https://flutter.dev/docs/get-started/install
 
