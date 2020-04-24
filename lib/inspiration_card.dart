@@ -104,18 +104,39 @@ class InspirationCard extends StatelessWidget {
                         mainAxisSize: MainAxisSize.max,
                         children: <Widget>[
                           Expanded(
-                            child: MaterialButton(
-                              padding: EdgeInsets.zero,
-                              child: Icon(
-                                Icons.bookmark,
-                                color: Color(0xff6d695f),
-                              ),
-                              onPressed: () {
-                                database.insertCard(
-                                  moor_converters.toDatabaseCard(
-                                    this.data,
-                                    DateTime.now(),
-                                  ),
+                            child: StreamBuilder<bool>(
+                              stream: database.isCardBookmarked(data.id),
+                              builder: (context, snapshot) {
+                                final isBookmarked =
+                                    (snapshot.hasData && snapshot.data);
+
+                                Icon icon;
+                                if (isBookmarked) {
+                                  icon = Icon(
+                                    Icons.bookmark,
+                                    color: Color(0xff6d695f),
+                                  );
+                                } else {
+                                  icon = Icon(
+                                    Icons.bookmark_border,
+                                    color: Color(0xff6d695f),
+                                  );
+                                }
+                                return MaterialButton(
+                                  padding: EdgeInsets.zero,
+                                  child: icon,
+                                  onPressed: () async {
+                                    if (isBookmarked) {
+                                      database.removeCard(data.id);
+                                    } else {
+                                      database.insertCard(
+                                        moor_converters.toDatabaseCard(
+                                          data,
+                                          DateTime.now(),
+                                        ),
+                                      );
+                                    }
+                                  },
                                 );
                               },
                             ),

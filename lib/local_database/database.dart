@@ -46,5 +46,15 @@ class PariyattiDatabase extends _$PariyattiDatabase {
     );
   }
 
+  Future<void> removeCard(String id) {
+    return (delete(cards)..where((table) => table.id.equals(id))).go();
+  }
+
   Future<List<DatabaseCard>> get allCards => select(cards).get();
+
+  Stream<bool> isCardBookmarked(String id) {
+    return (select(cards)..where((table) => table.id.equals(id)))
+        .map((card) => (card != null))
+        .watchSingle();
+  }
 }
