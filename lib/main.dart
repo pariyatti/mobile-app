@@ -2,19 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:patta/api/api.dart' as api;
 import 'package:patta/data_model/inspiration_card.dart';
 import 'package:patta/inspiration_card.dart';
+import 'package:patta/local_database/database.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Pariyatti',
-      theme: ThemeData(
-        primaryColor: Color(0xffdcd3c0),
-        accentColor: Color(0xff6d695f),
+    return Provider<PariyattiDatabase>(
+      create: (context) => PariyattiDatabase(),
+      dispose: (context, database) {
+        database.close();
+      },
+      child: MaterialApp(
+        title: 'Pariyatti',
+        theme: ThemeData(
+          primaryColor: Color(0xffdcd3c0),
+          accentColor: Color(0xff6d695f),
+        ),
+        home: MyHomePage(title: 'Pariyatti'),
       ),
-      home: MyHomePage(title: 'Pariyatti'),
     );
   }
 }
@@ -48,7 +56,10 @@ class MyHomePage extends StatelessWidget {
               children: snapshot.data
                   .map((card) {
                     if (card is InspirationCardModel) {
-                      return InspirationCard(data: card);
+                      return InspirationCard(
+                        card,
+                        Provider.of<PariyattiDatabase>(context),
+                      );
                     } else {
                       return null;
                     }

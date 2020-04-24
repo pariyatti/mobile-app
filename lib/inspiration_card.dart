@@ -9,9 +9,9 @@ import 'package:wc_flutter_share/wc_flutter_share.dart';
 
 class InspirationCard extends StatelessWidget {
   final InspirationCardModel data;
-  final PariyattiDatabase database = PariyattiDatabase();
+  final PariyattiDatabase database;
 
-  InspirationCard({Key key, this.data}) : super(key: key);
+  InspirationCard(this.data, this.database, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
