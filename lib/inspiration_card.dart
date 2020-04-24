@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:patta/common_widgets/bookmark_button.dart';
 import 'package:patta/data_model/inspiration_card.dart';
 import 'package:patta/local_database/database.dart';
-import 'package:patta/local_database/moor_converters.dart' as moor_converters;
 import 'package:patta/util.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
 
@@ -103,44 +103,7 @@ class InspirationCard extends StatelessWidget {
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: <Widget>[
-                          Expanded(
-                            child: StreamBuilder<bool>(
-                              stream: database.isCardBookmarked(data.id),
-                              builder: (context, snapshot) {
-                                final isBookmarked =
-                                    (snapshot.hasData && snapshot.data);
-
-                                Icon icon;
-                                if (isBookmarked) {
-                                  icon = Icon(
-                                    Icons.bookmark,
-                                    color: Color(0xff6d695f),
-                                  );
-                                } else {
-                                  icon = Icon(
-                                    Icons.bookmark_border,
-                                    color: Color(0xff6d695f),
-                                  );
-                                }
-                                return MaterialButton(
-                                  padding: EdgeInsets.zero,
-                                  child: icon,
-                                  onPressed: () async {
-                                    if (isBookmarked) {
-                                      database.removeCard(data.id);
-                                    } else {
-                                      database.insertCard(
-                                        moor_converters.toDatabaseCard(
-                                          data,
-                                          DateTime.now(),
-                                        ),
-                                      );
-                                    }
-                                  },
-                                );
-                              },
-                            ),
-                          ),
+                          BookmarkButton(data, database),
                           Expanded(
                             child: MaterialButton(
                               padding: EdgeInsets.zero,
