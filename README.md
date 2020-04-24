@@ -11,6 +11,9 @@ The Pariyatti mobile app.
 You need to generate JSON conversion classes before running the app.
 
 ```
+# Grab dependencies
+flutter pub get
+
 # Generate JSON conversion code
 flutter pub run build_runner build
 
