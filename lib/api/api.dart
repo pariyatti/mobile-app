@@ -23,7 +23,7 @@ List<CardModel> _convertToCardModels(http.Response response) {
   return iterable
       .map((apiCard) {
         final String cardType = apiCard['type'];
-        if (cardType == 'inspiration') {
+        if (cardType == 'stacked_inspiration') {
           ApiCard card = ApiCard.fromJson(apiCard);
           return InspirationCardModel(
             id: card.id,

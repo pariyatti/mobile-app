@@ -8,7 +8,7 @@ DatabaseCard toDatabaseCard(
   if (cardModel is InspirationCardModel) {
     return DatabaseCard(
       id: cardModel.id,
-      type: 'inspiration',
+      type: 'stacked_inspiration',
       textData: cardModel.text,
       imageUrl: cardModel.imageUrl,
       createdAt: createdAt,
@@ -21,7 +21,7 @@ DatabaseCard toDatabaseCard(
 CardModel toCardModel(DatabaseCard databaseCard) {
   CardModel card;
   switch (databaseCard.type) {
-    case 'inspiration':
+    case 'stacked_inspiration':
       {
         card = InspirationCardModel(
           id: databaseCard.id,
