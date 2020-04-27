@@ -19,13 +19,11 @@ The Pariyatti mobile app.
 
 ## Build Process
 
-You need to generate JSON conversion classes before running the app.
-
 ```
 # Grab dependencies
 flutter pub get
 
-# Generate JSON conversion code
+# Generate database-interaction and json-conversion code
 flutter pub run build_runner build
 
 # Generate iOS and Android icons
