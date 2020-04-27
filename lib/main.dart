@@ -4,9 +4,9 @@ import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/screens/today/TodayScreen.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(PariyattiApp());
 
-class MyApp extends StatelessWidget {
+class PariyattiApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Provider<PariyattiDatabase>(
