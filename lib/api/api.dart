@@ -2,7 +2,8 @@ import 'dart:convert' as converter;
 
 import 'package:http/http.dart' as http;
 import 'package:patta/api/model/today.dart';
-import 'package:patta/data_model/inspiration_card.dart';
+import 'package:patta/ui/model/CardModel.dart';
+import 'package:patta/ui/model/InspirationCardModel.dart';
 
 const _BASE_URL = 'http://kosa-sandbox.pariyatti.org';
 

@@ -1,5 +1,6 @@
-import 'package:patta/data_model/inspiration_card.dart';
+import 'package:patta/ui/model/CardModel.dart';
 import 'package:patta/local_database/database.dart';
+import 'package:patta/ui/model/InspirationCardModel.dart';
 
 DatabaseCard toDatabaseCard(
   CardModel cardModel,

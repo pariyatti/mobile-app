@@ -1,8 +1,4 @@
-abstract class CardModel {
-  final String id;
-
-  CardModel(this.id);
-}
+import 'package:patta/ui/model/CardModel.dart';
 
 class InspirationCardModel extends CardModel {
   final String text;

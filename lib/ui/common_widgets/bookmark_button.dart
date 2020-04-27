@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:patta/data_model/inspiration_card.dart';
+import 'package:patta/ui/model/CardModel.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/local_database/moor_converters.dart' as moor_converters;
 
