@@ -3,6 +3,7 @@ import 'package:patta/api/api.dart' as api;
 import 'package:patta/data_model/inspiration_card.dart';
 import 'package:patta/inspiration_card.dart';
 import 'package:patta/local_database/database.dart';
+import 'package:patta/resources/strings.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
@@ -16,12 +17,12 @@ class MyApp extends StatelessWidget {
         database.close();
       },
       child: MaterialApp(
-        title: 'Pariyatti',
+        title: strings['en'].appName,
         theme: ThemeData(
           primaryColor: Color(0xffdcd3c0),
           accentColor: Color(0xff6d695f),
         ),
-        home: MyHomePage(title: 'Pariyatti'),
+        home: MyHomePage(title: strings['en'].appName),
       ),
     );
   }
@@ -81,7 +82,7 @@ class MyHomePage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Some error occured, can you please try again later!',
+                    strings['en'].errorMessageTryAgainLater,
                     style: TextStyle(
                       inherit: true,
                       color: Color(0xff6d695f),

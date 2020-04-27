@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:patta/common_widgets/bookmark_button.dart';
 import 'package:patta/data_model/inspiration_card.dart';
 import 'package:patta/local_database/database.dart';
+import 'package:patta/resources/strings.dart';
 import 'package:patta/util.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
 
@@ -48,7 +49,9 @@ class InspirationCard extends StatelessWidget {
                         vertical: 12.0,
                       ),
                       child: Text(
-                        'Inspiration of the day'.toUpperCase(),
+                        strings['en']
+                            .titleCardInspirationOfTheDay
+                            .toUpperCase(),
                         style: TextStyle(
                           inherit: true,
                           fontSize: 14.0,
@@ -116,9 +119,9 @@ class InspirationCard extends StatelessWidget {
                                     extractFileExtension(data.imageUrl);
                                 var response = await http.get(data.imageUrl);
                                 await WcFlutterShare.share(
-                                  sharePopupTitle: 'Share Inspiration',
+                                  sharePopupTitle: strings['en'].labelShareInspiration,
                                   mimeType: 'image/$extension',
-                                  fileName: 'Inspiration of the day.$extension',
+                                  fileName: '${strings['en'].titleCardInspirationOfTheDay}.$extension',
                                   bytesOfFile: response.bodyBytes,
                                   text: data.text,
                                 );
