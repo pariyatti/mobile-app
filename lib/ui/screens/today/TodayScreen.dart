@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:patta/api/api.dart' as api;
+import 'package:patta/api/api.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/model/CardModel.dart';
@@ -26,7 +26,7 @@ class TodayScreen extends StatelessWidget {
         ),
       ),
       body: FutureBuilder<List<CardModel>>(
-        future: api.fetchToday(),
+        future: PariyattiApi().fetchToday(),
         builder: (
             BuildContext context,
             AsyncSnapshot<List<CardModel>> snapshot,

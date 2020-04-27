@@ -9,4 +9,7 @@ class InspirationCardModel extends CardModel {
     this.text,
     this.imageUrl,
   }): super(id);
+
+  @override
+  List<Object> get props => [id, text, imageUrl];
 }
