@@ -1,10 +1,10 @@
 import 'package:patta/ui/model/CardModel.dart';
 
-class InspirationCardModel extends CardModel {
+class StackedInspirationCardModel extends CardModel {
   final String text;
   final String imageUrl;
 
-  InspirationCardModel({
+  StackedInspirationCardModel({
     String id,
     this.text,
     this.imageUrl,

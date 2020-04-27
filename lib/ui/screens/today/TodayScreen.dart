@@ -3,8 +3,8 @@ import 'package:patta/api/api.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/model/CardModel.dart';
-import 'package:patta/ui/model/InspirationCardModel.dart';
-import 'package:patta/ui/screens/today/cards/InspirationCard.dart';
+import 'package:patta/ui/model/StackedInspirationCardModel.dart';
+import 'package:patta/ui/screens/today/cards/StackedInspirationCard.dart';
 import 'package:provider/provider.dart';
 
 class TodayScreen extends StatelessWidget {
@@ -28,22 +28,22 @@ class TodayScreen extends StatelessWidget {
       body: FutureBuilder<List<CardModel>>(
         future: PariyattiApi().fetchToday(),
         builder: (
-            BuildContext context,
-            AsyncSnapshot<List<CardModel>> snapshot,
-            ) {
+          BuildContext context,
+          AsyncSnapshot<List<CardModel>> snapshot,
+        ) {
           if (snapshot.hasData) {
             return ListView(
               children: snapshot.data
                   .map((card) {
-                if (card is InspirationCardModel) {
-                  return InspirationCard(
-                    card,
-                    Provider.of<PariyattiDatabase>(context),
-                  );
-                } else {
-                  return null;
-                }
-              })
+                    if (card is StackedInspirationCardModel) {
+                      return StackedInspirationCard(
+                        card,
+                        Provider.of<PariyattiDatabase>(context),
+                      );
+                    } else {
+                      return null;
+                    }
+                  })
                   .where((widget) => (widget != null))
                   .toList(),
             );

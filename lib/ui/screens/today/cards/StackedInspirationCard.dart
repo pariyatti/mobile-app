@@ -4,15 +4,15 @@ import 'package:http/http.dart' as http;
 import 'package:patta/local_database/database.dart';
 import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/common_widgets/bookmark_button.dart';
-import 'package:patta/ui/model/InspirationCardModel.dart';
+import 'package:patta/ui/model/StackedInspirationCardModel.dart';
 import 'package:patta/util.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
 
-class InspirationCard extends StatelessWidget {
-  final InspirationCardModel data;
+class StackedInspirationCard extends StatelessWidget {
+  final StackedInspirationCardModel data;
   final PariyattiDatabase database;
 
-  InspirationCard(this.data, this.database, {Key key}) : super(key: key);
+  StackedInspirationCard(this.data, this.database, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -119,9 +119,11 @@ class InspirationCard extends StatelessWidget {
                                     extractFileExtension(data.imageUrl);
                                 var response = await http.get(data.imageUrl);
                                 await WcFlutterShare.share(
-                                  sharePopupTitle: strings['en'].labelShareInspiration,
+                                  sharePopupTitle:
+                                      strings['en'].labelShareInspiration,
                                   mimeType: 'image/$extension',
-                                  fileName: '${strings['en'].titleCardInspirationOfTheDay}.$extension',
+                                  fileName:
+                                      '${strings['en'].titleCardInspirationOfTheDay}.$extension',
                                   bytesOfFile: response.bodyBytes,
                                   text: data.text,
                                 );

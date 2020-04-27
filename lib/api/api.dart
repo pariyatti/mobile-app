@@ -3,7 +3,7 @@ import 'dart:convert' as converter;
 import 'package:http/http.dart';
 import 'package:patta/api/model/today.dart';
 import 'package:patta/ui/model/CardModel.dart';
-import 'package:patta/ui/model/InspirationCardModel.dart';
+import 'package:patta/ui/model/StackedInspirationCardModel.dart';
 
 class PariyattiApi {
   static const BASE_URL = 'http://kosa-sandbox.pariyatti.org';
@@ -39,7 +39,7 @@ class PariyattiApi {
           final String cardType = apiCard['type'];
           if (cardType == 'stacked_inspiration') {
             ApiCard card = ApiCard.fromJson(apiCard);
-            return InspirationCardModel(
+            return StackedInspirationCardModel(
               id: card.id,
               text: card.text,
               imageUrl: '$BASE_URL${card.image.url}',

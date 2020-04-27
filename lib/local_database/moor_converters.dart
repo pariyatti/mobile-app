@@ -1,12 +1,12 @@
 import 'package:patta/ui/model/CardModel.dart';
 import 'package:patta/local_database/database.dart';
-import 'package:patta/ui/model/InspirationCardModel.dart';
+import 'package:patta/ui/model/StackedInspirationCardModel.dart';
 
 DatabaseCard toDatabaseCard(
   CardModel cardModel,
   DateTime createdAt,
 ) {
-  if (cardModel is InspirationCardModel) {
+  if (cardModel is StackedInspirationCardModel) {
     return DatabaseCard(
       id: cardModel.id,
       type: 'stacked_inspiration',
@@ -24,7 +24,7 @@ CardModel toCardModel(DatabaseCard databaseCard) {
   switch (databaseCard.type) {
     case 'stacked_inspiration':
       {
-        card = InspirationCardModel(
+        card = StackedInspirationCardModel(
           id: databaseCard.id,
           text: databaseCard.textData,
           imageUrl: databaseCard.imageUrl,

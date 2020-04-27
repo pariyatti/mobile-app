@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:http/testing.dart';
 import 'package:patta/api/api.dart';
-import 'package:patta/ui/model/InspirationCardModel.dart';
+import 'package:patta/ui/model/StackedInspirationCardModel.dart';
 
 void main() {
   test('Test whether sample today api is parsed correctly or not', () async {
@@ -26,7 +26,7 @@ void main() {
 
     expect(
       cardModels[0],
-      InspirationCardModel(
+      StackedInspirationCardModel(
         id: 'd2a7ed3a-eea6-42f2-8ddc-a01571f95551',
         text: 'Blue skiiiieeeeesssssss smiling at meeeeeeeeee. ',
         imageUrl:
@@ -36,7 +36,7 @@ void main() {
 
     expect(
       cardModels[1],
-      InspirationCardModel(
+      StackedInspirationCardModel(
         id: 'b4285e6a-ea3c-4fc1-a7f4-4de3f1ed8ca4',
         text:
             """ Enjoy some beautiful red flowers on the ground did you know you can also turn them into jam but you have to dry them on your rootop first which maybe you don't have the time for and you'd rather buy jam from a store.""",
