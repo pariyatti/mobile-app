@@ -26,6 +26,9 @@ flutter pub get
 # Generate database-interaction and json-conversion code
 flutter pub run build_runner build
 
+# Generate iOS and Android icons
+flutter pub run flutter_launcher_icons:main
+
 # Run the app on connected device
 flutter run
 ```
