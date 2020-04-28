@@ -49,9 +49,7 @@ class StackedInspirationCard extends StatelessWidget {
                         vertical: 12.0,
                       ),
                       child: Text(
-                        strings['en']
-                            .titleCardInspirationOfTheDay
-                            .toUpperCase(),
+                        data.header.toUpperCase(),
                         style: TextStyle(
                           inherit: true,
                           fontSize: 14.0,
@@ -122,8 +120,7 @@ class StackedInspirationCard extends StatelessWidget {
                                   sharePopupTitle:
                                       strings['en'].labelShareInspiration,
                                   mimeType: 'image/$extension',
-                                  fileName:
-                                      '${strings['en'].titleCardInspirationOfTheDay}.$extension',
+                                  fileName: '${data.header}.$extension',
                                   bytesOfFile: response.bodyBytes,
                                   text: data.text,
                                 );
