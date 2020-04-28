@@ -26,6 +26,7 @@ class PariyattiApp extends StatelessWidget {
           accentColor: Color(0xff6d695f),
         ),
         home: TodayScreen(title: strings['en'].appName),
+        debugShowCheckedModeBanner: !(_environment is ProductionEnvironment),
       ),
     );
   }
