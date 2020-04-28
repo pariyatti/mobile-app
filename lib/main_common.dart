@@ -1,24 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:patta/Environment.dart';
+import 'package:patta/config_reader.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/screens/today/TodayScreen.dart';
 import 'package:provider/provider.dart';
 
-void mainCommon(Environment environment) => runApp(PariyattiApp(environment));
+Future<void> mainCommon(Environment environment) async {
+  // Always call this if the main method is asynchronous
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final configReader = ConfigReader.fromConfigString(
+    await rootBundle.loadString('config/app_config.json'),
+  );
+
+  runApp(PariyattiApp(environment, configReader));
+}
 
 class PariyattiApp extends StatelessWidget {
   final Environment _environment;
+  final ConfigReader _configReader;
 
-  const PariyattiApp(this._environment, {Key key}) : super(key: key);
+  const PariyattiApp(
+    this._environment,
+    this._configReader, {
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Provider<PariyattiDatabase>(
-      create: (context) => PariyattiDatabase(),
-      dispose: (context, database) {
-        database.close();
-      },
+    return MultiProvider(
+      providers: [
+        Provider<Environment>(
+          create: (context) => _environment,
+        ),
+        Provider<ConfigReader>(
+          create: (context) => _configReader,
+        ),
+        Provider<PariyattiDatabase>(
+          create: (context) => PariyattiDatabase(),
+          dispose: (context, database) {
+            database.close();
+          },
+        ),
+      ],
       child: MaterialApp(
         title: strings['en'].appName,
         theme: ThemeData(
