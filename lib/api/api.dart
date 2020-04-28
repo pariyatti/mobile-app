@@ -3,6 +3,7 @@ import 'dart:convert' as converter;
 import 'package:http/http.dart';
 import 'package:patta/api/model/today.dart';
 import 'package:patta/ui/model/CardModel.dart';
+import 'package:patta/ui/model/PaliWordOfTheDayCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
 
 class PariyattiApi {
@@ -44,6 +45,19 @@ class PariyattiApi {
               text: card.text,
               imageUrl: '$BASE_URL${card.image.url}',
             );
+          } else if (cardType == 'pali_word') {
+            ApiCard card = ApiCard.fromJson(apiCard);
+            if (card.translations.isNotEmpty) {
+              return PaliWordOfTheDayCardModel(
+                id: card.id,
+                header: card.header,
+                pali: card.pali,
+                audioUrl: '$BASE_URL${card.audio.url}',
+                translation: card.translations[0].translation,
+              );
+            } else {
+              return null;
+            }
           } else {
             return null;
           }
