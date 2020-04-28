@@ -13,11 +13,17 @@ class Cards extends Table {
 
   TextColumn get type => text().named('type')();
 
-  TextColumn get header => text().named('header')();
+  TextColumn get header => text().named('header').nullable()();
 
-  TextColumn get textData => text().named('text')();
+  TextColumn get textData => text().named('text').nullable()();
 
-  TextColumn get imageUrl => text().named('imageUrl')();
+  TextColumn get imageUrl => text().named('imageUrl').nullable()();
+
+  TextColumn get paliWord => text().named('paliWord').nullable()();
+
+  TextColumn get audioUrl => text().named('audioUrl').nullable()();
+
+  TextColumn get translation => text().named('translation').nullable()();
 
   DateTimeColumn get createdAt => dateTime().named('createdAt')();
 }

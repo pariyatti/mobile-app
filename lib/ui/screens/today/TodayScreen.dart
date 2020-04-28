@@ -3,7 +3,9 @@ import 'package:patta/api/api.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/model/CardModel.dart';
+import 'package:patta/ui/model/PaliWordOfTheDayCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
+import 'package:patta/ui/screens/today/cards/PaliWordOfTheDayCard.dart';
 import 'package:patta/ui/screens/today/cards/StackedInspirationCard.dart';
 import 'package:provider/provider.dart';
 
@@ -37,6 +39,11 @@ class TodayScreen extends StatelessWidget {
                   .map((card) {
                     if (card is StackedInspirationCardModel) {
                       return StackedInspirationCard(
+                        card,
+                        Provider.of<PariyattiDatabase>(context),
+                      );
+                    } else if (card is PaliWordOfTheDayCardModel) {
+                      return PaliWordOfTheDayCard(
                         card,
                         Provider.of<PariyattiDatabase>(context),
                       );
