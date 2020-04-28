@@ -20,6 +20,9 @@ doc/api/
 *.js.deps
 *.js.map
 
+# Avoid commiting generated dart files
+*.g.dart
+
 # Files and directories used by IntelliJ based IDEs to store config
 .idea/
 *.iml
