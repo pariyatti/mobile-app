@@ -23,3 +23,6 @@ doc/api/
 # Files and directories used by IntelliJ based IDEs to store config
 .idea/
 *.iml
+
+# Configuration file containing keys and secrets
+config/app_config.json
