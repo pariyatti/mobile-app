@@ -13,6 +13,8 @@ class Cards extends Table {
 
   TextColumn get type => text().named('type')();
 
+  TextColumn get header => text().named('header')();
+
   TextColumn get textData => text().named('text')();
 
   TextColumn get imageUrl => text().named('imageUrl')();

@@ -42,6 +42,7 @@ class PariyattiApi {
             ApiCard card = ApiCard.fromJson(apiCard);
             return StackedInspirationCardModel(
               id: card.id,
+              header: card.header,
               text: card.text,
               imageUrl: '$BASE_URL${card.image.url}',
             );

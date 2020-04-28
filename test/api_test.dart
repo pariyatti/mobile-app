@@ -38,6 +38,7 @@ void main() {
       cardModels[1],
       StackedInspirationCardModel(
         id: 'b4285e6a-ea3c-4fc1-a7f4-4de3f1ed8ca4',
+        header: 'Inspiration of the Day',
         text:
             """ Enjoy some beautiful red flowers on the ground did you know you can also turn them into jam but you have to dry them on your rootop first which maybe you don't have the time for and you'd rather buy jam from a store.""",
         imageUrl:

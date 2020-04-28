@@ -10,6 +10,7 @@ DatabaseCard toDatabaseCard(
     return DatabaseCard(
       id: cardModel.id,
       type: 'stacked_inspiration',
+      header: cardModel.header,
       textData: cardModel.text,
       imageUrl: cardModel.imageUrl,
       createdAt: createdAt,
@@ -26,6 +27,7 @@ CardModel toCardModel(DatabaseCard databaseCard) {
       {
         card = StackedInspirationCardModel(
           id: databaseCard.id,
+          header: databaseCard.header,
           text: databaseCard.textData,
           imageUrl: databaseCard.imageUrl,
         );
