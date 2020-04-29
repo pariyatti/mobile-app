@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 const Map<String, AppStrings> strings = {
   'en': AppStrings(
     appName: 'Pariyatti',
+    messageNothingBookmarked: 'You haven\'t bookmarked anything yet',
     errorMessageTryAgainLater:
         'Some error occured, can you please try again later!',
       labelToday: 'Today',
@@ -17,6 +18,7 @@ const Map<String, AppStrings> strings = {
 class AppStrings {
   final String appName;
   final String errorMessageTryAgainLater;
+  final String messageNothingBookmarked;
   final String labelToday;
   final String labelAccount;
   final String labelShareInspiration;
@@ -27,6 +29,7 @@ class AppStrings {
   const AppStrings({
     @required this.appName,
     @required this.errorMessageTryAgainLater,
+    @required this.messageNothingBookmarked,
     @required this.labelToday,
     @required this.labelAccount,
     @required this.labelShareInspiration,
