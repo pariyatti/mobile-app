@@ -32,3 +32,17 @@ flutter pub run flutter_launcher_icons:main
 # Run the app on connected device
 flutter run
 ```
+
+## Flutter - Outstanding Questions
+
+If you have answers to these questions, please move them to the top and put the answer in a sub-bullet.
+
+- What's the Right Way to do i18n?
+- Why are the emulators broken and can we fix them?
+- Philsophical: What's the deal with `State` vs. `StatefulWidget`?
+- Could the HomeScreen state switch be a tiny object unto itself?
+- How does the `factory` keyword work?
+- If Santu comments on the `*Card.dart` files, are they readable to a newbie?
+- What is the `delete(card)..where()` double-dot syntax in Moor?
+- Can Moor Converters move into multiple files?
+
