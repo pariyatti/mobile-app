@@ -19,57 +19,69 @@ class TodayScreen extends StatelessWidget {
         AsyncSnapshot<List<CardModel>> snapshot,
       ) {
         if (snapshot.hasData) {
-          return ListView(
-            children: snapshot.data
-                .map((card) {
-                  if (card is StackedInspirationCardModel) {
-                    return StackedInspirationCard(
-                      card,
-                      Provider.of<PariyattiDatabase>(context),
-                    );
-                  } else if (card is PaliWordOfTheDayCardModel) {
-                    return PaliWordOfTheDayCard(
-                      card,
-                      Provider.of<PariyattiDatabase>(context),
-                    );
-                  } else {
-                    return null;
-                  }
-                })
-                .where((widget) => (widget != null))
-                .toList(),
-          );
+          return _buildCardsList(snapshot.data, context);
         } else if (snapshot.hasError) {
           // TODO: Log the error
-          return Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Icon(
-                    Icons.error,
-                    color: Color(0xff6d695f),
-                  ),
-                ),
-                Text(
-                  strings['en'].errorMessageTryAgainLater,
-                  style: TextStyle(
-                    inherit: true,
-                    color: Color(0xff6d695f),
-                    fontSize: 16.0,
-                  ),
-                )
-              ],
-            ),
-          );
+          return _buildError();
         } else {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
+          return _buildLoadingIndicator();
         }
       },
+    );
+  }
+
+  Widget _buildLoadingIndicator() {
+    return Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+
+  Widget _buildCardsList(List<CardModel> data, BuildContext context) {
+    return ListView(
+      children: data
+          .map((card) {
+            if (card is StackedInspirationCardModel) {
+              return StackedInspirationCard(
+                card,
+                Provider.of<PariyattiDatabase>(context),
+              );
+            } else if (card is PaliWordOfTheDayCardModel) {
+              return PaliWordOfTheDayCard(
+                card,
+                Provider.of<PariyattiDatabase>(context),
+              );
+            } else {
+              return null;
+            }
+          })
+          .where((widget) => (widget != null))
+          .toList(),
+    );
+  }
+
+  Widget _buildError() {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(
+              Icons.error,
+              color: Color(0xff6d695f),
+            ),
+          ),
+          Text(
+            strings['en'].errorMessageTryAgainLater,
+            style: TextStyle(
+              inherit: true,
+              color: Color(0xff6d695f),
+              fontSize: 16.0,
+            ),
+          )
+        ],
+      ),
     );
   }
 }
