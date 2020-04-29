@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patta/resources/strings.dart';
+import 'package:patta/ui/screens/account/AccountScreen.dart';
 import 'package:patta/ui/screens/today/TodayScreen.dart';
 
 enum HomeScreenTab { TODAY, ACCOUNT }
@@ -26,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
       case HomeScreenTab.ACCOUNT:
         bottomNavigationBarIndex = 1;
         titleText = '${strings['en'].appName} - ${strings['en'].labelAccount}';
-        bodyWidget = Container(color: Colors.red);
+        bodyWidget = AccountScreen();
         break;
     }
 

@@ -9,7 +9,8 @@ const Map<String, AppStrings> strings = {
       labelAccount: 'Account',
     labelShareInspiration: 'Share Inspiration',
     labelSharePaliWord: 'Share Pali Word',
-    labelTranslation: 'Translation'
+    labelTranslation: 'Translation',
+    labelBookmarks: 'Bookmarks',
   ),
 };
 
@@ -21,6 +22,7 @@ class AppStrings {
   final String labelShareInspiration;
   final String labelSharePaliWord;
   final String labelTranslation;
+  final String labelBookmarks;
 
   const AppStrings({
     @required this.appName,
@@ -30,5 +32,6 @@ class AppStrings {
     @required this.labelShareInspiration,
     @required this.labelSharePaliWord,
     @required this.labelTranslation,
+    @required this.labelBookmarks,
   });
 }
