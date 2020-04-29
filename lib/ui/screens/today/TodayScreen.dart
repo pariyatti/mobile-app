@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:patta/api/api.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/resources/strings.dart';
-import 'package:patta/ui/common_widgets/cards/PaliWordOfTheDayCard.dart';
+import 'package:patta/ui/common_widgets/cards/PaliWordCard.dart';
 import 'package:patta/ui/common_widgets/cards/StackedInspirationCard.dart';
 import 'package:patta/ui/model/CardModel.dart';
-import 'package:patta/ui/model/PaliWordOfTheDayCardModel.dart';
+import 'package:patta/ui/model/PaliWordCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
 import 'package:provider/provider.dart';
 
@@ -45,8 +45,8 @@ class TodayScreen extends StatelessWidget {
                 card,
                 Provider.of<PariyattiDatabase>(context),
               );
-            } else if (card is PaliWordOfTheDayCardModel) {
-              return PaliWordOfTheDayCard(
+            } else if (card is PaliWordCardModel) {
+              return PaliWordCard(
                 card,
                 Provider.of<PariyattiDatabase>(context),
               );

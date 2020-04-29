@@ -1,12 +1,12 @@
 import 'package:patta/ui/model/CardModel.dart';
 
-class PaliWordOfTheDayCardModel extends CardModel {
+class PaliWordCardModel extends CardModel {
   final String header;
   final String pali;
   final String audioUrl;
   final String translation;
 
-  PaliWordOfTheDayCardModel({
+  PaliWordCardModel({
     String id,
     this.header,
     this.pali,

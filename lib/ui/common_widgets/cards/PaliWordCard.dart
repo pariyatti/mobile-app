@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/common_widgets/bookmark_button.dart';
-import 'package:patta/ui/model/PaliWordOfTheDayCardModel.dart';
+import 'package:patta/ui/model/PaliWordCardModel.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
 
-class PaliWordOfTheDayCard extends StatelessWidget {
-  final PaliWordOfTheDayCardModel data;
+class PaliWordCard extends StatelessWidget {
+  final PaliWordCardModel data;
   final PariyattiDatabase database;
 
-  PaliWordOfTheDayCard(this.data, this.database, {Key key}) : super(key: key);
+  PaliWordCard(this.data, this.database, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

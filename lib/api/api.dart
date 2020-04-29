@@ -5,7 +5,7 @@ import 'package:http/http.dart';
 import 'package:patta/api/model/today.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/ui/model/CardModel.dart';
-import 'package:patta/ui/model/PaliWordOfTheDayCardModel.dart';
+import 'package:patta/ui/model/PaliWordCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
 
 class PariyattiApi {
@@ -68,7 +68,7 @@ class PariyattiApi {
           } else if (cardType == 'pali_word') {
             ApiCard card = ApiCard.fromJson(apiCard);
             if (card.translations.isNotEmpty) {
-              return PaliWordOfTheDayCardModel(
+              return PaliWordCardModel(
                 id: card.id,
                 header: card.header,
                 pali: card.pali,

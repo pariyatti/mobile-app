@@ -1,6 +1,6 @@
 import 'package:patta/local_database/database.dart';
 import 'package:patta/ui/model/CardModel.dart';
-import 'package:patta/ui/model/PaliWordOfTheDayCardModel.dart';
+import 'package:patta/ui/model/PaliWordCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
 
 DatabaseCard toDatabaseCard(
@@ -16,7 +16,7 @@ DatabaseCard toDatabaseCard(
       imageUrl: cardModel.imageUrl,
       createdAt: createdAt,
     );
-  } else if (cardModel is PaliWordOfTheDayCardModel) {
+  } else if (cardModel is PaliWordCardModel) {
     return DatabaseCard(
       id: cardModel.id,
       type: 'pali_word',
@@ -46,7 +46,7 @@ CardModel toCardModel(DatabaseCard databaseCard) {
       }
     case 'pali_word':
       {
-        card = PaliWordOfTheDayCardModel(
+        card = PaliWordCardModel(
           id: databaseCard.id,
           header: databaseCard.header,
           pali: databaseCard.paliWord,
