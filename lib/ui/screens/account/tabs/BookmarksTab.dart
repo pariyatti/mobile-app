@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/local_database/moor_converters.dart' as moor_converters;
 import 'package:patta/resources/strings.dart';
+import 'package:patta/ui/common_widgets/cards/PaliWordOfTheDayCard.dart';
+import 'package:patta/ui/common_widgets/cards/StackedInspirationCard.dart';
 import 'package:patta/ui/model/PaliWordOfTheDayCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
-import 'package:patta/ui/screens/today/cards/PaliWordOfTheDayCard.dart';
-import 'package:patta/ui/screens/today/cards/StackedInspirationCard.dart';
 import 'package:provider/provider.dart';
 
 class BookmarksTab extends StatelessWidget {
