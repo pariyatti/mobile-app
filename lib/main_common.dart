@@ -45,12 +45,14 @@ class PariyattiApp extends StatelessWidget {
             database.close();
           },
         ),
-        ProxyProvider<PariyattiDatabase, PariyattiApi>(
+        ProxyProvider2<Environment, PariyattiDatabase, PariyattiApi>(
           update: (
             BuildContext context,
+            Environment environment,
             PariyattiDatabase database,
             PariyattiApi previousApi,
-          ) => PariyattiApi(database),
+          ) =>
+              PariyattiApi(environment.kosaBaseUrl, database),
         ),
       ],
       child: MaterialApp(

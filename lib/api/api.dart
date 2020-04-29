@@ -1,88 +1,51 @@
-import 'dart:convert' as converter;
-
 import 'package:connectivity/connectivity.dart';
 import 'package:http/http.dart';
-import 'package:patta/api/model/today.dart';
+import 'package:patta/api/converter/today_converter.dart' as today_converter;
 import 'package:patta/local_database/database.dart';
 import 'package:patta/ui/model/CardModel.dart';
-import 'package:patta/ui/model/PaliWordCardModel.dart';
-import 'package:patta/ui/model/StackedInspirationCardModel.dart';
 
 class PariyattiApi {
-  // TODO: Get base-url from environment
-  static const BASE_URL = 'http://kosa-sandbox.pariyatti.org';
-
+  String baseUrl;
   PariyattiDatabase _database;
   Client _client;
 
-  PariyattiApi(this._database) {
+  PariyattiApi(this.baseUrl, this._database) {
     this._client = Client();
   }
 
-  PariyattiApi.withClient(this._database, Client client) {
+  PariyattiApi.withClient(this.baseUrl, this._database, Client client) {
     this._client = client;
   }
 
   Future<List<CardModel>> fetchToday() async {
-    const TODAY_URL = '$BASE_URL/api/today.json';
+    final todayUrl = '$baseUrl/api/today.json';
 
     final connectivityResult = await (Connectivity().checkConnectivity());
 
     if (connectivityResult == ConnectivityResult.none) {
-      final List<String> cachedResponses = await _database.retrieveFromCache(TODAY_URL);
+      final List<String> cachedResponses =
+          await _database.retrieveFromCache(todayUrl);
       if (cachedResponses.isNotEmpty) {
-        return _convertToCardModels(cachedResponses.first);
+        return today_converter.convertJsonToCardModels(
+          cachedResponses.first,
+          baseUrl,
+        );
       } else {
-        return Future.error('No network available, please try again after connecting to a network.');
+        return Future.error(
+          'No network available, please try again after connecting to a network.',
+        );
       }
     } else {
-      final response = await _client.get(TODAY_URL);
+      final response = await _client.get(todayUrl);
 
       if (response.statusCode == 200) {
         final String responseBody = response.body;
-        await _database.addToCache(TODAY_URL, responseBody);
+        await _database.addToCache(todayUrl, responseBody);
 
-        return _convertToCardModels(responseBody);
+        return today_converter.convertJsonToCardModels(responseBody, baseUrl);
       } else {
         return Future.error(response.body);
       }
     }
-  }
-
-  // TODO: Extract the parsing logic to a separate class/function
-  static List<CardModel> _convertToCardModels(
-    String responseBody,
-  ) {
-    final Iterable iterable = converter.jsonDecode(responseBody);
-    return iterable
-        .map((apiCard) {
-          final String cardType = apiCard['type'];
-          if (cardType == 'stacked_inspiration') {
-            ApiCard card = ApiCard.fromJson(apiCard);
-            return StackedInspirationCardModel(
-              id: card.id,
-              header: card.header,
-              text: card.text,
-              imageUrl: '$BASE_URL${card.image.url}',
-            );
-          } else if (cardType == 'pali_word') {
-            ApiCard card = ApiCard.fromJson(apiCard);
-            if (card.translations.isNotEmpty) {
-              return PaliWordCardModel(
-                id: card.id,
-                header: card.header,
-                pali: card.pali,
-                audioUrl: '$BASE_URL${card.audio.url}',
-                translation: card.translations[0].translation,
-              );
-            } else {
-              return null;
-            }
-          } else {
-            return null;
-          }
-        })
-        .where((card) => (card != null))
-        .toList();
   }
 }
