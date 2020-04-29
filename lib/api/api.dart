@@ -1,7 +1,9 @@
 import 'dart:convert' as converter;
 
+import 'package:connectivity/connectivity.dart';
 import 'package:http/http.dart';
 import 'package:patta/api/model/today.dart';
+import 'package:patta/local_database/database.dart';
 import 'package:patta/ui/model/CardModel.dart';
 import 'package:patta/ui/model/PaliWordOfTheDayCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
@@ -9,25 +11,36 @@ import 'package:patta/ui/model/StackedInspirationCardModel.dart';
 class PariyattiApi {
   static const BASE_URL = 'http://kosa-sandbox.pariyatti.org';
 
+  PariyattiDatabase _database;
   Client _client;
 
-  PariyattiApi() {
+  PariyattiApi(this._database) {
     this._client = Client();
   }
 
-  PariyattiApi.withClient(Client client) {
+  PariyattiApi.withClient(this._database, Client client) {
     this._client = client;
   }
 
   Future<List<CardModel>> fetchToday() async {
     const TODAY_URL = '$BASE_URL/api/today.json';
 
-    final response = await _client.get(TODAY_URL);
+    final connectivityResult = await (Connectivity().checkConnectivity());
 
-    if (response.statusCode == 200) {
-      return _convertToCardModels(response.body);
+    if (connectivityResult == ConnectivityResult.none) {
+      final String cachedResponse = await _database.retrieveFromCache(TODAY_URL);
+      return _convertToCardModels(cachedResponse);
     } else {
-      return Future.error(response.body);
+      final response = await _client.get(TODAY_URL);
+
+      if (response.statusCode == 200) {
+        final String responseBody = response.body;
+        await _database.addToCache(TODAY_URL, responseBody);
+
+        return _convertToCardModels(responseBody);
+      } else {
+        return Future.error(response.body);
+      }
     }
   }
 

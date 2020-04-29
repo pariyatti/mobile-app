@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:patta/Environment.dart';
+import 'package:patta/api/api.dart';
 import 'package:patta/config_reader.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/resources/strings.dart';
@@ -43,6 +44,13 @@ class PariyattiApp extends StatelessWidget {
           dispose: (context, database) {
             database.close();
           },
+        ),
+        ProxyProvider<PariyattiDatabase, PariyattiApi>(
+          update: (
+            BuildContext context,
+            PariyattiDatabase database,
+            PariyattiApi previousApi,
+          ) => PariyattiApi(database),
         ),
       ],
       child: MaterialApp(

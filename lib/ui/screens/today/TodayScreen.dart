@@ -13,7 +13,7 @@ class TodayScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<CardModel>>(
-      future: PariyattiApi().fetchToday(),
+      future: Provider.of<PariyattiApi>(context).fetchToday(),
       builder: (
         BuildContext context,
         AsyncSnapshot<List<CardModel>> snapshot,
