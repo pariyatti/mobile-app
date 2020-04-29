@@ -12,6 +12,6 @@ class SandboxEnvironment extends Environment {
 
 class ProductionEnvironment extends Environment {
   ProductionEnvironment() : super(
-    'http://kosa-sandbox.pariyatti.org'
+    'http://kosa.pariyatti.org'
   );
 }
