@@ -15,26 +15,27 @@ class TodayScreen extends StatelessWidget {
     return FutureBuilder<List<CardModel>>(
       future: PariyattiApi().fetchToday(),
       builder: (
-          BuildContext context,
-          AsyncSnapshot<List<CardModel>> snapshot,) {
+        BuildContext context,
+        AsyncSnapshot<List<CardModel>> snapshot,
+      ) {
         if (snapshot.hasData) {
           return ListView(
             children: snapshot.data
                 .map((card) {
-              if (card is StackedInspirationCardModel) {
-                return StackedInspirationCard(
-                  card,
-                  Provider.of<PariyattiDatabase>(context),
-                );
-              } else if (card is PaliWordOfTheDayCardModel) {
-                return PaliWordOfTheDayCard(
-                  card,
-                  Provider.of<PariyattiDatabase>(context),
-                );
-              } else {
-                return null;
-              }
-            })
+                  if (card is StackedInspirationCardModel) {
+                    return StackedInspirationCard(
+                      card,
+                      Provider.of<PariyattiDatabase>(context),
+                    );
+                  } else if (card is PaliWordOfTheDayCardModel) {
+                    return PaliWordOfTheDayCard(
+                      card,
+                      Provider.of<PariyattiDatabase>(context),
+                    );
+                  } else {
+                    return null;
+                  }
+                })
                 .where((widget) => (widget != null))
                 .toList(),
           );
