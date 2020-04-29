@@ -73,10 +73,10 @@ class PariyattiDatabase extends _$PariyattiDatabase {
     );
   }
 
-  Future<String> retrieveFromCache(String url) {
+  Future<List<String>> retrieveFromCache(String url) {
     return (select(networkCacheTable)..where((table) => table.url.equals(url)))
         .map((row) => row.response)
-        .getSingle();
+        .get();
   }
 
   Future<void> insertCard(DatabaseCard card) {

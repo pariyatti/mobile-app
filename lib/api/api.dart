@@ -9,6 +9,7 @@ import 'package:patta/ui/model/PaliWordOfTheDayCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
 
 class PariyattiApi {
+  // TODO: Get base-url from environment
   static const BASE_URL = 'http://kosa-sandbox.pariyatti.org';
 
   PariyattiDatabase _database;
@@ -28,8 +29,12 @@ class PariyattiApi {
     final connectivityResult = await (Connectivity().checkConnectivity());
 
     if (connectivityResult == ConnectivityResult.none) {
-      final String cachedResponse = await _database.retrieveFromCache(TODAY_URL);
-      return _convertToCardModels(cachedResponse);
+      final List<String> cachedResponses = await _database.retrieveFromCache(TODAY_URL);
+      if (cachedResponses.isNotEmpty) {
+        return _convertToCardModels(cachedResponses.first);
+      } else {
+        return Future.error('No network available, please try again after connecting to a network.');
+      }
     } else {
       final response = await _client.get(TODAY_URL);
 
@@ -44,6 +49,7 @@ class PariyattiApi {
     }
   }
 
+  // TODO: Extract the parsing logic to a separate class/function
   static List<CardModel> _convertToCardModels(
     String responseBody,
   ) {
