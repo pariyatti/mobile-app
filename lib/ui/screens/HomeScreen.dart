@@ -65,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Color(0xff6d695f),
             ),
             title: Text(
-              strings['en'].labelToday,
+              strings['en'].labelAccount,
               style: TextStyle(
                 inherit: true,
                 color: Color(0xff6d695f),
