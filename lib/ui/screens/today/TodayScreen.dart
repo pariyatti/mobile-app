@@ -40,6 +40,7 @@ class TodayScreen extends StatelessWidget {
                 .toList(),
           );
         } else if (snapshot.hasError) {
+          // TODO: Log the error
           return Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,
