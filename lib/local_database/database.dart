@@ -58,7 +58,7 @@ class PariyattiDatabase extends _$PariyattiDatabase {
     return (delete(cards)..where((table) => table.id.equals(id))).go();
   }
 
-  Future<List<DatabaseCard>> get allCards => (select(cards)..orderBy([(t) => OrderingTerm.desc(t.createdAt)])).get();
+  Stream<List<DatabaseCard>> get allCards => (select(cards)..orderBy([(t) => OrderingTerm.desc(t.createdAt)])).watch();
 
   Stream<bool> isCardBookmarked(String id) {
     return (select(cards)..where((table) => table.id.equals(id)))

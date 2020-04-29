@@ -13,8 +13,8 @@ class BookmarksTab extends StatelessWidget {
   Widget build(BuildContext context) {
     final database = Provider.of<PariyattiDatabase>(context);
 
-    return FutureBuilder(
-      future: database.allCards,
+    return StreamBuilder(
+      stream: database.allCards,
       builder: (
         BuildContext context,
         AsyncSnapshot<List<DatabaseCard>> snapshot,
