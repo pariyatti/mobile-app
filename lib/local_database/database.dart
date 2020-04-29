@@ -31,6 +31,18 @@ class Cards extends Table {
   Set<Column> get primaryKey => {id};
 }
 
+@DataClassName('NetworkCache')
+class NetworkCacheTable extends Table {
+  TextColumn get url => text().named('url')();
+
+  TextColumn get response => text().named('response')();
+
+  DateTimeColumn get cachedAt => dateTime().named('cachedAt')();
+
+  @override
+  Set<Column> get primaryKey => {url};
+}
+
 LazyDatabase _openConnection() {
   return LazyDatabase(() async {
     final databaseFolder = await getApplicationDocumentsDirectory();
@@ -43,12 +55,29 @@ LazyDatabase _openConnection() {
   });
 }
 
-@UseMoor(tables: [Cards])
+@UseMoor(tables: [Cards, NetworkCacheTable,])
 class PariyattiDatabase extends _$PariyattiDatabase {
   PariyattiDatabase() : super(_openConnection());
 
   @override
   int get schemaVersion => 1;
+
+  Future<void> addToCache(String url, String response) {
+    return into(networkCacheTable).insert(
+      NetworkCache(
+        url: url,
+        response: response,
+        cachedAt: DateTime.now()
+      ),
+      mode: InsertMode.insertOrReplace,
+    );
+  }
+
+  Future<String> retrieveFromCache(String url) {
+    return (select(networkCacheTable)..where((table) => table.url.equals(url)))
+        .map((row) => row.response)
+        .getSingle();
+  }
 
   Future<void> insertCard(DatabaseCard card) {
     return into(cards).insert(
