@@ -26,6 +26,9 @@ class Cards extends Table {
   TextColumn get translation => text().named('translation').nullable()();
 
   DateTimeColumn get createdAt => dateTime().named('createdAt')();
+
+  @override
+  Set<Column> get primaryKey => {id};
 }
 
 LazyDatabase _openConnection() {
@@ -58,7 +61,8 @@ class PariyattiDatabase extends _$PariyattiDatabase {
     return (delete(cards)..where((table) => table.id.equals(id))).go();
   }
 
-  Stream<List<DatabaseCard>> get allCards => (select(cards)..orderBy([(t) => OrderingTerm.desc(t.createdAt)])).watch();
+  Stream<List<DatabaseCard>> get allCards =>
+      (select(cards)..orderBy([(t) => OrderingTerm.desc(t.createdAt)])).watch();
 
   Stream<bool> isCardBookmarked(String id) {
     return (select(cards)..where((table) => table.id.equals(id)))
