@@ -4,7 +4,7 @@ import 'package:patta/Environment.dart';
 import 'package:patta/config_reader.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/resources/strings.dart';
-import 'package:patta/ui/screens/today/TodayScreen.dart';
+import 'package:patta/ui/screens/HomeScreen.dart';
 import 'package:provider/provider.dart';
 
 Future<void> mainCommon(Environment environment) async {
@@ -51,7 +51,7 @@ class PariyattiApp extends StatelessWidget {
           primaryColor: Color(0xffdcd3c0),
           accentColor: Color(0xff6d695f),
         ),
-        home: TodayScreen(title: strings['en'].appName),
+        home: HomeScreen(),
         debugShowCheckedModeBanner: !(_environment is ProductionEnvironment),
       ),
     );

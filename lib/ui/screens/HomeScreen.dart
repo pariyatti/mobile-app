@@ -1,0 +1,87 @@
+import 'package:flutter/material.dart';
+import 'package:patta/resources/strings.dart';
+import 'package:patta/ui/screens/today/TodayScreen.dart';
+
+enum HomeScreenTab { TODAY, ACCOUNT }
+
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  HomeScreenTab _tab = HomeScreenTab.TODAY;
+
+  @override
+  Widget build(BuildContext context) {
+    int bottomNavigationBarIndex;
+    String titleText;
+    Widget bodyWidget;
+    switch (_tab) {
+      case HomeScreenTab.TODAY:
+        bottomNavigationBarIndex = 0;
+        titleText = '${strings['en'].appName} - ${strings['en'].labelToday}';
+        bodyWidget = TodayScreen();
+        break;
+      case HomeScreenTab.ACCOUNT:
+        bottomNavigationBarIndex = 1;
+        titleText = '${strings['en'].appName} - ${strings['en'].labelAccount}';
+        bodyWidget = Container(color: Colors.red);
+        break;
+    }
+
+    return Scaffold(
+      backgroundColor: Color(0xfff4efe7),
+      appBar: AppBar(
+        title: Text(
+          titleText,
+          style: TextStyle(
+            inherit: true,
+            color: Color(0xff6d695f),
+          ),
+        ),
+      ),
+      body: bodyWidget,
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: bottomNavigationBarIndex,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.today,
+              color: Color(0xff6d695f),
+            ),
+            title: Text(
+              strings['en'].labelToday,
+              style: TextStyle(
+                inherit: true,
+                color: Color(0xff6d695f),
+              ),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.person,
+              color: Color(0xff6d695f),
+            ),
+            title: Text(
+              strings['en'].labelToday,
+              style: TextStyle(
+                inherit: true,
+                color: Color(0xff6d695f),
+              ),
+            ),
+          )
+        ],
+        onTap: (int tappedItemIndex) {
+          this.setState(() {
+            if (tappedItemIndex == 0) {
+              this._tab = HomeScreenTab.TODAY;
+            } else if (tappedItemIndex == 1) {
+              this._tab = HomeScreenTab.ACCOUNT;
+            }
+          });
+        },
+      ),
+    );
+  }
+}

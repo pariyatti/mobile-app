@@ -5,6 +5,8 @@ const Map<String, AppStrings> strings = {
     appName: 'Pariyatti',
     errorMessageTryAgainLater:
         'Some error occured, can you please try again later!',
+      labelToday: 'Today',
+      labelAccount: 'Account',
     labelShareInspiration: 'Share Inspiration',
     labelSharePaliWord: 'Share Pali Word',
     labelTranslation: 'Translation'
@@ -14,6 +16,8 @@ const Map<String, AppStrings> strings = {
 class AppStrings {
   final String appName;
   final String errorMessageTryAgainLater;
+  final String labelToday;
+  final String labelAccount;
   final String labelShareInspiration;
   final String labelSharePaliWord;
   final String labelTranslation;
@@ -21,6 +25,8 @@ class AppStrings {
   const AppStrings({
     @required this.appName,
     @required this.errorMessageTryAgainLater,
+    @required this.labelToday,
+    @required this.labelAccount,
     @required this.labelShareInspiration,
     @required this.labelSharePaliWord,
     @required this.labelTranslation,
