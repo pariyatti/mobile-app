@@ -4,8 +4,8 @@
 .dart_tool/
 .packages
 build/
-# If you're building an application, you may want to check-in your pubspec.lock
-pubspec.lock
+.flutter-plugins
+.flutter-plugins-dependencies
 
 # Directory created by dartdoc
 # If you don't generate documentation locally you can remove this line.
@@ -19,3 +19,17 @@ doc/api/
 *.js_
 *.js.deps
 *.js.map
+
+# Avoid commiting generated dart files
+*.g.dart
+
+# Files and directories used by IntelliJ based IDEs to store config
+.idea/
+*.iml
+
+# Configuration file containing keys and secrets
+config/app_config.json
+
+# Ignore Android Signing Keystore and its properties
+android/keystore.jks
+android/keystore.properties
