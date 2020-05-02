@@ -17,7 +17,7 @@ The Pariyatti mobile app.
 3. Install Flutter: https://flutter.dev/docs/get-started/install
    - run `flutter doctor` and follow any remaining instructions
 
-## Build Process
+## Local Build Process
 
 ```
 # Grab dependencies
@@ -32,6 +32,12 @@ flutter pub run flutter_launcher_icons:main
 # Run the app on connected device
 flutter run
 ```
+
+## CI / CD Builds
+
+Ask Steven Deobald or Varun Barad for an account if you cannot see the app:
+
+[https://codemagic.io/app/5ea7faa6ab38b5000ac85f7b](https://codemagic.io/app/5ea7faa6ab38b5000ac85f7b)
 
 ## Flutter - Outstanding Questions
 
