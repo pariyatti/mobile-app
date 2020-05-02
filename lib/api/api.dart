@@ -18,7 +18,7 @@ class PariyattiApi {
   }
 
   Future<List<CardModel>> fetchToday() async {
-    final todayUrl = '$baseUrl/api/today.json';
+    final todayUrl = '$baseUrl/api/v1/today.json';
 
     final connectivityResult = await (Connectivity().checkConnectivity());
 
