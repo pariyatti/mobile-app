@@ -19,18 +19,48 @@ The Pariyatti mobile app.
 
 ## Local Build Process
 
+### Common steps
+
 ```
+# Copy example config file to provide configuration secrets
+cp config/app_config.sample.json config/app_config.json
+
+# Fill in values of secrets/keys inside config/app_config.json
+
 # Grab dependencies
 flutter pub get
 
-# Generate database-interaction and json-conversion code
+# Generate code for part-files
 flutter pub run build_runner build
+```
 
-# Generate iOS and Android icons
-flutter pub run flutter_launcher_icons:main
 
-# Run the app on connected device
-flutter run
+### Run debug build with sandbox servers
+```
+# Target sandbox environment
+flutter run --target lib/main_sand.dart
+```
+
+### Run debug build with production servers
+```
+# Target production environment
+flutter run --target lib/main_prod.dart
+```
+
+### Run signed Android release build with production servers
+```
+# Generate Android signing keystore from these instructions
+# https://flutter.dev/docs/deployment/android#create-a-keystore
+# Make sure to name the file "keystore.jks" and put it right inside "android" dir
+
+# Copy sample properties file
+cp android/keystore.sample.properties android/keystore.properties
+
+# Fill in the key-alias, store-password and key-password as per your
+# keystore inside the copied keystore.properties file
+
+# Run signed Android app with production environment
+flutter run --release --target lib/main_prod.dart
 ```
 
 ## CI / CD Builds
