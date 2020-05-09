@@ -40,6 +40,7 @@ Promotion:
 cp config/app_config.sample.json config/app_config.json
 
 # Fill in values of secrets/keys inside config/app_config.json
+# (At the moment, the app doesn't require any.)
 
 # Grab dependencies
 flutter pub get
