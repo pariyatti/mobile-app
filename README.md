@@ -31,7 +31,8 @@ cp config/app_config.sample.json config/app_config.json
 # Grab dependencies
 flutter pub get
 
-# Generate code for part-files
+# Generate code for part-files. This generated code is used to 
+# parse/deserialize JSON and db data into model objects. 
 flutter pub run build_runner build
 ```
 
