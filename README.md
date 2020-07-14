@@ -13,7 +13,8 @@ The Pariyatti mobile app.
    - Install Android SDK Tools (obsolete) in `Tools > SDK Manager`
    - Install Android SDK Command-line Tools in `Tools > SDK Manager`
    - Install the Android Studio Flutter Plugin
-   - Configure udev: `sudo apt-get install adb && sudo usermod -aG plugdev $LOGNAME`
+   - Configure udev to collect logs from a hardware device attached by USB: 
+     - `sudo apt-get install adb && sudo usermod -aG plugdev $LOGNAME`
 3. Install Flutter: https://flutter.dev/docs/get-started/install
    - run `flutter doctor` and follow any remaining instructions
 
@@ -38,12 +39,14 @@ flutter pub run build_runner build
 ### Run debug build with sandbox servers
 ```
 # Target sandbox environment
+# This uses a `main` specific to the sandbox server
 flutter run --target lib/main_sand.dart
 ```
 
 ### Run debug build with production servers
 ```
 # Target production environment
+# This uses a `main` specific to the production server
 flutter run --target lib/main_prod.dart
 ```
 
@@ -73,12 +76,14 @@ Ask Steven Deobald or Varun Barad for an account if you cannot see the app:
 
 If you have answers to these questions, please move them to the top and put the answer in a sub-bullet.
 
+- What is the `delete(card)..where()` double-dot syntax in Moor?
+  - This is not Moor-specific but rather a feature of Dart. The double-dot returns you the _previous_ instance so you can keep operating on one object rather than chaining methods over previous methods' return values. For instance: `A.b()..c()` runs `b()` on the instance `A` but it also runs `c()` on the instance `A`, instead of on the return value of `b()` as `A.b().c()` would.
 - What's the Right Way to do i18n?
+  - https://flutter.dev/docs/development/accessibility-and-localization/internationalization
 - Why are the emulators broken and can we fix them?
 - Philsophical: What's the deal with `State` vs. `StatefulWidget`?
 - Could the HomeScreen state switch be a tiny object unto itself?
 - How does the `factory` keyword work?
 - If Santu comments on the `*Card.dart` files, are they readable to a newbie?
-- What is the `delete(card)..where()` double-dot syntax in Moor?
 - Can Moor Converters move into multiple files?
 
