@@ -6,7 +6,7 @@ The Pariyatti mobile app.
 
 - [Design Docs & Wireframes](https://drive.google.com/drive/folders/1Iga6z-5tndLJ411XG5ibimLwNC5VZDVv?usp=sharing) (public)
 
-## Dev Setup
+## Dev Setup: Android
 
 1. Install Java: `sudo apt-get install openjdk-14-jdk` or `sudo apt-get install openjdk-11-jdk`
 2. Install Android Studio: https://developer.android.com/studio
@@ -17,6 +17,17 @@ The Pariyatti mobile app.
      - `sudo apt-get install adb && sudo usermod -aG plugdev $LOGNAME`
 3. Install Flutter: https://flutter.dev/docs/get-started/install
    - run `flutter doctor` and follow any remaining instructions
+
+## Dev Setup: iOS
+
+1. Install Java:
+   - Download JDK 14: https://jdk.java.net/14/
+   - `cd ~/Downloads && tar xzf tar xzf openjdk-14.0.2_osx-x64_bin.tar.gz`
+   - `sudo mv jdk-14.0.2.jdk /Library/Java/JavaVirtualMachines/.`
+   - `echo 'export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-14.0.2.jdk/Contents/Home' >> ~/.zshrc` # or `.bash_profile`
+1. Install Xcode
+2. Install Flutter: https://flutter.dev/docs/get-started/install
+   - run `flutter precache` and `flutter doctor` and follow any remaining instructions
 
 ## Local Build Process
 
