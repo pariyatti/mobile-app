@@ -20,16 +20,28 @@ Promotion:
    dev     PR   debug/test   PR  release
 ```
 
-## Dev Setup
+## Dev Setup: Android
 
 1. Install Java: `sudo apt-get install openjdk-14-jdk` or `sudo apt-get install openjdk-11-jdk`
 2. Install Android Studio: https://developer.android.com/studio
    - Install Android SDK Tools (obsolete) in `Tools > SDK Manager`
    - Install Android SDK Command-line Tools in `Tools > SDK Manager`
    - Install the Android Studio Flutter Plugin
-   - Configure udev: `sudo apt-get install adb && sudo usermod -aG plugdev $LOGNAME`
+   - Configure udev to collect logs from a hardware device attached by USB: 
+     - `sudo apt-get install adb && sudo usermod -aG plugdev $LOGNAME`
 3. Install Flutter: https://flutter.dev/docs/get-started/install
    - run `flutter doctor` and follow any remaining instructions
+
+## Dev Setup: iOS
+
+1. Install Java:
+   - Download JDK 14: https://jdk.java.net/14/
+   - `cd ~/Downloads && tar xzf tar xzf openjdk-14.0.2_osx-x64_bin.tar.gz`
+   - `sudo mv jdk-14.0.2.jdk /Library/Java/JavaVirtualMachines/.`
+   - `echo 'export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-14.0.2.jdk/Contents/Home' >> ~/.zshrc` # or `.bash_profile`
+1. Install Xcode
+2. Install Flutter: https://flutter.dev/docs/get-started/install
+   - run `flutter precache` and `flutter doctor` and follow any remaining instructions
 
 ## Local Build Process
 
@@ -45,7 +57,8 @@ cp config/app_config.sample.json config/app_config.json
 # Grab dependencies
 flutter pub get
 
-# Generate code for part-files
+# Generate code for part-files. This generated code is used to 
+# parse/deserialize JSON and db data into model objects. 
 flutter pub run build_runner build
 ```
 
@@ -54,6 +67,7 @@ flutter pub run build_runner build
 
 ```
 # Target sandbox environment
+# This uses a `main` specific to the sandbox server
 flutter run --target lib/main_sand.dart
 ```
 
@@ -61,6 +75,7 @@ flutter run --target lib/main_sand.dart
 
 ```
 # Target production environment
+# This uses a `main` specific to the production server
 flutter run --target lib/main_prod.dart
 ```
 
@@ -119,12 +134,15 @@ When we're ready for our first public release, we will need to change `Publish =
 
 If you have answers to these questions, please move them to the top and put the answer in a sub-bullet.
 
+- What is the `delete(card)..where()` double-dot syntax in Moor?
+  - This is not Moor-specific but rather a feature of Dart. The double-dot returns you the _previous_ instance so you can keep operating on one object rather than chaining methods over previous methods' return values. For instance: `A.b()..c()` runs `b()` on the instance `A` but it also runs `c()` on the instance `A`, instead of on the return value of `b()` as `A.b().c()` would.
 - What's the Right Way to do i18n?
+  - https://flutter.dev/docs/development/accessibility-and-localization/internationalization
+
 - Why are the emulators broken and can we fix them?
 - Philsophical: What's the deal with `State` vs. `StatefulWidget`?
 - Could the HomeScreen state switch be a tiny object unto itself?
 - How does the `factory` keyword work?
 - If Santu comments on the `*Card.dart` files, are they readable to a newbie?
-- What is the `delete(card)..where()` double-dot syntax in Moor?
 - Can Moor Converters move into multiple files?
 
