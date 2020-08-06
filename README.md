@@ -66,7 +66,7 @@ flutter run --target lib/main_prod.dart
 
 ***
 
-Everything below this point is for project admins. If this is your first time building `patta`, you can stop here. :)
+:sunrise_over_mountains: Everything below this point is for project admins. If this is your first time building `patta`, you can stop here. :) :sunrise_over_mountains:
 
 ***
 
