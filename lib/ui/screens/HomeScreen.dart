@@ -53,14 +53,14 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             activeIcon: Icon(
               Icons.today,
-              color: Colors.brown,
+              color: Color.fromARGB(255, 186, 86, 38),
             ),
             title: Text(
               strings['en'].labelToday,
               style: TextStyle(
                 inherit: true,
                 color: bottomNavigationBarIndex == 0
-                    ? Colors.brown
+                    ? Color.fromARGB(255, 186, 86, 38)
                     : Color(0xff6d695f),
               ),
             ),
@@ -72,14 +72,14 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             activeIcon: Icon(
               Icons.person,
-              color: Colors.brown,
+              color: Color.fromARGB(255, 186, 86, 38),
             ),
             title: Text(
               strings['en'].labelAccount,
               style: TextStyle(
                 inherit: true,
                 color: bottomNavigationBarIndex == 1
-                    ? Colors.brown
+                    ? Color.fromARGB(255, 186, 86, 38)
                     : Color(0xff6d695f),
               ),
             ),
