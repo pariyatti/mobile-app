@@ -48,6 +48,13 @@ flutter pub get
 flutter pub run build_runner build
 ```
 
+### Run the tests
+
+```
+# runs against a connected device
+flutter test --machine
+```
+
 ### Run debug build with sandbox servers
 
 ```
