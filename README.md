@@ -6,20 +6,6 @@ The Pariyatti mobile app.
 
 - [Design Docs & Wireframes](https://drive.google.com/drive/folders/1Iga6z-5tndLJ411XG5ibimLwNC5VZDVv?usp=sharing) (public)
 
-## Branches
-
-1. `master` is for release builds. Merging changes into `master` causes a build in [CodeMagic](https://github.com/pariyatti/patta#ci--cd-builds) which publishes to the Play Store.
-2. `development` is for debug builds. These are not published to the Play Store but are automatically emailed to developers. Do version bumps in the `development` branch **only**.
-3. Feature Branches are used for all active development. Branch off of the `development` branch either in the `pariyatti/patta` repo or in your own personal repo. When you are finished a User Story, submit a PR to the `development` branch. Stories should be thoroughly tested before they are merged into `master`.
-
-```
-Promotion:
-
-[feature] ==> [development] ==> [master]
-    |      |         |       |      |
-   dev     PR   debug/test   PR  release
-```
-
 ## Dev Setup: Android
 
 1. Install Java: `sudo apt-get install openjdk-14-jdk` or `sudo apt-get install openjdk-11-jdk`
@@ -27,7 +13,7 @@ Promotion:
    - Install Android SDK Tools (obsolete) in `Tools > SDK Manager`
    - Install Android SDK Command-line Tools in `Tools > SDK Manager`
    - Install the Android Studio Flutter Plugin
-   - Configure udev to collect logs from a hardware device attached by USB: 
+   - (Optional) Configure udev to collect logs from a hardware device attached by USB: 
      - `sudo apt-get install adb && sudo usermod -aG plugdev $LOGNAME`
 3. Install Flutter: https://flutter.dev/docs/get-started/install
    - run `flutter doctor` and follow any remaining instructions
@@ -62,12 +48,11 @@ flutter pub get
 flutter pub run build_runner build
 ```
 
-
 ### Run debug build with sandbox servers
 
 ```
 # Target sandbox environment
-# This uses a `main` specific to the sandbox server
+# This uses a `main` specific to the sand[box] server
 flutter run --target lib/main_sand.dart
 ```
 
@@ -75,11 +60,32 @@ flutter run --target lib/main_sand.dart
 
 ```
 # Target production environment
-# This uses a `main` specific to the production server
+# This uses a `main` specific to the prod[uction] server
 flutter run --target lib/main_prod.dart
 ```
 
-### Run release build with production servers (signed APK)
+***
+
+:sunrise_over_mountains: Everything below this point is for project admins. If this is your first time building `patta`, you can stop here. :) :sunrise_over_mountains:
+
+***
+
+
+## Branch Policy
+
+1. `master` is for release builds. Merging changes into `master` causes a build in [CodeMagic](https://github.com/pariyatti/patta#ci--cd-builds) which publishes to the Play Store.
+2. `development` is for debug builds. These are not published to the Play Store but are automatically emailed to developers. Do version bumps in the `development` branch **only**.
+3. Feature Branches are used for all active development. Branch off of the `development` branch either in the `pariyatti/patta` repo or in your own personal repo. When you are finished a User Story, submit a PR to the `development` branch. Stories should be thoroughly tested before they are merged into `master`.
+
+```
+Promotion:
+
+[feature] ==> [development] ==> [master]
+    |      |         |       |      |
+   dev     PR   debug/test   PR  release
+```
+
+## Run release build with production servers (signed APK)
 
 In order of preference:
 
