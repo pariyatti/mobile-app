@@ -10,8 +10,7 @@ void main() {
     // setup
     const baseUrl = '<giving-any-string-here-does-not-matter-for-this-test>';
 
-    File file = File('test/responseJson.json');
-    final responseJson = file.readAsStringSync();
+    final responseJson = File('test/responseJson.json').readAsStringSync();
 
     // method to be tested
     final cardModels =
