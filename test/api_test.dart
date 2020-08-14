@@ -13,7 +13,7 @@ void main() {
     //workaround for https://github.com/flutter/flutter/issues/20907
     String getContents(String filePath) {
       var dir = Directory.current.path;
-      if (dir.endsWith('/test') || dir.endsWith('\\test')) {
+      if (dir.endsWith('${Platform.pathSeparator}test')) {
         return File('$dir/$filePath').readAsStringSync();
       }
       return File('$dir/test/$filePath').readAsStringSync();
