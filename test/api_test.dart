@@ -9,8 +9,19 @@ void main() {
   test('Test whether sample today api is parsed correctly or not', () {
     // setup
     const baseUrl = '<giving-any-string-here-does-not-matter-for-this-test>';
+
+    //workaround for https://github.com/flutter/flutter/issues/20907
+    String getContents(String filePath) {
+      var dir = Directory.current.path;
+      if (!dir.endsWith('\\test')) {
+        return File('$dir\\test\\$filePath').readAsStringSync();
+      }
+      return File('$dir\\$filePath').readAsStringSync();
+    }
+
     //get the contents from the file
-    final responseJson = File('responseJson.json').readAsStringSync();
+    final responseJson = getContents('responseJson.json');
+
     // method to be tested
     final cardModels =
         today_converter.convertJsonToCardModels(responseJson, baseUrl);
