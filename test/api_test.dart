@@ -10,7 +10,17 @@ void main() {
     // setup
     const baseUrl = '<giving-any-string-here-does-not-matter-for-this-test>';
 
-    final responseJson = File('test/responseJson.json').readAsStringSync();
+    //workaround for https://github.com/flutter/flutter/issues/20907
+    String getContents(String filePath) {
+      var dir = Directory.current.path;
+      if (dir.endsWith('${Platform.pathSeparator}test')) {
+        return File('$dir/$filePath').readAsStringSync();
+      }
+      return File('$dir/test/$filePath').readAsStringSync();
+    }
+
+    //get the contents from the file
+    final responseJson = getContents('responseJson.json');
 
     // method to be tested
     final cardModels =
