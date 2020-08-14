@@ -9,9 +9,8 @@ void main() {
   test('Test whether sample today api is parsed correctly or not', () {
     // setup
     const baseUrl = '<giving-any-string-here-does-not-matter-for-this-test>';
-
-    final responseJson = File('test/responseJson.json').readAsStringSync();
-
+    //get the contents from the file
+    final responseJson = File('responseJson.json').readAsStringSync();
     // method to be tested
     final cardModels =
         today_converter.convertJsonToCardModels(responseJson, baseUrl);
