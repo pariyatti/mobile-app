@@ -13,10 +13,10 @@ void main() {
     //workaround for https://github.com/flutter/flutter/issues/20907
     String getContents(String filePath) {
       var dir = Directory.current.path;
-      if (!dir.endsWith('\\test')) {
-        return File('$dir\\test\\$filePath').readAsStringSync();
+      if (!dir.endsWith('/test')) {
+        return File('$dir/test/$filePath').readAsStringSync();
       }
-      return File('$dir\\$filePath').readAsStringSync();
+      return File('$dir/$filePath').readAsStringSync();
     }
 
     //get the contents from the file
