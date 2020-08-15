@@ -14,6 +14,71 @@ class PaliWordCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var listOfButtons;
+
+    if (data.isBookmarkable) {
+      listOfButtons = <Widget>[
+        BookmarkButton(data, database),
+        Expanded(
+          child: MaterialButton(
+            padding: EdgeInsets.zero,
+            child: Icon(
+              Icons.share,
+              color: Color(0xff6d695f),
+            ),
+            onPressed: () async {
+              await WcFlutterShare.share(
+                sharePopupTitle: strings['en'].labelSharePaliWord,
+                mimeType: 'text/plain',
+                text:
+                    '${data.header}: ${data.pali}\n${strings['en'].labelTranslation}: ${data.translation}',
+              );
+            },
+          ),
+        ),
+      ];
+    } else {
+      listOfButtons = <Widget>[
+        Expanded(
+          child: MaterialButton(
+            padding: EdgeInsets.zero,
+            child: Icon(
+              Icons.share,
+              color: Color(0xff6d695f),
+            ),
+            onPressed: () async {
+              await WcFlutterShare.share(
+                sharePopupTitle: strings['en'].labelSharePaliWord,
+                mimeType: 'text/plain',
+                text:
+                    '${data.header}: ${data.pali}\n${strings['en'].labelTranslation}: ${data.translation}',
+              );
+            },
+          ),
+        ),
+      ];
+    }
+
+    final listOfButtons2 = <Widget>[
+      Expanded(
+        child: MaterialButton(
+          padding: EdgeInsets.zero,
+          child: Icon(
+            Icons.share,
+            color: Color(0xff6d695f),
+          ),
+          onPressed: () async {
+            await WcFlutterShare.share(
+              sharePopupTitle: strings['en'].labelSharePaliWord,
+              mimeType: 'text/plain',
+              text:
+                  '${data.header}: ${data.pali}\n${strings['en'].labelTranslation}: ${data.translation}',
+            );
+          },
+        ),
+      ),
+    ];
+
     return Row(
       children: <Widget>[
         Expanded(
@@ -94,27 +159,7 @@ class PaliWordCard extends StatelessWidget {
                       color: Color(0xffdcd3c0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
-                        children: <Widget>[
-                          BookmarkButton(data, database),
-                          Expanded(
-                            child: MaterialButton(
-                              padding: EdgeInsets.zero,
-                              child: Icon(
-                                Icons.share,
-                                color: Color(0xff6d695f),
-                              ),
-                              onPressed: () async {
-                                await WcFlutterShare.share(
-                                  sharePopupTitle:
-                                      strings['en'].labelSharePaliWord,
-                                  mimeType: 'text/plain',
-                                  text:
-                                      '${data.header}: ${data.pali}\n${strings['en'].labelTranslation}: ${data.translation}',
-                                );
-                              },
-                            ),
-                          ),
-                        ],
+                        children: listOfButtons,
                       ),
                     ),
                   ],
