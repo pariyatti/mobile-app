@@ -10,6 +10,7 @@ DatabaseCard toDatabaseCard(
   if (cardModel is StackedInspirationCardModel) {
     return DatabaseCard(
       id: cardModel.id,
+      isBookmarkable: cardModel.isBookmarkable,
       type: 'stacked_inspiration',
       header: cardModel.header,
       textData: cardModel.text,
@@ -19,6 +20,7 @@ DatabaseCard toDatabaseCard(
   } else if (cardModel is PaliWordCardModel) {
     return DatabaseCard(
       id: cardModel.id,
+      isBookmarkable: cardModel.isBookmarkable,
       type: 'pali_word',
       header: cardModel.header,
       paliWord: cardModel.pali,
@@ -38,6 +40,7 @@ CardModel toCardModel(DatabaseCard databaseCard) {
       {
         card = StackedInspirationCardModel(
           id: databaseCard.id,
+          isBookmarkable: databaseCard.isBookmarkable,
           header: databaseCard.header,
           text: databaseCard.textData,
           imageUrl: databaseCard.imageUrl,
@@ -48,6 +51,7 @@ CardModel toCardModel(DatabaseCard databaseCard) {
       {
         card = PaliWordCardModel(
           id: databaseCard.id,
+          isBookmarkable: databaseCard.isBookmarkable,
           header: databaseCard.header,
           pali: databaseCard.paliWord,
           audioUrl: databaseCard.audioUrl,
