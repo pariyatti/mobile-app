@@ -30,6 +30,7 @@ CardModel _convertApiCardToCardModel(
           header: card.header,
           text: card.text,
           imageUrl: '$baseUrl${card.image.url}',
+          isBookmarkable: card.isBookmarkable,
         );
       }
     case 'pali_word':
@@ -42,6 +43,7 @@ CardModel _convertApiCardToCardModel(
             pali: card.pali,
             audioUrl: '$baseUrl${card.audio.url}',
             translation: card.translations[0].translation,
+            isBookmarkable: card.isBookmarkable,
           );
         } else {
           model = null;
