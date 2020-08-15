@@ -25,15 +25,18 @@ class ApiCard {
   @JsonKey(name: 'translations', disallowNullValue: true, required: false)
   final List<Translation> translations;
 
-  ApiCard({
-    this.id,
-    this.header,
-    this.text,
-    this.image,
-    this.pali,
-    this.audio,
-    this.translations,
-  });
+  @JsonKey(name: 'text_color', disallowNullValue: true, required: false)
+  final String textColor;
+
+  ApiCard(
+      {this.id,
+      this.header,
+      this.text,
+      this.image,
+      this.pali,
+      this.audio,
+      this.translations,
+      this.textColor});
 
   factory ApiCard.fromJson(Map<String, dynamic> json) =>
       _$ApiCardFromJson(json);
