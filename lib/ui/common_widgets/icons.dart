@@ -28,4 +28,9 @@ class PariyattiIcons {
       return Icons.bookmark;
     }
   }
+
+  static IconData today() {
+    // iOS does not have an icon that looks like this so we are using same icon
+    return Icons.today;
+  }
 }
