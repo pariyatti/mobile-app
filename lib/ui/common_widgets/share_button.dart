@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patta/ui/common_widgets/icons.dart';
 
 class ShareButton extends StatelessWidget {
   Function onPressed;
@@ -11,7 +12,7 @@ class ShareButton extends StatelessWidget {
       child: MaterialButton(
         padding: EdgeInsets.zero,
         child: Icon(
-          Icons.share,
+          PariyattiIcons.share(),
           color: Color(0xff6d695f),
         ),
         onPressed: this.onPressed,
