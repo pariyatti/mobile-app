@@ -33,4 +33,12 @@ class PariyattiIcons {
     // iOS does not have an icon that looks like this so we are using same icon
     return Icons.today;
   }
+
+  static IconData person() {
+    if (Platform.isIOS) {
+      return CupertinoIcons.person_solid;
+    } else {
+      return Icons.person;
+    }
+  }
 }

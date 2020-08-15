@@ -68,11 +68,11 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.person,
+              PariyattiIcons.person(),
               color: Color(0xff6d695f),
             ),
             activeIcon: Icon(
-              Icons.person,
+              PariyattiIcons.person(),
               color: Color.fromARGB(255, 186, 86, 38),
             ),
             title: Text(
