@@ -12,4 +12,20 @@ class PariyattiIcons {
       return Icons.share;
     }
   }
+
+  static IconData bookmark() {
+    if (Platform.isIOS) {
+      return CupertinoIcons.bookmark;
+    } else {
+      return Icons.bookmark_border;
+    }
+  }
+
+  static IconData bookmarkFilled() {
+    if (Platform.isIOS) {
+      return CupertinoIcons.bookmark_solid;
+    } else {
+      return Icons.bookmark;
+    }
+  }
 }
