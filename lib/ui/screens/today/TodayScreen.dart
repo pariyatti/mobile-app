@@ -21,7 +21,7 @@ class TodayScreen extends StatelessWidget {
         if (snapshot.hasData) {
           return _buildCardsList(snapshot.data, context);
         } else if (snapshot.hasError) {
-          // TODO: Log the error
+          //  TODO: Log the error
           return _buildError();
         } else {
           return _buildLoadingIndicator();
