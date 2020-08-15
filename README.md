@@ -1,5 +1,7 @@
 # patta [m.]: _leaf; alms bowl; attained_
 
+[![Codemagic build status](https://api.codemagic.io/apps/5ea7faa6ab38b5000ac85f7b/5ea7faa6ab38b5000ac85f7a/status_badge.svg)](https://codemagic.io/apps/5ea7faa6ab38b5000ac85f7b/5ea7faa6ab38b5000ac85f7a/latest_build)
+
 The Pariyatti mobile app.
 
 ## Design
