@@ -74,10 +74,7 @@ class BookmarksTab extends StatelessWidget {
           } else if (card is PaliWordCardModel) {
             return PaliWordCard(card, database);
           } else if (card is OverlayInspirationCardModel) {
-            return OverlayInspirationCard(
-              card,
-              database,
-            );
+            return OverlayInspirationCard(card, database);
           } else {
             return null;
           }
