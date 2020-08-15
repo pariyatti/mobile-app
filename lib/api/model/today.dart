@@ -7,6 +7,9 @@ class ApiCard {
   @JsonKey(name: 'id', disallowNullValue: true, required: true)
   final String id;
 
+  @JsonKey(name: 'bookmarkable', disallowNullValue: true, required: true)
+  final bool isBookmarkable;
+
   @JsonKey(name: 'header', disallowNullValue: true, required: true)
   final String header;
 
@@ -27,6 +30,7 @@ class ApiCard {
 
   ApiCard({
     this.id,
+    this.isBookmarkable,
     this.header,
     this.text,
     this.image,
