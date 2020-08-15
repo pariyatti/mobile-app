@@ -1,5 +1,6 @@
 import 'package:patta/local_database/database.dart';
 import 'package:patta/ui/model/CardModel.dart';
+import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
 import 'package:patta/ui/model/PaliWordCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
 
@@ -24,6 +25,16 @@ DatabaseCard toDatabaseCard(
       paliWord: cardModel.pali,
       audioUrl: cardModel.audioUrl,
       translation: cardModel.translation,
+      createdAt: createdAt,
+    );
+  } else if (cardModel is OverlayInspirationCardModel) {
+    return DatabaseCard(
+      id: cardModel.id,
+      type: 'overlay_inspiration',
+      header: cardModel.header,
+      textData: cardModel.text,
+      imageUrl: cardModel.imageUrl,
+      textColor: cardModel.textColor,
       createdAt: createdAt,
     );
   } else {
@@ -52,6 +63,17 @@ CardModel toCardModel(DatabaseCard databaseCard) {
           pali: databaseCard.paliWord,
           audioUrl: databaseCard.audioUrl,
           translation: databaseCard.translation,
+        );
+        break;
+      }
+    case 'overlay_inspiration':
+      {
+        card = OverlayInspirationCardModel(
+          id: databaseCard.id,
+          header: databaseCard.header,
+          text: databaseCard.textData,
+          imageUrl: databaseCard.imageUrl,
+          textColor: databaseCard.textColor,
         );
         break;
       }

@@ -25,6 +25,8 @@ class Cards extends Table {
 
   TextColumn get translation => text().named('translation').nullable()();
 
+  TextColumn get textColor => text().named('textColor').nullable()();
+
   DateTimeColumn get createdAt => dateTime().named('createdAt')();
 
   @override
@@ -55,7 +57,10 @@ LazyDatabase _openConnection() {
   });
 }
 
-@UseMoor(tables: [Cards, NetworkCacheTable,])
+@UseMoor(tables: [
+  Cards,
+  NetworkCacheTable,
+])
 class PariyattiDatabase extends _$PariyattiDatabase {
   PariyattiDatabase() : super(_openConnection());
 
@@ -64,11 +69,7 @@ class PariyattiDatabase extends _$PariyattiDatabase {
 
   Future<void> addToCache(String url, String response) {
     return into(networkCacheTable).insert(
-      NetworkCache(
-        url: url,
-        response: response,
-        cachedAt: DateTime.now()
-      ),
+      NetworkCache(url: url, response: response, cachedAt: DateTime.now()),
       mode: InsertMode.insertOrReplace,
     );
   }
