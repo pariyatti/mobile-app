@@ -34,6 +34,7 @@ DatabaseCard toDatabaseCard(
       header: cardModel.header,
       textData: cardModel.text,
       imageUrl: cardModel.imageUrl,
+      textColor: cardModel.textColor,
       createdAt: createdAt,
     );
   } else {

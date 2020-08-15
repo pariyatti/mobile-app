@@ -38,6 +38,7 @@ class OverlayInspirationCard extends StatelessWidget {
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.symmetric(
@@ -89,8 +90,10 @@ class OverlayInspirationCard extends StatelessWidget {
                           style: TextStyle(
                               inherit: true,
                               fontSize: 20.0,
-                              fontStyle: FontStyle.italic,
-                              color: Colors.white),
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Serif',
+                              color: Color(int.parse(
+                                  data.textColor.replaceFirst('#', '0xFF')))),
                         ),
                       ),
                     ),
