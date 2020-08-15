@@ -38,6 +38,7 @@ class OverlayInspirationCard extends StatelessWidget {
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.symmetric(
