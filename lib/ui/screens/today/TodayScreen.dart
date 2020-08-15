@@ -5,6 +5,7 @@ import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/common_widgets/cards/OverlayInspirationCard.dart';
 import 'package:patta/ui/common_widgets/cards/PaliWordCard.dart';
 import 'package:patta/ui/common_widgets/cards/StackedInspirationCard.dart';
+import 'package:patta/ui/common_widgets/icons.dart';
 import 'package:patta/ui/model/CardModel.dart';
 import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
 import 'package:patta/ui/model/PaliWordCardModel.dart';
@@ -74,7 +75,7 @@ class TodayScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Icon(
-              Icons.error,
+              PariyattiIcons.error(),
               color: Color(0xff6d695f),
             ),
           ),

@@ -41,4 +41,12 @@ class PariyattiIcons {
       return Icons.person;
     }
   }
+
+  static IconData error() {
+    if (Platform.isIOS) {
+      return CupertinoIcons.info;
+    } else {
+      return Icons.error_outline;
+    }
+  }
 }
