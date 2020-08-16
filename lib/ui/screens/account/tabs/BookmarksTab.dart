@@ -63,22 +63,8 @@ class BookmarksTab extends StatelessWidget {
   }
 
   Widget _buildCardsList(List<DatabaseCard> data, PariyattiDatabase database) {
-    final cardWidgets = data
-        .map((dbCard) => moor_converters.toCardModel(dbCard))
-        .where((card) => (card != null))
-        .map((card) {
-          if (card is StackedInspirationCardModel) {
-            return StackedInspirationCard(card, database);
-          } else if (card is PaliWordCardModel) {
-            return PaliWordCard(card, database);
-          } else {
-            return null;
-          }
-        })
-        .where((widget) => (widget != null))
-        .toList();
-
-    if (cardWidgets.isEmpty) {
+    final cardModels = data.map((dbCard) => moor_converters.toCardModel(dbCard)).where((card) => (card != null)).toList();
+    if (cardModels.isEmpty) {
       return Center(
         child: Text(
           strings['en'].messageNothingBookmarked,
@@ -90,7 +76,19 @@ class BookmarksTab extends StatelessWidget {
         ),
       );
     } else {
-      return ListView(children: cardWidgets);
+      return ListView.builder(
+        itemCount: cardModels.length,
+        itemBuilder: (context,index){
+          final card = cardModels[index];
+          if (card is StackedInspirationCardModel) {
+            return StackedInspirationCard(card, database);
+          } else if (card is PaliWordCardModel) {
+            return PaliWordCard(card, database);
+          } else {
+            return null;
+          }
+        },
+      );
     }
   }
 }
