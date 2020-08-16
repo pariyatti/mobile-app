@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/local_database/moor_converters.dart' as moor_converters;
 import 'package:patta/resources/strings.dart';
@@ -64,11 +63,23 @@ class BookmarksTab extends StatelessWidget {
   }
 
   Widget _buildCardsList(List<DatabaseCard> data, PariyattiDatabase database) {
-    return ListView.builder(
-      itemCount: data.length,
-      itemBuilder: (context,index){
-        final card = moor_converters.toCardModel(data[index]);
-        if(card != null){
+    final cardModels = data.map((dbCard) => moor_converters.toCardModel(dbCard)).where((card) => (card != null)).toList();
+    if (cardModels.isEmpty) {
+      return Center(
+        child: Text(
+          strings['en'].messageNothingBookmarked,
+          style: TextStyle(
+            inherit: true,
+            color: Color(0xff6d695f),
+            fontSize: 16.0,
+          ),
+        ),
+      );
+    } else {
+      return ListView.builder(
+        itemCount: cardModels.length,
+        itemBuilder: (context,index){
+          final card = cardModels[index];
           if (card is StackedInspirationCardModel) {
             return StackedInspirationCard(card, database);
           } else if (card is PaliWordCardModel) {
@@ -76,19 +87,8 @@ class BookmarksTab extends StatelessWidget {
           } else {
             return null;
           }
-        }else{
-          return Center(
-            child: Text(
-              strings['en'].messageNothingBookmarked,
-              style: TextStyle(
-                inherit: true,
-                color: Color(0xff6d695f),
-                fontSize: 16.0,
-              ),
-            ),
-          );
-        }
-      },
-    );
+        },
+      );
+    }
   }
 }
