@@ -63,7 +63,10 @@ class BookmarksTab extends StatelessWidget {
   }
 
   Widget _buildCardsList(List<DatabaseCard> data, PariyattiDatabase database) {
-    final cardModels = data.map((dbCard) => moor_converters.toCardModel(dbCard)).where((card) => (card != null)).toList();
+    final cardModels = data
+        .map((dbCard) => moor_converters.toCardModel(dbCard))
+        .where((card) => (card != null))
+        .toList();
     if (cardModels.isEmpty) {
       return Center(
         child: Text(
@@ -78,7 +81,7 @@ class BookmarksTab extends StatelessWidget {
     } else {
       return ListView.builder(
         itemCount: cardModels.length,
-        itemBuilder: (context,index){
+        itemBuilder: (context, index) {
           final card = cardModels[index];
           if (card is StackedInspirationCardModel) {
             return StackedInspirationCard(card, database);

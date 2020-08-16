@@ -6,8 +6,8 @@ const Map<String, AppStrings> strings = {
     messageNothingBookmarked: 'You haven\'t bookmarked anything yet',
     errorMessageTryAgainLater:
         'Some error occured, can you please try again later!',
-      labelToday: 'Today',
-      labelAccount: 'Account',
+    labelToday: 'Today',
+    labelAccount: 'Account',
     labelShareInspiration: 'Share Inspiration',
     labelSharePaliWord: 'Share Pali Word',
     labelTranslation: 'Translation',

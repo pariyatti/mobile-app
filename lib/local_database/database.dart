@@ -10,7 +10,7 @@ part 'database.g.dart';
 @DataClassName('DatabaseCard')
 class Cards extends Table {
   TextColumn get id => text().named('id')();
-  
+
   BoolColumn get isBookmarkable => boolean().named('isBookmarkable')();
 
   TextColumn get type => text().named('type')();
@@ -57,7 +57,10 @@ LazyDatabase _openConnection() {
   });
 }
 
-@UseMoor(tables: [Cards, NetworkCacheTable,])
+@UseMoor(tables: [
+  Cards,
+  NetworkCacheTable,
+])
 class PariyattiDatabase extends _$PariyattiDatabase {
   PariyattiDatabase() : super(_openConnection());
 
@@ -66,11 +69,7 @@ class PariyattiDatabase extends _$PariyattiDatabase {
 
   Future<void> addToCache(String url, String response) {
     return into(networkCacheTable).insert(
-      NetworkCache(
-        url: url,
-        response: response,
-        cachedAt: DateTime.now()
-      ),
+      NetworkCache(url: url, response: response, cachedAt: DateTime.now()),
       mode: InsertMode.insertOrReplace,
     );
   }
