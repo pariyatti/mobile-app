@@ -1,6 +1,9 @@
+import 'dart:typed_data';
+import 'dart:ui' as ui;
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter/rendering.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/common_widgets/bookmark_button.dart';
@@ -11,8 +14,24 @@ import 'package:wc_flutter_share/wc_flutter_share.dart';
 class OverlayInspirationCard extends StatelessWidget {
   final OverlayInspirationCardModel data;
   final PariyattiDatabase database;
+  final GlobalKey _renderKey = new GlobalKey();
 
   OverlayInspirationCard(this.data, this.database, {Key key}) : super(key: key);
+
+  Future<Uint8List> _getImageWithText() async {
+    try {
+      RenderRepaintBoundary boundary =
+          _renderKey.currentContext.findRenderObject();
+      ui.Image image = await boundary.toImage(pixelRatio: 3.0);
+      ByteData byteData =
+          await image.toByteData(format: ui.ImageByteFormat.png);
+      var pngBytes = byteData.buffer.asUint8List();
+      return pngBytes;
+    } catch (e) {
+      print(e);
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,51 +73,54 @@ class OverlayInspirationCard extends StatelessWidget {
                   ),
                 ),
               ),
-              Stack(
-                children: [
-                  CachedNetworkImage(
-                    placeholder: (context, url) => Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                    ),
-                    errorWidget: (context, url, error) => Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Center(
-                        child: Icon(
-                          Icons.error,
-                          color: Color(0xff6d695f),
-                        ),
-                      ),
-                    ),
-                    imageUrl: data.imageUrl,
-                    imageBuilder: (context, imageProvider) {
-                      return Image(
-                        image: imageProvider,
-                        fit: BoxFit.fitWidth,
-                      );
-                    },
-                  ),
-                  Positioned.fill(
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Padding(
+              RepaintBoundary(
+                key: _renderKey,
+                child: Stack(
+                  children: [
+                    CachedNetworkImage(
+                      placeholder: (context, url) => Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          data.text,
-                          style: TextStyle(
-                              inherit: true,
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Serif',
-                              color: Color(int.parse(
-                                  data.textColor.replaceFirst('#', '0xFF')))),
+                        child: Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      ),
+                      errorWidget: (context, url, error) => Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Center(
+                          child: Icon(
+                            Icons.error,
+                            color: Color(0xff6d695f),
+                          ),
+                        ),
+                      ),
+                      imageUrl: data.imageUrl,
+                      imageBuilder: (context, imageProvider) {
+                        return Image(
+                          image: imageProvider,
+                          fit: BoxFit.fitWidth,
+                        );
+                      },
+                    ),
+                    Positioned.fill(
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            data.text,
+                            style: TextStyle(
+                                inherit: true,
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Serif',
+                                color: Color(int.parse(
+                                    data.textColor.replaceFirst('#', '0xFF')))),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               Container(
                 color: Color(0xffdcd3c0),
@@ -114,16 +136,15 @@ class OverlayInspirationCard extends StatelessWidget {
                           color: Color(0xff6d695f),
                         ),
                         onPressed: () async {
+                          Uint8List imageData = await _getImageWithText();
                           final String extension =
                               extractFileExtension(data.imageUrl);
-                          var response = await http.get(data.imageUrl);
                           await WcFlutterShare.share(
                             sharePopupTitle:
                                 strings['en'].labelShareInspiration,
                             mimeType: 'image/$extension',
                             fileName: '${data.header}.$extension',
-                            bytesOfFile: response.bodyBytes,
-                            text: data.text,
+                            bytesOfFile: imageData,
                           );
                         },
                       ),
