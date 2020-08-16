@@ -2,6 +2,7 @@ import 'dart:convert' as converter;
 
 import 'package:patta/api/model/today.dart';
 import 'package:patta/ui/model/CardModel.dart';
+import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
 import 'package:patta/ui/model/PaliWordCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
 
@@ -32,6 +33,16 @@ CardModel _convertApiCardToCardModel(
           imageUrl: '$baseUrl${card.image.url}',
           isBookmarkable: card.isBookmarkable,
         );
+      }
+    case 'overlay_inspiration':
+      {
+        return OverlayInspirationCardModel(
+            id: card.id,
+            header: card.header,
+            text: card.text,
+            imageUrl: '$baseUrl${card.image.url}',
+            textColor: card.textColor,
+            isBookmarkable: card.isBookmarkable);
       }
     case 'pali_word':
       {

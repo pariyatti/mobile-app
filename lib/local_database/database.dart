@@ -27,6 +27,8 @@ class Cards extends Table {
 
   TextColumn get translation => text().named('translation').nullable()();
 
+  TextColumn get textColor => text().named('textColor').nullable()();
+
   DateTimeColumn get createdAt => dateTime().named('createdAt')();
 
   @override

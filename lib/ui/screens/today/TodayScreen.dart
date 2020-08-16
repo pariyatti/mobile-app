@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:patta/api/api.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/resources/strings.dart';
+import 'package:patta/ui/common_widgets/cards/OverlayInspirationCard.dart';
 import 'package:patta/ui/common_widgets/cards/PaliWordCard.dart';
 import 'package:patta/ui/common_widgets/cards/StackedInspirationCard.dart';
 import 'package:patta/ui/model/CardModel.dart';
+import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
 import 'package:patta/ui/model/PaliWordCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
 import 'package:provider/provider.dart';
@@ -43,6 +45,11 @@ class TodayScreen extends StatelessWidget {
         final card = data[index];
         if (card is StackedInspirationCardModel) {
           return StackedInspirationCard(
+            card,
+            Provider.of<PariyattiDatabase>(context),
+          );
+        } else if (card is OverlayInspirationCardModel) {
+          return OverlayInspirationCard(
             card,
             Provider.of<PariyattiDatabase>(context),
           );

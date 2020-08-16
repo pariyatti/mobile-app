@@ -28,6 +28,9 @@ class ApiCard {
   @JsonKey(name: 'translations', disallowNullValue: true, required: false)
   final List<Translation> translations;
 
+  @JsonKey(name: 'text_color', disallowNullValue: true, required: false)
+  final String textColor;
+
   ApiCard({
     this.id,
     this.isBookmarkable,
@@ -37,6 +40,7 @@ class ApiCard {
     this.pali,
     this.audio,
     this.translations,
+    this.textColor,
   });
 
   factory ApiCard.fromJson(Map<String, dynamic> json) =>

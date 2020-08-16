@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/local_database/moor_converters.dart' as moor_converters;
 import 'package:patta/resources/strings.dart';
+import 'package:patta/ui/common_widgets/cards/OverlayInspirationCard.dart';
 import 'package:patta/ui/common_widgets/cards/PaliWordCard.dart';
 import 'package:patta/ui/common_widgets/cards/StackedInspirationCard.dart';
+import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
 import 'package:patta/ui/model/PaliWordCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
 import 'package:provider/provider.dart';
@@ -65,7 +67,7 @@ class BookmarksTab extends StatelessWidget {
   Widget _buildCardsList(List<DatabaseCard> data, PariyattiDatabase database) {
     final cardModels = data
         .map((dbCard) => moor_converters.toCardModel(dbCard))
-        .where((card) => (card != null))
+        .where((widget) => (widget != null))
         .toList();
     if (cardModels.isEmpty) {
       return Center(
@@ -87,6 +89,8 @@ class BookmarksTab extends StatelessWidget {
             return StackedInspirationCard(card, database);
           } else if (card is PaliWordCardModel) {
             return PaliWordCard(card, database);
+          } else if (card is OverlayInspirationCardModel) {
+            return OverlayInspirationCard(card, database);
           } else {
             return null;
           }
