@@ -31,17 +31,18 @@ CardModel _convertApiCardToCardModel(
           header: card.header,
           text: card.text,
           imageUrl: '$baseUrl${card.image.url}',
+          isBookmarkable: card.isBookmarkable,
         );
       }
     case 'overlay_inspiration':
       {
         return OverlayInspirationCardModel(
-          id: card.id,
-          header: card.header,
-          text: card.text,
-          imageUrl: '$baseUrl${card.image.url}',
-          textColor: card.textColor,
-        );
+            id: card.id,
+            header: card.header,
+            text: card.text,
+            imageUrl: '$baseUrl${card.image.url}',
+            textColor: card.textColor,
+            isBookmarkable: card.isBookmarkable);
       }
     case 'pali_word':
       {
@@ -53,6 +54,7 @@ CardModel _convertApiCardToCardModel(
             pali: card.pali,
             audioUrl: '$baseUrl${card.audio.url}',
             translation: card.translations[0].translation,
+            isBookmarkable: card.isBookmarkable,
           );
         } else {
           model = null;

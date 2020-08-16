@@ -11,6 +11,7 @@ DatabaseCard toDatabaseCard(
   if (cardModel is StackedInspirationCardModel) {
     return DatabaseCard(
       id: cardModel.id,
+      isBookmarkable: cardModel.isBookmarkable,
       type: 'stacked_inspiration',
       header: cardModel.header,
       textData: cardModel.text,
@@ -20,6 +21,7 @@ DatabaseCard toDatabaseCard(
   } else if (cardModel is PaliWordCardModel) {
     return DatabaseCard(
       id: cardModel.id,
+      isBookmarkable: cardModel.isBookmarkable,
       type: 'pali_word',
       header: cardModel.header,
       paliWord: cardModel.pali,
@@ -30,6 +32,7 @@ DatabaseCard toDatabaseCard(
   } else if (cardModel is OverlayInspirationCardModel) {
     return DatabaseCard(
       id: cardModel.id,
+      isBookmarkable: cardModel.isBookmarkable,
       type: 'overlay_inspiration',
       header: cardModel.header,
       textData: cardModel.text,
@@ -49,6 +52,7 @@ CardModel toCardModel(DatabaseCard databaseCard) {
       {
         card = StackedInspirationCardModel(
           id: databaseCard.id,
+          isBookmarkable: databaseCard.isBookmarkable,
           header: databaseCard.header,
           text: databaseCard.textData,
           imageUrl: databaseCard.imageUrl,
@@ -59,6 +63,7 @@ CardModel toCardModel(DatabaseCard databaseCard) {
       {
         card = PaliWordCardModel(
           id: databaseCard.id,
+          isBookmarkable: databaseCard.isBookmarkable,
           header: databaseCard.header,
           pali: databaseCard.paliWord,
           audioUrl: databaseCard.audioUrl,
@@ -72,6 +77,7 @@ CardModel toCardModel(DatabaseCard databaseCard) {
           id: databaseCard.id,
           header: databaseCard.header,
           text: databaseCard.textData,
+          isBookmarkable: databaseCard.isBookmarkable,
           imageUrl: databaseCard.imageUrl,
           textColor: databaseCard.textColor,
         );

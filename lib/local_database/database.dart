@@ -11,6 +11,8 @@ part 'database.g.dart';
 class Cards extends Table {
   TextColumn get id => text().named('id')();
 
+  BoolColumn get isBookmarkable => boolean().named('isBookmarkable')();
+
   TextColumn get type => text().named('type')();
 
   TextColumn get header => text().named('header').nullable()();

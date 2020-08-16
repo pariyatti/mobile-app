@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/common_widgets/bookmark_button.dart';
+import 'package:patta/ui/common_widgets/share_button.dart';
 import 'package:patta/ui/model/PaliWordCardModel.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
 
@@ -14,6 +15,23 @@ class PaliWordCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final listOfButtons = List<Widget>();
+
+    if (data.isBookmarkable) {
+      listOfButtons.add(BookmarkButton(data, database));
+    }
+
+    listOfButtons.add(ShareButton(
+      () async {
+        await WcFlutterShare.share(
+          sharePopupTitle: strings['en'].labelSharePaliWord,
+          mimeType: 'text/plain',
+          text:
+              '${data.header}: ${data.pali}\n${strings['en'].labelTranslation}: ${data.translation}',
+        );
+      },
+    ));
+
     return Row(
       children: <Widget>[
         Expanded(
@@ -94,27 +112,7 @@ class PaliWordCard extends StatelessWidget {
                       color: Color(0xffdcd3c0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
-                        children: <Widget>[
-                          BookmarkButton(data, database),
-                          Expanded(
-                            child: MaterialButton(
-                              padding: EdgeInsets.zero,
-                              child: Icon(
-                                Icons.share,
-                                color: Color(0xff6d695f),
-                              ),
-                              onPressed: () async {
-                                await WcFlutterShare.share(
-                                  sharePopupTitle:
-                                      strings['en'].labelSharePaliWord,
-                                  mimeType: 'text/plain',
-                                  text:
-                                      '${data.header}: ${data.pali}\n${strings['en'].labelTranslation}: ${data.translation}',
-                                );
-                              },
-                            ),
-                          ),
-                        ],
+                        children: listOfButtons,
                       ),
                     ),
                   ],

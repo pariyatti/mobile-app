@@ -39,30 +39,29 @@ class TodayScreen extends StatelessWidget {
   }
 
   Widget _buildCardsList(List<CardModel> data, BuildContext context) {
-    return ListView(
-      children: data
-          .map((card) {
-            if (card is StackedInspirationCardModel) {
-              return StackedInspirationCard(
-                card,
-                Provider.of<PariyattiDatabase>(context),
-              );
-            } else if (card is PaliWordCardModel) {
-              return PaliWordCard(
-                card,
-                Provider.of<PariyattiDatabase>(context),
-              );
-            } else if (card is OverlayInspirationCardModel) {
-              return OverlayInspirationCard(
-                card,
-                Provider.of<PariyattiDatabase>(context),
-              );
-            } else {
-              return null;
-            }
-          })
-          .where((widget) => (widget != null))
-          .toList(),
+    return ListView.builder(
+      itemCount: data.length,
+      itemBuilder: (context, index) {
+        final card = data[index];
+        if (card is StackedInspirationCardModel) {
+          return StackedInspirationCard(
+            card,
+            Provider.of<PariyattiDatabase>(context),
+          );
+        } else if (card is OverlayInspirationCardModel) {
+          return OverlayInspirationCard(
+            card,
+            Provider.of<PariyattiDatabase>(context),
+          );
+        } else if (card is PaliWordCardModel) {
+          return PaliWordCard(
+            card,
+            Provider.of<PariyattiDatabase>(context),
+          );
+        } else {
+          return null;
+        }
+      },
     );
   }
 

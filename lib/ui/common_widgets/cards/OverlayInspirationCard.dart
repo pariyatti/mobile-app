@@ -7,6 +7,7 @@ import 'package:flutter/rendering.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/common_widgets/bookmark_button.dart';
+import 'package:patta/ui/common_widgets/share_button.dart';
 import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
 import 'package:patta/util.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
@@ -35,6 +36,25 @@ class OverlayInspirationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final listOfButtons = List<Widget>();
+
+    if (data.isBookmarkable) {
+      listOfButtons.add(BookmarkButton(data, database));
+    }
+
+    listOfButtons.add(ShareButton(
+      () async {
+        Uint8List imageData = await _getImageWithText();
+        final String extension = extractFileExtension(data.imageUrl);
+        await WcFlutterShare.share(
+          sharePopupTitle: strings['en'].labelShareInspiration,
+          mimeType: 'image/$extension',
+          fileName: '${data.header}.$extension',
+          bytesOfFile: imageData,
+        );
+      },
+    ));
+
     return Padding(
       padding: const EdgeInsets.symmetric(
         vertical: 8.0,
@@ -125,32 +145,7 @@ class OverlayInspirationCard extends StatelessWidget {
               Container(
                 color: Color(0xffdcd3c0),
                 child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    BookmarkButton(data, database),
-                    Expanded(
-                      child: MaterialButton(
-                        padding: EdgeInsets.zero,
-                        child: Icon(
-                          Icons.share,
-                          color: Color(0xff6d695f),
-                        ),
-                        onPressed: () async {
-                          Uint8List imageData = await _getImageWithText();
-                          final String extension =
-                              extractFileExtension(data.imageUrl);
-                          await WcFlutterShare.share(
-                            sharePopupTitle:
-                                strings['en'].labelShareInspiration,
-                            mimeType: 'image/$extension',
-                            fileName: '${data.header}.$extension',
-                            bytesOfFile: imageData,
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
+                    mainAxisSize: MainAxisSize.max, children: listOfButtons),
               ),
             ],
           ),
