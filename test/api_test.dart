@@ -31,6 +31,7 @@ void main() {
       cardModels[0],
       PaliWordCardModel(
         id: '98955ba9-3819-4662-bd7c-6bff3d035d6e',
+        isBookmarkable: true,
         header: 'Pāli Word of the Day',
         pali: 'kosa',
         audioUrl:
@@ -43,6 +44,7 @@ void main() {
       cardModels[1],
       StackedInspirationCardModel(
         id: 'b4285e6a-ea3c-4fc1-a7f4-4de3f1ed8ca4',
+        isBookmarkable: true,
         header: 'Inspiration of the Day',
         text:
             """ Enjoy some beautiful red flowers on the ground did you know you can also turn them into jam but you have to dry them on your rootop first which maybe you don't have the time for and you'd rather buy jam from a store.""",
