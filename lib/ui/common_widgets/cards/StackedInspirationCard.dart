@@ -16,55 +16,34 @@ class StackedInspirationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var listOfButtons;
+    var listOfButtons = List<Widget>();
+
     if (data.isBookmarkable) {
-      listOfButtons = <Widget>[
-        BookmarkButton(data, database),
-        Expanded(
-          child: MaterialButton(
-            padding: EdgeInsets.zero,
-            child: Icon(
-              Icons.share,
-              color: Color(0xff6d695f),
-            ),
-            onPressed: () async {
-              final String extension = extractFileExtension(data.imageUrl);
-              var response = await http.get(data.imageUrl);
-              await WcFlutterShare.share(
-                sharePopupTitle: strings['en'].labelShareInspiration,
-                mimeType: 'image/$extension',
-                fileName: '${data.header}.$extension',
-                bytesOfFile: response.bodyBytes,
-                text: data.text,
-              );
-            },
-          ),
-        ),
-      ];
-    } else {
-      listOfButtons = <Widget>[
-        Expanded(
-          child: MaterialButton(
-            padding: EdgeInsets.zero,
-            child: Icon(
-              Icons.share,
-              color: Color(0xff6d695f),
-            ),
-            onPressed: () async {
-              final String extension = extractFileExtension(data.imageUrl);
-              var response = await http.get(data.imageUrl);
-              await WcFlutterShare.share(
-                sharePopupTitle: strings['en'].labelShareInspiration,
-                mimeType: 'image/$extension',
-                fileName: '${data.header}.$extension',
-                bytesOfFile: response.bodyBytes,
-                text: data.text,
-              );
-            },
-          ),
-        ),
-      ];
+      listOfButtons.add(BookmarkButton(data, database));
     }
+
+    listOfButtons.add(
+      Expanded(
+        child: MaterialButton(
+          padding: EdgeInsets.zero,
+          child: Icon(
+            Icons.share,
+            color: Color(0xff6d695f),
+          ),
+          onPressed: () async {
+            final String extension = extractFileExtension(data.imageUrl);
+            var response = await http.get(data.imageUrl);
+            await WcFlutterShare.share(
+              sharePopupTitle: strings['en'].labelShareInspiration,
+              mimeType: 'image/$extension',
+              fileName: '${data.header}.$extension',
+              bytesOfFile: response.bodyBytes,
+              text: data.text,
+            );
+          },
+        ),
+      ),
+    );
 
     return Row(
       children: <Widget>[
