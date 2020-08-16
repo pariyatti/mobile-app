@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patta/resources/strings.dart';
-import 'package:patta/ui/common_widgets/icons.dart';
+import 'package:patta/ui/common_widgets/pariyatti_icons.dart';
 import 'package:patta/ui/screens/account/AccountScreen.dart';
 import 'package:patta/ui/screens/today/TodayScreen.dart';
 

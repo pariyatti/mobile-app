@@ -7,7 +7,7 @@ import 'package:flutter/rendering.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/common_widgets/bookmark_button.dart';
-import 'package:patta/ui/common_widgets/icons.dart';
+import 'package:patta/ui/common_widgets/pariyatti_icons.dart';
 import 'package:patta/ui/common_widgets/share_button.dart';
 import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
 import 'package:patta/util.dart';
