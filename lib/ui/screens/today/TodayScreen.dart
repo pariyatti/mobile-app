@@ -75,7 +75,7 @@ class TodayScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Icon(
-              PariyattiIcons.error(),
+              PariyattiIcons.get(IconName.error),
               color: Color(0xff6d695f),
             ),
           ),

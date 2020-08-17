@@ -21,12 +21,12 @@ class BookmarkButton extends StatelessWidget {
           Icon icon;
           if (isBookmarked) {
             icon = Icon(
-              PariyattiIcons.bookmarkFilled(),
+              PariyattiIcons.get(IconName.bookmarkFilled),
               color: Color(0xff6d695f),
             );
           } else {
             icon = Icon(
-              PariyattiIcons.bookmark(),
+              PariyattiIcons.get(IconName.bookmark),
               color: Color(0xff6d695f),
             );
           }
