@@ -161,3 +161,9 @@ If you have answers to these questions, please move them to the top and put the 
 - If Santu comments on the `*Card.dart` files, are they readable to a newbie?
 - Can Moor Converters move into multiple files?
 
+## License and Copyright
+
+[AGPL-3](https://github.com/pariyatti/patta/blob/development/LICENSE)
+
+Copyright (c) 2019-present, Pariyatti
+
