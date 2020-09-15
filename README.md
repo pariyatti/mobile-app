@@ -33,44 +33,12 @@ The Pariyatti mobile app.
 
 ## Local Build Process
 
-### Common steps
-
 ```
-# Copy example config file to provide configuration secrets
-cp config/app_config.sample.json config/app_config.json
-
-# Fill in values of secrets/keys inside config/app_config.json
-# (At the moment, the app doesn't require any.)
-
-# Grab dependencies
-flutter pub get
-
-# Generate code for part-files. This generated code is used to 
-# parse/deserialize JSON and db data into model objects. 
-flutter pub run build_runner build
-```
-
-### Run the tests
-
-```
-# runs against a connected device
-flutter test --machine
-```
-
-### Run debug build with sandbox servers
-
-```
-# Target sandbox environment
-# This uses a `main` specific to the sand[box] server
-flutter run --target lib/main_sand.dart
-```
-
-### Run debug build with production servers
-
-```
-# Target production environment
-# This uses a `main` specific to the prod[uction] server
-flutter run --target lib/main_prod.dart
+make help
+make init
+make test
+make run                # sandbox, by default
+make run env=production # production, if you need it
 ```
 
 ***
