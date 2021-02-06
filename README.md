@@ -1,12 +1,12 @@
-# patta [m.]: _leaf; alms bowl; attained_
+
+# The Pariyatti mobile app.
 
 [![Codemagic build status](https://api.codemagic.io/apps/5ea7faa6ab38b5000ac85f7b/5ea7faa6ab38b5000ac85f7a/status_badge.svg)](https://codemagic.io/apps/5ea7faa6ab38b5000ac85f7b/5ea7faa6ab38b5000ac85f7a/latest_build)
-
-The Pariyatti mobile app.
 
 ## Design
 
 - [Design Docs & Wireframes](https://drive.google.com/drive/folders/1Iga6z-5tndLJ411XG5ibimLwNC5VZDVv?usp=sharing) (public)
+- `patta [m.]: _leaf; alms bowl; attained_`
 
 ## Dev Setup: Android
 
@@ -50,9 +50,9 @@ make run env=production # production, if you need it
 
 ## Branch Policy
 
-1. `master` is for release builds. Merging changes into `master` causes a build in [CodeMagic](https://github.com/pariyatti/patta#ci--cd-builds) which publishes to the Play Store.
+1. `master` is for release builds. Merging changes into `master` causes a build in [CodeMagic](https://github.com/pariyatti/mobile-app#ci--cd-builds) which publishes to the Play Store.
 2. `development` is for debug builds. These are not published to the Play Store but are automatically emailed to developers. Do version bumps in the `development` branch **only**.
-3. Feature Branches are used for all active development. Branch off of the `development` branch either in the `pariyatti/patta` repo or in your own personal repo. When you are finished a User Story, submit a PR to the `development` branch. Stories should be thoroughly tested before they are merged into `master`.
+3. Feature Branches are used for all active development. Branch off of the `development` branch either in the `pariyatti/mobile-app` repo or in your own personal repo. When you are finished a User Story, submit a PR to the `development` branch. Stories should be thoroughly tested before they are merged into `master`.
 
 ```
 Promotion:
@@ -66,7 +66,7 @@ Promotion:
 
 In order of preference:
 
-1. Use a build from [CodeMagic](https://github.com/pariyatti/patta#ci--cd-builds). Avoid locally signed release builds.
+1. Use a build from [CodeMagic](https://github.com/pariyatti/mobile-app#ci--cd-builds). Avoid locally signed release builds.
 
 2. If for some reason CodeMagic isn't available: Get the `keystore.jks` and `keystore.properties` files from the Vault, copy them locally, and build locally.
 
@@ -131,7 +131,7 @@ If you have answers to these questions, please move them to the top and put the 
 
 ## License and Copyright
 
-[AGPL-3](https://github.com/pariyatti/patta/blob/development/LICENSE)
+[AGPL-3](https://github.com/pariyatti/mobile-app/blob/development/LICENSE)
 
 Copyright (c) 2019-present, Pariyatti
 
