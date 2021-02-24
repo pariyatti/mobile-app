@@ -7,6 +7,9 @@ import 'package:path_provider/path_provider.dart';
 
 part 'database.g.dart';
 
+// Run the following command to  generate necessary files
+// flutter packages pub run build_runner watch --delete-conflicting-outputs
+
 @DataClassName('DatabaseCard')
 class Cards extends Table {
   TextColumn get id => text().named('id')();
