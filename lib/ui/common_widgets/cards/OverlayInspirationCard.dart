@@ -133,8 +133,9 @@ class OverlayInspirationCard extends StatelessWidget {
                                 fontSize: 20.0,
                                 fontWeight: FontWeight.bold,
                                 fontFamily: 'Serif',
-                                color: Color(int.parse(
-                                    data.textColor.replaceFirst('#', '0xFF')))),
+                                color: Color(int.tryParse(data.textColor
+                                        .replaceFirst('#', '0xFF')) ??
+                                    0xFFFFFFFF)),
                           ),
                         ),
                       ),

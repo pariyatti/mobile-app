@@ -1,12 +1,12 @@
-# patta [m.]: _leaf; alms bowl; attained_
+
+# The Pariyatti mobile app.
 
 [![Codemagic build status](https://api.codemagic.io/apps/5ea7faa6ab38b5000ac85f7b/5ea7faa6ab38b5000ac85f7a/status_badge.svg)](https://codemagic.io/apps/5ea7faa6ab38b5000ac85f7b/5ea7faa6ab38b5000ac85f7a/latest_build)
-
-The Pariyatti mobile app.
 
 ## Design
 
 - [Design Docs & Wireframes](https://drive.google.com/drive/folders/1Iga6z-5tndLJ411XG5ibimLwNC5VZDVv?usp=sharing) (public)
+- `patta [m.]: _leaf; alms bowl; attained_`
 
 ## Dev Setup: Android
 
@@ -30,47 +30,17 @@ The Pariyatti mobile app.
 1. Install Xcode
 2. Install Flutter: https://flutter.dev/docs/get-started/install
    - run `flutter precache` and `flutter doctor` and follow any remaining instructions
+   - required on Mac as of 2021-02-06: `ln -s ~/Library/Application\ Support/Google/AndroidStudio4.1/plugins ~/Library/Application\ Support/AndroidStudio4.1`
+   - run `flutter devices` - if you get a "device busy" message, reboot MacOS and phone. This might be helpful: https://github.com/flutter/flutter/issues/66862 and https://github.com/flutter/flutter/issues/66862#issuecomment-758967875
 
 ## Local Build Process
 
-### Common steps
-
 ```
-# Copy example config file to provide configuration secrets
-cp config/app_config.sample.json config/app_config.json
-
-# Fill in values of secrets/keys inside config/app_config.json
-# (At the moment, the app doesn't require any.)
-
-# Grab dependencies
-flutter pub get
-
-# Generate code for part-files. This generated code is used to 
-# parse/deserialize JSON and db data into model objects. 
-flutter pub run build_runner build
-```
-
-### Run the tests
-
-```
-# runs against a connected device
-flutter test --machine
-```
-
-### Run debug build with sandbox servers
-
-```
-# Target sandbox environment
-# This uses a `main` specific to the sand[box] server
-flutter run --target lib/main_sand.dart
-```
-
-### Run debug build with production servers
-
-```
-# Target production environment
-# This uses a `main` specific to the prod[uction] server
-flutter run --target lib/main_prod.dart
+make help
+make init
+make test
+make run                # sandbox, by default
+make run env=production # production, if you need it
 ```
 
 ***
@@ -82,9 +52,9 @@ flutter run --target lib/main_prod.dart
 
 ## Branch Policy
 
-1. `master` is for release builds. Merging changes into `master` causes a build in [CodeMagic](https://github.com/pariyatti/patta#ci--cd-builds) which publishes to the Play Store.
+1. `master` is for release builds. Merging changes into `master` causes a build in [CodeMagic](https://github.com/pariyatti/mobile-app#ci--cd-builds) which publishes to the Play Store.
 2. `development` is for debug builds. These are not published to the Play Store but are automatically emailed to developers. Do version bumps in the `development` branch **only**.
-3. Feature Branches are used for all active development. Branch off of the `development` branch either in the `pariyatti/patta` repo or in your own personal repo. When you are finished a User Story, submit a PR to the `development` branch. Stories should be thoroughly tested before they are merged into `master`.
+3. Feature Branches are used for all active development. Branch off of the `development` branch either in the `pariyatti/mobile-app` repo or in your own personal repo. When you are finished a User Story, submit a PR to the `development` branch. Stories should be thoroughly tested before they are merged into `master`.
 
 ```
 Promotion:
@@ -98,7 +68,7 @@ Promotion:
 
 In order of preference:
 
-1. Use a build from [CodeMagic](https://github.com/pariyatti/patta#ci--cd-builds). Avoid locally signed release builds.
+1. Use a build from [CodeMagic](https://github.com/pariyatti/mobile-app#ci--cd-builds). Avoid locally signed release builds.
 
 2. If for some reason CodeMagic isn't available: Get the `keystore.jks` and `keystore.properties` files from the Vault, copy them locally, and build locally.
 
@@ -160,4 +130,10 @@ If you have answers to these questions, please move them to the top and put the 
 - How does the `factory` keyword work?
 - If Santu comments on the `*Card.dart` files, are they readable to a newbie?
 - Can Moor Converters move into multiple files?
+
+## License and Copyright
+
+[AGPL-3](https://github.com/pariyatti/mobile-app/blob/development/LICENSE)
+
+Copyright (c) 2019-present, Pariyatti
 
