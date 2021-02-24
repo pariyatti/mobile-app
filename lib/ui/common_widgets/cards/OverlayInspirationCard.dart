@@ -43,7 +43,7 @@ class OverlayInspirationCard extends StatelessWidget {
     }
 
     listOfButtons.add(ShareButton(
-      () async {
+      onPressed: () async {
         Uint8List imageData = await _getImageWithText();
         final String extension = extractFileExtension(data.imageUrl);
         await WcFlutterShare.share(

@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:patta/local_database/database.dart';
 import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/common_widgets/bookmark_button.dart';
@@ -9,33 +9,21 @@ import 'package:patta/ui/model/StackedInspirationCardModel.dart';
 import 'package:patta/util.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
 
-class StackedInspirationCard extends StatelessWidget {
+class StackedInspirationCard extends StatefulWidget {
   final StackedInspirationCardModel data;
   final PariyattiDatabase database;
 
   StackedInspirationCard(this.data, this.database, {Key key}) : super(key: key);
 
   @override
+  _StackedInspirationCardState createState() => _StackedInspirationCardState();
+}
+
+class _StackedInspirationCardState extends State<StackedInspirationCard> {
+  @override
   Widget build(BuildContext context) {
     final listOfButtons = List<Widget>();
-
-    if (data.isBookmarkable) {
-      listOfButtons.add(BookmarkButton(data, database));
-    }
-
-    listOfButtons.add(ShareButton(
-      () async {
-        final String extension = extractFileExtension(data.imageUrl);
-        var response = await http.get(data.imageUrl);
-        await WcFlutterShare.share(
-          sharePopupTitle: strings['en'].labelShareInspiration,
-          mimeType: 'image/$extension',
-          fileName: '${data.header}.$extension',
-          bytesOfFile: response.bodyBytes,
-          text: data.text,
-        );
-      },
-    ));
+    bool loading = true;
 
     return Row(
       children: <Widget>[
@@ -70,7 +58,7 @@ class StackedInspirationCard extends StatelessWidget {
                         vertical: 12.0,
                       ),
                       child: Text(
-                        data.header.toUpperCase(),
+                        widget.data.header.toUpperCase(),
                         style: TextStyle(
                           inherit: true,
                           fontSize: 14.0,
@@ -94,8 +82,14 @@ class StackedInspirationCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                      imageUrl: data.imageUrl,
+                      imageUrl: widget.data.imageUrl,
                       imageBuilder: (context, imageProvider) {
+                        WidgetsBinding.instance
+                            .addPostFrameCallback((timeStamp) {
+                          setState(() {
+                            loading = false;
+                          });
+                        });
                         return Row(
                           mainAxisSize: MainAxisSize.max,
                           children: <Widget>[
@@ -112,7 +106,7 @@ class StackedInspirationCard extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        data.text,
+                        widget.data.text,
                         style: TextStyle(
                           inherit: true,
                           fontSize: 20.0,
@@ -124,7 +118,31 @@ class StackedInspirationCard extends StatelessWidget {
                       color: Color(0xffdcd3c0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
-                        children: listOfButtons,
+                        children: [
+                          Visibility(
+                            visible: widget.data.isBookmarkable,
+                            child: BookmarkButton(widget.data, widget.database),
+                          ),
+                          IgnorePointer(
+                            ignoring: loading,
+                            child: ShareButton(
+                              onPressed: () async {
+                                final String extension =
+                                    extractFileExtension(widget.data.imageUrl);
+                                var response =
+                                    await http.get(widget.data.imageUrl);
+                                await WcFlutterShare.share(
+                                  sharePopupTitle:
+                                      strings['en'].labelShareInspiration,
+                                  mimeType: 'image/$extension',
+                                  fileName: '${widget.data.header}.$extension',
+                                  bytesOfFile: response.bodyBytes,
+                                  text: widget.data.text,
+                                );
+                              },
+                            ),
+                          )
+                        ],
                       ),
                     ),
                   ],

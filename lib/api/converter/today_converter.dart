@@ -1,14 +1,11 @@
-import 'dart:convert' as converter;
-
 import 'package:patta/api/model/today.dart';
 import 'package:patta/ui/model/CardModel.dart';
 import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
 import 'package:patta/ui/model/PaliWordCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
 
-List<CardModel> convertJsonToCardModels(String responseBody, String baseUrl) {
-  final Iterable iterable = converter.jsonDecode(responseBody);
-  return iterable
+List<CardModel> convertJsonToCardModels(Iterable response, String baseUrl) {
+  return response
       .map((apiCard) {
         final String cardType = apiCard['type'];
         ApiCard card = ApiCard.fromJson(apiCard);

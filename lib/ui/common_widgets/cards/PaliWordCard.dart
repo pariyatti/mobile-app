@@ -22,7 +22,7 @@ class PaliWordCard extends StatelessWidget {
     }
 
     listOfButtons.add(ShareButton(
-      () async {
+      onPressed: () async {
         await WcFlutterShare.share(
           sharePopupTitle: strings['en'].labelSharePaliWord,
           mimeType: 'text/plain',
