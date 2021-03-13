@@ -12,7 +12,7 @@ import 'package:patta/ui/common_widgets/share_button.dart';
 import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
 
-import '../../../util.dart';
+import 'package:patta/util.dart';
 
 class OverlayInspirationCard extends StatefulWidget {
   final OverlayInspirationCardModel data;
