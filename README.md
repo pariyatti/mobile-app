@@ -40,6 +40,7 @@ make help
 make init
 make test
 make run                # sandbox, by default
+make run env=local      # local Kosa server to test Kosa dev changes
 make run env=production # production, if you need it
 ```
 

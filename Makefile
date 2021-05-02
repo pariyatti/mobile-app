@@ -36,5 +36,5 @@ init: config/app_config.json init-flutter ##@Setup Configure Flutter
 test: ##@Development Run tests against a connected device
 	flutter test --machine
 
-run: ##@Development Run a debug build against 'env' (sandbox or production)
+run: ##@Development Run a debug build against 'env' (local, sandbox, or production)
 	flutter run --target lib/main_$(env).dart
