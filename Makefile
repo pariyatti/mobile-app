@@ -32,7 +32,21 @@ init-flutter:  ##@Setup Download Flutter deps, precompile
 	flutter pub run build_runner build
 
 init: config/app_config.json init-flutter ##@Setup Configure Flutter
-	
+
+clean: ##@Development Clean various caches
+	cd ios && rm -rf Podfile.lock
+	cd ios && rm -rf ./Pods
+	cd ios && pod cache clean --all
+	cd ios && pod install --repo-update
+	flutter clean
+
+build: ##@Development (Re)build project
+	flutter pub get
+	flutter pub run build_runner build --delete-conflicting-outputs
+
+watch: ##@Development Build continuously (gen files)
+	flutter packages pub run build_runner watch --delete-conflicting-outputs
+
 test: ##@Development Run tests against a connected device
 	flutter test --machine
 

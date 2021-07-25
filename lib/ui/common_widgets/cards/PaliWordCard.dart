@@ -11,11 +11,11 @@ class PaliWordCard extends StatelessWidget {
   final PaliWordCardModel data;
   final PariyattiDatabase database;
 
-  PaliWordCard(this.data, this.database, {Key key}) : super(key: key);
+  PaliWordCard(this.data, this.database, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final listOfButtons = List<Widget>();
+    final listOfButtons = <Widget>[];
 
     if (data.isBookmarkable) {
       listOfButtons.add(BookmarkButton(data, database));
@@ -24,10 +24,10 @@ class PaliWordCard extends StatelessWidget {
     listOfButtons.add(ShareButton(
       onPressed: () async {
         await WcFlutterShare.share(
-          sharePopupTitle: strings['en'].labelSharePaliWord,
+          sharePopupTitle: AppStrings.get().labelSharePaliWord,
           mimeType: 'text/plain',
           text:
-              '${data.header}: ${data.pali}\n${strings['en'].labelTranslation}: ${data.translation}',
+              '${data.header}: ${data.pali}\n${AppStrings.get().labelTranslation}: ${data.translation}',
         );
       },
     ));
@@ -61,7 +61,7 @@ class PaliWordCard extends StatelessWidget {
                         vertical: 12.0,
                       ),
                       child: Text(
-                        data.header.toUpperCase(),
+                        data.header!.toUpperCase(),
                         style: TextStyle(
                             inherit: true,
                             fontSize: 14.0,
@@ -74,7 +74,7 @@ class PaliWordCard extends StatelessWidget {
                         vertical: 0.0,
                       ),
                       child: Text(
-                        data.pali,
+                        data.pali ?? "<pali text was empty>",
                         style: TextStyle(
                           inherit: true,
                           fontSize: 18.0,
@@ -89,7 +89,7 @@ class PaliWordCard extends StatelessWidget {
                         vertical: 8.0,
                       ),
                       child: Text(
-                        strings['en'].labelTranslation,
+                        AppStrings.get().labelTranslation,
                         style: TextStyle(
                           inherit: true,
                           fontSize: 14.0,
@@ -100,7 +100,7 @@ class PaliWordCard extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(12.0, 0.0, 12.0, 12.0),
                       child: Text(
-                        data.translation,
+                        data.translation ?? "<translation was empty>",
                         style: TextStyle(
                           inherit: true,
                           fontSize: 18.0,

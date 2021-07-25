@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:moor/moor.dart';
-import 'package:moor_ffi/moor_ffi.dart';
+import 'package:moor/ffi.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 
@@ -14,40 +14,40 @@ part 'database.g.dart';
 class Cards extends Table {
   TextColumn get id => text().named('id')();
 
-  BoolColumn get isBookmarkable => boolean().named('isBookmarkable')();
+  BoolColumn? get isBookmarkable => boolean().named('isBookmarkable')();
 
-  TextColumn get type => text().named('type')();
+  TextColumn? get type => text().named('type')();
 
-  TextColumn get header => text().named('header').nullable()();
+  TextColumn? get header => text().named('header').nullable()();
 
-  TextColumn get textData => text().named('text').nullable()();
+  TextColumn? get textData => text().named('text').nullable()();
 
-  TextColumn get imageUrl => text().named('imageUrl').nullable()();
+  TextColumn? get imageUrl => text().named('imageUrl').nullable()();
 
-  TextColumn get paliWord => text().named('paliWord').nullable()();
+  TextColumn? get paliWord => text().named('paliWord').nullable()();
 
-  TextColumn get audioUrl => text().named('audioUrl').nullable()();
+  TextColumn? get audioUrl => text().named('audioUrl').nullable()();
 
-  TextColumn get translation => text().named('translation').nullable()();
+  TextColumn? get translation => text().named('translation').nullable()();
 
-  TextColumn get textColor => text().named('textColor').nullable()();
+  TextColumn? get textColor => text().named('textColor').nullable()();
 
-  DateTimeColumn get createdAt => dateTime().named('createdAt')();
+  DateTimeColumn? get createdAt => dateTime().named('createdAt')();
 
   @override
-  Set<Column> get primaryKey => {id};
+  Set<Column>? get primaryKey => {id};
 }
 
 @DataClassName('NetworkCache')
 class NetworkCacheTable extends Table {
   TextColumn get url => text().named('url')();
 
-  TextColumn get response => text().named('response')();
+  TextColumn? get response => text().named('response')();
 
-  DateTimeColumn get cachedAt => dateTime().named('cachedAt')();
+  DateTimeColumn? get cachedAt => dateTime().named('cachedAt')();
 
   @override
-  Set<Column> get primaryKey => {url};
+  Set<Column>? get primaryKey => {url};
 }
 
 LazyDatabase _openConnection() {

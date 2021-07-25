@@ -5,7 +5,7 @@ import 'package:patta/ui/model/PaliWordCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
 
 DatabaseCard toDatabaseCard(
-  CardModel cardModel,
+  CardModel? cardModel,
   DateTime createdAt,
 ) {
   if (cardModel is StackedInspirationCardModel) {
@@ -41,27 +41,35 @@ DatabaseCard toDatabaseCard(
       createdAt: createdAt,
     );
   } else {
-    return null;
+    // TODO: Create an `EmptyDatabaseCard` sentinel value
+    return DatabaseCard(
+      id: "NULL",
+      isBookmarkable: false,
+      type: "null",
+      header: "null",
+      textData: "null",
+      imageUrl: "null",
+      textColor: "#0000000000",
+      createdAt: DateTime.now(),
+    );
   }
 }
 
-CardModel toCardModel(DatabaseCard databaseCard) {
-  CardModel card;
+CardModel? toCardModel(DatabaseCard databaseCard) {
   switch (databaseCard.type) {
     case 'stacked_inspiration':
       {
-        card = StackedInspirationCardModel(
+        return StackedInspirationCardModel(
           id: databaseCard.id,
           isBookmarkable: databaseCard.isBookmarkable,
           header: databaseCard.header,
           text: databaseCard.textData,
           imageUrl: databaseCard.imageUrl,
         );
-        break;
       }
     case 'pali_word':
       {
-        card = PaliWordCardModel(
+        return PaliWordCardModel(
           id: databaseCard.id,
           isBookmarkable: databaseCard.isBookmarkable,
           header: databaseCard.header,
@@ -69,11 +77,10 @@ CardModel toCardModel(DatabaseCard databaseCard) {
           audioUrl: databaseCard.audioUrl,
           translation: databaseCard.translation,
         );
-        break;
       }
     case 'overlay_inspiration':
       {
-        card = OverlayInspirationCardModel(
+        return OverlayInspirationCardModel(
           id: databaseCard.id,
           header: databaseCard.header,
           text: databaseCard.textData,
@@ -81,14 +88,10 @@ CardModel toCardModel(DatabaseCard databaseCard) {
           imageUrl: databaseCard.imageUrl,
           textColor: databaseCard.textColor,
         );
-        break;
       }
     default:
       {
-        card = null;
-        break;
+        return null;
       }
   }
-
-  return card;
 }

@@ -9,32 +9,32 @@ import 'package:patta/local_database/database.dart';
 import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/common_widgets/bookmark_button.dart';
 import 'package:patta/ui/common_widgets/share_button.dart';
-import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
+import 'package:patta/ui/model/CardModel.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
 
 import 'package:patta/util.dart';
 
-class OverlayInspirationCard extends StatefulWidget {
-  final OverlayInspirationCardModel data;
+class EmptyCard extends StatefulWidget {
+  final CardModel data;
   final PariyattiDatabase database;
 
-  OverlayInspirationCard(this.data, this.database, {Key? key}) : super(key: key);
+  EmptyCard(this.data, this.database, {Key? key}) : super(key: key);
 
   @override
-  _OverlayInspirationCardState createState() => _OverlayInspirationCardState();
+  _EmptyCardState createState() => _EmptyCardState();
 }
 
-class _OverlayInspirationCardState extends State<OverlayInspirationCard> {
+class _EmptyCardState extends State<EmptyCard> {
   final GlobalKey _renderKey = new GlobalKey();
   bool loaded = false;
 
   Future<Uint8List> _getImageWithText() async {
     try {
       RenderRepaintBoundary boundary =
-          _renderKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+      _renderKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
       ui.Image image = await boundary.toImage(pixelRatio: 3.0);
       ByteData byteData =
-          await image.toByteData(format: ui.ImageByteFormat.png) as ByteData;
+      await image.toByteData(format: ui.ImageByteFormat.png) as ByteData;
       var pngBytes = byteData.buffer.asUint8List();
       return pngBytes;
     } catch (e) {
@@ -47,8 +47,7 @@ class _OverlayInspirationCardState extends State<OverlayInspirationCard> {
   @override
   void initState() {
     //Check if image is in cache in case widget gets rebuilt and the onLoaded callback doesn't respond.
-    loaded =
-        DefaultCacheManager().getFileFromMemory(widget.data.imageUrl) != null;
+    loaded = true;
     super.initState();
   }
 
@@ -84,7 +83,7 @@ class _OverlayInspirationCardState extends State<OverlayInspirationCard> {
                   vertical: 12.0,
                 ),
                 child: Text(
-                  widget.data.header?.toUpperCase() ?? "<header was empty>",
+                  "<empty card was empty>",
                   style: TextStyle(
                     inherit: true,
                     fontSize: 14.0,
@@ -119,7 +118,7 @@ class _OverlayInspirationCardState extends State<OverlayInspirationCard> {
                           ),
                         ),
                       ),
-                      imageUrl: widget.data.imageUrl,
+                      imageUrl: "<empty card>",
                       imageBuilder: (context, imageProvider) {
                         return Image(
                           image: imageProvider,
@@ -135,17 +134,13 @@ class _OverlayInspirationCardState extends State<OverlayInspirationCard> {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              widget.data.text ?? "<inspiration text was empty>",
+                              "<empty card was empty>",
                               style: TextStyle(
                                   inherit: true,
                                   fontSize: 20.0,
                                   fontWeight: FontWeight.bold,
                                   fontFamily: 'Serif',
-                                  color: Color(int.tryParse(widget
-                                          .data.textColor
-                                          ?.replaceFirst('#', '0xFF')
-                                          ?? "0xFFFFFFFF") ??
-                                      0xFFFFFFFF)),
+                                  color: Color(0xFFFFFFFF)),
                             ),
                           ),
                         ),
@@ -163,20 +158,7 @@ class _OverlayInspirationCardState extends State<OverlayInspirationCard> {
                   ),
                   ShareButton(
                     onPressed:
-                    loaded
-                        ? () async {
-                            Uint8List imageData = await _getImageWithText();
-                            final String extension =
-                                extractFileExtension(widget.data.imageUrl);
-                            await WcFlutterShare.share(
-                              sharePopupTitle:
-                                  AppStrings.get().labelShareInspiration,
-                              mimeType: 'image/$extension',
-                              fileName: '${widget.data.header}.$extension',
-                              bytesOfFile: imageData,
-                            );
-                          }
-                        : null,
+                    loaded ? () async {} : null,
                   ),
                 ]),
               ),

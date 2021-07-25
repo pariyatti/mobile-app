@@ -5,11 +5,11 @@ const Map<String, AppStrings> strings = {
     appName: 'Pariyatti',
     messageNothingBookmarked: 'You haven\'t bookmarked anything yet',
     errorMessageTryAgainLater:
-        'Some error occured, can you please try again later!',
+        'Some error occurred, can you please try again later!',
     labelToday: 'Today',
     labelAccount: 'Account',
     labelShareInspiration: 'Share Inspiration',
-    labelSharePaliWord: 'Share Pali Word',
+    labelSharePaliWord: 'Share Pāli Word',
     labelTranslation: 'Translation',
     labelBookmarks: 'Bookmarks',
   ),
@@ -27,14 +27,18 @@ class AppStrings {
   final String labelBookmarks;
 
   const AppStrings({
-    @required this.appName,
-    @required this.errorMessageTryAgainLater,
-    @required this.messageNothingBookmarked,
-    @required this.labelToday,
-    @required this.labelAccount,
-    @required this.labelShareInspiration,
-    @required this.labelSharePaliWord,
-    @required this.labelTranslation,
-    @required this.labelBookmarks,
+    @required required this.appName,
+    @required required this.errorMessageTryAgainLater,
+    @required required this.messageNothingBookmarked,
+    @required required this.labelToday,
+    @required required this.labelAccount,
+    @required required this.labelShareInspiration,
+    @required required this.labelSharePaliWord,
+    @required required this.labelTranslation,
+    @required required this.labelBookmarks,
   });
+
+  static AppStrings get() {
+    return strings['en']!;
+  }
 }

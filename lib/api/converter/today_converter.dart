@@ -5,17 +5,18 @@ import 'package:patta/ui/model/PaliWordCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
 
 List<CardModel> convertJsonToCardModels(Iterable response, String baseUrl) {
+  List<CardModel> models = List.empty();
   return response
       .map((apiCard) {
         final String cardType = apiCard['type'];
         ApiCard card = ApiCard.fromJson(apiCard);
         return _convertApiCardToCardModel(card, cardType, baseUrl);
       })
-      .where((card) => (card != null))
+      .whereType<CardModel>() // was: .where((card) => (card != null))
       .toList();
 }
 
-CardModel _convertApiCardToCardModel(
+CardModel? _convertApiCardToCardModel(
   ApiCard card,
   String cardType,
   String baseUrl,
@@ -27,7 +28,7 @@ CardModel _convertApiCardToCardModel(
           id: card.id,
           header: card.header,
           text: card.text,
-          imageUrl: '$baseUrl${card.image.url}',
+          imageUrl: '$baseUrl${card.image?.url}',
           isBookmarkable: card.isBookmarkable,
         );
       }
@@ -37,20 +38,20 @@ CardModel _convertApiCardToCardModel(
             id: card.id,
             header: card.header,
             text: card.text,
-            imageUrl: '$baseUrl${card.image.url}',
+            imageUrl: '$baseUrl${card.image?.url}',
             textColor: card.textColor,
             isBookmarkable: card.isBookmarkable);
       }
     case 'pali_word':
       {
-        PaliWordCardModel model;
-        if (card.translations.isNotEmpty) {
+        PaliWordCardModel? model;
+        if (card.translations!.isNotEmpty) {
           model = PaliWordCardModel(
             id: card.id,
             header: card.header,
             pali: card.pali,
-            audioUrl: '$baseUrl${card.audio.url}',
-            translation: card.translations[0].translation,
+            audioUrl: '$baseUrl${card.audio?.url}',
+            translation: card.translations![0].translation,
             isBookmarkable: card.isBookmarkable,
           );
         } else {

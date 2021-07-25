@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:patta/api/api.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/resources/strings.dart';
+import 'package:patta/ui/common_widgets/cards/EmptyCard.dart';
 import 'package:patta/ui/common_widgets/cards/OverlayInspirationCard.dart';
 import 'package:patta/ui/common_widgets/cards/PaliWordCard.dart';
 import 'package:patta/ui/common_widgets/cards/StackedInspirationCard.dart';
@@ -20,11 +22,11 @@ class TodayScreen extends StatelessWidget {
         BuildContext context,
         AsyncSnapshot<List<CardModel>> snapshot,
       ) {
-        if (snapshot.hasData) {
-          return _buildCardsList(snapshot.data, context);
+        if (snapshot.hasData && snapshot.data != null) {
+          return _buildCardsList(snapshot.data!, context);
         } else if (snapshot.hasError) {
           //  TODO: Log the error
-          return _buildError();
+          return _buildError(snapshot.error!);
         } else {
           return _buildLoadingIndicator();
         }
@@ -59,13 +61,13 @@ class TodayScreen extends StatelessWidget {
             Provider.of<PariyattiDatabase>(context),
           );
         } else {
-          return null;
+          return EmptyCard(card, Provider.of<PariyattiDatabase>(context));
         }
       },
     );
   }
 
-  Widget _buildError() {
+  Widget _buildError(Object error) {
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -79,7 +81,8 @@ class TodayScreen extends StatelessWidget {
             ),
           ),
           Text(
-            strings['en'].errorMessageTryAgainLater,
+            AppStrings.get().errorMessageTryAgainLater + "\n\nError:\n" + error.toString() + "\n\n"
+            + (error as MissingRequiredKeysException).missingKeys.toString(),
             style: TextStyle(
               inherit: true,
               color: Color(0xff6d695f),

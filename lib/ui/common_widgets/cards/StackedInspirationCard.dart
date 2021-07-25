@@ -17,7 +17,7 @@ class StackedInspirationCard extends StatefulWidget {
   final StackedInspirationCardModel data;
   final PariyattiDatabase database;
 
-  StackedInspirationCard(this.data, this.database, {Key key}) : super(key: key);
+  StackedInspirationCard(this.data, this.database, {Key? key}) : super(key: key);
 
   @override
   _StackedInspirationCardState createState() => _StackedInspirationCardState();
@@ -25,28 +25,27 @@ class StackedInspirationCard extends StatefulWidget {
 
 class _StackedInspirationCardState extends State<StackedInspirationCard> {
   final GlobalKey _renderKey = new GlobalKey();
-  bool loaded;
+  late bool loaded;
 
   Future<Uint8List> _getImage() async {
     try {
       RenderRepaintBoundary boundary =
-          _renderKey.currentContext.findRenderObject();
+          _renderKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
       ui.Image image = await boundary.toImage(pixelRatio: 3.0);
-      ByteData byteData =
-          await image.toByteData(format: ui.ImageByteFormat.png);
+      ByteData byteData = await image.toByteData(format: ui.ImageByteFormat.png) as ByteData;
       var pngBytes = byteData.buffer.asUint8List();
       return pngBytes;
     } catch (e) {
       print(e);
+      throw e;
     }
-    return null;
+    // was: return null;
   }
 
   @override
   void initState() {
     //Check if image is in cache in case widget gets rebuilt and the onLoaded callback doesn't respond.
-    loaded =
-        DefaultCacheManager().getFileFromMemory(widget.data.imageUrl) != null;
+    loaded = DefaultCacheManager().getFileFromMemory(widget.data.imageUrl) != null;
     super.initState();
   }
 
@@ -85,7 +84,7 @@ class _StackedInspirationCardState extends State<StackedInspirationCard> {
                         vertical: 12.0,
                       ),
                       child: Text(
-                        widget.data.header.toUpperCase(),
+                        widget.data.header?.toUpperCase() ?? "<header was empty>",
                         style: TextStyle(
                           inherit: true,
                           fontSize: 14.0,
@@ -137,7 +136,7 @@ class _StackedInspirationCardState extends State<StackedInspirationCard> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        widget.data.text,
+                        widget.data.text ?? "<text was empty>",
                         style: TextStyle(
                           inherit: true,
                           fontSize: 20.0,
@@ -162,8 +161,7 @@ class _StackedInspirationCardState extends State<StackedInspirationCard> {
                                         extractFileExtension(
                                             widget.data.imageUrl);
                                     await WcFlutterShare.share(
-                                      sharePopupTitle:
-                                          strings['en'].labelShareInspiration,
+                                      sharePopupTitle: AppStrings.get().labelShareInspiration,
                                       mimeType: 'image/$extension',
                                       fileName:
                                           '${widget.data.header}.$extension',

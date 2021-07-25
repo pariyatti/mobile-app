@@ -5,7 +5,7 @@ class GetDio {
   static Dio getDio({loggedIn = true, baseURL}) {
     Dio dio = Dio();
     dio.interceptors
-      ..add(InterceptorsWrapper(onRequest: (RequestOptions options) async {
+      ..add(InterceptorsWrapper(onRequest: (RequestOptions options, handler) async {
         options.baseUrl = baseURL;
         // options.headers["Accept"] = "application/json";
         // options.headers["setContentType"] = "application/json";
@@ -24,12 +24,12 @@ class GetDio {
           } catch (error) {
             print(error);
           }
-          return options;
+          handler.next(options); //return options;
         }
-      }, onResponse: (Response response) async {
-        return response;
-      }, onError: (DioError error) async {
-        return error.response;
+      }, onResponse: (Response response, handler) async {
+        handler.next(response); // return response;
+      }, onError: (DioError error, handler) async {
+        handler.next(error); // return error.response;
       }))
       ..add(DioCacheManager(CacheConfig(baseUrl: baseURL)).interceptor);
     return dio;

@@ -16,7 +16,7 @@ class AccountScreen extends StatelessWidget {
                 child: TabBar(
                   isScrollable: true,
                   tabs: <Widget>[
-                    Tab(text: strings['en'].labelBookmarks),
+                    Tab(text: AppStrings.get().labelBookmarks),
                   ],
                   indicatorColor: Color(0xff6d695f),
                 ),

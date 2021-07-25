@@ -5,35 +5,35 @@ part 'today.g.dart';
 @JsonSerializable(explicitToJson: true)
 class ApiCard {
   @JsonKey(name: 'id', disallowNullValue: true, required: true)
-  final String id;
+  late final String id;
 
   @JsonKey(name: 'bookmarkable', disallowNullValue: true, required: true)
-  final bool isBookmarkable;
+  late final bool isBookmarkable;
 
   @JsonKey(name: 'header', disallowNullValue: true, required: true)
-  final String header;
+  final String? header;
 
   @JsonKey(name: 'text', disallowNullValue: true, required: false)
-  final String text;
+  final String? text;
 
   @JsonKey(name: 'image', disallowNullValue: true, required: false)
-  final Image image;
+  final Image? image;
 
   @JsonKey(name: 'pali', disallowNullValue: true, required: false)
-  final String pali;
+  final String? pali;
 
   @JsonKey(name: 'audio', disallowNullValue: true, required: false)
-  final Audio audio;
+  final Audio? audio;
 
   @JsonKey(name: 'translations', disallowNullValue: true, required: false)
-  final List<Translation> translations;
+  final List<Translation>? translations;
 
   @JsonKey(name: 'text_color', disallowNullValue: true, required: false)
-  final String textColor;
+  final String? textColor;
 
   ApiCard({
-    this.id,
-    this.isBookmarkable,
+    required this.id,
+    required this.isBookmarkable,
     this.header,
     this.text,
     this.image,
@@ -43,8 +43,7 @@ class ApiCard {
     this.textColor,
   });
 
-  factory ApiCard.fromJson(Map<String, dynamic> json) =>
-      _$ApiCardFromJson(json);
+  factory ApiCard.fromJson(Map<String, dynamic> json) => _$ApiCardFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiCardToJson(this);
 }
@@ -56,7 +55,7 @@ class Image {
     disallowNullValue: true,
     required: true,
   )
-  final String url;
+  final String? url;
 
   const Image({
     this.url,
@@ -74,7 +73,7 @@ class Audio {
     disallowNullValue: true,
     required: true,
   )
-  final String url;
+  final String? url;
 
   const Audio({this.url});
 
@@ -90,19 +89,19 @@ class Translation {
     disallowNullValue: true,
     required: true,
   )
-  final String language;
+  final String? language;
   @JsonKey(
     name: 'translation',
     disallowNullValue: true,
     required: true,
   )
-  final String translation;
+  final String? translation;
   @JsonKey(
     name: 'id',
     disallowNullValue: true,
     required: true,
   )
-  final String id;
+  final String? id;
 
   const Translation({
     this.language,

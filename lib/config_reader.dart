@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 class ConfigReader {
-  Map<String, dynamic> _config;
+  late Map<String, dynamic> _config;
 
   ConfigReader.fromConfigString(String configString) {
     _config = json.decode(configString) as Map<String, dynamic>;

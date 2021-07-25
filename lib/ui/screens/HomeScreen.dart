@@ -21,12 +21,12 @@ class _HomeScreenState extends State<HomeScreen> {
     switch (_tab) {
       case HomeScreenTab.TODAY:
         bottomNavigationBarIndex = 0;
-        titleText = '${strings['en'].appName} - ${strings['en'].labelToday}';
+        titleText = '${AppStrings.get().appName} - ${AppStrings.get().labelToday}';
         bodyWidget = TodayScreen();
         break;
       case HomeScreenTab.ACCOUNT:
         bottomNavigationBarIndex = 1;
-        titleText = '${strings['en'].appName} - ${strings['en'].labelAccount}';
+        titleText = '${AppStrings.get().appName} - ${AppStrings.get().labelAccount}';
         bodyWidget = AccountScreen();
         break;
     }
@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Color.fromARGB(255, 186, 86, 38),
             ),
             title: Text(
-              strings['en'].labelToday,
+              AppStrings.get().labelToday,
               style: TextStyle(
                 inherit: true,
                 color: bottomNavigationBarIndex == 0
@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Color.fromARGB(255, 186, 86, 38),
             ),
             title: Text(
-              strings['en'].labelAccount,
+              AppStrings.get().labelAccount,
               style: TextStyle(
                 inherit: true,
                 color: bottomNavigationBarIndex == 1

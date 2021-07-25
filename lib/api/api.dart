@@ -4,11 +4,12 @@ import 'package:patta/app/cache.dart';
 import 'package:patta/app/dio.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/ui/model/CardModel.dart';
+import 'dart:developer';
 
 class PariyattiApi {
   String baseUrl;
   PariyattiDatabase _database;
-  Client _client;
+  late Client _client;
 
   PariyattiApi(this.baseUrl, this._database) {
     this._client = Client();
@@ -23,6 +24,8 @@ class PariyattiApi {
 
     var response = await GetDio.getDio(baseURL: baseUrl)
         .get(todayUrl, options: CacheManager.todayCards());
+
+    log(response.data.toString());
 
     return today_converter.convertJsonToCardModels(response.data, baseUrl);
   }
