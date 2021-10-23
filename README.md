@@ -10,30 +10,56 @@
 
 ## Dev Setup: Android
 
-1. Install Java: `sudo apt-get install openjdk-14-jdk` or `sudo apt-get install openjdk-11-jdk`
+1. Install Java (Linux or MacOS): `sudo apt-get install openjdk-17-jdk`
 2. Install Android Studio: https://developer.android.com/studio
    - Install Android SDK Tools (obsolete) in `Tools > SDK Manager`
    - Install Android SDK Command-line Tools in `Tools > SDK Manager`
    - Install Android SDK Command-line Tools (latest) in `Preferences > Appearance & Behavior > System Settings > Android SDK > SDK Tools`
-      - See: https://stackoverflow.com/questions/46402772/failed-to-install-android-sdk-java-lang-noclassdeffounderror-javax-xml-bind-a/64389804#64389804
    - Install the Android Studio Flutter Plugin
    - (Optional, Linux) Configure udev to collect logs from a hardware device attached by USB:
      - `sudo apt-get install adb && sudo usermod -aG plugdev $LOGNAME`
 3. Install Flutter: https://flutter.dev/docs/get-started/install
    - run `flutter doctor` and follow any remaining instructions
 
+### Troubleshooting
+
+```sh
+$ flutter doctor --android-licenses # produces:
+Exception in thread "main" java.lang.NoClassDefFoundError: javax/xml/bind/annotation/XmlSchema
+```
+
+See: https://stackoverflow.com/questions/46402772/failed-to-install-android-sdk-java-lang-noclassdeffounderror-javax-xml-bind-a/64389804#64389804
+
 ## Dev Setup: iOS
 
-1. Install Java:
-   - Download JDK 14: https://jdk.java.net/14/
-   - `cd ~/Downloads && tar xzf tar xzf openjdk-14.0.2_osx-x64_bin.tar.gz`
-   - `sudo mv jdk-14.0.2.jdk /Library/Java/JavaVirtualMachines/.`
-   - `echo 'export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-14.0.2.jdk/Contents/Home' >> ~/.zshrc` # or `.bash_profile`
+1. Install Java (MacOS):
+   - Download JDK 17: https://jdk.java.net/17/
+   - `cd ~/Downloads && tar xzf tar xzf openjdk-17.0.0_osx-x64_bin.tar.gz`
+   - `sudo mv jdk-17.0.0.jdk /Library/Java/JavaVirtualMachines/.`
+   - `echo 'export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.0.0.jdk/Contents/Home' >> ~/.zshrc` # or `.bash_profile`
 1. Install Xcode
 2. Install Flutter: https://flutter.dev/docs/get-started/install
    - run `flutter precache` and `flutter doctor` and follow any remaining instructions
    - required on Mac as of 2021-02-06: `ln -s ~/Library/Application\ Support/Google/AndroidStudio4.1/plugins ~/Library/Application\ Support/AndroidStudio4.1`
    - run `flutter devices` - if you get a "device busy" message, reboot MacOS and phone. This might be helpful: https://github.com/flutter/flutter/issues/66862 and https://github.com/flutter/flutter/issues/66862#issuecomment-758967875
+
+### Troubleshooting
+
+```sh
+$ make run env=local # produces:
+Could not build the precompiled application for the device.
+It appears that your application still contains the default signing identifier.
+```
+
+XCode _routinely_ changes build configuration recommendations in ways that are not backward-compatible.
+If you open XCode with the recommended command (`open ios/Runner.xcworkspace`) you may see some config recommendations.
+Try accepting them but make sure you can build and run from Flutter (without XCode) before committing them.
+
+If you are using an automatically-generated certificate, you will need to regenerate it once a week.
+Opening XCode with `open ios/Runner.xcworkspace`, selecting your iPhone, and running with ⌘R should regenerate it.
+If this does not work, sometimes the Pariyatti Apple Development Team may be stuck.
+If you suspect it is, try switching your Team profile to `{Your Name} (Personal Team)` under
+`Project Navigator > Runner > Signing & Capabilities > Team`, then running with ⌘R.
 
 ## Local Build Process
 
