@@ -45,6 +45,17 @@ See: https://stackoverflow.com/questions/46402772/failed-to-install-android-sdk-
 
 ### Troubleshooting
 
+**Flutter Package Versioning Failures:**
+
+Try:
+
+```sh
+$ flutter upgrade
+$ flutter pub upgrade
+```
+
+**XCode Signing Failures:**
+
 ```sh
 $ make run env=local # produces:
 Could not build the precompiled application for the device.
