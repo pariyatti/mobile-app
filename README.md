@@ -14,8 +14,10 @@
 2. Install Android Studio: https://developer.android.com/studio
    - Install Android SDK Tools (obsolete) in `Tools > SDK Manager`
    - Install Android SDK Command-line Tools in `Tools > SDK Manager`
+   - Install Android SDK Command-line Tools (latest) in `Preferences > Appearance & Behavior > System Settings > Android SDK > SDK Tools`
+      - See: https://stackoverflow.com/questions/46402772/failed-to-install-android-sdk-java-lang-noclassdeffounderror-javax-xml-bind-a/64389804#64389804
    - Install the Android Studio Flutter Plugin
-   - (Optional) Configure udev to collect logs from a hardware device attached by USB: 
+   - (Optional, Linux) Configure udev to collect logs from a hardware device attached by USB:
      - `sudo apt-get install adb && sudo usermod -aG plugdev $LOGNAME`
 3. Install Flutter: https://flutter.dev/docs/get-started/install
    - run `flutter doctor` and follow any remaining instructions
@@ -137,4 +139,3 @@ If you have answers to these questions, please move them to the top and put the 
 [AGPL-3](https://github.com/pariyatti/mobile-app/blob/development/LICENSE)
 
 Copyright (c) 2019-present, Pariyatti
-
