@@ -68,6 +68,11 @@ class TodayScreen extends StatelessWidget {
   }
 
   Widget _buildError(Object error) {
+    var errorMessage = AppStrings.get().errorMessageTryAgainLater
+        + "\n\nError:\n"
+        + error.toString()
+        + "\n\n"
+        + exceptionToString(error);
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -81,8 +86,7 @@ class TodayScreen extends StatelessWidget {
             ),
           ),
           Text(
-            AppStrings.get().errorMessageTryAgainLater + "\n\nError:\n" + error.toString() + "\n\n"
-            + (error as MissingRequiredKeysException).missingKeys.toString(),
+            errorMessage,
             style: TextStyle(
               inherit: true,
               color: Color(0xff6d695f),
@@ -92,5 +96,15 @@ class TodayScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String exceptionToString(Object error) {
+    var exception = (error as Exception);
+    if (exception.runtimeType is MissingRequiredKeysException)
+    {
+      return (exception as MissingRequiredKeysException).missingKeys.toString();
+    } else {
+      return exception.toString();
+    }
   }
 }

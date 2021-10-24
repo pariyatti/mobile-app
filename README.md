@@ -50,8 +50,9 @@ See: https://stackoverflow.com/questions/46402772/failed-to-install-android-sdk-
 Try:
 
 ```sh
-$ flutter upgrade
-$ flutter pub upgrade
+flutter upgrade
+flutter pub upgrade
+make clean
 ```
 
 **XCode Signing Failures:**
