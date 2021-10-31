@@ -21,7 +21,7 @@
 3. Install Flutter: https://flutter.dev/docs/get-started/install
    - run `flutter doctor` and follow any remaining instructions
 
-### Troubleshooting
+### Troubleshooting Android
 
 ```sh
 $ flutter doctor --android-licenses # produces:
@@ -43,7 +43,7 @@ See: https://stackoverflow.com/questions/46402772/failed-to-install-android-sdk-
    - required on Mac as of 2021-02-06: `ln -s ~/Library/Application\ Support/Google/AndroidStudio4.1/plugins ~/Library/Application\ Support/AndroidStudio4.1`
    - run `flutter devices` - if you get a "device busy" message, reboot MacOS and phone. This might be helpful: https://github.com/flutter/flutter/issues/66862 and https://github.com/flutter/flutter/issues/66862#issuecomment-758967875
 
-### Troubleshooting
+### Troubleshooting iOS
 
 **"Untrusted Developer"**
 
