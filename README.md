@@ -45,15 +45,22 @@ See: https://stackoverflow.com/questions/46402772/failed-to-install-android-sdk-
 
 ### Troubleshooting
 
-**Flutter Package Versioning Failures:**
+**"Untrusted Developer"**
 
-Try:
+If you are building using a personal Team Profile, you will need to trust your developer profile.
+You will need to do this every time you reinstall (delete + install) the app in Debug mode:
 
-```sh
-flutter upgrade
-flutter pub upgrade
-make clean
-```
+`Settings > General > Device Management > Developer App: Apple Development: {your name} > Trust {your name}`
+
+
+**Cannot Access Local Network:**
+
+If you get `DioError: ... Failed host lookup: 'your-computer.local'` you can try the following:
+
+1. Enable `Settings > Privacy > Local Network > Pariyatti` (on your iPhone)
+** This should (in theory) be set by Bonjour Services as per: https://flutter.dev/docs/development/add-to-app/ios/project-setup#local-network-privacy-permissions
+2. Make sure your phone and computer are on the same wifi network
+3. Try turning off mobile data to ensure your phone finds your computer through the local network
 
 **XCode Signing Failures:**
 
@@ -83,6 +90,18 @@ make run                # sandbox, by default
 make run env=local      # local Kosa server to test Kosa dev changes
 make run env=production # production, if you need it
 ```
+
+
+**Flutter Package Versioning Failures:**
+
+Try:
+
+```sh
+flutter upgrade
+flutter pub upgrade
+make clean
+```
+
 
 ***
 
