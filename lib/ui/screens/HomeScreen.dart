@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patta/resources/strings.dart';
+import 'package:patta/ui/common_widgets/slivered_view.dart';
 import 'package:patta/ui/screens/account/AccountScreen.dart';
 import 'package:patta/ui/screens/today/TodayScreen.dart';
 
@@ -21,27 +22,24 @@ class _HomeScreenState extends State<HomeScreen> {
     switch (_tab) {
       case HomeScreenTab.TODAY:
         bottomNavigationBarIndex = 0;
-        titleText = '${AppStrings.get().appName} - ${AppStrings.get().labelToday}';
-        bodyWidget = TodayScreen();
+        titleText = '${AppStrings.get().labelToday}';
+        bodyWidget = SliveredView(
+          title: titleText,
+          body: TodayScreen(),
+        );
         break;
       case HomeScreenTab.ACCOUNT:
         bottomNavigationBarIndex = 1;
-        titleText = '${AppStrings.get().appName} - ${AppStrings.get().labelAccount}';
-        bodyWidget = AccountScreen();
+        titleText = '${AppStrings.get().labelAccount}';
+        bodyWidget = SliveredView(
+          title: titleText,
+          body: AccountScreen(),
+        );
         break;
     }
 
     return Scaffold(
       backgroundColor: Color(0xfff4efe7),
-      appBar: AppBar(
-        title: Text(
-          titleText,
-          style: TextStyle(
-            inherit: true,
-            color: Color(0xff6d695f),
-          ),
-        ),
-      ),
       body: bodyWidget,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: bottomNavigationBarIndex,
