@@ -1,76 +1,87 @@
-# patta [m.]: _leaf; alms bowl; attained_
+
+# The Pariyatti mobile app.
 
 [![Codemagic build status](https://api.codemagic.io/apps/5ea7faa6ab38b5000ac85f7b/5ea7faa6ab38b5000ac85f7a/status_badge.svg)](https://codemagic.io/apps/5ea7faa6ab38b5000ac85f7b/5ea7faa6ab38b5000ac85f7a/latest_build)
-
-The Pariyatti mobile app.
 
 ## Design
 
 - [Design Docs & Wireframes](https://drive.google.com/drive/folders/1Iga6z-5tndLJ411XG5ibimLwNC5VZDVv?usp=sharing) (public)
+- `patta [m.]: _leaf; alms bowl; attained_`
 
 ## Dev Setup: Android
 
-1. Install Java: `sudo apt-get install openjdk-14-jdk` or `sudo apt-get install openjdk-11-jdk`
+1. Install Java (Linux or MacOS): `sudo apt-get install openjdk-17-jdk`
 2. Install Android Studio: https://developer.android.com/studio
    - Install Android SDK Tools (obsolete) in `Tools > SDK Manager`
    - Install Android SDK Command-line Tools in `Tools > SDK Manager`
+   - Install Android SDK Command-line Tools (latest) in `Preferences > Appearance & Behavior > System Settings > Android SDK > SDK Tools`
    - Install the Android Studio Flutter Plugin
-   - (Optional) Configure udev to collect logs from a hardware device attached by USB: 
+   - (Optional, Linux) Configure udev to collect logs from a hardware device attached by USB:
      - `sudo apt-get install adb && sudo usermod -aG plugdev $LOGNAME`
 3. Install Flutter: https://flutter.dev/docs/get-started/install
    - run `flutter doctor` and follow any remaining instructions
 
+### Troubleshooting
+
+```sh
+$ flutter doctor --android-licenses # produces:
+Exception in thread "main" java.lang.NoClassDefFoundError: javax/xml/bind/annotation/XmlSchema
+```
+
+See: https://stackoverflow.com/questions/46402772/failed-to-install-android-sdk-java-lang-noclassdeffounderror-javax-xml-bind-a/64389804#64389804
+
 ## Dev Setup: iOS
 
-1. Install Java:
-   - Download JDK 14: https://jdk.java.net/14/
-   - `cd ~/Downloads && tar xzf tar xzf openjdk-14.0.2_osx-x64_bin.tar.gz`
-   - `sudo mv jdk-14.0.2.jdk /Library/Java/JavaVirtualMachines/.`
-   - `echo 'export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-14.0.2.jdk/Contents/Home' >> ~/.zshrc` # or `.bash_profile`
+1. Install Java (MacOS):
+   - Download JDK 17: https://jdk.java.net/17/
+   - `cd ~/Downloads && tar xzf tar xzf openjdk-17.0.0_osx-x64_bin.tar.gz`
+   - `sudo mv jdk-17.0.0.jdk /Library/Java/JavaVirtualMachines/.`
+   - `echo 'export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.0.0.jdk/Contents/Home' >> ~/.zshrc` # or `.bash_profile`
 1. Install Xcode
 2. Install Flutter: https://flutter.dev/docs/get-started/install
    - run `flutter precache` and `flutter doctor` and follow any remaining instructions
+   - required on Mac as of 2021-02-06: `ln -s ~/Library/Application\ Support/Google/AndroidStudio4.1/plugins ~/Library/Application\ Support/AndroidStudio4.1`
+   - run `flutter devices` - if you get a "device busy" message, reboot MacOS and phone. This might be helpful: https://github.com/flutter/flutter/issues/66862 and https://github.com/flutter/flutter/issues/66862#issuecomment-758967875
+
+### Troubleshooting
+
+**Flutter Package Versioning Failures:**
+
+Try:
+
+```sh
+flutter upgrade
+flutter pub upgrade
+make clean
+```
+
+**XCode Signing Failures:**
+
+```sh
+$ make run env=local # produces:
+Could not build the precompiled application for the device.
+It appears that your application still contains the default signing identifier.
+```
+
+XCode _routinely_ changes build configuration recommendations in ways that are not backward-compatible.
+If you open XCode with the recommended command (`open ios/Runner.xcworkspace`) you may see some config recommendations.
+Try accepting them but make sure you can build and run from Flutter (without XCode) before committing them.
+
+If you are using an automatically-generated certificate, you will need to regenerate it once a week.
+Opening XCode with `open ios/Runner.xcworkspace`, selecting your iPhone, and running with ⌘R should regenerate it.
+If this does not work, sometimes the Pariyatti Apple Development Team may be stuck.
+If you suspect it is, try switching your Team profile to `{Your Name} (Personal Team)` under
+`Project Navigator > Runner > Signing & Capabilities > Team`, then running with ⌘R.
 
 ## Local Build Process
 
-### Common steps
-
 ```
-# Copy example config file to provide configuration secrets
-cp config/app_config.sample.json config/app_config.json
-
-# Fill in values of secrets/keys inside config/app_config.json
-# (At the moment, the app doesn't require any.)
-
-# Grab dependencies
-flutter pub get
-
-# Generate code for part-files. This generated code is used to 
-# parse/deserialize JSON and db data into model objects. 
-flutter pub run build_runner build
-```
-
-### Run the tests
-
-```
-# runs against a connected device
-flutter test --machine
-```
-
-### Run debug build with sandbox servers
-
-```
-# Target sandbox environment
-# This uses a `main` specific to the sand[box] server
-flutter run --target lib/main_sand.dart
-```
-
-### Run debug build with production servers
-
-```
-# Target production environment
-# This uses a `main` specific to the prod[uction] server
-flutter run --target lib/main_prod.dart
+make help
+make init
+make test
+make run                # sandbox, by default
+make run env=local      # local Kosa server to test Kosa dev changes
+make run env=production # production, if you need it
 ```
 
 ***
@@ -82,9 +93,9 @@ flutter run --target lib/main_prod.dart
 
 ## Branch Policy
 
-1. `master` is for release builds. Merging changes into `master` causes a build in [CodeMagic](https://github.com/pariyatti/patta#ci--cd-builds) which publishes to the Play Store.
+1. `master` is for release builds. Merging changes into `master` causes a build in [CodeMagic](https://github.com/pariyatti/mobile-app#ci--cd-builds) which publishes to the Play Store.
 2. `development` is for debug builds. These are not published to the Play Store but are automatically emailed to developers. Do version bumps in the `development` branch **only**.
-3. Feature Branches are used for all active development. Branch off of the `development` branch either in the `pariyatti/patta` repo or in your own personal repo. When you are finished a User Story, submit a PR to the `development` branch. Stories should be thoroughly tested before they are merged into `master`.
+3. Feature Branches are used for all active development. Branch off of the `development` branch either in the `pariyatti/mobile-app` repo or in your own personal repo. When you are finished a User Story, submit a PR to the `development` branch. Stories should be thoroughly tested before they are merged into `master`.
 
 ```
 Promotion:
@@ -98,7 +109,7 @@ Promotion:
 
 In order of preference:
 
-1. Use a build from [CodeMagic](https://github.com/pariyatti/patta#ci--cd-builds). Avoid locally signed release builds.
+1. Use a build from [CodeMagic](https://github.com/pariyatti/mobile-app#ci--cd-builds). Avoid locally signed release builds.
 
 2. If for some reason CodeMagic isn't available: Get the `keystore.jks` and `keystore.properties` files from the Vault, copy them locally, and build locally.
 
@@ -161,3 +172,8 @@ If you have answers to these questions, please move them to the top and put the 
 - If Santu comments on the `*Card.dart` files, are they readable to a newbie?
 - Can Moor Converters move into multiple files?
 
+## License and Copyright
+
+[AGPL-3](https://github.com/pariyatti/mobile-app/blob/development/LICENSE)
+
+Copyright (c) 2019-present, Pariyatti

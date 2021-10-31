@@ -26,7 +26,7 @@ class PariyattiApp extends StatelessWidget {
   const PariyattiApp(
     this._environment,
     this._configReader, {
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -56,7 +56,7 @@ class PariyattiApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: strings['en'].appName,
+        title: AppStrings.get().appName,
         theme: ThemeData(
           primaryColor: Color(0xffdcd3c0),
           accentColor: Color(0xff6d695f),

@@ -7,7 +7,7 @@ class BookmarkButton extends StatelessWidget {
   final CardModel data;
   final PariyattiDatabase database;
 
-  const BookmarkButton(this.data, this.database, {Key key}) : super(key: key);
+  const BookmarkButton(this.data, this.database, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class BookmarkButton extends StatelessWidget {
       child: StreamBuilder<bool>(
         stream: database.isCardBookmarked(data.id),
         builder: (context, snapshot) {
-          final isBookmarked = (snapshot.hasData && snapshot.data);
+          final isBookmarked = (snapshot.hasData && snapshot.data != null);
 
           Icon icon;
           if (isBookmarked) {

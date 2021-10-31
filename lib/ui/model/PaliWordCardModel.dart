@@ -1,14 +1,14 @@
 import 'package:patta/ui/model/CardModel.dart';
 
 class PaliWordCardModel extends CardModel {
-  final String header;
-  final String pali;
-  final String audioUrl;
-  final String translation;
+  final String? header;
+  final String? pali;
+  final String? audioUrl;
+  final String? translation;
 
   PaliWordCardModel({
-    String id,
-    bool isBookmarkable,
+    required String id,
+    required bool isBookmarkable,
     this.header,
     this.pali,
     this.audioUrl,
@@ -16,6 +16,6 @@ class PaliWordCardModel extends CardModel {
   }) : super(id, isBookmarkable);
 
   @override
-  List<Object> get props =>
+  List<Object?> get props =>
       [id, header, pali, audioUrl, translation, isBookmarkable];
 }

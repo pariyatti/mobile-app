@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
     switch (_tab) {
       case HomeScreenTab.TODAY:
         bottomNavigationBarIndex = 0;
-        titleText = '${strings['en'].labelToday}';
+        titleText = '${AppStrings.get().labelToday}';
         bodyWidget = SliveredView(
           title: titleText,
           body: TodayScreen(),
@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
         break;
       case HomeScreenTab.ACCOUNT:
         bottomNavigationBarIndex = 1;
-        titleText = '${strings['en'].labelAccount}';
+        titleText = '${AppStrings.get().labelAccount}';
         bodyWidget = SliveredView(
           title: titleText,
           body: AccountScreen(),
@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Color.fromARGB(255, 186, 86, 38),
             ),
             title: Text(
-              strings['en'].labelToday,
+              AppStrings.get().labelToday,
               style: TextStyle(
                 inherit: true,
                 color: bottomNavigationBarIndex == 0
@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Color.fromARGB(255, 186, 86, 38),
             ),
             title: Text(
-              strings['en'].labelAccount,
+              AppStrings.get().labelAccount,
               style: TextStyle(
                 inherit: true,
                 color: bottomNavigationBarIndex == 1

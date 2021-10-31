@@ -1,10 +1,11 @@
 import 'package:patta/local_database/database.dart';
 import 'package:patta/ui/model/CardModel.dart';
+import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
 import 'package:patta/ui/model/PaliWordCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
 
 DatabaseCard toDatabaseCard(
-  CardModel cardModel,
+  CardModel? cardModel,
   DateTime createdAt,
 ) {
   if (cardModel is StackedInspirationCardModel) {
@@ -28,28 +29,47 @@ DatabaseCard toDatabaseCard(
       translation: cardModel.translation,
       createdAt: createdAt,
     );
+  } else if (cardModel is OverlayInspirationCardModel) {
+    return DatabaseCard(
+      id: cardModel.id,
+      isBookmarkable: cardModel.isBookmarkable,
+      type: 'overlay_inspiration',
+      header: cardModel.header,
+      textData: cardModel.text,
+      imageUrl: cardModel.imageUrl,
+      textColor: cardModel.textColor,
+      createdAt: createdAt,
+    );
   } else {
-    return null;
+    // TODO: Create an `EmptyDatabaseCard` sentinel value
+    return DatabaseCard(
+      id: "NULL",
+      isBookmarkable: false,
+      type: "null",
+      header: "null",
+      textData: "null",
+      imageUrl: "null",
+      textColor: "#0000000000",
+      createdAt: DateTime.now(),
+    );
   }
 }
 
-CardModel toCardModel(DatabaseCard databaseCard) {
-  CardModel card;
+CardModel? toCardModel(DatabaseCard databaseCard) {
   switch (databaseCard.type) {
     case 'stacked_inspiration':
       {
-        card = StackedInspirationCardModel(
+        return StackedInspirationCardModel(
           id: databaseCard.id,
           isBookmarkable: databaseCard.isBookmarkable,
           header: databaseCard.header,
           text: databaseCard.textData,
           imageUrl: databaseCard.imageUrl,
         );
-        break;
       }
     case 'pali_word':
       {
-        card = PaliWordCardModel(
+        return PaliWordCardModel(
           id: databaseCard.id,
           isBookmarkable: databaseCard.isBookmarkable,
           header: databaseCard.header,
@@ -57,14 +77,21 @@ CardModel toCardModel(DatabaseCard databaseCard) {
           audioUrl: databaseCard.audioUrl,
           translation: databaseCard.translation,
         );
-        break;
+      }
+    case 'overlay_inspiration':
+      {
+        return OverlayInspirationCardModel(
+          id: databaseCard.id,
+          header: databaseCard.header,
+          text: databaseCard.textData,
+          isBookmarkable: databaseCard.isBookmarkable,
+          imageUrl: databaseCard.imageUrl,
+          textColor: databaseCard.textColor,
+        );
       }
     default:
       {
-        card = null;
-        break;
+        return null;
       }
   }
-
-  return card;
 }

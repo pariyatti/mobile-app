@@ -1,7 +1,9 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:patta/api/converter/today_converter.dart' as today_converter;
+import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
 import 'package:patta/ui/model/PaliWordCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
 
@@ -23,8 +25,8 @@ void main() {
     final responseJson = getContents('responseJson.json');
 
     // method to be tested
-    final cardModels =
-        today_converter.convertJsonToCardModels(responseJson, baseUrl);
+    final cardModels = today_converter.convertJsonToCardModels(
+        jsonDecode(responseJson), baseUrl);
 
     // check the results to be the models that we expect them to be
     expect(
@@ -53,6 +55,18 @@ void main() {
       ),
     );
 
-    // TODO: After overlay-inspiration-card is added the last card parsed should be of that
+    expect(
+      cardModels[2],
+      OverlayInspirationCardModel(
+        id: 'f9a2cc0f-915f-4a9a-a049-77bbb9be1fc7',
+        isBookmarkable: true,
+        header: 'Inspiration of the Day',
+        textColor: '#FFFFFF',
+        text:
+            """This card has a Peepal leaf on it because if there's one thing we know about meditation it's that it involves a lot of Peepal leaves, right?""",
+        imageUrl:
+            '$baseUrl/uploads/cards/overlay_inspiration_card/image/f9a2cc0f-915f-4a9a-a049-77bbb9be1fc7/leaf.jpg',
+      ),
+    );
   });
 }
