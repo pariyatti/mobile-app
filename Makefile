@@ -43,6 +43,9 @@ clean: ##@Development Clean various caches
 	cd ios && pod install --repo-update
 	flutter clean
 
+repair: clean ##@Development Repair and clean Flutter
+	flutter pub cache repair
+
 build: ##@Development (Re)build project
 	flutter pub get
 	flutter pub run build_runner build --delete-conflicting-outputs
