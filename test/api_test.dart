@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
@@ -24,8 +25,8 @@ void main() {
     final responseJson = getContents('responseJson.json');
 
     // method to be tested
-    final cardModels =
-        today_converter.convertJsonToCardModels(responseJson, baseUrl);
+    final cardModels = today_converter.convertJsonToCardModels(
+        jsonDecode(responseJson), baseUrl);
 
     // check the results to be the models that we expect them to be
     expect(

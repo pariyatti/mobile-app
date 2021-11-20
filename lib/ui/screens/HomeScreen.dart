@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/common_widgets/pariyatti_icons.dart';
+import 'package:patta/ui/common_widgets/slivered_view.dart';
 import 'package:patta/ui/screens/account/AccountScreen.dart';
 import 'package:patta/ui/screens/today/TodayScreen.dart';
 
@@ -22,27 +23,24 @@ class _HomeScreenState extends State<HomeScreen> {
     switch (_tab) {
       case HomeScreenTab.TODAY:
         bottomNavigationBarIndex = 0;
-        titleText = '${strings['en'].appName} - ${strings['en'].labelToday}';
-        bodyWidget = TodayScreen();
+        titleText = '${AppStrings.get().labelToday}';
+        bodyWidget = SliveredView(
+          title: titleText,
+          body: TodayScreen(),
+        );
         break;
       case HomeScreenTab.ACCOUNT:
         bottomNavigationBarIndex = 1;
-        titleText = '${strings['en'].appName} - ${strings['en'].labelAccount}';
-        bodyWidget = AccountScreen();
+        titleText = '${AppStrings.get().labelAccount}';
+        bodyWidget = SliveredView(
+          title: titleText,
+          body: AccountScreen(),
+        );
         break;
     }
 
     return Scaffold(
       backgroundColor: Color(0xfff4efe7),
-      appBar: AppBar(
-        title: Text(
-          titleText,
-          style: TextStyle(
-            inherit: true,
-            color: Color(0xff6d695f),
-          ),
-        ),
-      ),
       body: bodyWidget,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: bottomNavigationBarIndex,
@@ -57,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Color.fromARGB(255, 186, 86, 38),
             ),
             title: Text(
-              strings['en'].labelToday,
+              AppStrings.get().labelToday,
               style: TextStyle(
                 inherit: true,
                 color: bottomNavigationBarIndex == 0
@@ -76,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Color.fromARGB(255, 186, 86, 38),
             ),
             title: Text(
-              strings['en'].labelAccount,
+              AppStrings.get().labelAccount,
               style: TextStyle(
                 inherit: true,
                 color: bottomNavigationBarIndex == 1
