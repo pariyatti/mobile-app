@@ -11,7 +11,16 @@ enum IconName {
   today,
   person,
   error,
+  none
 }
+
+const _iosMissing = CupertinoIcons.multiply_circle;
+const _androidMissing = Icons.broken_image;
+
+const Map<String, IconData> _iconMissing = {
+  'default': _androidMissing,
+  'ios': _iosMissing,
+};
 
 const Map<IconName, Map<String, IconData>> _iconMap = {
   IconName.share: {
@@ -37,15 +46,16 @@ const Map<IconName, Map<String, IconData>> _iconMap = {
     'default': Icons.error_outline,
     'ios': CupertinoIcons.info,
   },
+  IconName.none: _iconMissing
 };
 
 class PariyattiIcons {
   static IconData get(IconName name) {
-    final icons = _iconMap[name];
+    final icons = _iconMap[name] ?? _iconMissing;
     if (icons.containsKey(Platform.operatingSystem)) {
-      return icons[Platform.operatingSystem];
+      return icons[Platform.operatingSystem] ?? _iosMissing;
     } else {
-      return icons['default'];
+      return icons['default'] ?? _androidMissing;
     }
   }
 }
