@@ -22,6 +22,9 @@ const Map<String, IconData> _iconMissing = {
   'ios': _iosMissing,
 };
 
+// NOTE: For some bizarre reason, the Cupertino Icons gallery is a 404 on the
+//       current webpage. To look up Cupertino Icons, use archive.org:
+//       https://web.archive.org/web/20210728212734/https://flutter.github.io/cupertino_icons/
 const Map<IconName, Map<String, IconData>> _iconMap = {
   IconName.share: {
     'default': Icons.share,
