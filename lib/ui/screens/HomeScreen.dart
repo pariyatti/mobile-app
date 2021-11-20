@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patta/resources/strings.dart';
+import 'package:patta/ui/common_widgets/pariyatti_icons.dart';
 import 'package:patta/ui/common_widgets/slivered_view.dart';
 import 'package:patta/ui/screens/account/AccountScreen.dart';
 import 'package:patta/ui/screens/today/TodayScreen.dart';
@@ -46,11 +47,11 @@ class _HomeScreenState extends State<HomeScreen> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.today,
+              PariyattiIcons.get(IconName.today),
               color: Color(0xff6d695f),
             ),
             activeIcon: Icon(
-              Icons.today,
+              PariyattiIcons.get(IconName.today),
               color: Color.fromARGB(255, 186, 86, 38),
             ),
             title: Text(
@@ -65,11 +66,11 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.person,
+              PariyattiIcons.get(IconName.person),
               color: Color(0xff6d695f),
             ),
             activeIcon: Icon(
-              Icons.person,
+              PariyattiIcons.get(IconName.person),
               color: Color.fromARGB(255, 186, 86, 38),
             ),
             title: Text(

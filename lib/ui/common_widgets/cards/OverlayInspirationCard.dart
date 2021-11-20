@@ -8,6 +8,7 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/common_widgets/bookmark_button.dart';
+import 'package:patta/ui/common_widgets/pariyatti_icons.dart';
 import 'package:patta/ui/common_widgets/share_button.dart';
 import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
@@ -114,7 +115,7 @@ class _OverlayInspirationCardState extends State<OverlayInspirationCard> {
                         padding: const EdgeInsets.all(8.0),
                         child: Center(
                           child: Icon(
-                            Icons.error,
+                            PariyattiIcons.get(IconName.error),
                             color: Color(0xff6d695f),
                           ),
                         ),

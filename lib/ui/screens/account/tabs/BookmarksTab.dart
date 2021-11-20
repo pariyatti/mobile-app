@@ -6,6 +6,7 @@ import 'package:patta/ui/common_widgets/cards/EmptyCard.dart';
 import 'package:patta/ui/common_widgets/cards/OverlayInspirationCard.dart';
 import 'package:patta/ui/common_widgets/cards/PaliWordCard.dart';
 import 'package:patta/ui/common_widgets/cards/StackedInspirationCard.dart';
+import 'package:patta/ui/common_widgets/pariyatti_icons.dart';
 import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
 import 'package:patta/ui/model/PaliWordCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
@@ -48,7 +49,7 @@ class BookmarksTab extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Icon(
-              Icons.error,
+              PariyattiIcons.get(IconName.error),
               color: Color(0xff6d695f),
             ),
           ),
@@ -68,7 +69,7 @@ class BookmarksTab extends StatelessWidget {
   Widget _buildCardsList(List<DatabaseCard> data, PariyattiDatabase database) {
     final cardModels = data
         .map((dbCard) => moor_converters.toCardModel(dbCard))
-        .where((widget) => (widget != null))
+        .where((card) => (card != null))
         .toList();
     if (cardModels.isEmpty) {
       return Center(

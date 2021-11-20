@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/local_database/moor_converters.dart' as moor_converters;
+import 'package:patta/ui/common_widgets/pariyatti_icons.dart';
 import 'package:patta/ui/model/CardModel.dart';
 
 class BookmarkButton extends StatelessWidget {
@@ -20,12 +21,12 @@ class BookmarkButton extends StatelessWidget {
           Icon icon;
           if (isBookmarked) {
             icon = Icon(
-              Icons.bookmark,
+              PariyattiIcons.get(IconName.bookmarkFilled),
               color: Color(0xff6d695f),
             );
           } else {
             icon = Icon(
-              Icons.bookmark_border,
+              PariyattiIcons.get(IconName.bookmark),
               color: Color(0xff6d695f),
             );
           }

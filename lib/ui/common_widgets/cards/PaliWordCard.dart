@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/common_widgets/bookmark_button.dart';
+import 'package:patta/ui/common_widgets/pariyatti_icons.dart';
 import 'package:patta/ui/common_widgets/share_button.dart';
 import 'package:patta/ui/model/PaliWordCardModel.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
