@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:patta/Environment.dart';
 import 'package:patta/api/api.dart';
+import 'package:patta/app/global.dart';
 import 'package:patta/config_reader.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/resources/strings.dart';
@@ -15,6 +16,8 @@ Future<void> mainCommon(Environment environment) async {
   final configReader = ConfigReader.fromConfigString(
     await rootBundle.loadString('config/app_config.json'),
   );
+
+  await Future.wait([setupAppCache()]);
 
   runApp(PariyattiApp(environment, configReader));
 }
