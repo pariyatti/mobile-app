@@ -1,10 +1,10 @@
+import 'dart:developer';
+
 import 'package:http/http.dart';
 import 'package:patta/api/converter/today_converter.dart' as today_converter;
-import 'package:patta/app/cache.dart';
 import 'package:patta/app/dio.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/ui/model/CardModel.dart';
-import 'dart:developer';
 
 class PariyattiApi {
   String baseUrl;
@@ -22,8 +22,7 @@ class PariyattiApi {
   Future<List<CardModel>> fetchToday() async {
     final todayUrl = '/api/v1/today.json';
 
-    var response = await GetDio.getDio(baseURL: baseUrl)
-        .get(todayUrl, options: CacheManager.todayCards());
+    var response = await GetDio.getDio(baseURL: baseUrl).get(todayUrl);
 
     log(response.data.toString());
 
