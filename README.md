@@ -80,17 +80,32 @@ If this does not work, sometimes the Pariyatti Apple Development Team may be stu
 If you suspect it is, try switching your Team profile to `{Your Name} (Personal Team)` under
 `Project Navigator > Runner > Signing & Capabilities > Team`, then running with ⌘R.
 
+## Flutter Setup
+
+```
+make help
+make init-clean
+make init
+```
+
 ## Local Build Process
 
 ```
 make help
-make init
+make clean
+make build
 make test
-make run                # sandbox, by default
 make run env=local      # local Kosa server to test Kosa dev changes
-make run env=production # production, if you need it
 ```
 
+**Flutter Build/Run Failures:**
+
+Try:
+
+```sh
+make repair
+make repair-xcode
+```
 
 **Flutter Package Versioning Failures:**
 

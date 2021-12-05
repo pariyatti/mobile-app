@@ -30,11 +30,10 @@ config/app_config.json:
 init-clean: ##@Setup Remove Flutter packages
 	flutter pub cache clean
 
-init-flutter:  ##@Setup Download Flutter deps, precompile
+init-flutter:  # Hidden@Setup Download Flutter deps, precompile
 	flutter pub get
-	flutter pub run build_runner build
 
-init: config/app_config.json init-flutter ##@Setup Configure Flutter
+init: config/app_config.json init-flutter ##@Setup Default config + pub get
 
 clean: ##@Development Clean various caches
 	cd ios && rm -rf Podfile.lock
@@ -45,6 +44,9 @@ clean: ##@Development Clean various caches
 
 repair: clean ##@Development Repair and clean Flutter
 	flutter pub cache repair
+
+repair-xcode: ##@Development Run a build in XCode to repair mysterious failures
+	open ios/Runner.xcworkspace
 
 build: ##@Development (Re)build project
 	flutter pub get
