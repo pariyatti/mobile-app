@@ -3,6 +3,7 @@ import 'package:patta/ui/model/CardModel.dart';
 import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
 import 'package:patta/ui/model/PaliWordCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
+import 'package:patta/ui/model/WordsOfBuddhaCardModel.dart';
 
 List<CardModel> convertJsonToCardModels(Iterable response, String baseUrl) {
   List<CardModel> models = List.empty();
@@ -58,6 +59,17 @@ CardModel? _convertApiCardToCardModel(
           model = null;
         }
         return model;
+      }
+    case 'words_of_buddha':
+      {
+
+        return WordsOfBuddhaCardModel(
+          id: card.id,
+          header: card.header,
+          words: card.words,
+          imageUrl: '$baseUrl${card.image?.url}',
+          isBookmarkable: card.isBookmarkable,
+        );
       }
     default:
       {

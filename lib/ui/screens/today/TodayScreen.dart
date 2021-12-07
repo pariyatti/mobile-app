@@ -7,11 +7,13 @@ import 'package:patta/ui/common_widgets/cards/EmptyCard.dart';
 import 'package:patta/ui/common_widgets/cards/OverlayInspirationCard.dart';
 import 'package:patta/ui/common_widgets/cards/PaliWordCard.dart';
 import 'package:patta/ui/common_widgets/cards/StackedInspirationCard.dart';
+import 'package:patta/ui/common_widgets/cards/WordsOfBuddhaCard.dart';
 import 'package:patta/ui/common_widgets/pariyatti_icons.dart';
 import 'package:patta/ui/model/CardModel.dart';
 import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
 import 'package:patta/ui/model/PaliWordCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
+import 'package:patta/ui/model/WordsOfBuddhaCardModel.dart';
 import 'package:provider/provider.dart';
 
 class TodayScreen extends StatelessWidget {
@@ -61,6 +63,11 @@ class TodayScreen extends StatelessWidget {
             card,
             Provider.of<PariyattiDatabase>(context),
           );
+        } else if (card is WordsOfBuddhaCardModel) {
+          return WordsOfBuddhaCard(
+            card,
+            Provider.of<PariyattiDatabase>(context),
+          );
         } else {
           return EmptyCard(card, Provider.of<PariyattiDatabase>(context));
         }
@@ -103,9 +110,12 @@ class TodayScreen extends StatelessWidget {
     var exception = (error as Exception);
     if (exception.runtimeType is MissingRequiredKeysException)
     {
-      return (exception as MissingRequiredKeysException).missingKeys.toString();
+      var mrke = (exception as MissingRequiredKeysException);
+      var s = mrke.missingKeys.toString() + " from "
+      + mrke.message;
+      return s;
     } else {
-      return exception.toString();
+      return "uh oh..." + exception.toString();
     }
   }
 }
