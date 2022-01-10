@@ -43,6 +43,7 @@ dependencies:
   dio_cache_interceptor: ^3.0.3
   dio_cache_interceptor_db_store: ^3.0.2
   flutter_cache_manager: ^2.1.1
+  # assets_audio_player: ^3.0.3 -- broken, for now
 
 dev_dependencies:
   build_runner: ^2.1.5

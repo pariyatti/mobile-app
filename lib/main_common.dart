@@ -13,6 +13,7 @@ Future<void> mainCommon(Environment environment) async {
   // Always call this if the main method is asynchronous
   WidgetsFlutterBinding.ensureInitialized();
 
+
   final configReader = ConfigReader.fromConfigString(
     await rootBundle.loadString('config/app_config.json'),
   );

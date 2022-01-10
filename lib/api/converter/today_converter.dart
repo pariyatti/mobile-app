@@ -62,11 +62,11 @@ CardModel? _convertApiCardToCardModel(
       }
     case 'words_of_buddha':
       {
-
         return WordsOfBuddhaCardModel(
           id: card.id,
           header: card.header,
           words: card.words,
+          audioUrl: card.audioUrl,
           imageUrl: '$baseUrl${card.image?.url}',
           isBookmarkable: card.isBookmarkable,
         );

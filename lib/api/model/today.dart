@@ -28,6 +28,9 @@ class ApiCard {
   @JsonKey(name: 'audio', disallowNullValue: true, required: false)
   final Audio? audio;
 
+  @JsonKey(name: 'audio_url', disallowNullValue: true, required: false)
+  final String? audioUrl;
+
   @JsonKey(name: 'translations', disallowNullValue: true, required: false)
   final List<Translation>? translations;
 
@@ -43,6 +46,7 @@ class ApiCard {
     this.image,
     this.pali,
     this.audio,
+    this.audioUrl,
     this.translations,
     this.textColor,
   });

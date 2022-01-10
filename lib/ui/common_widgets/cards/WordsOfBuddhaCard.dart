@@ -85,7 +85,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
                         vertical: 12.0,
                       ),
                       child: Text(
-                        widget.data.header?.toUpperCase() ?? "<header was empty>",
+                        widget.data.audioUrl ?? "ARGH", // .header?.toUpperCase() ?? "<header was empty>",
                         style: TextStyle(
                           inherit: true,
                           fontSize: 14.0,

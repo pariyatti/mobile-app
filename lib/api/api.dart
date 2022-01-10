@@ -24,7 +24,7 @@ class PariyattiApi {
 
     var response = await GetDio.getDio(baseURL: baseUrl).get(todayUrl);
 
-    log(response.data.toString());
+    log(response.data.toString(), level: 1, name: "json");
 
     return today_converter.convertJsonToCardModels(response.data, baseUrl);
   }
