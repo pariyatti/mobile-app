@@ -35,7 +35,10 @@ init-flutter:  # Hidden@Setup Download Flutter deps, precompile
 
 init: config/app_config.json init-flutter ##@Setup Default config + pub get
 
-clean: ##@Development Clean various caches
+clean_local_environment:
+	rm lib/Environment.dart
+
+clean: clean_local_environment ##@Development Clean various caches
 	cd ios && rm -rf Podfile.lock
 	cd ios && rm -rf ./Pods
 	cd ios && pod cache clean --all
@@ -58,5 +61,8 @@ watch: ##@Development Build continuously (gen files)
 test: ##@Development Run tests against a connected device
 	flutter test --machine
 
-run: ##@Development Run a debug build against 'env' (local, sandbox, or production)
+lib/Environment.dart:
+	./bin/configure_local_environment.sh
+
+run: clean_local_environment lib/Environment.dart ##@Development Run a debug build against 'env' (local, sandbox, or production)
 	flutter run --target lib/main_$(env).dart
