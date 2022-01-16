@@ -1,4 +1,3 @@
-// import 'dart:html';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
@@ -15,7 +14,7 @@ import 'package:patta/ui/common_widgets/share_button.dart';
 import 'package:patta/ui/model/WordsOfBuddhaCardModel.dart';
 import 'package:patta/util.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
-import 'package:video_player/video_player.dart';
+import 'package:just_audio/just_audio.dart';
 
 class WordsOfBuddhaCard extends StatefulWidget {
   final WordsOfBuddhaCardModel data;
@@ -29,7 +28,7 @@ class WordsOfBuddhaCard extends StatefulWidget {
 
 class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   final GlobalKey _renderKey = new GlobalKey();
-  late VideoPlayerController _controller;
+  final _player = AudioPlayer();
   late bool loaded;
 
   Future<Uint8List> _getImage() async {
@@ -44,24 +43,39 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
       print(e);
       throw e;
     }
-    // was: return null;
   }
 
   @override
   void initState() {
     // Check if image is in cache in case widget gets rebuilt and the onLoaded callback doesn't respond.
-    loaded = DefaultCacheManager().getFileFromMemory(widget.data.imageUrl) != null;
-    initAudioController();
+    loaded = DefaultCacheManager().getFileFromMemory(widget.data.imageUrl!) != null;
+    _player.playbackEventStream.listen((event) {},
+        onError: (Object e, StackTrace stackTrace) {
+          print('A stream error occurred: $e');
+        });
+    initAudioSource();
     super.initState();
   }
 
-  void initAudioController() {
-    _controller = VideoPlayerController.network(widget.data.audioUrl ?? "")
-      ..initialize().then((_) {
-        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-        // TODO: this probably isn't necessary for audio-only? -sd
-        setState(() {});
-      });
+  Future<void> initAudioSource() async {
+    // Try to load audio from a source and catch any errors.
+    try {
+      await _player.setAudioSource(AudioSource.uri(Uri.parse(widget.data.audioUrl ?? "")));
+    } catch (e) {
+      print("Error loading audio source: $e");
+    }
+  }
+
+  @override
+  void dispose() {
+    _player.dispose();
+    super.dispose();
+  }
+
+  void playStop() async {
+    // TODO: toggle play vs. stop depending on player state
+    _player.seek(Duration.zero); // needed in case the audio has played once
+    _player.play();
   }
 
   @override
@@ -136,11 +150,12 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
                       ),
                       //Custom callback added to the package to know when the image is loaded.
                       //Does not give a value if widget is rebuilt. See initState for workaround.
-                      onLoad: (value) {
-                        setState(() {
-                          loaded = value;
-                        });
-                      },
+                      // TODO: had to remove this to return to the mainline `cached_network_image` lib ... figure out what to do. -sd
+                      // onLoad: (value) {
+                      //   setState(() {
+                      //     loaded = value;
+                      //   });
+                      // },
                       errorWidget: (context, url, error) => Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Center(
@@ -150,7 +165,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
                           ),
                         ),
                       ),
-                      imageUrl: widget.data.imageUrl,
+                      imageUrl: widget.data.imageUrl!,
                       imageBuilder: (context, imageProvider) {
                         return Row(
                           mainAxisSize: MainAxisSize.max,
@@ -199,8 +214,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   AudioButton buildAudioButton() {
     return AudioButton(
       onPressed: loaded == true ? () async {
-        initAudioController();
-        _controller.play();
+        playStop();
       } : null,
     );
   }

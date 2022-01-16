@@ -46,7 +46,7 @@ class _StackedInspirationCardState extends State<StackedInspirationCard> {
   @override
   void initState() {
     //Check if image is in cache in case widget gets rebuilt and the onLoaded callback doesn't respond.
-    loaded = DefaultCacheManager().getFileFromMemory(widget.data.imageUrl) != null;
+    loaded = DefaultCacheManager().getFileFromMemory(widget.data.imageUrl!) != null;
     super.initState();
   }
 
@@ -104,11 +104,11 @@ class _StackedInspirationCardState extends State<StackedInspirationCard> {
                         ),
                         //Custom callback added to the package to know when the image is loaded.
                         //Does not give a value if widget is rebuilt. See initState for workaround.
-                        onLoad: (value) {
-                          setState(() {
-                            loaded = value;
-                          });
-                        },
+                        // onLoad: (value) {
+                        //   setState(() {
+                        //     loaded = value;
+                        //   });
+                        // },
                         errorWidget: (context, url, error) => Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Center(
@@ -118,7 +118,7 @@ class _StackedInspirationCardState extends State<StackedInspirationCard> {
                             ),
                           ),
                         ),
-                        imageUrl: widget.data.imageUrl,
+                        imageUrl: widget.data.imageUrl!,
                         imageBuilder: (context, imageProvider) {
                           return Row(
                             mainAxisSize: MainAxisSize.max,

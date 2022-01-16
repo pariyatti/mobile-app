@@ -1,18 +1,9 @@
-import 'dart:typed_data';
-import 'dart:ui' as ui;
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:patta/local_database/database.dart';
-import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/common_widgets/bookmark_button.dart';
 import 'package:patta/ui/common_widgets/share_button.dart';
 import 'package:patta/ui/model/CardModel.dart';
-import 'package:wc_flutter_share/wc_flutter_share.dart';
-
-import 'package:patta/util.dart';
 
 class EmptyCard extends StatefulWidget {
   final CardModel data;
@@ -28,21 +19,21 @@ class _EmptyCardState extends State<EmptyCard> {
   final GlobalKey _renderKey = new GlobalKey();
   bool loaded = false;
 
-  Future<Uint8List> _getImageWithText() async {
-    try {
-      RenderRepaintBoundary boundary =
-      _renderKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
-      ui.Image image = await boundary.toImage(pixelRatio: 3.0);
-      ByteData byteData =
-      await image.toByteData(format: ui.ImageByteFormat.png) as ByteData;
-      var pngBytes = byteData.buffer.asUint8List();
-      return pngBytes;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
-    // was: return null;
-  }
+  // Future<Uint8List> _getImageWithText() async {
+  //   try {
+  //     RenderRepaintBoundary boundary =
+  //     _renderKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+  //     ui.Image image = await boundary.toImage(pixelRatio: 3.0);
+  //     ByteData byteData =
+  //     await image.toByteData(format: ui.ImageByteFormat.png) as ByteData;
+  //     var pngBytes = byteData.buffer.asUint8List();
+  //     return pngBytes;
+  //   } catch (e) {
+  //     print(e);
+  //     throw e;
+  //   }
+  //   // was: return null;
+  // }
 
   @override
   void initState() {
@@ -104,11 +95,11 @@ class _EmptyCardState extends State<EmptyCard> {
                       ),
                       //Custom callback added to the package to know when the image is loaded.
                       //Does not give a value if widget is rebuilt. See initState for workaround.
-                      onLoad: (value) {
-                        setState(() {
-                          loaded = value;
-                        });
-                      },
+                      // onLoad: (value) {
+                      //   setState(() {
+                      //     loaded = value;
+                      //   });
+                      // },
                       errorWidget: (context, url, error) => Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Center(

@@ -49,7 +49,7 @@ class _OverlayInspirationCardState extends State<OverlayInspirationCard> {
   void initState() {
     //Check if image is in cache in case widget gets rebuilt and the onLoaded callback doesn't respond.
     loaded =
-        DefaultCacheManager().getFileFromMemory(widget.data.imageUrl) != null;
+        DefaultCacheManager().getFileFromMemory(widget.data.imageUrl!) != null;
     super.initState();
   }
 
@@ -106,11 +106,11 @@ class _OverlayInspirationCardState extends State<OverlayInspirationCard> {
                       ),
                       //Custom callback added to the package to know when the image is loaded.
                       //Does not give a value if widget is rebuilt. See initState for workaround.
-                      onLoad: (value) {
-                        setState(() {
-                          loaded = value;
-                        });
-                      },
+                      // onLoad: (value) {
+                      //   setState(() {
+                      //     loaded = value;
+                      //   });
+                      // },
                       errorWidget: (context, url, error) => Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Center(
@@ -120,7 +120,7 @@ class _OverlayInspirationCardState extends State<OverlayInspirationCard> {
                           ),
                         ),
                       ),
-                      imageUrl: widget.data.imageUrl,
+                      imageUrl: widget.data.imageUrl!,
                       imageBuilder: (context, imageProvider) {
                         return Image(
                           image: imageProvider,

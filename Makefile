@@ -36,9 +36,10 @@ init-flutter:  # Hidden@Setup Download Flutter deps, precompile
 init: config/app_config.json init-flutter ##@Setup Default config + pub get
 
 clean_local_environment:
-	rm lib/Environment.dart
+	rm -f lib/Environment.dart
 
 clean: clean_local_environment ##@Development Clean various caches
+	rm -rf ~/.gradle/caches/*
 	cd ios && rm -rf Podfile.lock
 	cd ios && rm -rf ./Pods
 	cd ios && pod cache clean --all
