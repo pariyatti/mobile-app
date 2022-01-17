@@ -37,8 +37,8 @@ dependencies:
   equatable: ^2.0.3
   connectivity: ^3.0.6
   dio: ^4.0.4
-  dio_cache_interceptor: ^3.0.3
-  dio_cache_interceptor_db_store: ^3.0.2
+  dio_cache_interceptor: ^3.2.2
+  dio_cache_interceptor_db_store: ^4.1.0
   flutter_cache_manager: ^3.3.0
   video_player: ^2.2.11
   just_audio: ^0.9.18
