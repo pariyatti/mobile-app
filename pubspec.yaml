@@ -29,7 +29,7 @@ dependencies:
   json_annotation: ^4.4.0
   http: ^0.13.3
   wc_flutter_share: ^0.4.0
-  path: ^1.6.4
+  path: ^1.8.0
   path_provider: ^2.0.7
   moor: ^4.6.1+1
   sqlite3_flutter_libs: ^0.5.1 # previously moor_ffi
