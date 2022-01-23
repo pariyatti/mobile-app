@@ -30,6 +30,7 @@ class WordsOfBuddhaCard extends StatefulWidget {
 class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   final GlobalKey _renderKey = new GlobalKey();
   final _player = AudioPlayer();
+  bool _translationVisible = false;
   late bool loaded;
 
   Future<Uint8List> _getImage() async {
@@ -140,15 +141,25 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
 
   buildOverlayWords() {
     var pali = Text(widget.data.words ?? "<words field was empty>",
-                    // TODO: what is the correct font, here?
-                    style: GoogleFonts.getFont('Noto Serif', textStyle:
-                    TextStyle(
-                        inherit: true,
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.normal,
-                        color: Color(0xFF000000))
-                    )
-                  );
+      // TODO: what is the correct font, here?
+      style: GoogleFonts.getFont('Noto Serif', textStyle:
+      TextStyle(
+        inherit: true,
+        fontSize: 20.0,
+        fontWeight: FontWeight.normal,
+        color: Color(0xFF000000))
+      ),
+    );
+    var eng = Text("I am the translation",
+        // TODO: what is the correct font, here?
+        style: GoogleFonts.getFont('Noto Serif', textStyle:
+        TextStyle(
+            inherit: true,
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFF000000))
+        )
+    );
     return RepaintBoundary(
       key: _renderKey,
       child: Stack(
@@ -159,28 +170,41 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
             left: 0,
             right: 0,
             child: Container(
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.blueAccent)
-                ),
               child: Align(alignment: Alignment.bottomRight,
                 child: Image.asset("assets/images/quote-bg-light-700px.png", fit: BoxFit.fitWidth)
               )
             )
           ),
-          Container(
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.redAccent)
-            ),
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Visibility(
-                visible: loaded,
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: pali,
+          Column(
+            children: [
+              Align(
+                alignment: Alignment.topLeft,
+                child: Visibility(
+                  visible: loaded,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _translationVisible = !_translationVisible;
+                        });
+                      },
+                      child: pali,
+                    ),
+                  ),
                 ),
               ),
-            ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Visibility(
+                  visible: _translationVisible,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: eng,
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
