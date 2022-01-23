@@ -6,10 +6,12 @@ import 'package:patta/ui/common_widgets/cards/EmptyCard.dart';
 import 'package:patta/ui/common_widgets/cards/OverlayInspirationCard.dart';
 import 'package:patta/ui/common_widgets/cards/PaliWordCard.dart';
 import 'package:patta/ui/common_widgets/cards/StackedInspirationCard.dart';
+import 'package:patta/ui/common_widgets/cards/WordsOfBuddhaCard.dart';
 import 'package:patta/ui/common_widgets/pariyatti_icons.dart';
 import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
 import 'package:patta/ui/model/PaliWordCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
+import 'package:patta/ui/model/WordsOfBuddhaCardModel.dart';
 import 'package:provider/provider.dart';
 
 class BookmarksTab extends StatelessWidget {
@@ -93,6 +95,8 @@ class BookmarksTab extends StatelessWidget {
             return PaliWordCard(card, database);
           } else if (card is OverlayInspirationCardModel) {
             return OverlayInspirationCard(card, database);
+          } else if (card is WordsOfBuddhaCardModel) {
+            return WordsOfBuddhaCard(card, database);
           } else {
             return EmptyCard(card!, database);
           }
