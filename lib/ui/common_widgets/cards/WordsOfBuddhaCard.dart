@@ -1,7 +1,6 @@
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
@@ -9,7 +8,6 @@ import 'package:patta/local_database/database.dart';
 import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/common_widgets/audio_button.dart';
 import 'package:patta/ui/common_widgets/bookmark_button.dart';
-import 'package:patta/ui/common_widgets/pariyatti_icons.dart';
 import 'package:patta/ui/common_widgets/share_button.dart';
 import 'package:patta/ui/model/WordsOfBuddhaCardModel.dart';
 import 'package:patta/util.dart';
@@ -211,65 +209,6 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
     );
   }
 
-  RepaintBoundary buildImage() {
-    return RepaintBoundary(
-                    key: _renderKey,
-                    child: CachedNetworkImage(
-                      placeholder: (context, url) => Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                      ),
-                      //Custom callback added to the package to know when the image is loaded.
-                      //Does not give a value if widget is rebuilt. See initState for workaround.
-                      // TODO: had to remove this to return to the mainline `cached_network_image` lib ... figure out what to do. -sd
-                      // onLoad: (value) {
-                      //   setState(() {
-                      //     loaded = value;
-                      //   });
-                      // },
-                      errorWidget: (context, url, error) => Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Center(
-                          child: Icon(
-                            PariyattiIcons.get(IconName.error),
-                            color: Color(0xff6d695f),
-                          ),
-                        ),
-                      ),
-                      imageUrl: widget.data.imageUrl!,
-                      imageBuilder: (context, imageProvider) {
-                        return Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: <Widget>[
-                            Expanded(
-                              child: Image(
-                                image: imageProvider,
-                                fit: BoxFit.fitWidth,
-                              ),
-                            ),
-                          ],
-                        );
-                      },
-                    ),
-                  );
-  }
-
-  Padding buildWords() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Text(
-        widget.data.words ?? "<words were empty>",
-        style: TextStyle(
-          inherit: true,
-          fontSize: 20.0,
-          fontStyle: FontStyle.italic,
-        ),
-      ),
-    );
-  }
-
   Container buildButtonFooter() {
     return Container(
       color: Color(0xffdcd3c0),
@@ -307,10 +246,8 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   }
 
   Visibility buildBookmarkButton() {
-    return Visibility(
-                          visible: widget.data.isBookmarkable,
-                          child: BookmarkButton(widget.data, widget.database),
-                        );
+    return Visibility(visible: widget.data.isBookmarkable,
+                      child: BookmarkButton(widget.data, widget.database));
   }
 
 }

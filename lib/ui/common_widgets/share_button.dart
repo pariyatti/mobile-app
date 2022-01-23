@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:patta/ui/common_widgets/pariyatti_icons.dart';
 
 class ShareButton extends StatelessWidget {
-  void Function()? onPressed;
+  final void Function()? onPressed;
 
   ShareButton({this.onPressed, Key? key}) : super(key: key);
 
