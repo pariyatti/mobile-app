@@ -9,11 +9,16 @@ printf "local IP is '%s'\n" "$LOCAL_IP"
 LOCAL_HOST=$(hostname)
 printf "local hostname is '%s'\n" "$LOCAL_HOST"
 
+IS_IOS=$(ioreg -p IOUSB -w0 | sed 's/[^o]*o //; s/@.*$//' | grep -v '^Root.*' | grep "iPhone")
+IS_ANDROID=$(ioreg -p IOUSB -w0 | sed 's/[^o]*o //; s/@.*$//' | grep -v '^Root.*' | grep "Android")
+printf "iOS?     = '%s'\n" "$IS_IOS"
+printf "Android? = '%s'\n" "$IS_ANDROID"
+
 # TODO: this should check for an attached iPhone in addition to the host OS
-if [ "$(uname)" == "Darwin" ]; then
-  printf "MacOS found: setting local hostname in lib/Environment.dart...\n"
+if [ "$(uname)" == "Darwin" ] && [[ "$IS_IOS" == *"iPhone"* ]]; then
+  printf "MacOS+iPhone found: setting local hostname in lib/Environment.dart...\n"
   sed -e "s/%MAKE_IP%/$LOCAL_HOST/g" './lib/EnvironmentTemplate.dart' > './lib/Environment.dart'
 else
-  printf "Linux found: setting local IP in lib/Environment.dart...\n"
+  printf "Android found: setting local IP in lib/Environment.dart...\n"
   sed -e "s/%MAKE_IP%/$LOCAL_IP/g" './lib/EnvironmentTemplate.dart' > './lib/Environment.dart'
 fi
