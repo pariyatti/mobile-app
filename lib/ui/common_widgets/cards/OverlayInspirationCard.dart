@@ -79,112 +79,125 @@ class _OverlayInspirationCardState extends State<OverlayInspirationCard> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12.0,
-                  vertical: 12.0,
-                ),
-                child: Text(
-                  widget.data.header?.toUpperCase() ?? "<header was empty>",
-                  style: TextStyle(
-                    inherit: true,
-                    fontSize: 14.0,
-                    color: Color(0xff999999),
-                  ),
-                ),
-              ),
-              RepaintBoundary(
-                key: _renderKey,
-                child: Stack(
-                  children: [
-                    CachedNetworkImage(
-                      placeholder: (context, url) => Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                      ),
-                      //Custom callback added to the package to know when the image is loaded.
-                      //Does not give a value if widget is rebuilt. See initState for workaround.
-                      // onLoad: (value) {
-                      //   setState(() {
-                      //     loaded = value;
-                      //   });
-                      // },
-                      errorWidget: (context, url, error) => Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Center(
-                          child: Icon(
-                            PariyattiIcons.get(IconName.error),
-                            color: Color(0xff6d695f),
-                          ),
-                        ),
-                      ),
-                      imageUrl: widget.data.imageUrl!,
-                      imageBuilder: (context, imageProvider) {
-                        return Image(
-                          image: imageProvider,
-                          fit: BoxFit.fitWidth,
-                        );
-                      },
-                    ),
-                    Positioned.fill(
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Visibility(
-                          visible: loaded,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              widget.data.text ?? "<inspiration text was empty>",
-                              style: TextStyle(
-                                  inherit: true,
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Serif',
-                                  color: Color(int.tryParse(widget
-                                          .data.textColor
-                                          ?.replaceFirst('#', '0xFF')
-                                          ?? "0xFFFFFFFF") ??
-                                      0xFFFFFFFF)),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                color: Color(0xffdcd3c0),
-                child: Row(mainAxisSize: MainAxisSize.max, children: [
-                  Visibility(
-                    child: BookmarkButton(widget.data, widget.database),
-                    visible: widget.data.isBookmarkable,
-                  ),
-                  ShareButton(
-                    onPressed:
-                    loaded
-                        ? () async {
-                            Uint8List imageData = await _getImageWithText();
-                            final String extension =
-                                extractFileExtension(widget.data.imageUrl);
-                            await WcFlutterShare.share(
-                              sharePopupTitle:
-                                  AppStrings.get().labelShareInspiration,
-                              mimeType: 'image/$extension',
-                              fileName: '${widget.data.header}.$extension',
-                              bytesOfFile: imageData,
-                            );
-                          }
-                        : null,
-                  ),
-                ]),
-              ),
+              buildHeader(),
+              buildOverlayWords(),
+              buildButtonFooter(),
             ],
           ),
         ),
       ),
     );
   }
+
+  Padding buildHeader() {
+    return Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12.0,
+                vertical: 12.0,
+              ),
+              child: Text(
+                widget.data.header?.toUpperCase() ?? "<header was empty>",
+                style: TextStyle(
+                  inherit: true,
+                  fontSize: 14.0,
+                  color: Color(0xff999999),
+                ),
+              ),
+            );
+  }
+
+  RepaintBoundary buildOverlayWords() {
+    return RepaintBoundary(
+              key: _renderKey,
+              child: Stack(
+                children: [
+                  CachedNetworkImage(
+                    placeholder: (context, url) => Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    ),
+                    //Custom callback added to the package to know when the image is loaded.
+                    //Does not give a value if widget is rebuilt. See initState for workaround.
+                    // onLoad: (value) {
+                    //   setState(() {
+                    //     loaded = value;
+                    //   });
+                    // },
+                    errorWidget: (context, url, error) => Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Center(
+                        child: Icon(
+                          PariyattiIcons.get(IconName.error),
+                          color: Color(0xff6d695f),
+                        ),
+                      ),
+                    ),
+                    imageUrl: widget.data.imageUrl!,
+                    imageBuilder: (context, imageProvider) {
+                      return Image(
+                        image: imageProvider,
+                        fit: BoxFit.fitWidth,
+                      );
+                    },
+                  ),
+                  Positioned.fill(
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Visibility(
+                        visible: loaded,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            widget.data.text ?? "<inspiration text was empty>",
+                            style: TextStyle(
+                                inherit: true,
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Serif',
+                                color: Color(int.tryParse(widget
+                                        .data.textColor
+                                        ?.replaceFirst('#', '0xFF')
+                                        ?? "0xFFFFFFFF") ??
+                                    0xFFFFFFFF)),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+  }
+
+  Container buildButtonFooter() {
+    return Container(
+      color: Color(0xffdcd3c0),
+      child: Row(mainAxisSize: MainAxisSize.max, children: [
+        Visibility(
+          child: BookmarkButton(widget.data, widget.database),
+          visible: widget.data.isBookmarkable,
+        ),
+        ShareButton(
+          onPressed:
+          loaded
+              ? () async {
+            Uint8List imageData = await _getImageWithText();
+            final String extension =
+            extractFileExtension(widget.data.imageUrl);
+            await WcFlutterShare.share(
+              sharePopupTitle:
+              AppStrings.get().labelShareInspiration,
+              mimeType: 'image/$extension',
+              fileName: '${widget.data.header}.$extension',
+              bytesOfFile: imageData,
+            );
+          }
+              : null,
+        ),
+      ]),
+    );
+  }
+
 }
