@@ -150,7 +150,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
         color: Color(0xFF000000))
       ),
     );
-    var eng = Text("I am the translation",
+    var eng = Text(widget.data.translations!["eng"] ?? "I am the translation",
         // TODO: what is the correct font, here?
         style: GoogleFonts.getFont('Noto Serif', textStyle:
         TextStyle(

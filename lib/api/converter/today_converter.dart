@@ -4,6 +4,7 @@ import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
 import 'package:patta/ui/model/PaliWordCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
 import 'package:patta/ui/model/WordsOfBuddhaCardModel.dart';
+import 'package:patta/ui/model/Translations.dart';
 
 List<CardModel> convertJsonToCardModels(Iterable response, String baseUrl) {
   List<CardModel> models = List.empty();
@@ -62,10 +63,12 @@ CardModel? _convertApiCardToCardModel(
       }
     case 'words_of_buddha':
       {
+        var translationMap = Map<String,String>.fromIterable(card.translations!, key: (e) => e.language, value: (e) => e.translation);
         return WordsOfBuddhaCardModel(
           id: card.id,
           header: card.header,
           words: card.words,
+          translations: Translations(translationMap),
           audioUrl: card.audioUrl,
           imageUrl: '$baseUrl${card.image?.url}',
           isBookmarkable: card.isBookmarkable,
