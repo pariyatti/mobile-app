@@ -15,6 +15,7 @@ import 'package:patta/ui/model/WordsOfBuddhaCardModel.dart';
 import 'package:patta/util.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class WordsOfBuddhaCard extends StatefulWidget {
   final WordsOfBuddhaCardModel data;
@@ -108,8 +109,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     buildHeader(),
-                    buildImage(),
-                    buildWords(),
+                    buildOverlayWords(),
                     buildButtonFooter(),
                   ],
                 ),
@@ -134,6 +134,55 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
           fontSize: 14.0,
           color: Color(0xff999999),
         ),
+      ),
+    );
+  }
+
+  buildOverlayWords() {
+    var pali = Text(widget.data.words ?? "<words field was empty>",
+                    // TODO: what is the correct font, here?
+                    style: GoogleFonts.getFont('Noto Serif', textStyle:
+                    TextStyle(
+                        inherit: true,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.normal,
+                        color: Color(0xFF000000))
+                    )
+                  );
+    return RepaintBoundary(
+      key: _renderKey,
+      child: Stack(
+        clipBehavior: Clip.hardEdge,
+        children: [
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.blueAccent)
+                ),
+              child: Align(alignment: Alignment.bottomRight,
+                child: Image.asset("assets/images/quote-bg-light-700px.png", fit: BoxFit.fitWidth)
+              )
+            )
+          ),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.redAccent)
+            ),
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: Visibility(
+                visible: loaded,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: pali,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
