@@ -7,7 +7,6 @@ import 'package:patta/ui/model/WordsOfBuddhaCardModel.dart';
 import 'package:patta/ui/model/Translations.dart';
 
 List<CardModel> convertJsonToCardModels(Iterable response, String baseUrl) {
-  List<CardModel> models = List.empty();
   return response
       .map((apiCard) {
         final String cardType = apiCard['type'];
