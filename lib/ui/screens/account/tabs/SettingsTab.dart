@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patta/model/Language.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsTab extends StatefulWidget {
   SettingsTab({Key? key}) : super(key: key);
@@ -9,8 +10,29 @@ class SettingsTab extends StatefulWidget {
 }
 
 class _SettingsTabState extends State<SettingsTab> {
-  // TODO: select language from configuration
+  static const String SETTINGS_KEY = 'language';
   Language selectedLanguage = Language.eng;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadLanguage();
+  }
+
+  void _loadLanguage() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      selectedLanguage = Language.from(prefs.getString(SETTINGS_KEY));
+    });
+  }
+
+  void _setLanguage(Language? newValue) async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      selectedLanguage = newValue!;
+      prefs.setString(SETTINGS_KEY, newValue.code);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +56,8 @@ class _SettingsTabState extends State<SettingsTab> {
             icon: const Icon(Icons.arrow_downward),
             items: items,
             value: selectedLanguage,
-            onChanged: (Language? newValue) {
-              setState(() {
-                selectedLanguage = newValue!;
-              });
-            })
+            onChanged: _setLanguage
+          )
         ]
       ),
     );
