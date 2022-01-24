@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:patta/local_database/database.dart';
 import 'package:patta/ui/model/CardModel.dart';
 import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
 import 'package:patta/ui/model/PaliWordCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
+import 'package:patta/ui/model/Translations.dart';
+import 'package:patta/ui/model/WordsOfBuddhaCardModel.dart';
 
 DatabaseCard toDatabaseCard(
   CardModel? cardModel,
@@ -38,6 +42,18 @@ DatabaseCard toDatabaseCard(
       textData: cardModel.text,
       imageUrl: cardModel.imageUrl,
       textColor: cardModel.textColor,
+      createdAt: createdAt,
+    );
+  } else if (cardModel is WordsOfBuddhaCardModel) {
+    return DatabaseCard(
+      id: cardModel.id,
+      isBookmarkable: cardModel.isBookmarkable,
+      type: 'words_of_buddha',
+      header: cardModel.header,
+      imageUrl: cardModel.imageUrl,
+      audioUrl: cardModel.audioUrl,
+      words: cardModel.words,
+      translations: jsonEncode(cardModel.translations),
       createdAt: createdAt,
     );
   } else {
@@ -87,6 +103,18 @@ CardModel? toCardModel(DatabaseCard databaseCard) {
           isBookmarkable: databaseCard.isBookmarkable,
           imageUrl: databaseCard.imageUrl,
           textColor: databaseCard.textColor,
+        );
+      }
+    case 'words_of_buddha':
+      {
+        return WordsOfBuddhaCardModel(
+          id: databaseCard.id,
+          header: databaseCard.header,
+          isBookmarkable: databaseCard.isBookmarkable,
+          imageUrl: databaseCard.imageUrl,
+          audioUrl: databaseCard.audioUrl,
+          words: databaseCard.words,
+          translations: Translations.fromJson(jsonDecode(databaseCard.translations!))
         );
       }
     default:

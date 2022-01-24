@@ -7,32 +7,33 @@ import 'package:path_provider/path_provider.dart';
 
 part 'database.g.dart';
 
-// Run the following command to  generate necessary files
+// Run the following command to generate necessary files:
 // flutter packages pub run build_runner watch --delete-conflicting-outputs
 
 @DataClassName('DatabaseCard')
 class Cards extends Table {
+  // Common
   TextColumn get id => text().named('id')();
-
   BoolColumn? get isBookmarkable => boolean().named('isBookmarkable')();
-
   TextColumn? get type => text().named('type')();
-
   TextColumn? get header => text().named('header').nullable()();
+  DateTimeColumn? get createdAt => dateTime().named('createdAt')();
 
+  // StackedInspiration and OverlayInspiration
   TextColumn? get textData => text().named('text').nullable()();
-
   TextColumn? get imageUrl => text().named('imageUrl').nullable()();
-
-  TextColumn? get paliWord => text().named('paliWord').nullable()();
-
-  TextColumn? get audioUrl => text().named('audioUrl').nullable()();
-
-  TextColumn? get translation => text().named('translation').nullable()();
-
   TextColumn? get textColor => text().named('textColor').nullable()();
 
-  DateTimeColumn? get createdAt => dateTime().named('createdAt')();
+  // PaliWord + WordsOfBuddha
+  TextColumn? get audioUrl => text().named('audioUrl').nullable()();
+
+  // PaliWord
+  TextColumn? get paliWord => text().named('paliWord').nullable()();
+  TextColumn? get translation => text().named('translation').nullable()();
+
+  // WordsOfBuddha
+  TextColumn? get words => text().named('words').nullable()();
+  TextColumn? get translations => text().named('translations').nullable()();
 
   @override
   Set<Column>? get primaryKey => {id};
