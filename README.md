@@ -50,8 +50,7 @@ See: https://stackoverflow.com/questions/46402772/failed-to-install-android-sdk-
 If you are building using a personal Team Profile, you will need to trust your developer profile.
 You will need to do this every time you reinstall (delete + install) the app in Debug mode:
 
-`Settings > General > Device Management > Developer App: Apple Development: {your name} > Trust {your name}`
-
+`Settings > General > VPN & Device Management > Developer App > Apple Development: {your name} > Trust {your name}`
 
 **Cannot Access Local Network:**
 
@@ -120,7 +119,8 @@ make clean
 
 ***
 
-:sunrise_over_mountains: Everything below this point is for project admins. If this is your first time building `patta`, you can stop here. :) :sunrise_over_mountains:
+:sunrise_over_mountains: Everything below this point is for project admins. 
+If this is your first time building the Pariyatti Mobile App, you can stop here. :) :sunrise_over_mountains:
 
 ***
 
@@ -138,6 +138,17 @@ Promotion:
     |      |         |       |      |
    dev     PR   debug/test   PR  release
 ```
+
+## Hacking
+
+To add a new "Today" card, there is quite a bit of duplication. Please see:
+
+* `lib/ui/model/*CardModel.dart`
+* `lib/ui/common_widgets/cards/*Card.dart`
+* `lib/ui/screens/today/TodayScreen.dart         -> _buildCardsList()`
+* `lib/ui/screens/account/tabs/BookmarksTab.dart -> _buildCardsList()`
+* `lib/local_database/moor_converters.dart       -> toDatabaseCard()`
+* `lib/local_database/database.dart`
 
 ## Run release build with production servers (signed APK)
 
@@ -190,20 +201,14 @@ We should only ever have one published track in the Play Store. At this stage, o
 
 When we're ready for our first public release, we will need to change `Publish => Google Play => Track` to `Production` and `Build => Trigger on Push` to `false` (public builds will be manual).
 
-## Flutter - Outstanding Questions
+## App Design - Outstanding Questions
 
 If you have answers to these questions, please move them to the top and put the answer in a sub-bullet.
 
-- What is the `delete(card)..where()` double-dot syntax in Moor?
-  - This is not Moor-specific but rather a feature of Dart. The double-dot returns you the _previous_ instance so you can keep operating on one object rather than chaining methods over previous methods' return values. For instance: `A.b()..c()` runs `b()` on the instance `A` but it also runs `c()` on the instance `A`, instead of on the return value of `b()` as `A.b().c()` would.
 - What's the Right Way to do i18n?
   - https://flutter.dev/docs/development/accessibility-and-localization/internationalization
 
-- Why are the emulators broken and can we fix them?
-- Philsophical: What's the deal with `State` vs. `StatefulWidget`?
 - Could the HomeScreen state switch be a tiny object unto itself?
-- How does the `factory` keyword work?
-- If Santu comments on the `*Card.dart` files, are they readable to a newbie?
 - Can Moor Converters move into multiple files?
 
 ## License and Copyright
