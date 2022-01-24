@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/screens/account/tabs/BookmarksTab.dart';
+import 'package:patta/ui/screens/account/tabs/SettingsTab.dart';
 
 class AccountScreen extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 1,
+      length: 2,
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
@@ -17,6 +19,7 @@ class AccountScreen extends StatelessWidget {
                   isScrollable: true,
                   tabs: <Widget>[
                     Tab(text: AppStrings.get().labelBookmarks),
+                    Tab(text: AppStrings.get().labelSettings)
                   ],
                   indicatorColor: Color(0xff6d695f),
                 ),
@@ -27,6 +30,7 @@ class AccountScreen extends StatelessWidget {
             child: TabBarView(
               children: <Widget>[
                 BookmarksTab(),
+                SettingsTab()
               ],
             ),
           ),

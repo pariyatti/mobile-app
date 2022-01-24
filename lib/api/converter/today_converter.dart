@@ -4,7 +4,7 @@ import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
 import 'package:patta/ui/model/PaliWordCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
 import 'package:patta/ui/model/WordsOfBuddhaCardModel.dart';
-import 'package:patta/ui/model/Translations.dart';
+import 'package:patta/model/Translations.dart';
 
 List<CardModel> convertJsonToCardModels(Iterable response, String baseUrl) {
   return response

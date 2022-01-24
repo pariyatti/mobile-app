@@ -5,7 +5,7 @@ import 'package:patta/ui/model/CardModel.dart';
 import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
 import 'package:patta/ui/model/PaliWordCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
-import 'package:patta/ui/model/Translations.dart';
+import 'package:patta/model/Translations.dart';
 import 'package:patta/ui/model/WordsOfBuddhaCardModel.dart';
 
 DatabaseCard toDatabaseCard(

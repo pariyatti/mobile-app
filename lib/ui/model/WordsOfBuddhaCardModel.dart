@@ -1,5 +1,5 @@
 import 'package:patta/ui/model/CardModel.dart';
-import 'package:patta/ui/model/Translations.dart';
+import 'package:patta/model/Translations.dart';
 
 class WordsOfBuddhaCardModel extends CardModel {
   final String? header;

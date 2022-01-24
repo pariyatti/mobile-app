@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:patta/ui/common_widgets/pariyatti_icons.dart';
 
 class AudioButton extends StatelessWidget {
-  void Function()? onPressed;
+  final void Function()? onPressed;
 
   AudioButton({this.onPressed, Key? key}) : super(key: key);
 
