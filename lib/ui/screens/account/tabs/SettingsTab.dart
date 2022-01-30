@@ -10,7 +10,6 @@ class SettingsTab extends StatefulWidget {
 }
 
 class _SettingsTabState extends State<SettingsTab> {
-  static const String SETTINGS_KEY = 'language';
   Language selectedLanguage = Language.eng;
 
   @override
@@ -20,17 +19,19 @@ class _SettingsTabState extends State<SettingsTab> {
   }
 
   void _loadLanguage() async {
+    // TODO: use 'Preferences' to remove duplication between this and WordsOfBuddhaCard.dart
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-      selectedLanguage = Language.from(prefs.getString(SETTINGS_KEY));
+      selectedLanguage = Language.from(prefs.getString(Language.SETTINGS_KEY));
     });
   }
 
   void _setLanguage(Language? newValue) async {
+    // TODO: SharedPreferences, Language.SETTINGS_KEY, etc. all belong in a wrapper (just "Preferences"?)
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       selectedLanguage = newValue!;
-      prefs.setString(SETTINGS_KEY, newValue.code);
+      prefs.setString(Language.SETTINGS_KEY, newValue.code);
     });
   }
 

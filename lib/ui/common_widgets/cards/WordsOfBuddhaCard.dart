@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:patta/local_database/database.dart';
+import 'package:patta/model/Language.dart';
 import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/common_widgets/audio_button.dart';
 import 'package:patta/ui/common_widgets/bookmark_button.dart';
@@ -14,6 +15,8 @@ import 'package:patta/util.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 class WordsOfBuddhaCard extends StatefulWidget {
   final WordsOfBuddhaCardModel data;
@@ -29,6 +32,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   final GlobalKey _renderKey = new GlobalKey();
   final _player = AudioPlayer();
   bool _translationVisible = false;
+  Language _selectedLanguage = Language.eng;
   late bool loaded;
 
   Future<Uint8List> _getImage() async {
@@ -54,6 +58,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
           print('A stream error occurred: $e');
         });
     initAudioSource();
+    initLanguage();
     super.initState();
   }
 
@@ -64,6 +69,13 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
     } catch (e) {
       print("Error loading audio source: $e");
     }
+  }
+
+  void initLanguage() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _selectedLanguage = Language.from(prefs.getString(Language.SETTINGS_KEY));
+    });
   }
 
   @override
@@ -148,12 +160,12 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
         color: Color(0xFF000000))
       ),
     );
-    var eng = Text(widget.data.translations!["eng"] ?? "I am the translation",
+    var eng = Text(widget.data.translations![_selectedLanguage.code] ?? "<translation was empty>",
         // TODO: what is the correct font, here?
         style: GoogleFonts.getFont('Noto Serif', textStyle:
         TextStyle(
             inherit: true,
-            fontSize: 20.0,
+            fontSize: 16.0,
             fontWeight: FontWeight.bold,
             color: Color(0xFF000000))
         )
