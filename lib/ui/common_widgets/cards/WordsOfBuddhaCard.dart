@@ -13,10 +13,8 @@ import 'package:patta/ui/common_widgets/share_button.dart';
 import 'package:patta/ui/model/WordsOfBuddhaCardModel.dart';
 import 'package:patta/util.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 
 class WordsOfBuddhaCard extends StatefulWidget {
   final WordsOfBuddhaCardModel data;
@@ -30,8 +28,8 @@ class WordsOfBuddhaCard extends StatefulWidget {
 
 class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   final GlobalKey _renderKey = new GlobalKey();
-  final _player = AudioPlayer();
   bool _translationVisible = false;
+  late Uri _audioUrl;
   Language _selectedLanguage = Language.eng;
   late bool loaded;
 
@@ -53,21 +51,16 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   void initState() {
     // Check if image is in cache in case widget gets rebuilt and the onLoaded callback doesn't respond.
     loaded = DefaultCacheManager().getFileFromMemory(widget.data.imageUrl!) != null;
-    _player.playbackEventStream.listen((event) {},
-        onError: (Object e, StackTrace stackTrace) {
-          print('A stream error occurred: $e');
-        });
-    initAudioSource();
+    initAudioUrl();
     initLanguage();
     super.initState();
   }
 
-  Future<void> initAudioSource() async {
-    // Try to load audio from a source and catch any errors.
+  void initAudioUrl() {
     try {
-      await _player.setAudioSource(AudioSource.uri(Uri.parse(widget.data.audioUrl ?? "")));
+      _audioUrl = Uri.parse(widget.data.audioUrl ?? "");
     } catch (e) {
-      print("Error loading audio source: $e");
+      print("Error parsing audio URL: $e");
     }
   }
 
@@ -76,18 +69,6 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
     setState(() {
       _selectedLanguage = Language.from(prefs.getString(Language.SETTINGS_KEY));
     });
-  }
-
-  @override
-  void dispose() {
-    _player.dispose();
-    super.dispose();
-  }
-
-  void playStop() async {
-    // TODO: toggle play vs. stop depending on player state
-    _player.seek(Duration.zero); // needed in case the audio has played once
-    _player.play();
   }
 
   @override
@@ -236,11 +217,12 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   }
 
   AudioButton buildAudioButton() {
-    return AudioButton(
-      onPressed: loaded == true ? () async {
-        playStop();
-      } : null,
-    );
+    // return AudioButton(
+    //   onPressed: loaded == true ? () async {
+    //     playStop();
+    //   } : null,
+    // );
+    return AudioButton(audioUrl: _audioUrl);
   }
 
   ShareButton buildShareButton() {
