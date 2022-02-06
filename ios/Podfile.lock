@@ -36,7 +36,7 @@ PODS:
     - sqlite3/json1
     - sqlite3/perf-threadsafe
     - sqlite3/rtree
-  - video_player (0.0.1):
+  - video_player_avfoundation (0.0.1):
     - Flutter
   - wc_flutter_share (0.0.1):
     - Flutter
@@ -50,7 +50,7 @@ DEPENDENCIES:
   - shared_preferences_ios (from `.symlinks/plugins/shared_preferences_ios/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
   - sqlite3_flutter_libs (from `.symlinks/plugins/sqlite3_flutter_libs/ios`)
-  - video_player (from `.symlinks/plugins/video_player/ios`)
+  - video_player_avfoundation (from `.symlinks/plugins/video_player_avfoundation/ios`)
   - wc_flutter_share (from `.symlinks/plugins/wc_flutter_share/ios`)
 
 SPEC REPOS:
@@ -76,8 +76,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/sqflite/ios"
   sqlite3_flutter_libs:
     :path: ".symlinks/plugins/sqlite3_flutter_libs/ios"
-  video_player:
-    :path: ".symlinks/plugins/video_player/ios"
+  video_player_avfoundation:
+    :path: ".symlinks/plugins/video_player_avfoundation/ios"
   wc_flutter_share:
     :path: ".symlinks/plugins/wc_flutter_share/ios"
 
@@ -93,7 +93,7 @@ SPEC CHECKSUMS:
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
   sqlite3: c0ed2889f1853952214f34195c4a081a7a7a8015
   sqlite3_flutter_libs: b26eb56ee9f5d821e55739a0e3917301e5ed4628
-  video_player: ecd305f42e9044793efd34846e1ce64c31ea6fcb
+  video_player_avfoundation: e489aac24ef5cf7af82702979ed16f2a5ef84cff
   wc_flutter_share: b974e046b82a78e409cc65b3550059b5263cd741
 
 PODFILE CHECKSUM: 969279624b3319769ceaddffb4ccd4394d7d265a

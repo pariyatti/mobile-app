@@ -67,3 +67,4 @@ lib/Environment.dart:
 
 run: clean_local_environment lib/Environment.dart ##@Development Run a debug build against 'env' (local, sandbox, or production)
 	flutter run --target lib/main_$(env).dart
+

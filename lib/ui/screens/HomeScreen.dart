@@ -44,6 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: bodyWidget,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: bottomNavigationBarIndex,
+        fixedColor: Color.fromARGB(255, 186, 86, 38),
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
@@ -54,15 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
               PariyattiIcons.get(IconName.today),
               color: Color.fromARGB(255, 186, 86, 38),
             ),
-            title: Text(
-              AppStrings.get().labelToday,
-              style: TextStyle(
-                inherit: true,
-                color: bottomNavigationBarIndex == 0
-                    ? Color.fromARGB(255, 186, 86, 38)
-                    : Color(0xff6d695f),
-              ),
-            ),
+            label: AppStrings.get().labelToday
           ),
           BottomNavigationBarItem(
             icon: Icon(
@@ -73,15 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
               PariyattiIcons.get(IconName.person),
               color: Color.fromARGB(255, 186, 86, 38),
             ),
-            title: Text(
-              AppStrings.get().labelAccount,
-              style: TextStyle(
-                inherit: true,
-                color: bottomNavigationBarIndex == 1
-                    ? Color.fromARGB(255, 186, 86, 38)
-                    : Color(0xff6d695f),
-              ),
-            ),
+            label: AppStrings.get().labelAccount
           )
         ],
         onTap: (int tappedItemIndex) {
