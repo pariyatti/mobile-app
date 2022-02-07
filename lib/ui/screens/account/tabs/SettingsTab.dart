@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:patta/model/Language.dart';
+import 'package:patta/ui/screens/account/LanguagesScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:settings_ui/settings_ui.dart';
 
 class SettingsTab extends StatefulWidget {
   SettingsTab({Key? key}) : super(key: key);
@@ -26,41 +28,37 @@ class _SettingsTabState extends State<SettingsTab> {
     });
   }
 
-  void _setLanguage(Language? newValue) async {
-    // TODO: SharedPreferences, Language.SETTINGS_KEY, etc. all belong in a wrapper (just "Preferences"?)
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      selectedLanguage = newValue!;
-      prefs.setString(Language.SETTINGS_KEY, newValue.code);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    List<DropdownMenuItem<Language>> items =
-    Language.all.map<DropdownMenuItem<Language>>((Language l) {
-      return DropdownMenuItem<Language>(
-          value: l,
-          child: Text(l.name));
-    }).toList();
-    return Card(
-      elevation: 2.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(
-          8.0,
+    _loadLanguage();
+
+    // example: https://github.com/yako-dev/flutter-settings-ui/blob/master/example/lib/screens/settings_screen.dart
+    return SettingsList(
+      sections: [
+        SettingsSection(
+          // title: Text('Common'),
+          tiles: <SettingsTile>[
+            SettingsTile.navigation(
+              // TODO: use PariyattiIcon
+              leading: Icon(Icons.language),
+              title: Text('Language'),
+              value: Text(selectedLanguage.name),
+              onPressed: (context) {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => LanguagesScreen(),
+                ));
+              },
+            ),
+            SettingsTile.switchTile(
+              onToggle: (value) {},
+              initialValue: false,
+              // TODO: use PariyattiIcon
+              leading: Icon(Icons.nightlight_round),
+              title: Text('Dark Mode'),
+            ),
+          ],
         ),
-      ),
-      child: Row(
-        children: [
-          Text("Language:"),
-          DropdownButton<Language>(
-            icon: const Icon(Icons.arrow_downward),
-            items: items,
-            value: selectedLanguage,
-            onChanged: _setLanguage
-          )
-        ]
-      ),
+      ],
     );
   }
 }
