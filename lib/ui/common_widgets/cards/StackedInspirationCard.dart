@@ -5,6 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/common_widgets/bookmark_button.dart';
@@ -138,10 +139,13 @@ class _StackedInspirationCardState extends State<StackedInspirationCard> {
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         widget.data.text ?? "<text was empty>",
-                        style: TextStyle(
-                          inherit: true,
-                          fontSize: 20.0,
-                          fontStyle: FontStyle.italic,
+                        style: GoogleFonts.getFont('Noto Serif', textStyle:
+                        TextStyle(
+                            inherit: true,
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.normal,
+                            fontStyle: FontStyle.italic,
+                            color: Color(0xFF000000))
                         ),
                       ),
                     ),
