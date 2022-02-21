@@ -14,25 +14,30 @@ class SliveredView extends StatelessWidget {
   Widget build(BuildContext context) {
     return NotificationListener<OverscrollIndicatorNotification>(
       onNotification: (OverscrollIndicatorNotification overscroll) {
-        overscroll.disallowGlow();
+        overscroll.disallowIndicator();
         return false;
       },
-      child: NestedScrollView(
+      child:
+
+      NestedScrollView(
         headerSliverBuilder: (_, __) {
           return [
             SliverAppBar(
               backgroundColor: Color(0xfff4efe7), // 0xfff4efe7 // 0xff8899efe7
-              expandedHeight: 60,
+              expandedHeight: 58,
               flexibleSpace: FlexibleSpaceBar(
-                title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+                title: Text(title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800)),
                 centerTitle: false,
-                titlePadding: EdgeInsets.all(24)
+                titlePadding:
+                EdgeInsets.fromLTRB(16, 0, 0, 0), // EdgeInsetsDirectional.only(start: 24, bottom: 0)
+                collapseMode: CollapseMode.none,
               ),
             ),
           ];
         },
         body: SafeArea(child: body),
       ),
+
     );
   }
 }
