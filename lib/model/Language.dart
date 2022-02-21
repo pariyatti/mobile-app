@@ -3,7 +3,7 @@ import 'dart:developer';
 class Language {
   static const String SETTINGS_KEY = 'language';
 
-  final String code;
+  final String code; // ISO 639-3
   final String name;
 
   const Language(this.code, this.name);
@@ -15,6 +15,7 @@ class Language {
   static const eng = Language("eng", "English");
   static const fra = Language("fra", "française");
   static const ita = Language("ita", "italiano");
+  static const lit = Language("lit", "lietuvių kalba");
   static const por = Language("por", "português");
   static const spa = Language("spa", "español");
   static const srp = Language("srp", "Srpsko-Hrvatski");
