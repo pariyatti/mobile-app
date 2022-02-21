@@ -19,6 +19,9 @@ class ApiCard {
   @JsonKey(name: 'words', disallowNullValue: true, required: false)
   final String? words;
 
+  @JsonKey(name: 'doha', disallowNullValue: true, required: false)
+  final String? doha;
+
   @JsonKey(name: 'image', disallowNullValue: true, required: false)
   final Image? image;
 
@@ -43,6 +46,7 @@ class ApiCard {
     this.header,
     this.text,
     this.words,
+    this.doha,
     this.image,
     this.pali,
     this.audio,

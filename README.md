@@ -147,8 +147,22 @@ To add a new "Today" card, there is quite a bit of duplication. Please see:
 * `lib/ui/common_widgets/cards/*Card.dart`
 * `lib/ui/screens/today/TodayScreen.dart         -> _buildCardsList()`
 * `lib/ui/screens/account/tabs/BookmarksTab.dart -> _buildCardsList()`
-* `lib/local_database/moor_converters.dart       -> toDatabaseCard()`
+* `lib/local_database/moor_converters.dart       -> toDatabaseCard() / toCardModel()`
 * `lib/local_database/database.dart`
+
+Then clean and build to re-generate database stubs:
+
+```sh 
+make clean
+make build
+```
+
+If you are changing the schema of the SQLite database, you will need to uninstall 
+and reinstall the mobile app for the changes to take effect. This is a limitation 
+of the current method of bookmarking because we do not have database migrations.
+Upon re-installation, you will need to trust the app on your phone again:
+
+`Settings > General > VPN & Device Management > Developer App > {your email} > Trust`
 
 ## Run release build with production servers (signed APK)
 

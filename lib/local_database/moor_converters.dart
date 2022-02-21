@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:patta/local_database/database.dart';
+import 'package:patta/ui/common_widgets/cards/DohaCard.dart';
 import 'package:patta/ui/model/CardModel.dart';
+import 'package:patta/ui/model/DohaCardModel.dart';
 import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
 import 'package:patta/ui/model/PaliWordCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
@@ -53,6 +55,18 @@ DatabaseCard toDatabaseCard(
       imageUrl: cardModel.imageUrl,
       audioUrl: cardModel.audioUrl,
       words: cardModel.words,
+      translations: jsonEncode(cardModel.translations),
+      createdAt: createdAt,
+    );
+  } else if (cardModel is DohaCardModel) {
+    return DatabaseCard(
+      id: cardModel.id,
+      isBookmarkable: cardModel.isBookmarkable,
+      type: 'doha',
+      header: cardModel.header,
+      imageUrl: cardModel.imageUrl,
+      audioUrl: cardModel.audioUrl,
+      doha: cardModel.doha,
       translations: jsonEncode(cardModel.translations),
       createdAt: createdAt,
     );
@@ -115,6 +129,18 @@ CardModel? toCardModel(DatabaseCard databaseCard) {
           audioUrl: databaseCard.audioUrl,
           words: databaseCard.words,
           translations: Translations.fromJson(jsonDecode(databaseCard.translations!))
+        );
+      }
+    case 'doha':
+      {
+        return DohaCardModel(
+            id: databaseCard.id,
+            header: databaseCard.header,
+            isBookmarkable: databaseCard.isBookmarkable,
+            imageUrl: databaseCard.imageUrl,
+            audioUrl: databaseCard.audioUrl,
+            doha: databaseCard.doha,
+            translations: Translations.fromJson(jsonDecode(databaseCard.translations!))
         );
       }
     default:

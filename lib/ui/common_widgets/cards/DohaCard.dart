@@ -10,23 +10,23 @@ import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/common_widgets/audio_button.dart';
 import 'package:patta/ui/common_widgets/bookmark_button.dart';
 import 'package:patta/ui/common_widgets/share_button.dart';
-import 'package:patta/ui/model/WordsOfBuddhaCardModel.dart';
+import 'package:patta/ui/model/DohaCardModel.dart';
 import 'package:patta/util.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class WordsOfBuddhaCard extends StatefulWidget {
-  final WordsOfBuddhaCardModel data;
+class DohaCard extends StatefulWidget {
+  final DohaCardModel data;
   final PariyattiDatabase database;
 
-  WordsOfBuddhaCard(this.data, this.database, {Key? key}) : super(key: key);
+  DohaCard(this.data, this.database, {Key? key}) : super(key: key);
 
   @override
-  _WordsOfBuddhaCardState createState() => _WordsOfBuddhaCardState();
+  _DohaCardState createState() => _DohaCardState();
 }
 
-class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
+class _DohaCardState extends State<DohaCard> {
   final GlobalKey _renderKey = new GlobalKey();
   bool _translationVisible = false;
   late Uri _audioUrl;
@@ -131,7 +131,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   }
 
   buildOverlayWords() {
-    var pali = Text(widget.data.words ?? "<words field was empty>",
+    var pali = Text(widget.data.doha ?? "<words field was empty>",
       // TODO: what is the correct font, here?
       style: GoogleFonts.getFont('Noto Serif', textStyle:
       TextStyle(
@@ -229,7 +229,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
         mimeType: 'image/$extension',
         fileName: '${widget.data.header}.$extension',
         bytesOfFile: imageData,
-        text: widget.data.words,
+        text: widget.data.doha,
         );
     } : null);
   }

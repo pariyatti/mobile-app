@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/local_database/moor_converters.dart' as moor_converters;
 import 'package:patta/resources/strings.dart';
+import 'package:patta/ui/common_widgets/cards/DohaCard.dart';
 import 'package:patta/ui/common_widgets/cards/EmptyCard.dart';
 import 'package:patta/ui/common_widgets/cards/OverlayInspirationCard.dart';
 import 'package:patta/ui/common_widgets/cards/PaliWordCard.dart';
 import 'package:patta/ui/common_widgets/cards/StackedInspirationCard.dart';
 import 'package:patta/ui/common_widgets/cards/WordsOfBuddhaCard.dart';
 import 'package:patta/ui/common_widgets/pariyatti_icons.dart';
+import 'package:patta/ui/model/DohaCardModel.dart';
 import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
 import 'package:patta/ui/model/PaliWordCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
@@ -97,7 +99,10 @@ class BookmarksTab extends StatelessWidget {
             return OverlayInspirationCard(card, database);
           } else if (card is WordsOfBuddhaCardModel) {
             return WordsOfBuddhaCard(card, database);
-          } else {
+          } else if (card is DohaCardModel) {
+            return DohaCard(card, database);
+          }
+          else {
             return EmptyCard(card!, database);
           }
         },

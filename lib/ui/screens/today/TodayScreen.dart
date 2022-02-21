@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:patta/api/api.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/resources/strings.dart';
+import 'package:patta/ui/common_widgets/cards/DohaCard.dart';
 import 'package:patta/ui/common_widgets/cards/EmptyCard.dart';
 import 'package:patta/ui/common_widgets/cards/OverlayInspirationCard.dart';
 import 'package:patta/ui/common_widgets/cards/PaliWordCard.dart';
@@ -10,6 +13,7 @@ import 'package:patta/ui/common_widgets/cards/StackedInspirationCard.dart';
 import 'package:patta/ui/common_widgets/cards/WordsOfBuddhaCard.dart';
 import 'package:patta/ui/common_widgets/pariyatti_icons.dart';
 import 'package:patta/ui/model/CardModel.dart';
+import 'package:patta/ui/model/DohaCardModel.dart';
 import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
 import 'package:patta/ui/model/PaliWordCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
@@ -29,6 +33,7 @@ class TodayScreen extends StatelessWidget {
           return _buildCardsList(snapshot.data!, context);
         } else if (snapshot.hasError) {
           //  TODO: Log the error
+          log("Data from snapshot: ${snapshot.data.toString()}");
           return _buildError(snapshot.error!);
         } else {
           return _buildLoadingIndicator();
@@ -68,7 +73,13 @@ class TodayScreen extends StatelessWidget {
             card,
             Provider.of<PariyattiDatabase>(context),
           );
-        } else {
+        } else if (card is DohaCardModel) {
+          return DohaCard(
+            card,
+            Provider.of<PariyattiDatabase>(context),
+          );
+        }
+        else {
           return EmptyCard(card, Provider.of<PariyattiDatabase>(context));
         }
       },
