@@ -166,6 +166,8 @@ Upon re-installation, you will need to trust the app on your phone again:
 
 ## Run release build with production servers (signed APK)
 
+NOTE: All mentions of CodeMagic are currently out-of-date. Please see the [CI/CD issue](https://github.com/pariyatti/mobile-app/issues/41).
+
 In order of preference:
 
 1. Use a build from [CodeMagic](https://github.com/pariyatti/mobile-app#ci--cd-builds). Avoid locally signed release builds.
