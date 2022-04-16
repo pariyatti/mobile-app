@@ -79,6 +79,12 @@ If this does not work, sometimes the Pariyatti Apple Development Team may be stu
 If you suspect it is, try switching your Team profile to `{Your Name} (Personal Team)` under
 `Project Navigator > Runner > Signing & Capabilities > Team`, then running with ⌘R.
 
+```
+Error (Xcode): No profiles for 'org.pariyatti' were found: Xcode couldn't find any iOS App Development provisioning profiles matching
+'org.pariyatti'. Automatic signing is disabled and unable to generate a profile. To enable automatic signing, pass
+-allowProvisioningUpdates to xcodebuild.
+```
+
 ## Flutter Setup
 
 ```
@@ -119,7 +125,7 @@ make clean
 
 ***
 
-:sunrise_over_mountains: Everything below this point is for project admins. 
+:sunrise_over_mountains: Everything below this point is for project admins.
 If this is your first time building the Pariyatti Mobile App, you can stop here. :) :sunrise_over_mountains:
 
 ***
@@ -152,13 +158,13 @@ To add a new "Today" card, there is quite a bit of duplication. Please see:
 
 Then clean and build to re-generate database stubs:
 
-```sh 
+```sh
 make clean
 make build
 ```
 
-If you are changing the schema of the SQLite database, you will need to uninstall 
-and reinstall the mobile app for the changes to take effect. This is a limitation 
+If you are changing the schema of the SQLite database, you will need to uninstall
+and reinstall the mobile app for the changes to take effect. This is a limitation
 of the current method of bookmarking because we do not have database migrations.
 Upon re-installation, you will need to trust the app on your phone again:
 
