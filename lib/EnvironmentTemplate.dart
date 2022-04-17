@@ -5,11 +5,11 @@ abstract class Environment {
 }
 
 class SandboxEnvironment extends Environment {
-  SandboxEnvironment() : super('http://kosa-sandbox.pariyatti.org');
+  SandboxEnvironment() : super('https://kosa-sandbox.pariyatti.app');
 }
 
 class ProductionEnvironment extends Environment {
-  ProductionEnvironment() : super('http://kosa.pariyatti.org');
+  ProductionEnvironment() : super('https://kosa.pariyatti.app');
 }
 
 class LocalEnvironment extends Environment {
