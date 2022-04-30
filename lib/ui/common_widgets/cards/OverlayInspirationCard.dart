@@ -184,13 +184,13 @@ class _OverlayInspirationCardState extends State<OverlayInspirationCard> {
           loaded
               ? () async {
             Uint8List imageData = await _getImageWithText();
-            final String extension =
-            extractFileExtension(widget.data.imageUrl);
+            final String filename = toFilename(widget.data.header!);
+            final String extension = extractFileExtension(widget.data.imageUrl);
             await WcFlutterShare.share(
               sharePopupTitle:
               AppStrings.get().labelShareInspiration,
               mimeType: 'image/$extension',
-              fileName: '${widget.data.header}.$extension',
+              fileName: '$filename.$extension',
               bytesOfFile: imageData,
             );
           }

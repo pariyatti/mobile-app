@@ -223,11 +223,12 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   ShareButton buildShareButton() {
     return ShareButton(onPressed: loaded == true ? () async {
       Uint8List imageData = await _getImage();
+      final String filename = toFilename(widget.data.header!);
       final String extension = extractFileExtension(widget.data.imageUrl);
       await WcFlutterShare.share(
         sharePopupTitle: AppStrings.get().labelShareInspiration,
         mimeType: 'image/$extension',
-        fileName: '${widget.data.header}.$extension',
+        fileName: '$filename.$extension',
         bytesOfFile: imageData,
         text: widget.data.words,
         );

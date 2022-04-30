@@ -149,36 +149,7 @@ class _StackedInspirationCardState extends State<StackedInspirationCard> {
                         ),
                       ),
                     ),
-                    Container(
-                      color: Color(0xffdcd3c0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Visibility(
-                            visible: widget.data.isBookmarkable,
-                            child: BookmarkButton(widget.data, widget.database),
-                          ),
-                          ShareButton(
-                            onPressed: loaded == true
-                                ? () async {
-                                    Uint8List imageData = await _getImage();
-                                    final String extension =
-                                        extractFileExtension(
-                                            widget.data.imageUrl);
-                                    await WcFlutterShare.share(
-                                      sharePopupTitle: AppStrings.get().labelShareInspiration,
-                                      mimeType: 'image/$extension',
-                                      fileName:
-                                          '${widget.data.header}.$extension',
-                                      bytesOfFile: imageData,
-                                      text: widget.data.text,
-                                    );
-                                  }
-                                : null,
-                          )
-                        ],
-                      ),
-                    ),
+                    buildButtonFooter(),
                   ],
                 ),
               ),
@@ -187,5 +158,40 @@ class _StackedInspirationCardState extends State<StackedInspirationCard> {
         ),
       ],
     );
+  }
+
+  Container buildButtonFooter() {
+    return Container(
+      color: Color(0xffdcd3c0),
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          buildBookmarkButton(),
+          buildShareButton()
+        ],
+      ),
+    );
+  }
+
+  ShareButton buildShareButton() {
+    return ShareButton(onPressed: loaded == true ? () async {
+      Uint8List imageData = await _getImage();
+      final String extension = extractFileExtension(widget.data.imageUrl);
+      final String filename = toFilename(widget.data.header!);
+      await WcFlutterShare.share(
+        sharePopupTitle: AppStrings.get().labelShareInspiration,
+        mimeType: 'image/$extension',
+        fileName: '$filename.$extension',
+        bytesOfFile: imageData,
+        text: widget.data.text,
+      );
+    } : null);
+  }
+
+  Visibility buildBookmarkButton() {
+    return Visibility(
+          visible: widget.data.isBookmarkable,
+          child: BookmarkButton(widget.data, widget.database),
+        );
   }
 }

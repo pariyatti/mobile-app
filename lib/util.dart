@@ -1,3 +1,10 @@
 String extractFileExtension(String? filePath) {
-  return filePath!.split('.').last;
+  if (filePath!.endsWith("null")) {
+    return "jpg";
+  }
+  return filePath.split('.').last;
+}
+
+String toFilename(String s) {
+  return s.replaceAll(" ", "_");
 }
