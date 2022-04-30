@@ -23,9 +23,10 @@ class _AudioButtonState extends State<AudioButton> {
 
   void initStreamListen() {
     _player.playbackEventStream.listen((event) {},
-        onError: (Object e, StackTrace stackTrace) {
-          print('A stream error occurred: $e');
-        });
+      onError: (Object e, StackTrace stackTrace) {
+        print('A stream error occurred: $e');
+      }
+    );
   }
 
   Future<void> initAudioSource() async {
@@ -45,18 +46,44 @@ class _AudioButtonState extends State<AudioButton> {
 
   @override
   Widget build(BuildContext context) {
-    var icon = _player.playing ? PariyattiIcons.get(IconName.stop) : PariyattiIcons.get(IconName.play);
     return Expanded(
-      child: MaterialButton(
-        padding: EdgeInsets.zero,
-        child: Icon(icon, color: Color(0xff6d695f)),
-        onPressed: playStop,
-      ),
+      child: StreamBuilder<PlayerState>(
+          stream: _player.playerStateStream,
+          builder: (context, snapshot) {
+            final playerState = snapshot.data;
+            final processingState = playerState?.processingState;
+            final playing = playerState?.playing;
+            if (processingState == ProcessingState.loading ||
+                processingState == ProcessingState.buffering) {
+              return Center(
+                child: Container(
+                  margin: EdgeInsets.zero,
+                  width: 16.0,
+                  height: 16.0,
+                  child: CircularProgressIndicator(),
+              ));
+            } else if (playing != true) {
+              return MaterialButton(
+                padding: EdgeInsets.zero,
+                child: Icon(PariyattiIcons.get(IconName.play), color: Color(0xff6d695f)),
+                onPressed: _player.play,
+              );
+            } else if (processingState != ProcessingState.completed) {
+              return MaterialButton(
+                padding: EdgeInsets.zero,
+                child: Icon(PariyattiIcons.get(IconName.pause), color: Color(0xff6d695f)),
+                onPressed: _player.pause,
+              );
+            } else {
+              return MaterialButton(
+                padding: EdgeInsets.zero,
+                child: Icon(PariyattiIcons.get(IconName.play), color: Color(0xff6d695f)),
+                onPressed: play,
+              );
+            }
+          }
+        )
     );
-  }
-
-  void playStop() async {
-    return _player.playing ? stop() : play();
   }
 
   void play() {
