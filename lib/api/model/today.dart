@@ -31,7 +31,7 @@ class ApiCard {
   @JsonKey(name: 'audio', disallowNullValue: true, required: false)
   final Audio? audio;
 
-  @JsonKey(name: 'audio_url', disallowNullValue: true, required: false)
+  @JsonKey(name: 'original_audio_url', disallowNullValue: true, required: false)
   final String? audioUrl;
 
   @JsonKey(name: 'translations', disallowNullValue: true, required: false)
