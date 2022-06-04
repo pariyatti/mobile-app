@@ -4,57 +4,12 @@ import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
+import 'package:patta/local_database/network_cache_table.dart';
+import 'package:patta/local_database/cards.dart';
 
-part 'database.g.dart';
-
-// Run the following command to generate necessary files:
+// Run the following command to generate 'database.g.dart':
 // flutter packages pub run build_runner watch --delete-conflicting-outputs
-
-@DataClassName('DatabaseCard')
-class Cards extends Table {
-  // Common
-  TextColumn get id => text().named('id')();
-  BoolColumn? get isBookmarkable => boolean().named('isBookmarkable')();
-  TextColumn? get type => text().named('type')();
-  TextColumn? get header => text().named('header').nullable()();
-  DateTimeColumn? get createdAt => dateTime().named('createdAt')();
-
-  // StackedInspiration and OverlayInspiration
-  TextColumn? get textData => text().named('text').nullable()();
-  TextColumn? get imageUrl => text().named('imageUrl').nullable()();
-  TextColumn? get textColor => text().named('textColor').nullable()();
-
-  // PaliWord + WordsOfBuddha + Doha
-  TextColumn? get audioUrl => text().named('audioUrl').nullable()();
-
-  // PaliWord
-  TextColumn? get paliWord => text().named('paliWord').nullable()();
-  TextColumn? get translation => text().named('translation').nullable()();
-
-  // WordsOfBuddha + Doha
-  TextColumn? get translations => text().named('translations').nullable()();
-
-  // WordsOfBuddha
-  TextColumn? get words => text().named('words').nullable()();
-
-  // Doha
-  TextColumn? get doha => text().named('doha').nullable()();
-
-  @override
-  Set<Column>? get primaryKey => {id};
-}
-
-@DataClassName('NetworkCache')
-class NetworkCacheTable extends Table {
-  TextColumn get url => text().named('url')();
-
-  TextColumn? get response => text().named('response')();
-
-  DateTimeColumn? get cachedAt => dateTime().named('cachedAt')();
-
-  @override
-  Set<Column>? get primaryKey => {url};
-}
+part 'database.g.dart';
 
 LazyDatabase _openConnection() {
   return LazyDatabase(() async {
