@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patta/local_database/database.dart';
-import 'package:patta/local_database/moor_converters.dart' as moor_converters;
+import 'package:patta/local_database/drift_converters.dart' as drift_converters;
 import 'package:patta/ui/common_widgets/pariyatti_icons.dart';
 import 'package:patta/ui/model/CardModel.dart';
 
@@ -37,7 +37,7 @@ class BookmarkButton extends StatelessWidget {
               if (isBookmarked) {
                 database.removeCard(data.id);
               } else {
-                database.insertCard(moor_converters.toDatabaseCard(
+                database.insertCard(drift_converters.toDatabaseCard(
                   data,
                   DateTime.now(),
                 ));

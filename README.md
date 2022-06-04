@@ -151,9 +151,9 @@ To add a new "Today" card, there is quite a bit of duplication. Please see:
 
 * `lib/ui/model/*CardModel.dart`
 * `lib/ui/common_widgets/cards/*Card.dart`
-* `lib/ui/screens/today/TodayScreen.dart         -> _buildCardsList()`
-* `lib/ui/screens/account/tabs/BookmarksTab.dart -> _buildCardsList()`
-* `lib/local_database/moor_converters.dart       -> toDatabaseCard() / toCardModel()`
+* `lib/ui/screens/today/TodayScreen.dart          -> _buildCardsList()`
+* `lib/ui/screens/account/tabs/BookmarksTab.dart  -> _buildCardsList()`
+* `lib/local_database/drift_converters.dart       -> toDatabaseCard() / toCardModel()`
 * `lib/local_database/database.dart`
 
 Then clean and build to re-generate database stubs:
@@ -234,7 +234,7 @@ If you have answers to these questions, please move them to the top and put the 
   - https://flutter.dev/docs/development/accessibility-and-localization/internationalization
 
 - Could the HomeScreen state switch be a tiny object unto itself?
-- Can Moor Converters move into multiple files?
+- Can Drift Converters move into multiple files?
 
 ## License and Copyright
 

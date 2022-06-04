@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patta/local_database/database.dart';
-import 'package:patta/local_database/moor_converters.dart' as moor_converters;
+import 'package:patta/local_database/drift_converters.dart' as drift_converters;
 import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/common_widgets/cards/DohaCard.dart';
 import 'package:patta/ui/common_widgets/cards/EmptyCard.dart';
@@ -72,7 +72,7 @@ class BookmarksTab extends StatelessWidget {
 
   Widget _buildCardsList(List<DatabaseCard> data, PariyattiDatabase database) {
     final cardModels = data
-        .map((dbCard) => moor_converters.toCardModel(dbCard))
+        .map((dbCard) => drift_converters.toCardModel(dbCard))
         .where((card) => (card != null))
         .toList();
     if (cardModels.isEmpty) {

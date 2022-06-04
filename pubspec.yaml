@@ -34,7 +34,7 @@ dependencies:
   provider: ^6.0.1
   settings_ui: ^2.0.2
   shared_preferences: ^2.0.12
-  sqlite3_flutter_libs: ^0.5.1 # previously moor_ffi
+  sqlite3_flutter_libs: ^0.5.7 # Workaround to open sqlite3 on old Android versions
   video_player: ^2.2.11
   wc_flutter_share: ^0.4.0
 

@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:patta/local_database/database.dart';
-import 'package:patta/ui/common_widgets/cards/DohaCard.dart';
 import 'package:patta/ui/model/CardModel.dart';
 import 'package:patta/ui/model/DohaCardModel.dart';
 import 'package:patta/ui/model/OverlayInspirationCardModel.dart';

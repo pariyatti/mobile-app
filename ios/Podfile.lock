@@ -31,7 +31,7 @@ PODS:
     - sqlite3/common
   - sqlite3_flutter_libs (0.0.1):
     - Flutter
-    - sqlite3 (~> 3.38.2)
+    - sqlite3 (~> 3.38.5)
     - sqlite3/fts5
     - sqlite3/json1
     - sqlite3/perf-threadsafe
@@ -92,7 +92,7 @@ SPEC CHECKSUMS:
   shared_preferences_ios: 548a61f8053b9b8a49ac19c1ffbc8b92c50d68ad
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
   sqlite3: 93442daab2ab1825bc9c05faa85814a1996f5b65
-  sqlite3_flutter_libs: e21c8c90448ce608a0d685e717727c46f37c6695
+  sqlite3_flutter_libs: 92ed62fa0dcbfe2e37d5e2b60d00820672b71ffb
   video_player_avfoundation: e489aac24ef5cf7af82702979ed16f2a5ef84cff
   wc_flutter_share: b974e046b82a78e409cc65b3550059b5263cd741
 
