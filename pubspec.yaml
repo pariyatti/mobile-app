@@ -1,16 +1,11 @@
 name: patta
 description: A new Flutter project.
 
-# The following defines the version and build number for your application.
-# A version number is three numbers separated by dots, like 1.2.43
-# followed by an optional build number separated by a +.
-# Both the version and the builder number may be overridden in flutter
-# build by specifying --build-name and --build-number, respectively.
-# In Android, build-name is used as versionName while build-number used as versionCode.
-# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
-# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
-# Read more about iOS versioning at
+# Docs:
+# https://docs.codemagic.io/configuration/build-versioning/
+# https://developer.android.com/studio/publish/versioning
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+# We use Codemagic automatic versioning. This version number is overridden by Codemagic.
 version: 1.0.1+2
 
 publish_to: 'none'
@@ -21,38 +16,35 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.4
   cached_network_image: ^3.2.1
-  json_annotation: ^4.4.0
-  http: ^0.13.3
-  wc_flutter_share: ^0.4.0
-  path: ^1.8.0
-  path_provider: ^2.0.7
-  drift: ^1.6.0
-  sqlite3_flutter_libs: ^0.5.1 # previously moor_ffi
-  provider: ^6.0.1
-  equatable: ^2.0.3
   connectivity_plus: ^2.3.2
+  cupertino_icons: ^1.0.4 # iOS-style icons
   dio: ^4.0.4
   dio_cache_interceptor: ^3.2.2
   dio_cache_interceptor_db_store: ^4.1.0
+  drift: ^1.6.0
+  equatable: ^2.0.3
   flutter_cache_manager: ^3.3.0
-  video_player: ^2.2.11
-  just_audio: ^0.9.18
   google_fonts: ^2.2.0
-  shared_preferences: ^2.0.12
+  http: ^0.13.3
+  json_annotation: ^4.4.0
+  just_audio: ^0.9.18
+  path: ^1.8.0
+  path_provider: ^2.0.7
+  provider: ^6.0.1
   settings_ui: ^2.0.2
+  shared_preferences: ^2.0.12
+  sqlite3_flutter_libs: ^0.5.1 # previously moor_ffi
+  video_player: ^2.2.11
+  wc_flutter_share: ^0.4.0
 
 dev_dependencies:
-  build_runner: ^2.1.5
-  flutter_launcher_icons: ^0.9.0
-  json_serializable: ^6.1.1
-  drift_dev: ^1.6.0
   flutter_test:
     sdk: flutter
+  build_runner: ^2.1.5
+  drift_dev: ^1.6.0
+  flutter_launcher_icons: ^0.9.0
+  json_serializable: ^6.1.1
 
 
 # For information on the generic Dart part of this file, see the

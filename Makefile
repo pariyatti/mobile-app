@@ -27,7 +27,8 @@ init-clean: ##@Setup Remove Flutter packages
 init-flutter:  # Hidden@Setup Download Flutter deps, precompile
 	flutter pub get
 
-init: config/app_config.json init-flutter ##@Setup Default config + pub get
+init: init-flutter ##@Setup Default config + pub get
+	sudo gem install cocoapods
 
 clean_local_environment:
 	rm -f lib/Environment.dart
