@@ -208,14 +208,17 @@ flutter run --release --target lib/main_prod.dart
 
 ## CI / CD Builds
 
-Ask Steven Deobald or Varun Barad for an account if you cannot see the app:
+Ask Steven Deobald or Tanmay Balwa for an account if you cannot see the app:
 
-[https://codemagic.io/app/5ea7faa6ab38b5000ac85f7b](https://codemagic.io/app/5ea7faa6ab38b5000ac85f7b)
+https://codemagic.io/app/623f06b866f7430a541f6528
 
 We have two builds:
 
 1. Sandbox, which emails builds to developers
 2. Production, which publishes signed release builds to App/Play Stores
+
+* To configure the App Store, go to https://developer.apple.com
+* To configure the Play Store, go to https://play.google.com/console/
 
 ### Managing Tracks
 
