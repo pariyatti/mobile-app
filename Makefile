@@ -21,12 +21,6 @@ HELP_FUNC = \
 help: ##@Miscellaneous Show this help.
 	@perl -e '$(HELP_FUNC)' $(MAKEFILE_LIST)
 
-# Hidden@Setup Copy default config
-config/app_config.json:
-	echo Copying default config...
-	cp config/app_config.sample.json config/app_config.json
-	echo Please add config secrets to 'config/app_config.json'.
-
 init-clean: ##@Setup Remove Flutter packages
 	flutter pub cache clean
 

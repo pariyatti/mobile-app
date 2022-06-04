@@ -30,7 +30,7 @@ doc/api/
 *.iml
 
 # Configuration file containing keys and secrets
-config/app_config.json
+# config/app_config.json
 
 # Ignore Android Signing Keystore and its properties
 android/keystore.jks
