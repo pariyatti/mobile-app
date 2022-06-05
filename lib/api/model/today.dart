@@ -10,6 +10,9 @@ class ApiCard {
   @JsonKey(name: 'bookmarkable', disallowNullValue: true, required: true)
   late final bool isBookmarkable;
 
+  @JsonKey(name: 'shareable', disallowNullValue: true, required: true)
+  late final bool isShareable;
+
   @JsonKey(name: 'header', disallowNullValue: true, required: true)
   final String? header;
 

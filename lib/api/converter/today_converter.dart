@@ -32,6 +32,7 @@ CardModel? _convertApiCardToCardModel(
           text: card.text,
           imageUrl: '$baseUrl${card.image?.url}',
           isBookmarkable: card.isBookmarkable,
+          isShareable: card.isShareable
         );
       }
     case 'overlay_inspiration':
@@ -42,7 +43,8 @@ CardModel? _convertApiCardToCardModel(
             text: card.text,
             imageUrl: '$baseUrl${card.image?.url}',
             textColor: card.textColor,
-            isBookmarkable: card.isBookmarkable);
+            isBookmarkable: card.isBookmarkable,
+            isShareable: card.isShareable);
       }
     case 'pali_word':
       {
@@ -55,6 +57,7 @@ CardModel? _convertApiCardToCardModel(
             audioUrl: '$baseUrl${card.audio?.url}',
             translation: card.translations![0].translation,
             isBookmarkable: card.isBookmarkable,
+            isShareable: card.isShareable
           );
         } else {
           model = null;
@@ -72,6 +75,7 @@ CardModel? _convertApiCardToCardModel(
           audioUrl: card.audioUrl,
           imageUrl: '$baseUrl${card.image?.url}',
           isBookmarkable: card.isBookmarkable,
+          isShareable: card.isShareable
         );
       }
     case 'doha':
@@ -85,6 +89,7 @@ CardModel? _convertApiCardToCardModel(
           audioUrl: card.audioUrl,
           imageUrl: '$baseUrl${card.image?.url}',
           isBookmarkable: card.isBookmarkable,
+          isShareable: card.isShareable
         );
       }
     default:

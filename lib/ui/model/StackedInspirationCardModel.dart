@@ -8,11 +8,12 @@ class StackedInspirationCardModel extends CardModel {
   StackedInspirationCardModel({
     required String id,
     required bool isBookmarkable,
+    required bool isShareable,
     this.header,
     this.text,
     this.imageUrl,
-  }) : super(id, isBookmarkable);
+  }) : super(id, isBookmarkable, isShareable);
 
   @override
-  List<Object?> get props => [id, header, text, imageUrl, isBookmarkable];
+  List<Object?> get props => [id, header, text, imageUrl, isBookmarkable, isShareable];
 }

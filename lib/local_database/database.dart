@@ -18,7 +18,6 @@ LazyDatabase _openConnection() {
       databaseFolder.path,
       'pariyatti_db.sqlite',
     ));
-
     return NativeDatabase(file);
   });
 }
@@ -31,7 +30,21 @@ class PariyattiDatabase extends _$PariyattiDatabase {
   PariyattiDatabase() : super(_openConnection());
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
+
+  @override
+  MigrationStrategy get migration {
+    return MigrationStrategy(
+      onCreate: (Migrator m) async {
+        await m.createAll();
+      },
+      onUpgrade: (Migrator m, int from, int to) async {
+        if (from < 2) {
+          await m.addColumn(cards, cards.citepali);
+        }
+      },
+    );
+  }
 
   Future<void> addToCache(String url, String response) {
     return into(networkCacheTable).insert(
