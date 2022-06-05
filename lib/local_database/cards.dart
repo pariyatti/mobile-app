@@ -5,6 +5,7 @@ class Cards extends Table {
   // Common
   TextColumn get id => text().named('id')();
   BoolColumn? get isBookmarkable => boolean().named('isBookmarkable')();
+  BoolColumn? get isShareable => boolean().named('isShareable')();
   TextColumn? get type => text().named('type')();
   TextColumn? get header => text().named('header').nullable()();
   DateTimeColumn? get createdAt => dateTime().named('createdAt')();
@@ -26,6 +27,7 @@ class Cards extends Table {
 
   // WordsOfBuddha
   TextColumn? get words => text().named('words').nullable()();
+  TextColumn? get citepali => text().named('citepali').nullable()();
 
   // Doha
   TextColumn? get doha => text().named('doha').nullable()();
