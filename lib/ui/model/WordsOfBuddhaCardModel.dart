@@ -11,6 +11,7 @@ class WordsOfBuddhaCardModel extends CardModel {
 
   WordsOfBuddhaCardModel({
     required String id,
+    required String url,
     required bool isBookmarkable,
     required bool isShareable,
     this.header,
@@ -19,8 +20,8 @@ class WordsOfBuddhaCardModel extends CardModel {
     this.translations,
     this.imageUrl,
     this.audioUrl
-  }) : super(id, isBookmarkable, isShareable);
+  }) : super(id, url, isBookmarkable, isShareable);
 
   @override
-  List<Object?> get props => [id, header, words, citepali, translations, imageUrl, audioUrl, isBookmarkable, isShareable];
+  List<Object?> get props => [id, url, header, words, citepali, translations, imageUrl, audioUrl, isBookmarkable, isShareable];
 }

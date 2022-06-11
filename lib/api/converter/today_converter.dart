@@ -28,6 +28,7 @@ CardModel? _convertApiCardToCardModel(
       {
         return StackedInspirationCardModel(
           id: card.id,
+          url: card.url,
           header: card.header,
           text: card.text,
           imageUrl: '$baseUrl${card.image?.url}',
@@ -39,6 +40,7 @@ CardModel? _convertApiCardToCardModel(
       {
         return OverlayInspirationCardModel(
             id: card.id,
+            url: card.url,
             header: card.header,
             text: card.text,
             imageUrl: '$baseUrl${card.image?.url}',
@@ -52,6 +54,7 @@ CardModel? _convertApiCardToCardModel(
         if (card.translations!.isNotEmpty) {
           model = PaliWordCardModel(
             id: card.id,
+            url: card.url,
             header: card.header,
             pali: card.pali,
             audioUrl: '$baseUrl${card.audio?.url}',
@@ -69,6 +72,7 @@ CardModel? _convertApiCardToCardModel(
         var translationMap = Map<String,String>.fromIterable(card.translations!, key: (e) => e.language, value: (e) => e.translation);
         return WordsOfBuddhaCardModel(
           id: card.id,
+          url: card.url,
           header: card.header,
           words: card.words,
           translations: Translations(translationMap),
@@ -83,6 +87,7 @@ CardModel? _convertApiCardToCardModel(
         var translationMap = Map<String,String>.fromIterable(card.translations!, key: (e) => e.language, value: (e) => e.translation);
         return DohaCardModel(
           id: card.id,
+          url: card.url,
           header: card.header,
           doha: card.doha,
           translations: Translations(translationMap),
