@@ -11,10 +11,15 @@ printf " └─local IP addr  is '%s'\n" "$LOCAL_IP"
 LOCAL_HOST=$(hostname)
 printf " └─local hostname is '%s'\n" "$LOCAL_HOST"
 
-IS_IOS=$(ioreg -p IOUSB -w0 | sed 's/[^o]*o //; s/@.*$//' | grep -v '^Root.*' | grep "iPhone")
-IS_ANDROID=$(ioreg -p IOUSB -w0 | sed 's/[^o]*o //; s/@.*$//' | grep -v '^Root.*' | grep "Android")
-printf " └─iOS?     = '%s'\n" "$IS_IOS"
-printf " └─Android? = '%s'\n" "$IS_ANDROID"
+# IS_IOS=$(ioreg -p IOUSB -l -w0 | sed 's/[^o]*o //; s/@.*$//' | grep -v '^Root.*' | grep -v '^\s.*' | grep "iPhone")
+IS_IOS=$(system_profiler SPUSBDataType 2>/dev/null | grep "iPhone")
+if [[ "$IS_IOS" == *"iPhone"* ]]; then IOS_DETECTED="yes"; else IOS_DETECTED="no"; fi
+printf " └─iOS?     = '%s'\n" "$IOS_DETECTED"
+
+# IS_ANDROID=$(ioreg -p IOUSB -w0 | sed 's/[^o]*o //; s/@.*$//' | grep -v '^Root.*' | grep -v '^\s.*' | grep "Android")
+IS_ANDROID=$(system_profiler SPUSBDataType 2>/dev/null | grep "Android")
+if [[ "$IS_ANDROID" == *"Android"* ]]; then ANDROID_DETECTED="yes"; else ANDROID_DETECTED="no"; fi
+printf " └─Android? = '%s'\n" "$ANDROID_DETECTED"
 
 # TODO: this should check for an attached iPhone in addition to the host OS
 if [ "$(uname)" == "Darwin" ] && [[ "$IS_IOS" == *"iPhone"* ]]; then
