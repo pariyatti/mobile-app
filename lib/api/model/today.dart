@@ -7,6 +7,9 @@ class ApiCard {
   @JsonKey(name: 'id', disallowNullValue: true, required: true)
   late final String id;
 
+  @JsonKey(name: 'url', disallowNullValue: true, required: true)
+  late final String url;
+
   @JsonKey(name: 'bookmarkable', disallowNullValue: true, required: true)
   late final bool isBookmarkable;
 

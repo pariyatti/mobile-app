@@ -8,15 +8,16 @@ class PaliWordCardModel extends CardModel {
 
   PaliWordCardModel({
     required String id,
+    required String url,
     required bool isBookmarkable,
     required bool isShareable,
     this.header,
     this.pali,
     this.audioUrl,
     this.translation,
-  }) : super(id, isBookmarkable, isShareable);
+  }) : super(id, url, isBookmarkable, isShareable);
 
   @override
   List<Object?> get props =>
-      [id, header, pali, audioUrl, translation, isBookmarkable, isShareable];
+      [id, url, header, pali, audioUrl, translation, isBookmarkable, isShareable];
 }

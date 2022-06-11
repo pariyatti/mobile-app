@@ -33,6 +33,7 @@ void main() {
       cardModels[0],
       PaliWordCardModel(
         id: '98955ba9-3819-4662-bd7c-6bff3d035d6e',
+        url: '$baseUrl/api/v1/pali-word/98955ba9-3819-4662-bd7c-6bff3d035d6e',
         isBookmarkable: true,
         isShareable: true,
         header: 'Pāli Word of the Day',
@@ -47,6 +48,7 @@ void main() {
       cardModels[1],
       StackedInspirationCardModel(
         id: 'b4285e6a-ea3c-4fc1-a7f4-4de3f1ed8ca4',
+        url: '$baseUrl/api/v1/stacked-inspiration/b4285e6a-ea3c-4fc1-a7f4-4de3f1ed8ca4',
         isBookmarkable: true,
         isShareable: true,
         header: 'Inspiration of the Day',
@@ -61,6 +63,7 @@ void main() {
       cardModels[2],
       OverlayInspirationCardModel(
         id: 'f9a2cc0f-915f-4a9a-a049-77bbb9be1fc7',
+        url: '$baseUrl/api/v1/overlay-inspiration/f9a2cc0f-915f-4a9a-a049-77bbb9be1fc7',
         isBookmarkable: true,
         isShareable: true,
         header: 'Inspiration of the Day',

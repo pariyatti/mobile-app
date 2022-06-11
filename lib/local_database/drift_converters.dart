@@ -16,6 +16,7 @@ DatabaseCard toDatabaseCard(
   if (cardModel is StackedInspirationCardModel) {
     return DatabaseCard(
       id: cardModel.id,
+      url: cardModel.url,
       isBookmarkable: cardModel.isBookmarkable,
       isShareable: cardModel.isShareable,
       type: 'stacked_inspiration',
@@ -27,6 +28,7 @@ DatabaseCard toDatabaseCard(
   } else if (cardModel is PaliWordCardModel) {
     return DatabaseCard(
       id: cardModel.id,
+      url: cardModel.url,
       isBookmarkable: cardModel.isBookmarkable,
       isShareable: cardModel.isShareable,
       type: 'pali_word',
@@ -39,6 +41,7 @@ DatabaseCard toDatabaseCard(
   } else if (cardModel is OverlayInspirationCardModel) {
     return DatabaseCard(
       id: cardModel.id,
+      url: cardModel.url,
       isBookmarkable: cardModel.isBookmarkable,
       isShareable: cardModel.isShareable,
       type: 'overlay_inspiration',
@@ -51,6 +54,7 @@ DatabaseCard toDatabaseCard(
   } else if (cardModel is WordsOfBuddhaCardModel) {
     return DatabaseCard(
       id: cardModel.id,
+      url: cardModel.url,
       isBookmarkable: cardModel.isBookmarkable,
       isShareable: cardModel.isShareable,
       type: 'words_of_buddha',
@@ -64,6 +68,7 @@ DatabaseCard toDatabaseCard(
   } else if (cardModel is DohaCardModel) {
     return DatabaseCard(
       id: cardModel.id,
+      url: cardModel.url,
       isBookmarkable: cardModel.isBookmarkable,
       isShareable: cardModel.isShareable,
       type: 'doha',
@@ -78,6 +83,7 @@ DatabaseCard toDatabaseCard(
     // TODO: Create an `EmptyDatabaseCard` sentinel value
     return DatabaseCard(
       id: "NULL",
+      url: "NULL",
       isBookmarkable: false,
       isShareable: false,
       type: "null",
@@ -96,6 +102,7 @@ CardModel? toCardModel(DatabaseCard databaseCard) {
       {
         return StackedInspirationCardModel(
           id: databaseCard.id,
+          url: databaseCard.url,
           isBookmarkable: databaseCard.isBookmarkable,
           isShareable: databaseCard.isShareable,
           header: databaseCard.header,
@@ -107,6 +114,7 @@ CardModel? toCardModel(DatabaseCard databaseCard) {
       {
         return PaliWordCardModel(
           id: databaseCard.id,
+          url: databaseCard.url,
           isBookmarkable: databaseCard.isBookmarkable,
           isShareable: databaseCard.isShareable,
           header: databaseCard.header,
@@ -119,6 +127,7 @@ CardModel? toCardModel(DatabaseCard databaseCard) {
       {
         return OverlayInspirationCardModel(
           id: databaseCard.id,
+          url: databaseCard.url,
           header: databaseCard.header,
           text: databaseCard.textData,
           isBookmarkable: databaseCard.isBookmarkable,
@@ -131,6 +140,7 @@ CardModel? toCardModel(DatabaseCard databaseCard) {
       {
         return WordsOfBuddhaCardModel(
           id: databaseCard.id,
+          url: databaseCard.url,
           header: databaseCard.header,
           isBookmarkable: databaseCard.isBookmarkable,
           isShareable: databaseCard.isShareable,
@@ -143,14 +153,15 @@ CardModel? toCardModel(DatabaseCard databaseCard) {
     case 'doha':
       {
         return DohaCardModel(
-            id: databaseCard.id,
-            header: databaseCard.header,
-            isBookmarkable: databaseCard.isBookmarkable,
-            isShareable: databaseCard.isShareable,
-            imageUrl: databaseCard.imageUrl,
-            audioUrl: databaseCard.audioUrl,
-            doha: databaseCard.doha,
-            translations: Translations.fromJson(jsonDecode(databaseCard.translations!))
+          id: databaseCard.id,
+          url: databaseCard.url,
+          header: databaseCard.header,
+          isBookmarkable: databaseCard.isBookmarkable,
+          isShareable: databaseCard.isShareable,
+          imageUrl: databaseCard.imageUrl,
+          audioUrl: databaseCard.audioUrl,
+          doha: databaseCard.doha,
+          translations: Translations.fromJson(jsonDecode(databaseCard.translations!))
         );
       }
     default:
