@@ -6,6 +6,9 @@ class Translations {
   Translations(this.translations);
 
   static Translations fromJson(Map<String, dynamic> json) {
+    // TODO: there really must be a sensible way to map over a collection of k/v
+    //       pairs and turn it into another map, which would allow `translations`
+    //       to be Map<Language, String> instead? -sd
     return Translations(Map<String,String>.from(json));
   }
 
