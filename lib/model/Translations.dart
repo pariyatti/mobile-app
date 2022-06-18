@@ -1,3 +1,5 @@
+import 'Language.dart';
+
 class Translations {
   final Map<String, String> translations;
 
@@ -12,7 +14,7 @@ class Translations {
   }
 
   String? operator[](String k) {
-    return translations[k];
+    return translations[k] ?? translations[Language.eng.code];
   }
 
   Map<String, String> toJson() {
