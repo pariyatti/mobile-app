@@ -12,8 +12,8 @@ LOCAL_HOST=$(hostname)
 printf " └─local hostname is '%s'\n" "$LOCAL_HOST"
 
 # IS_IOS=$(ioreg -p IOUSB -l -w0 | sed 's/[^o]*o //; s/@.*$//' | grep -v '^Root.*' | grep -v '^\s.*' | grep "iPhone")
-IS_IOS=$(system_profiler SPUSBDataType 2>/dev/null | grep "iPhone")
-if [[ "$IS_IOS" == *"iPhone"* ]]; then IOS_DETECTED="yes"; else IOS_DETECTED="no"; fi
+IS_IOS=$(system_profiler SPUSBDataType 2>/dev/null | grep -E ".*(iPod|iPhone|iPad).*")
+if [[ "$IS_IOS" == *"iP"* ]]; then IOS_DETECTED="yes"; else IOS_DETECTED="no"; fi
 printf " └─iOS?     = '%s'\n" "$IOS_DETECTED"
 
 # IS_ANDROID=$(ioreg -p IOUSB -w0 | sed 's/[^o]*o //; s/@.*$//' | grep -v '^Root.*' | grep -v '^\s.*' | grep "Android")
