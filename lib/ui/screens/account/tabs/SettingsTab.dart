@@ -49,6 +49,13 @@ class _SettingsTabState extends State<SettingsTab> {
                 ));
               },
             ),
+            SettingsTile.navigation(
+              // TODO: use PariyattiIcon
+              leading: Icon(Icons.language),
+              title: Text('Alternate'),
+              value: Text(Language.eng.name),
+              onPressed: _showToast
+            ),
             SettingsTile.switchTile(
               onToggle: (value) {},
               initialValue: false,
@@ -59,6 +66,16 @@ class _SettingsTabState extends State<SettingsTab> {
           ],
         ),
       ],
+    );
+  }
+
+  void _showToast(BuildContext context) {
+    final scaffold = ScaffoldMessenger.of(context);
+    scaffold.showSnackBar(
+      SnackBar(
+        content: const Text('Only English is available as an Alternate Language at this time.'),
+        action: SnackBarAction(label: 'OK', onPressed: scaffold.hideCurrentSnackBar),
+      ),
     );
   }
 }
