@@ -20,6 +20,8 @@ import 'package:patta/ui/model/StackedInspirationCardModel.dart';
 import 'package:patta/ui/model/WordsOfBuddhaCardModel.dart';
 import 'package:provider/provider.dart';
 
+import '../../model/NetworkErrorCardModel.dart';
+
 class TodayScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -30,6 +32,10 @@ class TodayScreen extends StatelessWidget {
         AsyncSnapshot<List<CardModel>> snapshot,
       ) {
         if (snapshot.hasData && snapshot.data != null) {
+          var firstCard = snapshot.data![0];
+          if (firstCard is NetworkErrorCardModel) {
+            return _buildError(new Exception(firstCard.errorMsg));
+          }
           return _buildCardsList(snapshot.data!, context);
         } else if (snapshot.hasError) {
           //  TODO: Log the error
@@ -90,7 +96,7 @@ class TodayScreen extends StatelessWidget {
     var errorMessage = AppStrings.get().errorMessageTryAgainLater
         + "\n\nError:\n"
         + error.toString()
-        + "\n\n"
+        + "\n\nException Details:\n"
         + exceptionToString(error);
     return Center(
       child: Column(
@@ -126,7 +132,7 @@ class TodayScreen extends StatelessWidget {
       + mrke.message;
       return s;
     } else {
-      return "uh oh..." + exception.toString();
+      return exception.toString();
     }
   }
 }

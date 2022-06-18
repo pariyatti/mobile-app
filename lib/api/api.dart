@@ -6,7 +6,11 @@ import 'package:patta/app/dio.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/ui/model/CardModel.dart';
 
+import '../ui/model/NetworkErrorCardModel.dart';
+
 class PariyattiApi {
+  final TODAY_URL = '/api/v1/today.json';
+
   String baseUrl;
   PariyattiDatabase _database;
   late Client _client;
@@ -20,12 +24,15 @@ class PariyattiApi {
   }
 
   Future<List<CardModel>> fetchToday() async {
-    final todayUrl = '/api/v1/today.json';
-
-    var response = await GetDio.getDio(baseURL: baseUrl).get(todayUrl);
-
-    log(response.data.toString(), level: 1, name: "json");
-
-    return today_converter.convertJsonToCardModels(response.data, baseUrl);
+    try {
+      var response = await GetDio.getDio(baseURL: baseUrl).get(TODAY_URL);
+      log(response.data.toString(), level: 1, name: "json");
+      return today_converter.convertJsonToCardModels(response.data, baseUrl);
+    } catch (se) {
+      // FIXME: This is really kind of a hack. I can't see an obvious way to convince FutureBuilder not to die
+      //        when the Future it's calculating throws an exception. The nice way to do this would be to set
+      //        snapshot.hasError somehow, but I'm not sure if that's possible. For now, the sentinel works. -sd
+      return [NetworkErrorCardModel.create("Could not reach Pariyatti server '$baseUrl'.")];
+    }
   }
 }
