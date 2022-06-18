@@ -80,8 +80,8 @@ If you suspect it is, try switching your Team profile to `{Your Name} (Personal 
 `Project Navigator > Runner > Signing & Capabilities > Team`, then running with ⌘R.
 
 ```
-Error (Xcode): No profiles for 'org.pariyatti' were found: Xcode couldn't find any iOS App Development provisioning profiles matching
-'org.pariyatti'. Automatic signing is disabled and unable to generate a profile. To enable automatic signing, pass
+Error (Xcode): No profiles for 'app.pariyatti' were found: Xcode couldn't find any iOS App Development provisioning profiles matching
+'app.pariyatti'. Automatic signing is disabled and unable to generate a profile. To enable automatic signing, pass
 -allowProvisioningUpdates to xcodebuild.
 ```
 
