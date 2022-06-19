@@ -1,5 +1,8 @@
 
 flutter_icons:
-  android: false
+  # Android icon modified at https://icon.kitchen/
+  android: "launcher_icon"
+  image_path_android: "assets/icon/play_store_512.png"
   ios: true
   image_path_ios: "assets/icon/icon.png"
+  remove_alpha_ios: true
