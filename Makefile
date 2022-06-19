@@ -27,6 +27,10 @@ init-clean: ##@Setup Remove Flutter packages
 init-flutter:  # Hidden@Setup Download Flutter deps, precompile
 	flutter pub get
 
+init-icons:
+	flutter pub get
+	flutter pub run flutter_launcher_icons:main
+
 init: init-flutter ##@Setup Default config + pub get
 	sudo gem install cocoapods
 
