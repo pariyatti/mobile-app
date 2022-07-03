@@ -55,7 +55,7 @@ workflows:
         --create
       - keychain add-certificates
       - xcode-project use-profiles
-      - flutter build ipa --export-options-plist=~/export_options.plist --dart-define=BUILD_ENV=$env
+      - flutter build ipa --export-options-plist=/Users/builder/export_options.plist --dart-define=BUILD_ENV=$env
         --build-name=1.0.$PROJECT_BUILD_NUMBER --build-number=$PROJECT_BUILD_NUMBER
     artifacts:
       - build/**/outputs/apk/**/*.apk
