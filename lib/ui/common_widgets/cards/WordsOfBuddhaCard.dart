@@ -28,7 +28,7 @@ class WordsOfBuddhaCard extends StatefulWidget {
 
 class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   final GlobalKey _renderKey = new GlobalKey();
-  bool _translationVisible = false;
+  bool _translationVisible = true;
   late Uri _audioUrl;
   Language _selectedLanguage = Language.eng;
   late bool loaded;

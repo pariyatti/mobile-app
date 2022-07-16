@@ -28,7 +28,7 @@ class DohaCard extends StatefulWidget {
 
 class _DohaCardState extends State<DohaCard> {
   final GlobalKey _renderKey = new GlobalKey();
-  bool _translationVisible = false;
+  bool _translationVisible = true;
   late Uri _audioUrl;
   Language _selectedLanguage = Language.eng;
   late bool loaded;
