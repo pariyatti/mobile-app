@@ -147,7 +147,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
         TextStyle(
             inherit: true,
             fontSize: 16.0,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.normal,
             color: Color(0xFF000000))
         )
     );
