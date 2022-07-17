@@ -9,15 +9,16 @@ class OverlayInspirationCardModel extends CardModel {
   OverlayInspirationCardModel({
     required String id,
     required String url,
+    required DateTime publishedAt,
     required bool isBookmarkable,
     required bool isShareable,
     this.textColor,
     this.header,
     this.text,
     this.imageUrl
-  }) : super(id, url, isBookmarkable, isShareable);
+  }) : super(id, url, publishedAt, isBookmarkable, isShareable);
 
   @override
   List<Object?> get props =>
-      [id, url, header, text, imageUrl, textColor, isBookmarkable, isShareable];
+      [id, url, publishedAt, header, text, imageUrl, textColor, isBookmarkable, isShareable];
 }

@@ -5,6 +5,7 @@ class Cards extends Table {
   // Common
   TextColumn get id => text().named('id')();
   TextColumn get url => text().named('url')();
+  DateTimeColumn get publishedAt => dateTime().named('publishedAt')();
   BoolColumn? get isBookmarkable => boolean().named('isBookmarkable')();
   BoolColumn? get isShareable => boolean().named('isShareable')();
   TextColumn? get type => text().named('type')();

@@ -10,6 +10,9 @@ class ApiCard {
   @JsonKey(name: 'url', disallowNullValue: true, required: true)
   late final String url;
 
+  @JsonKey(name: 'published_at', disallowNullValue: true, required: true)
+  late final DateTime publishedAt;
+
   @JsonKey(name: 'bookmarkable', disallowNullValue: true, required: true)
   late final bool isBookmarkable;
 
@@ -48,7 +51,10 @@ class ApiCard {
 
   ApiCard({
     required this.id,
+    required this.url,
+    required this.publishedAt,
     required this.isBookmarkable,
+    required this.isShareable,
     this.header,
     this.text,
     this.words,

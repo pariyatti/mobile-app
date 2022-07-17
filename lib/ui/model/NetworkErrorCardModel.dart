@@ -6,15 +6,16 @@ class NetworkErrorCardModel extends CardModel {
   NetworkErrorCardModel({
     required String id,
     required String url,
+    required DateTime publishedAt,
     required bool isBookmarkable,
     required bool isShareable,
     this.errorMsg
-  }) : super(id, url, isBookmarkable, isShareable);
+  }) : super(id, url, publishedAt, isBookmarkable, isShareable);
 
   @override
   List<Object?> get props => [id, url, isBookmarkable, isShareable, errorMsg];
 
   static NetworkErrorCardModel create(errorMsg) {
-    return NetworkErrorCardModel(id: "ERROR", url: "ERROR", isBookmarkable: false, isShareable: false, errorMsg: errorMsg);
+    return NetworkErrorCardModel(id: "ERROR", url: "ERROR", publishedAt: DateTime.now(), isBookmarkable: false, isShareable: false, errorMsg: errorMsg);
   }
 }

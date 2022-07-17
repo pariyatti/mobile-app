@@ -32,7 +32,8 @@ class PariyattiApi {
       // FIXME: This is really kind of a hack. I can't see an obvious way to convince FutureBuilder not to die
       //        when the Future it's calculating throws an exception. The nice way to do this would be to set
       //        snapshot.hasError somehow, but I'm not sure if that's possible. For now, the sentinel works. -sd
-      return [NetworkErrorCardModel.create("Could not reach Pariyatti server '$baseUrl'.")];
+      var seString = se.toString();
+      return [NetworkErrorCardModel.create("Could not reach Pariyatti server '$baseUrl': \n\n$seString")];
     }
   }
 }

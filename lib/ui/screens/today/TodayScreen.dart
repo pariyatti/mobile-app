@@ -5,6 +5,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:patta/api/api.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/resources/strings.dart';
+import 'package:patta/ui/common_widgets/cards/DateCard.dart';
 import 'package:patta/ui/common_widgets/cards/DohaCard.dart';
 import 'package:patta/ui/common_widgets/cards/EmptyCard.dart';
 import 'package:patta/ui/common_widgets/cards/OverlayInspirationCard.dart';
@@ -13,6 +14,7 @@ import 'package:patta/ui/common_widgets/cards/StackedInspirationCard.dart';
 import 'package:patta/ui/common_widgets/cards/WordsOfBuddhaCard.dart';
 import 'package:patta/ui/common_widgets/pariyatti_icons.dart';
 import 'package:patta/ui/model/CardModel.dart';
+import 'package:patta/ui/model/DateCardModel.dart';
 import 'package:patta/ui/model/DohaCardModel.dart';
 import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
 import 'package:patta/ui/model/PaliWordCardModel.dart';
@@ -36,7 +38,8 @@ class TodayScreen extends StatelessWidget {
           if (firstCard is NetworkErrorCardModel) {
             return _buildError(new Exception(firstCard.errorMsg));
           }
-          return _buildCardsList(TodayFeed.from(snapshot.data!).filter(), context);
+          var feed = TodayFeed.from(snapshot.data!).filter().tagDates();
+          return _buildCardsList(feed, context);
         } else if (snapshot.hasError) {
           //  TODO: Log the error
           log("Data from snapshot: ${snapshot.data.toString()}");
@@ -59,7 +62,12 @@ class TodayScreen extends StatelessWidget {
       itemCount: feed.length,
       itemBuilder: (context, index) {
         final card = feed.get(index);
-        if (card is StackedInspirationCardModel) {
+        if (card is DateCardModel) {
+          return DateCard(
+            card,
+            Provider.of<PariyattiDatabase>(context),
+          );
+        } else if (card is StackedInspirationCardModel) {
           return StackedInspirationCard(
             card,
             Provider.of<PariyattiDatabase>(context),

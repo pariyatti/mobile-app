@@ -34,6 +34,7 @@ void main() {
       PaliWordCardModel(
         id: '98955ba9-3819-4662-bd7c-6bff3d035d6e',
         url: '$baseUrl/api/v1/today/pali-words/98955ba9-3819-4662-bd7c-6bff3d035d6e.json',
+        publishedAt: DateTime.parse("2020-04-27T07:08:34.000Z"),
         isBookmarkable: true,
         isShareable: true,
         header: 'Pāli Word of the Day',
@@ -49,6 +50,7 @@ void main() {
       StackedInspirationCardModel(
         id: 'b4285e6a-ea3c-4fc1-a7f4-4de3f1ed8ca4',
         url: '$baseUrl/api/v1/today/stacked-inspirations/b4285e6a-ea3c-4fc1-a7f4-4de3f1ed8ca4.json',
+        publishedAt: DateTime.parse("2020-04-27T07:07:44.000Z"),
         isBookmarkable: true,
         isShareable: true,
         header: 'Inspiration of the Day',
@@ -64,6 +66,7 @@ void main() {
       OverlayInspirationCardModel(
         id: 'f9a2cc0f-915f-4a9a-a049-77bbb9be1fc7',
         url: '$baseUrl/api/v1/today/overlay-inspirations/f9a2cc0f-915f-4a9a-a049-77bbb9be1fc7.json',
+        publishedAt: DateTime.parse("2020-05-02T21:27:41.000Z"),
         isBookmarkable: true,
         isShareable: true,
         header: 'Inspiration of the Day',
