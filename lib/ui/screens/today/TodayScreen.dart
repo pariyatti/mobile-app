@@ -19,8 +19,8 @@ import 'package:patta/ui/model/PaliWordCardModel.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
 import 'package:patta/ui/model/WordsOfBuddhaCardModel.dart';
 import 'package:provider/provider.dart';
-
 import '../../model/NetworkErrorCardModel.dart';
+import '../../model/TodayFeed.dart';
 
 class TodayScreen extends StatelessWidget {
   @override
@@ -36,7 +36,7 @@ class TodayScreen extends StatelessWidget {
           if (firstCard is NetworkErrorCardModel) {
             return _buildError(new Exception(firstCard.errorMsg));
           }
-          return _buildCardsList(snapshot.data!, context);
+          return _buildCardsList(TodayFeed.from(snapshot.data!).filter(), context);
         } else if (snapshot.hasError) {
           //  TODO: Log the error
           log("Data from snapshot: ${snapshot.data.toString()}");
@@ -54,11 +54,11 @@ class TodayScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildCardsList(List<CardModel> data, BuildContext context) {
+  Widget _buildCardsList(TodayFeed feed, BuildContext context) {
     return ListView.builder(
-      itemCount: data.length,
+      itemCount: feed.length,
       itemBuilder: (context, index) {
-        final card = data[index];
+        final card = feed.get(index);
         if (card is StackedInspirationCardModel) {
           return StackedInspirationCard(
             card,

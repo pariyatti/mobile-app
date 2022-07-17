@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patta/model/Language.dart';
+import 'package:patta/ui/screens/account/FeedsScreen.dart';
 import 'package:patta/ui/screens/account/LanguagesScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:settings_ui/settings_ui.dart';
@@ -55,6 +56,17 @@ class _SettingsTabState extends State<SettingsTab> {
               title: Text('Alternate'),
               value: Text(Language.eng.name),
               onPressed: _showToast
+            ),
+            SettingsTile.navigation(
+              // TODO: use PariyattiIcon
+              leading: Icon(Icons.feed),
+              title: Text('Feeds'),
+              value: Text(''),
+              onPressed: (context) {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => FeedsScreen(),
+                ));
+              },
             ),
             SettingsTile.switchTile(
               onToggle: (value) {},

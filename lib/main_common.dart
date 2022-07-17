@@ -9,16 +9,19 @@ import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/screens/HomeScreen.dart';
 import 'package:provider/provider.dart';
 
+import 'app/preferences.dart';
+
 Future<void> mainCommon(Environment environment) async {
   // Always call this if the main method is asynchronous
   WidgetsFlutterBinding.ensureInitialized();
-
 
   final configReader = ConfigReader.fromConfigString(
     await rootBundle.loadString('config/app_config.json'),
   );
 
   await Future.wait([setupAppCache()]);
+
+  await Preferences.init();
 
   runApp(PariyattiApp(environment, configReader));
 }
