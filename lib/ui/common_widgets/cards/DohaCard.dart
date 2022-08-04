@@ -11,6 +11,7 @@ import 'package:patta/ui/common_widgets/audio_button.dart';
 import 'package:patta/ui/common_widgets/bookmark_button.dart';
 import 'package:patta/ui/common_widgets/share_button.dart';
 import 'package:patta/ui/model/DohaCardModel.dart';
+import 'package:patta/ui/style.dart';
 import 'package:patta/util.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -132,24 +133,10 @@ class _DohaCardState extends State<DohaCard> {
 
   buildOverlayWords() {
     var pali = Text(widget.data.doha ?? "<words field was empty>",
-      // TODO: what is the correct font, here?
-      style: GoogleFonts.getFont('Noto Serif', textStyle:
-      TextStyle(
-        inherit: true,
-        fontSize: 20.0,
-        fontWeight: FontWeight.normal,
-        color: Color(0xFF000000))
-      ),
+      style: serifFont()
     );
     var eng = Text(widget.data.translations![_selectedLanguage.code] ?? "<translation was empty>",
-        // TODO: what is the correct font, here?
-        style: GoogleFonts.getFont('Noto Serif', textStyle:
-        TextStyle(
-            inherit: true,
-            fontSize: 16.0,
-            fontWeight: FontWeight.normal,
-            color: Color(0xFF000000))
-        )
+        style: serifFont()
     );
     return RepaintBoundary(
       key: _renderKey,

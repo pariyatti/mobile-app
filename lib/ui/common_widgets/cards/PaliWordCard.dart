@@ -5,6 +5,7 @@ import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/common_widgets/bookmark_button.dart';
 import 'package:patta/ui/common_widgets/share_button.dart';
 import 'package:patta/ui/model/PaliWordCardModel.dart';
+import 'package:patta/ui/style.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
 
 class PaliWordCard extends StatelessWidget {
@@ -74,11 +75,7 @@ class PaliWordCard extends StatelessWidget {
                       ),
                       child: Text(
                         data.pali ?? "<pali text was empty>",
-                        style: TextStyle(
-                          inherit: true,
-                          fontSize: 18.0,
-                          color: Color(0xff000000),
-                        ),
+                        style: sanSerifFont(fontSize: 18.0, color: Color(0xff000000))
                       ),
                     ),
                     Container(height: 12.0),
@@ -89,22 +86,14 @@ class PaliWordCard extends StatelessWidget {
                       ),
                       child: Text(
                         AppStrings.get().labelTranslation,
-                        style: TextStyle(
-                          inherit: true,
-                          fontSize: 14.0,
-                          color: Color(0xff999999),
-                        ),
+                        style: sanSerifFont(fontSize: 14.0, color: Color(0xff999999))
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(12.0, 0.0, 12.0, 12.0),
                       child: Text(
                         data.translation ?? "<translation was empty>",
-                        style: TextStyle(
-                          inherit: true,
-                          fontSize: 18.0,
-                          color: Color(0xff000000),
-                        ),
+                        style: sanSerifFont(fontSize: 18.0, color: Color(0xff000000))
                       ),
                     ),
                     Container(
