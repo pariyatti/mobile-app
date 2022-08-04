@@ -133,25 +133,10 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
 
   buildOverlayWords() {
     var pali = Text(widget.data.words ?? "<words field was empty>",
-      // TODO: what is the correct font, here?
-      style:
-        TextStyle(
-          inherit: true,
-          fontSize: 20.0,
-          fontWeight: FontWeight.normal,
-          fontFamily: "Georgia",
-          color: Color(0xFF000000))
-
+      style: serifFont()
     );
     var eng = Text(widget.data.translations![_selectedLanguage.code] ?? "<translation was empty>",
-        // TODO: what is the correct font, here?
-        style: GoogleFonts.getFont('Noto Serif', textStyle:
-        TextStyle(
-            inherit: true,
-            fontSize: 16.0,
-            fontWeight: FontWeight.normal,
-            color: Color(0xFF000000))
-        )
+        style: serifFont()
     );
     return RepaintBoundary(
       key: _renderKey,
