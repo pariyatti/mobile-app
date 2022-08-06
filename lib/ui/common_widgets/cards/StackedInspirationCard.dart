@@ -139,14 +139,7 @@ class _StackedInspirationCardState extends State<StackedInspirationCard> {
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         widget.data.text ?? "<text was empty>",
-                        style: GoogleFonts.getFont('Noto Serif', textStyle:
-                        TextStyle(
-                            inherit: true,
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.normal,
-                            fontStyle: FontStyle.italic,
-                            color: Color(0xFF000000))
-                        ),
+                        style: serifFont(textStyle: TextStyle(fontStyle: FontStyle.italic, fontSize: 21.0))
                       ),
                     ),
                     buildButtonFooter(),
