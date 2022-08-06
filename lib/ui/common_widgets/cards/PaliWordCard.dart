@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/common_widgets/bookmark_button.dart';
+import 'package:patta/ui/common_widgets/card_header.dart';
 import 'package:patta/ui/common_widgets/share_button.dart';
 import 'package:patta/ui/model/PaliWordCardModel.dart';
 import 'package:patta/ui/style.dart';
@@ -55,19 +56,7 @@ class PaliWordCard extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12.0,
-                        vertical: 12.0,
-                      ),
-                      child: Text(
-                        data.header!.toUpperCase(),
-                        style: TextStyle(
-                            inherit: true,
-                            fontSize: 14.0,
-                            color: Color(0xff999999)),
-                      ),
-                    ),
+                    CardHeader(data.header ?? "Pāli Word"),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 12.0,

@@ -9,12 +9,12 @@ import 'package:patta/model/Language.dart';
 import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/common_widgets/audio_button.dart';
 import 'package:patta/ui/common_widgets/bookmark_button.dart';
+import 'package:patta/ui/common_widgets/card_header.dart';
 import 'package:patta/ui/common_widgets/share_button.dart';
 import 'package:patta/ui/model/DohaCardModel.dart';
 import 'package:patta/ui/style.dart';
 import 'package:patta/util.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DohaCard extends StatefulWidget {
@@ -115,20 +115,7 @@ class _DohaCardState extends State<DohaCard> {
   }
 
   Padding buildHeader() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 12.0,
-        vertical: 12.0,
-      ),
-      child: Text(
-        widget.data.header?.toUpperCase() ?? "<header was empty>",
-        style: TextStyle(
-          inherit: true,
-          fontSize: 14.0,
-          color: Color(0xff999999),
-        ),
-      ),
-    );
+    return CardHeader(widget.data.header ?? "Dhamma Verse");
   }
 
   buildOverlayWords() {

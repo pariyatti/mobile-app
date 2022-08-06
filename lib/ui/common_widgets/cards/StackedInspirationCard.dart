@@ -5,13 +5,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/common_widgets/bookmark_button.dart';
+import 'package:patta/ui/common_widgets/card_header.dart';
 import 'package:patta/ui/common_widgets/pariyatti_icons.dart';
 import 'package:patta/ui/common_widgets/share_button.dart';
 import 'package:patta/ui/model/StackedInspirationCardModel.dart';
+import 'package:patta/ui/style.dart';
 import 'package:patta/util.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
 
@@ -80,20 +81,7 @@ class _StackedInspirationCardState extends State<StackedInspirationCard> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12.0,
-                        vertical: 12.0,
-                      ),
-                      child: Text(
-                        widget.data.header?.toUpperCase() ?? "<header was empty>",
-                        style: TextStyle(
-                          inherit: true,
-                          fontSize: 14.0,
-                          color: Color(0xff999999),
-                        ),
-                      ),
-                    ),
+                    CardHeader(widget.data.header ?? "Inspiration"),
                     RepaintBoundary(
                       key: _renderKey,
                       child: CachedNetworkImage(

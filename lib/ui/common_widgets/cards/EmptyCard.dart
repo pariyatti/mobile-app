@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/ui/common_widgets/bookmark_button.dart';
+import 'package:patta/ui/common_widgets/card_header.dart';
 import 'package:patta/ui/common_widgets/share_button.dart';
 import 'package:patta/ui/model/CardModel.dart';
 
@@ -68,20 +69,7 @@ class _EmptyCardState extends State<EmptyCard> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12.0,
-                  vertical: 12.0,
-                ),
-                child: Text(
-                  "<empty card was empty>",
-                  style: TextStyle(
-                    inherit: true,
-                    fontSize: 14.0,
-                    color: Color(0xff999999),
-                  ),
-                ),
-              ),
+              CardHeader("Empty Card"),
               RepaintBoundary(
                 key: _renderKey,
                 child: Stack(

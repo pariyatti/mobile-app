@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/ui/model/DateCardModel.dart';
+import 'package:patta/ui/style.dart';
 
 class DateCard extends StatefulWidget {
   final DateCardModel data;
@@ -32,11 +33,7 @@ class _DateCardState extends State<DateCard> {
             ),
             child: Text(
               widget.data.humanDate.toUpperCase() ?? "<date was empty>",
-              style: TextStyle(
-                inherit: true,
-                fontSize: 14.0,
-                color: Color(0xff999999),
-              ),
+              style: sanSerifFont(fontSize: 14.0, color: Color(0xff999999))
             ),
           )
         )
