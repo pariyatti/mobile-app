@@ -1,7 +1,7 @@
 import 'package:flutter/painting.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-sanSerifFont({fontSize, Color? color, TextStyle? textStyle}) {
+sanSerifFont({double? fontSize, Color? color, TextStyle? textStyle}) {
   return GoogleFonts.getFont('Inter', textStyle: TextStyle(
       inherit: true,
       fontSize: fontSize ?? 18.0,
