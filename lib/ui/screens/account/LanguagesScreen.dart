@@ -51,6 +51,7 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
       ),
       body: SettingsList(
         lightTheme: AppThemes.version1SettingsThemeData,
+        darkTheme: AppThemes.darkSettingsThemeData,
         sections: [
           SettingsSection(tiles: tiles),
         ],

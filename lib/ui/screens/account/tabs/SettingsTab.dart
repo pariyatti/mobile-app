@@ -40,6 +40,7 @@ class _SettingsTabState extends State<SettingsTab> {
     // example: https://github.com/yako-dev/flutter-settings-ui/blob/master/example/lib/screens/settings_screen.dart
     return SettingsList(
       lightTheme: AppThemes.version1SettingsThemeData,
+      darkTheme: AppThemes.darkSettingsThemeData,
       sections: [
         SettingsSection(
           // title: Text('Common'),
