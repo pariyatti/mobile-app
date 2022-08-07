@@ -35,4 +35,41 @@ class AppThemes {
     inactiveSubtitleColor: version1ColorScheme.inverseSurface
   );
 
+  static final darkColorScheme = ColorScheme(
+      brightness: Brightness.dark,
+      inversePrimary: const Color(0xffBA5626),
+      inverseSurface: const Color(0xffd6d6d6),
+      primary: const Color(0xff8f7140), // ok
+      onPrimary: const Color(0xffeae9e7), // ok
+      secondary: const Color(0xff8f7140), // ok
+      onSecondary: const Color(0xffc1b196), // ok  c1b196 / 89857d
+      surface: const Color(0xff524025), // ok
+      onSurface: const Color(0xffcbc7be), // ok
+      background: const Color(0xff292112), // ok
+      onBackground: const Color(0xff908573), // ok
+      error: const Color(0xffBA5626), // ok
+      onError: const Color(0xfff4efe7) // ok
+  );
+
+  static final dark = ThemeData(colorScheme: darkColorScheme);
+
+  static final darkSettingsThemeData = SettingsThemeData(
+      trailingTextColor: darkColorScheme.onBackground,
+      settingsSectionBackground: darkColorScheme.surface,
+      settingsListBackground: darkColorScheme.background,
+      dividerColor: darkColorScheme.background,
+      tileHighlightColor: darkColorScheme.inverseSurface,
+      titleTextColor: darkColorScheme.onBackground,
+      leadingIconsColor: darkColorScheme.onSecondary,
+      tileDescriptionTextColor: darkColorScheme.onBackground,
+      settingsTileTextColor: darkColorScheme.onPrimary,
+      inactiveTitleColor: darkColorScheme.inverseSurface,
+      inactiveSubtitleColor: darkColorScheme.inverseSurface
+  );
+
+  static Image quoteBackground(BuildContext context) {
+    return MediaQuery.of(context).platformBrightness == Brightness.light
+        ? Image.asset("assets/images/quote-bg-light-700px.png", fit: BoxFit.fitWidth)
+        : Image.asset("assets/images/quote-bg-dark-brown-700px.png", fit: BoxFit.fitWidth);
+  }
 }

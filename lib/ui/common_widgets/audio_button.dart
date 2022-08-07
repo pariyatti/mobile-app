@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:patta/ui/common_widgets/pariyatti_icons.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:patta/ui/themes/app_themes.dart';
 
 class AudioButton extends StatefulWidget {
   final Uri? audioUrl;
@@ -65,19 +66,19 @@ class _AudioButtonState extends State<AudioButton> {
             } else if (playing != true) {
               return MaterialButton(
                 padding: EdgeInsets.zero,
-                child: Icon(PariyattiIcons.get(IconName.play), color: Color(0xff6d695f)),
+                child: Icon(PariyattiIcons.get(IconName.play), color: Theme.of(context).colorScheme.onSecondary),
                 onPressed: _player.play,
               );
             } else if (processingState != ProcessingState.completed) {
               return MaterialButton(
                 padding: EdgeInsets.zero,
-                child: Icon(PariyattiIcons.get(IconName.pause), color: Color(0xff6d695f)),
+                child: Icon(PariyattiIcons.get(IconName.pause), color: Theme.of(context).colorScheme.onSecondary),
                 onPressed: _player.pause,
               );
             } else {
               return MaterialButton(
                 padding: EdgeInsets.zero,
-                child: Icon(PariyattiIcons.get(IconName.play), color: Color(0xff6d695f)),
+                child: Icon(PariyattiIcons.get(IconName.play), color: Theme.of(context).colorScheme.onSecondary),
                 onPressed: play,
               );
             }

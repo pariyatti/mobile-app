@@ -80,7 +80,7 @@ class _OverlayInspirationCardState extends State<OverlayInspirationCard> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              buildHeader(),
+              CardHeader(context, widget.data.header ?? "Inspiration"),
               buildOverlayWords(),
               buildButtonFooter(),
             ],
@@ -88,10 +88,6 @@ class _OverlayInspirationCardState extends State<OverlayInspirationCard> {
         ),
       ),
     );
-  }
-
-  Padding buildHeader() {
-    return CardHeader(widget.data.header ?? "Inspiration");
   }
 
   RepaintBoundary buildOverlayWords() {

@@ -69,7 +69,7 @@ class _EmptyCardState extends State<EmptyCard> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              CardHeader("Empty Card"),
+              CardHeader(context, "Empty Card"),
               RepaintBoundary(
                 key: _renderKey,
                 child: Stack(

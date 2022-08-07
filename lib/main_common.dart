@@ -71,6 +71,10 @@ class PariyattiApp extends StatelessWidget {
           colorScheme: AppThemes.version1ColorScheme,
           textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme)
         ),
+        darkTheme: ThemeData(
+            colorScheme: AppThemes.darkColorScheme,
+            textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme)
+        ),
         home: HomeScreen(),
         debugShowCheckedModeBanner: !(_environment is ProductionEnvironment),
       ),

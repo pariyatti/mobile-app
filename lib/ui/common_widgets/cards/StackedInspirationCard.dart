@@ -63,6 +63,7 @@ class _StackedInspirationCardState extends State<StackedInspirationCard> {
               horizontal: 12.0,
             ),
             child: Card(
+              color: Theme.of(context).colorScheme.surface,
               elevation: 2.0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(
@@ -81,7 +82,7 @@ class _StackedInspirationCardState extends State<StackedInspirationCard> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    CardHeader(widget.data.header ?? "Inspiration"),
+                    CardHeader(context, widget.data.header ?? "Inspiration"),
                     RepaintBoundary(
                       key: _renderKey,
                       child: CachedNetworkImage(
@@ -103,7 +104,7 @@ class _StackedInspirationCardState extends State<StackedInspirationCard> {
                           child: Center(
                             child: Icon(
                               PariyattiIcons.get(IconName.error),
-                              color: Color(0xff6d695f),
+                              color: Theme.of(context).colorScheme.error,
                             ),
                           ),
                         ),
@@ -124,10 +125,10 @@ class _StackedInspirationCardState extends State<StackedInspirationCard> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(12.0),
                       child: Text(
                         widget.data.text ?? "<text was empty>",
-                        style: serifFont(textStyle: TextStyle(fontStyle: FontStyle.italic, fontSize: 21.0))
+                        style: serifFont(context: context, textStyle: TextStyle(fontStyle: FontStyle.italic, fontSize: 21.0))
                       ),
                     ),
                     buildButtonFooter(),
@@ -143,7 +144,7 @@ class _StackedInspirationCardState extends State<StackedInspirationCard> {
 
   Container buildButtonFooter() {
     return Container(
-      color: Color(0xffdcd3c0),
+      color: Theme.of(context).colorScheme.secondary,
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [

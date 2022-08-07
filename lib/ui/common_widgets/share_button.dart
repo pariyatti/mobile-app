@@ -13,7 +13,7 @@ class ShareButton extends StatelessWidget {
         padding: EdgeInsets.zero,
         child: Icon(
           PariyattiIcons.get(IconName.share),
-          color: Color(0xff6d695f),
+          color: Theme.of(context).colorScheme.onSecondary,
         ),
         onPressed: this.onPressed,
       ),
