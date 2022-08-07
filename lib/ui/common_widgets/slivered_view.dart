@@ -22,7 +22,7 @@ class SliveredView extends StatelessWidget {
         headerSliverBuilder: (_, __) {
           return [
             SliverAppBar(
-              backgroundColor: Theme.of(context).colorScheme.background, // Color(0xfff4efe7), // 0xfff4efe7 // 0xff8899efe7
+              backgroundColor: Theme.of(context).colorScheme.background,
               expandedHeight: 58,
               flexibleSpace: FlexibleSpaceBar(
                 title: Text(title, style: TextStyle(

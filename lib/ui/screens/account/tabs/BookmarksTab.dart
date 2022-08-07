@@ -28,9 +28,9 @@ class BookmarksTab extends StatelessWidget {
         AsyncSnapshot<List<DatabaseCard>> snapshot,
       ) {
         if (snapshot.hasData && snapshot.data != null) {
-          return _buildCardsList(snapshot.data!, database);
+          return _buildCardsList(context, snapshot.data!, database);
         } else if (snapshot.hasError) {
-          return _buildError();
+          return _buildError(context);
         } else {
           return _buildLoadingIndicator();
         }
@@ -44,7 +44,7 @@ class BookmarksTab extends StatelessWidget {
     );
   }
 
-  Widget _buildError() {
+  Widget _buildError(BuildContext context) {
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -54,14 +54,14 @@ class BookmarksTab extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Icon(
               PariyattiIcons.get(IconName.error),
-              color: Color(0xff6d695f),
+              color: Theme.of(context).colorScheme.error,
             ),
           ),
           Text(
             AppStrings.get().errorMessageTryAgainLater,
             style: TextStyle(
               inherit: true,
-              color: Color(0xff6d695f),
+              color: Theme.of(context).colorScheme.onSecondary,
               fontSize: 16.0,
             ),
           )
@@ -70,7 +70,7 @@ class BookmarksTab extends StatelessWidget {
     );
   }
 
-  Widget _buildCardsList(List<DatabaseCard> data, PariyattiDatabase database) {
+  Widget _buildCardsList(BuildContext context, List<DatabaseCard> data, PariyattiDatabase database) {
     final cardModels = data
         .map((dbCard) => drift_converters.toCardModel(dbCard))
         .where((card) => (card != null))
@@ -81,7 +81,7 @@ class BookmarksTab extends StatelessWidget {
           AppStrings.get().messageNothingBookmarked,
           style: TextStyle(
             inherit: true,
-            color: Color(0xff6d695f),
+            color: Theme.of(context).colorScheme.onBackground,
             fontSize: 16.0,
           ),
         ),
