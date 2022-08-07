@@ -149,7 +149,7 @@ Promotion:
 
 To add a new "Today" card, there is quite a bit of duplication. Please see:
 
-* `lib/ui/model/*CardModel.dart`
+* `lib/model/*CardModel.dart`
 * `lib/ui/common_widgets/cards/*Card.dart`
 * `lib/ui/screens/today/TodayScreen.dart          -> _buildCardsList()`
 * `lib/ui/screens/account/tabs/BookmarksTab.dart  -> _buildCardsList()`

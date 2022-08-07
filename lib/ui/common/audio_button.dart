@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:patta/ui/common_widgets/pariyatti_icons.dart';
+import 'package:patta/ui/common/pariyatti_icons.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:patta/ui/themes/app_themes.dart';
 
 class AudioButton extends StatefulWidget {
   final Uri? audioUrl;

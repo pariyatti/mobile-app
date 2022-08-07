@@ -3,9 +3,9 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:patta/api/converter/today_converter.dart' as today_converter;
-import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
-import 'package:patta/ui/model/PaliWordCardModel.dart';
-import 'package:patta/ui/model/StackedInspirationCardModel.dart';
+import 'package:patta/model/OverlayInspirationCardModel.dart';
+import 'package:patta/model/PaliWordCardModel.dart';
+import 'package:patta/model/StackedInspirationCardModel.dart';
 
 void main() {
   test('Test whether sample today api is parsed correctly or not', () {

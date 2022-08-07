@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:patta/ui/model/DateCardModel.dart';
-import 'package:patta/ui/model/DohaCardModel.dart';
-import 'package:patta/ui/model/PaliWordCardModel.dart';
-import 'package:patta/ui/model/TodayFeed.dart';
+import 'package:patta/model/DateCardModel.dart';
+import 'package:patta/model/DohaCardModel.dart';
+import 'package:patta/model/PaliWordCardModel.dart';
+import 'package:patta/model/TodayFeed.dart';
 
 void main() {
   test('insert date cards between different days', () {

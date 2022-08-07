@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:patta/resources/strings.dart';
-import 'package:patta/ui/screens/account/tabs/BookmarksTab.dart';
-import 'package:patta/ui/screens/account/tabs/SettingsTab.dart';
+import 'package:patta/app/strings.dart';
+import 'package:patta/ui/screens/account/BookmarksTab.dart';
+import 'package:patta/ui/screens/account/SettingsTab.dart';
 
 class AccountScreen extends StatelessWidget {
 

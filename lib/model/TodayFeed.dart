@@ -1,8 +1,8 @@
-import 'package:patta/ui/model/CardModel.dart';
-import 'package:patta/ui/model/DateCardModel.dart';
+import 'package:patta/model/CardModel.dart';
+import 'package:patta/model/DateCardModel.dart';
 
-import '../../app/preferences.dart';
-import '../../model/Feed.dart';
+import 'package:patta/app/preferences.dart';
+import 'Feed.dart';
 import 'DohaCardModel.dart';
 import 'OverlayInspirationCardModel.dart';
 import 'PaliWordCardModel.dart';

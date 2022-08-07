@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:patta/ui/themes/app_themes.dart';
+import 'package:patta/app/app_themes.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../model/Feed.dart';

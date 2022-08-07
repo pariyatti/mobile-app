@@ -6,9 +6,9 @@ import 'package:patta/api/api.dart';
 import 'package:patta/app/global.dart';
 import 'package:patta/config_reader.dart';
 import 'package:patta/local_database/database.dart';
-import 'package:patta/resources/strings.dart';
+import 'package:patta/app/strings.dart';
 import 'package:patta/ui/screens/HomeScreen.dart';
-import 'package:patta/ui/themes/app_themes.dart';
+import 'package:patta/app/app_themes.dart';
 import 'package:provider/provider.dart';
 
 import 'app/preferences.dart';

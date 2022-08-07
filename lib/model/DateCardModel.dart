@@ -1,6 +1,6 @@
 import 'package:patta/model/HumanDate.dart';
 
-import 'CardModel.dart';
+import 'package:patta/model/CardModel.dart';
 
 class DateCardModel extends CardModel {
 

@@ -1,10 +1,10 @@
 import 'package:patta/api/model/today.dart';
-import 'package:patta/ui/model/CardModel.dart';
-import 'package:patta/ui/model/DohaCardModel.dart';
-import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
-import 'package:patta/ui/model/PaliWordCardModel.dart';
-import 'package:patta/ui/model/StackedInspirationCardModel.dart';
-import 'package:patta/ui/model/WordsOfBuddhaCardModel.dart';
+import 'package:patta/model/CardModel.dart';
+import 'package:patta/model/DohaCardModel.dart';
+import 'package:patta/model/OverlayInspirationCardModel.dart';
+import 'package:patta/model/PaliWordCardModel.dart';
+import 'package:patta/model/StackedInspirationCardModel.dart';
+import 'package:patta/model/WordsOfBuddhaCardModel.dart';
 import 'package:patta/model/Translations.dart';
 
 List<CardModel> convertJsonToCardModels(Iterable response, String baseUrl) {

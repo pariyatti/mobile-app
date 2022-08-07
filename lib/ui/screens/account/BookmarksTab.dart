@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/local_database/drift_converters.dart' as drift_converters;
-import 'package:patta/resources/strings.dart';
-import 'package:patta/ui/common_widgets/cards/DohaCard.dart';
-import 'package:patta/ui/common_widgets/cards/EmptyCard.dart';
-import 'package:patta/ui/common_widgets/cards/OverlayInspirationCard.dart';
-import 'package:patta/ui/common_widgets/cards/PaliWordCard.dart';
-import 'package:patta/ui/common_widgets/cards/StackedInspirationCard.dart';
-import 'package:patta/ui/common_widgets/cards/WordsOfBuddhaCard.dart';
-import 'package:patta/ui/common_widgets/pariyatti_icons.dart';
-import 'package:patta/ui/model/DohaCardModel.dart';
-import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
-import 'package:patta/ui/model/PaliWordCardModel.dart';
-import 'package:patta/ui/model/StackedInspirationCardModel.dart';
-import 'package:patta/ui/model/WordsOfBuddhaCardModel.dart';
+import 'package:patta/app/strings.dart';
+import 'package:patta/ui/common/pariyatti_icons.dart';
+import 'package:patta/model/DohaCardModel.dart';
+import 'package:patta/model/OverlayInspirationCardModel.dart';
+import 'package:patta/model/PaliWordCardModel.dart';
+import 'package:patta/model/StackedInspirationCardModel.dart';
+import 'package:patta/model/WordsOfBuddhaCardModel.dart';
+import 'package:patta/ui/widgets/cards/DohaCard.dart';
+import 'package:patta/ui/widgets/cards/EmptyCard.dart';
+import 'package:patta/ui/widgets/cards/OverlayInspirationCard.dart';
+import 'package:patta/ui/widgets/cards/PaliWordCard.dart';
+import 'package:patta/ui/widgets/cards/StackedInspirationCard.dart';
+import 'package:patta/ui/widgets/cards/WordsOfBuddhaCard.dart';
 import 'package:provider/provider.dart';
 
 class BookmarksTab extends StatelessWidget {

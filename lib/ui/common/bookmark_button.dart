@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/local_database/drift_converters.dart' as drift_converters;
-import 'package:patta/ui/common_widgets/pariyatti_icons.dart';
-import 'package:patta/ui/model/CardModel.dart';
+import 'package:patta/ui/common/pariyatti_icons.dart';
+import 'package:patta/model/CardModel.dart';
 
 class BookmarkButton extends StatelessWidget {
   final CardModel data;

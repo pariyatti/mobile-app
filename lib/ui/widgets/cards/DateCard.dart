@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:patta/local_database/database.dart';
-import 'package:patta/ui/model/DateCardModel.dart';
-import 'package:patta/ui/style.dart';
+import 'package:patta/model/DateCardModel.dart';
+import 'package:patta/app/style.dart';
 
 class DateCard extends StatefulWidget {
   final DateCardModel data;

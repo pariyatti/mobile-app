@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:patta/resources/strings.dart';
-import 'package:patta/ui/common_widgets/pariyatti_icons.dart';
-import 'package:patta/ui/common_widgets/slivered_view.dart';
+import 'package:patta/app/strings.dart';
+import 'package:patta/ui/common/pariyatti_icons.dart';
+import 'package:patta/ui/common/slivered_view.dart';
 import 'package:patta/ui/screens/account/AccountScreen.dart';
 import 'package:patta/ui/screens/today/TodayScreen.dart';
 

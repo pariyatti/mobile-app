@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:patta/model/Language.dart';
 import 'package:patta/ui/screens/account/FeedsScreen.dart';
 import 'package:patta/ui/screens/account/LanguagesScreen.dart';
-import 'package:patta/ui/themes/app_themes.dart';
+import 'package:patta/app/app_themes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:settings_ui/settings_ui.dart';
 

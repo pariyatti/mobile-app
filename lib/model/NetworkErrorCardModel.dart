@@ -1,4 +1,4 @@
-import 'package:patta/ui/model/CardModel.dart';
+import 'package:patta/model/CardModel.dart';
 
 class NetworkErrorCardModel extends CardModel {
   final String? errorMsg;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:patta/ui/themes/app_themes.dart';
+import 'package:patta/app/app_themes.dart';
 
 getColor(BuildContext? context) {
   return context == null ? AppThemes.contextFreeDefault : Theme.of(context).colorScheme.onSurface;

@@ -6,29 +6,29 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/model/Language.dart';
-import 'package:patta/resources/strings.dart';
-import 'package:patta/ui/common_widgets/audio_button.dart';
-import 'package:patta/ui/common_widgets/bookmark_button.dart';
-import 'package:patta/ui/common_widgets/card_header.dart';
-import 'package:patta/ui/common_widgets/share_button.dart';
-import 'package:patta/ui/model/WordsOfBuddhaCardModel.dart';
-import 'package:patta/ui/style.dart';
-import 'package:patta/ui/themes/app_themes.dart';
+import 'package:patta/app/strings.dart';
+import 'package:patta/ui/common/audio_button.dart';
+import 'package:patta/ui/common/bookmark_button.dart';
+import 'package:patta/ui/common/card_header.dart';
+import 'package:patta/ui/common/share_button.dart';
+import 'package:patta/model/DohaCardModel.dart';
+import 'package:patta/app/style.dart';
+import 'package:patta/app/app_themes.dart';
 import 'package:patta/util.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class WordsOfBuddhaCard extends StatefulWidget {
-  final WordsOfBuddhaCardModel data;
+class DohaCard extends StatefulWidget {
+  final DohaCardModel data;
   final PariyattiDatabase database;
 
-  WordsOfBuddhaCard(this.data, this.database, {Key? key}) : super(key: key);
+  DohaCard(this.data, this.database, {Key? key}) : super(key: key);
 
   @override
-  _WordsOfBuddhaCardState createState() => _WordsOfBuddhaCardState();
+  _DohaCardState createState() => _DohaCardState();
 }
 
-class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
+class _DohaCardState extends State<DohaCard> {
   final GlobalKey _renderKey = new GlobalKey();
   bool _translationVisible = true;
   late Uri _audioUrl;
@@ -103,7 +103,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    CardHeader(context, widget.data.header ?? "Words of the Buddha"),
+                    CardHeader(context, widget.data.header ?? "Dhamma Verse"),
                     buildOverlayWords(),
                     buildButtonFooter(),
                   ],
@@ -117,7 +117,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   }
 
   buildOverlayWords() {
-    var pali = Text(widget.data.words ?? "<words field was empty>",
+    var pali = Text(widget.data.doha ?? "<words field was empty>",
       style: serifFont(context: context)
     );
     var eng = Text(widget.data.translations![_selectedLanguage.code] ?? "<translation was empty>",
@@ -202,8 +202,8 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
         mimeType: 'image/$extension',
         fileName: '$filename.$extension',
         bytesOfFile: imageData,
-        text: widget.data.words,
-        );
+        text: widget.data.doha,
+      );
     } : null);
   }
 

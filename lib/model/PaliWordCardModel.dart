@@ -1,4 +1,4 @@
-import 'package:patta/ui/model/CardModel.dart';
+import 'package:patta/model/CardModel.dart';
 
 class PaliWordCardModel extends CardModel {
   final String? header;

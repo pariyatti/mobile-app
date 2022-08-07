@@ -4,9 +4,9 @@ import 'package:http/http.dart';
 import 'package:patta/api/converter/today_converter.dart' as today_converter;
 import 'package:patta/app/dio.dart';
 import 'package:patta/local_database/database.dart';
-import 'package:patta/ui/model/CardModel.dart';
+import 'package:patta/model/CardModel.dart';
 
-import '../ui/model/NetworkErrorCardModel.dart';
+import '../model/NetworkErrorCardModel.dart';
 
 class PariyattiApi {
   final TODAY_URL = '/api/v1/today.json';

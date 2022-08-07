@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:patta/local_database/database.dart';
-import 'package:patta/ui/common_widgets/bookmark_button.dart';
-import 'package:patta/ui/common_widgets/card_header.dart';
-import 'package:patta/ui/common_widgets/share_button.dart';
-import 'package:patta/ui/model/CardModel.dart';
+import 'package:patta/ui/common/bookmark_button.dart';
+import 'package:patta/ui/common/card_header.dart';
+import 'package:patta/ui/common/share_button.dart';
+import 'package:patta/model/CardModel.dart';
 
 class EmptyCard extends StatefulWidget {
   final CardModel data;
