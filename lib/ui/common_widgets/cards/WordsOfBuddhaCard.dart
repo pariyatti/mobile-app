@@ -13,6 +13,7 @@ import 'package:patta/ui/common_widgets/card_header.dart';
 import 'package:patta/ui/common_widgets/share_button.dart';
 import 'package:patta/ui/model/WordsOfBuddhaCardModel.dart';
 import 'package:patta/ui/style.dart';
+import 'package:patta/ui/themes/app_themes.dart';
 import 'package:patta/util.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -83,6 +84,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
               horizontal: 12.0,
             ),
             child: Card(
+              color: Theme.of(context).colorScheme.surface,
               elevation: 2.0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(
@@ -101,7 +103,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    buildHeader(),
+                    CardHeader(context, widget.data.header ?? "Words of the Buddha"),
                     buildOverlayWords(),
                     buildButtonFooter(),
                   ],
@@ -114,16 +116,12 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
     );
   }
 
-  Padding buildHeader() {
-    return CardHeader(widget.data.header ?? "Words of the Buddha");
-  }
-
   buildOverlayWords() {
     var pali = Text(widget.data.words ?? "<words field was empty>",
-      style: serifFont()
+      style: serifFont(context: context)
     );
     var eng = Text(widget.data.translations![_selectedLanguage.code] ?? "<translation was empty>",
-        style: serifFont()
+        style: serifFont(context: context)
     );
     return RepaintBoundary(
       key: _renderKey,
@@ -136,7 +134,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
             right: 0,
             child: Container(
               child: Align(alignment: Alignment.bottomRight,
-                child: Image.asset("assets/images/quote-bg-light-700px.png", fit: BoxFit.fitWidth)
+                child: AppThemes.quoteBackground(context)
               )
             )
           ),
@@ -178,7 +176,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
 
   Container buildButtonFooter() {
     return Container(
-      color: Color(0xffdcd3c0),
+      color: Theme.of(context).colorScheme.secondary,
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [

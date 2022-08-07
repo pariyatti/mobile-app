@@ -33,7 +33,7 @@ class _DateCardState extends State<DateCard> {
             ),
             child: Text(
               widget.data.humanDate.toUpperCase() ?? "<date was empty>",
-              style: sanSerifFont(fontSize: 14.0, color: Color(0xff999999))
+              style: sanSerifFont(context: context, fontSize: 14.0, color: Theme.of(context).colorScheme.onBackground)
             ),
           )
         )

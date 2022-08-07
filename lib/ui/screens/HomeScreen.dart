@@ -40,31 +40,32 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     return Scaffold(
-      backgroundColor: Color(0xfff4efe7),
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: bodyWidget,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: bottomNavigationBarIndex,
-        fixedColor: Color.fromARGB(255, 186, 86, 38),
+        backgroundColor: Theme.of(context).colorScheme.background,
+        fixedColor: Theme.of(context).colorScheme.inversePrimary,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
               PariyattiIcons.get(IconName.today),
-              color: Color(0xff6d695f),
+              color: Theme.of(context).colorScheme.onPrimary,
             ),
             activeIcon: Icon(
               PariyattiIcons.get(IconName.today),
-              color: Color.fromARGB(255, 186, 86, 38),
+              color: Theme.of(context).colorScheme.inversePrimary,
             ),
             label: AppStrings.get().labelToday
           ),
           BottomNavigationBarItem(
             icon: Icon(
               PariyattiIcons.get(IconName.person),
-              color: Color(0xff6d695f),
+              color: Theme.of(context).colorScheme.onPrimary,
             ),
             activeIcon: Icon(
               PariyattiIcons.get(IconName.person),
-              color: Color.fromARGB(255, 186, 86, 38),
+              color: Theme.of(context).colorScheme.inversePrimary,
             ),
             label: AppStrings.get().labelAccount
           )

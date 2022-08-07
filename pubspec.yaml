@@ -68,7 +68,8 @@ flutter:
     - config/
     - assets/icon/icon.png
     - assets/images/
-    - assets/images/quote-bg-dark-700px.png
+    - assets/images/quote-bg-dark-black-700px.png
+    - assets/images/quote-bg-dark-brown-700px.png
     - assets/images/quote-bg-light-700px.png
 
   # An image asset can refer to one or more resolution-specific "variants", see

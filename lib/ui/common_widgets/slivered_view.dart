@@ -18,15 +18,17 @@ class SliveredView extends StatelessWidget {
         return false;
       },
       child:
-
       NestedScrollView(
         headerSliverBuilder: (_, __) {
           return [
             SliverAppBar(
-              backgroundColor: Color(0xfff4efe7), // 0xfff4efe7 // 0xff8899efe7
+              backgroundColor: Theme.of(context).colorScheme.background, // Color(0xfff4efe7), // 0xfff4efe7 // 0xff8899efe7
               expandedHeight: 58,
               flexibleSpace: FlexibleSpaceBar(
-                title: Text(title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800, color: Color(0xff000000))),
+                title: Text(title, style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w800,
+                    color: Theme.of(context).colorScheme.onPrimary)),
                 centerTitle: false,
                 titlePadding:
                 EdgeInsets.fromLTRB(16, 0, 0, 0), // EdgeInsetsDirectional.only(start: 24, bottom: 0)
