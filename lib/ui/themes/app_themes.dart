@@ -38,7 +38,7 @@ class AppThemes {
   static final darkColorScheme = ColorScheme(
       brightness: Brightness.dark,
       inversePrimary: const Color(0xffBA5626),
-      inverseSurface: const Color(0xffd6d6d6),
+      inverseSurface: const Color(0xff8f7140),
       primary: const Color(0xff8f7140), // ok
       onPrimary: const Color(0xffeae9e7), // ok
       secondary: const Color(0xff8f7140), // ok

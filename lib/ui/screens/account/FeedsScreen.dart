@@ -51,6 +51,7 @@ class _FeedsScreenState extends State<FeedsScreen> {
       ),
       body: SettingsList(
         lightTheme: AppThemes.version1SettingsThemeData,
+        darkTheme: AppThemes.darkSettingsThemeData,
         sections: [
           SettingsSection(tiles: tiles),
         ],
