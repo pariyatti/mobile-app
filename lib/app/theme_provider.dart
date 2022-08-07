@@ -7,4 +7,9 @@ class ThemeProvider extends ChangeNotifier {
     themeMode = mode;
     notifyListeners();
   }
+
+  void setThemeByString(String? mode) {
+    var themes = {"ThemeMode.light": ThemeMode.light, "ThemeMode.dark": ThemeMode.dark, "ThemeMode.system": ThemeMode.system};
+    setTheme(themes[mode]!);
+  }
 }

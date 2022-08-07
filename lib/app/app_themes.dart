@@ -5,6 +5,8 @@ import 'package:settings_ui/settings_ui.dart';
 
 class AppThemes {
 
+  static const SETTINGS_KEY = "APP_THEME";
+
   static final version1ColorScheme = ColorScheme(
     brightness: Brightness.light,
     inversePrimary: const Color(0xffBA5626),

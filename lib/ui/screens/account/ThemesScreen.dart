@@ -3,13 +3,41 @@ import 'package:patta/app/app_themes.dart';
 import 'package:patta/app/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:settings_ui/settings_ui.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class ThemesScreen extends StatelessWidget {
+
+class ThemesScreen extends StatefulWidget {
+  @override
+  _ThemesScreenState createState() => _ThemesScreenState();
+}
+
+class _ThemesScreenState extends State<ThemesScreen> {
+  late ThemeProvider themeProvider;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadTheme();
+  }
+
+  void _loadTheme() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      themeProvider.setThemeByString(prefs.getString(AppThemes.SETTINGS_KEY));
+    });
+  }
+
+  void _setLanguage(ThemeMode newValue) async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      themeProvider.setTheme(newValue);
+      prefs.setString(AppThemes.SETTINGS_KEY, newValue.toString());
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context, listen:false);
-
+    themeProvider = Provider.of<ThemeProvider>(context, listen:false);
     return Scaffold(
       appBar: AppBar(
           title: Text('Theme'),
@@ -34,7 +62,7 @@ class ThemesScreen extends StatelessWidget {
     return SettingsTile(
         title: Text(title),
         trailing: trailingWidget(context, themeProvider, mode),
-        onPressed: (BuildContext context) { themeProvider.setTheme(mode); }
+        onPressed: (BuildContext context) { _setLanguage(mode); }
     );
   }
 
