@@ -93,7 +93,7 @@ class _EmptyCardState extends State<EmptyCard> {
                         child: Center(
                           child: Icon(
                             Icons.error,
-                            color: Color(0xff6d695f),
+                            color: Theme.of(context).colorScheme.error,
                           ),
                         ),
                       ),
@@ -119,7 +119,7 @@ class _EmptyCardState extends State<EmptyCard> {
                                   fontSize: 20.0,
                                   fontWeight: FontWeight.bold,
                                   fontFamily: 'Serif',
-                                  color: Color(0xFFFFFFFF)),
+                                  color: Theme.of(context).colorScheme.surface),
                             ),
                           ),
                         ),
@@ -129,7 +129,7 @@ class _EmptyCardState extends State<EmptyCard> {
                 ),
               ),
               Container(
-                color: Color(0xffdcd3c0),
+                color: Theme.of(context).colorScheme.secondary,
                 child: Row(mainAxisSize: MainAxisSize.max, children: [
                   Visibility(
                     child: BookmarkButton(widget.data, widget.database),

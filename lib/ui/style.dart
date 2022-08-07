@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:patta/ui/themes/app_themes.dart';
 
 getColor(BuildContext? context) {
-  return context == null ? Color(0xFF000000) : Theme.of(context).colorScheme.onSurface;
+  return context == null ? AppThemes.contextFreeDefault : Theme.of(context).colorScheme.onSurface;
 }
 
 sanSerifFont({BuildContext? context, double? fontSize, Color? color, TextStyle? textStyle}) {
@@ -19,5 +20,5 @@ serifFont({BuildContext? context, TextStyle? textStyle}) {
       fontSize: textStyle?.fontSize ?? 18.0,
       fontWeight: FontWeight.normal,
       fontStyle: textStyle?.fontStyle ?? FontStyle.normal,
-      color: getColor(context))); // Color(0xFF000000)
+      color: getColor(context)));
 }

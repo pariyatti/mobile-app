@@ -47,7 +47,7 @@ class _FeedsScreenState extends State<FeedsScreen> {
     return Scaffold(
       appBar: AppBar(
           title: Text('Feeds'),
-          backgroundColor: Color(0xffdcd3c0)
+          backgroundColor: Theme.of(context).colorScheme.secondary
       ),
       body: SettingsList(
         lightTheme: AppThemes.version1SettingsThemeData,

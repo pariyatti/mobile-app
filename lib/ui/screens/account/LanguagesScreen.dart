@@ -47,7 +47,7 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
     return Scaffold(
       appBar: AppBar(
           title: Text('Languages'),
-          backgroundColor: Color(0xffdcd3c0)
+          backgroundColor: Theme.of(context).colorScheme.secondary
       ),
       body: SettingsList(
         lightTheme: AppThemes.version1SettingsThemeData,
