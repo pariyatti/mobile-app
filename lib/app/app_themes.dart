@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:patta/app/theme_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:settings_ui/settings_ui.dart';
 
 class AppThemes {
@@ -68,7 +70,8 @@ class AppThemes {
   );
 
   static Image quoteBackground(BuildContext context) {
-    return MediaQuery.of(context).platformBrightness == Brightness.light
+    var themeProvider = Provider.of<ThemeProvider>(context, listen: true);
+    return themeProvider.themeMode == ThemeMode.light
         ? Image.asset("assets/images/quote-bg-light-700px.png", fit: BoxFit.fitWidth)
         : Image.asset("assets/images/quote-bg-dark-brown-700px.png", fit: BoxFit.fitWidth);
   }
@@ -78,5 +81,9 @@ class AppThemes {
   static Color overlayText(String? hex) {
     var i = int.tryParse(hex?.replaceFirst('#', '0xFF') ?? "0xFFFFFFFF");
     return Color(i ?? 0xFFFFFFFF);
+  }
+
+  static checkIcon(BuildContext context) {
+    return Icon(Icons.check, color: Theme.of(context).colorScheme.inversePrimary);
   }
 }

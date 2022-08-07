@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:patta/Environment.dart';
 import 'package:patta/api/api.dart';
 import 'package:patta/app/global.dart';
+import 'package:patta/app/theme_provider.dart';
 import 'package:patta/config_reader.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/app/strings.dart';
@@ -63,21 +64,27 @@ class PariyattiApp extends StatelessWidget {
           ) =>
               PariyattiApi(environment.kosaBaseUrl, database),
         ),
+        ChangeNotifierProvider<ThemeProvider>(
+          create: (context) => ThemeProvider(),
+        ),
       ],
-      child: MaterialApp(
-        title: AppStrings.get().appName,
-        themeMode: ThemeMode.system,
-        theme: ThemeData(
-          colorScheme: AppThemes.version1ColorScheme,
-          textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme)
-        ),
-        darkTheme: ThemeData(
-            colorScheme: AppThemes.darkColorScheme,
-            textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme)
-        ),
-        home: HomeScreen(),
-        debugShowCheckedModeBanner: !(_environment is ProductionEnvironment),
-      ),
+      builder: (context, _) {
+        final themeProvider = Provider.of<ThemeProvider>(context, listen: true);
+        return MaterialApp(
+          title: AppStrings.get().appName,
+          themeMode: themeProvider.themeMode,
+          theme: ThemeData(
+              colorScheme: AppThemes.version1ColorScheme,
+              textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme)
+          ),
+          darkTheme: ThemeData(
+              colorScheme: AppThemes.darkColorScheme,
+              textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme)
+          ),
+          home: HomeScreen(),
+          debugShowCheckedModeBanner: !(_environment is ProductionEnvironment),
+        );
+      }
     );
   }
 }

@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:patta/app/app_themes.dart';
@@ -67,9 +66,6 @@ class _FeedsScreenState extends State<FeedsScreen> {
   }
 
   Widget trailingWidget(bool enabled) {
-    // TODO: centralize colours for light / dark mode
-    return enabled
-        ? Icon(Icons.check, color: Color.fromARGB(255, 186, 86, 38))
-        : Icon(null);
+    return enabled ? AppThemes.checkIcon(context) : Icon(null);
   }
 }

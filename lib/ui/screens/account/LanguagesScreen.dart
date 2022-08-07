@@ -60,9 +60,6 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
   }
 
   Widget trailingWidget(Language l) {
-    // TODO: centralize colours for light / dark mode
-    return (selectedLanguage == l)
-        ? Icon(Icons.check, color: Color.fromARGB(255, 186, 86, 38))
-        : Icon(null);
+    return (selectedLanguage == l) ? AppThemes.checkIcon(context) : Icon(null);
   }
 }
