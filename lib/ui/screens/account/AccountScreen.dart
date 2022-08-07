@@ -21,6 +21,7 @@ class AccountScreen extends StatelessWidget {
                     Tab(text: AppStrings.get().labelBookmarks),
                     Tab(text: AppStrings.get().labelSettings)
                   ],
+                  labelColor: Color(0xff6d695f),
                   indicatorColor: Color(0xff6d695f),
                 ),
               ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:patta/model/Language.dart';
 import 'package:patta/ui/screens/account/FeedsScreen.dart';
 import 'package:patta/ui/screens/account/LanguagesScreen.dart';
+import 'package:patta/ui/themes/app_themes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:settings_ui/settings_ui.dart';
 
@@ -24,9 +25,12 @@ class _SettingsTabState extends State<SettingsTab> {
   void _loadLanguage() async {
     // TODO: use 'Preferences' to remove duplication between this and WordsOfBuddhaCard.dart
     final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      selectedLanguage = Language.from(prefs.getString(Language.SETTINGS_KEY));
-    });
+    if (mounted) {
+      setState(() {
+        selectedLanguage =
+            Language.from(prefs.getString(Language.SETTINGS_KEY));
+      });
+    }
   }
 
   @override
@@ -35,6 +39,7 @@ class _SettingsTabState extends State<SettingsTab> {
 
     // example: https://github.com/yako-dev/flutter-settings-ui/blob/master/example/lib/screens/settings_screen.dart
     return SettingsList(
+      lightTheme: AppThemes.version1SettingsThemeData,
       sections: [
         SettingsSection(
           // title: Text('Common'),

@@ -26,7 +26,7 @@ class SliveredView extends StatelessWidget {
               backgroundColor: Color(0xfff4efe7), // 0xfff4efe7 // 0xff8899efe7
               expandedHeight: 58,
               flexibleSpace: FlexibleSpaceBar(
-                title: Text(title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800)),
+                title: Text(title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800, color: Color(0xff000000))),
                 centerTitle: false,
                 titlePadding:
                 EdgeInsets.fromLTRB(16, 0, 0, 0), // EdgeInsetsDirectional.only(start: 24, bottom: 0)
