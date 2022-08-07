@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:patta/ui/themes/app_themes.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../model/Feed.dart';
@@ -46,9 +47,10 @@ class _FeedsScreenState extends State<FeedsScreen> {
     return Scaffold(
       appBar: AppBar(
           title: Text('Feeds'),
-          backgroundColor: Color(0xff6d695f)
+          backgroundColor: Color(0xffdcd3c0)
       ),
       body: SettingsList(
+        lightTheme: AppThemes.version1SettingsThemeData,
         sections: [
           SettingsSection(tiles: tiles),
         ],

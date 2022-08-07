@@ -60,7 +60,7 @@ class _AudioButtonState extends State<AudioButton> {
                   margin: EdgeInsets.zero,
                   width: 16.0,
                   height: 16.0,
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator(color: Color.fromARGB(255, 186, 86, 38)),
               ));
             } else if (playing != true) {
               return MaterialButton(

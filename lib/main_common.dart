@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:patta/Environment.dart';
 import 'package:patta/api/api.dart';
 import 'package:patta/app/global.dart';
@@ -7,6 +8,7 @@ import 'package:patta/config_reader.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/resources/strings.dart';
 import 'package:patta/ui/screens/HomeScreen.dart';
+import 'package:patta/ui/themes/app_themes.dart';
 import 'package:provider/provider.dart';
 
 import 'app/preferences.dart';
@@ -64,9 +66,10 @@ class PariyattiApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: AppStrings.get().appName,
+        themeMode: ThemeMode.system,
         theme: ThemeData(
-          primaryColor: Color(0xffdcd3c0),
-          accentColor: Color(0xff6d695f),
+          colorScheme: AppThemes.version1ColorScheme,
+          textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme)
         ),
         home: HomeScreen(),
         debugShowCheckedModeBanner: !(_environment is ProductionEnvironment),
