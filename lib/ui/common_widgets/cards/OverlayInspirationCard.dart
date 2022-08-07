@@ -12,6 +12,7 @@ import 'package:patta/ui/common_widgets/card_header.dart';
 import 'package:patta/ui/common_widgets/pariyatti_icons.dart';
 import 'package:patta/ui/common_widgets/share_button.dart';
 import 'package:patta/ui/model/OverlayInspirationCardModel.dart';
+import 'package:patta/ui/themes/app_themes.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
 
 import 'package:patta/util.dart';
@@ -114,7 +115,7 @@ class _OverlayInspirationCardState extends State<OverlayInspirationCard> {
                       child: Center(
                         child: Icon(
                           PariyattiIcons.get(IconName.error),
-                          color: Color(0xff6d695f),
+                          color: Theme.of(context).colorScheme.error,
                         ),
                       ),
                     ),
@@ -140,11 +141,7 @@ class _OverlayInspirationCardState extends State<OverlayInspirationCard> {
                                 fontSize: 20.0,
                                 fontWeight: FontWeight.bold,
                                 fontFamily: 'Serif',
-                                color: Color(int.tryParse(widget
-                                        .data.textColor
-                                        ?.replaceFirst('#', '0xFF')
-                                        ?? "0xFFFFFFFF") ??
-                                    0xFFFFFFFF)),
+                                color: AppThemes.overlayText(widget.data.textColor)),
                           ),
                         ),
                       ),
@@ -157,7 +154,7 @@ class _OverlayInspirationCardState extends State<OverlayInspirationCard> {
 
   Container buildButtonFooter() {
     return Container(
-      color: Color(0xffdcd3c0),
+      color: Theme.of(context).colorScheme.secondary,
       child: Row(mainAxisSize: MainAxisSize.max, children: [
         Visibility(
           child: BookmarkButton(widget.data, widget.database),

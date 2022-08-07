@@ -72,4 +72,11 @@ class AppThemes {
         ? Image.asset("assets/images/quote-bg-light-700px.png", fit: BoxFit.fitWidth)
         : Image.asset("assets/images/quote-bg-dark-brown-700px.png", fit: BoxFit.fitWidth);
   }
+
+  static Color contextFreeDefault = const Color(0xff8f7140);
+
+  static Color overlayText(String? hex) {
+    var i = int.tryParse(hex?.replaceFirst('#', '0xFF') ?? "0xFFFFFFFF");
+    return Color(i ?? 0xFFFFFFFF);
+  }
 }
