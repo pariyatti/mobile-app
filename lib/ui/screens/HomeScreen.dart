@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:patta/app/app_themes.dart';
 import 'package:patta/app/strings.dart';
-import 'package:patta/app/theme_provider.dart';
 import 'package:patta/ui/common/pariyatti_icons.dart';
 import 'package:patta/ui/common/slivered_view.dart';
 import 'package:patta/ui/screens/account/AccountScreen.dart';
 import 'package:patta/ui/screens/today/TodayScreen.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 enum HomeScreenTab { TODAY, ACCOUNT }
 
@@ -19,16 +15,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   HomeScreenTab _tab = HomeScreenTab.TODAY;
 
-  void initTheme() async {
-    var themeProvider = Provider.of<ThemeProvider>(context, listen:false);
-    final prefs = await SharedPreferences.getInstance();
-    final themeStr = prefs.getString(AppThemes.SETTINGS_KEY) ?? ThemeMode.system.toString();
-    themeProvider.setThemeByString(themeStr);
-  }
-
   @override
   Widget build(BuildContext context) {
-    initTheme();
     int bottomNavigationBarIndex;
     String titleText;
     Widget bodyWidget;
