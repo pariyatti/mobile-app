@@ -9,6 +9,13 @@ class ThemeProvider extends ChangeNotifier {
     init();
   }
 
+  bool isLight(BuildContext context) {
+    if (themeMode == ThemeMode.system) {
+      return Theme.of(context).brightness == Brightness.light;
+    }
+    return themeMode == ThemeMode.light;
+  }
+
   Future<void> init() async {
     final prefs = await SharedPreferences.getInstance();
     final themeStr = prefs.getString(AppThemes.SETTINGS_KEY) ?? ThemeMode.system.toString();
