@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:dio/dio.dart';
 import 'package:http/http.dart';
 import 'package:patta/api/converter/today_converter.dart' as today_converter;
 import 'package:patta/app/dio.dart';
@@ -28,6 +29,19 @@ class PariyattiApi {
       var response = await GetDio.getDio(baseURL: baseUrl).get(TODAY_URL);
       log(response.data.toString(), level: 1, name: "json");
       return today_converter.convertJsonToCardModels(response.data, baseUrl);
+    } on DioError catch (e) {
+      if (e.response != null) {
+        print(e.response!.data);
+        print(e.response!.headers);
+        print(e.response!.requestOptions);
+      } else {
+        // Something happened in setting up or sending the request that triggered an Error
+        print("Request options: ${e.requestOptions}");
+        print("DioError Type: ${e.type}");
+        print("DioError Message: ${e.message}");
+      }
+      var eString = e.toString();
+      return [NetworkErrorCardModel.create("Could not reach Pariyatti server '$baseUrl': \n\n$eString")];
     } catch (se) {
       // FIXME: This is really kind of a hack. I can't see an obvious way to convince FutureBuilder not to die
       //        when the Future it's calculating throws an exception. The nice way to do this would be to set
