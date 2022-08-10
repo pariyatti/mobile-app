@@ -117,12 +117,6 @@ class _DohaCardState extends State<DohaCard> {
   }
 
   buildOverlayWords() {
-    var pali = Text(widget.data.doha ?? "<words field was empty>",
-      style: serifFont(context: context)
-    );
-    var eng = Text(widget.data.translations![_selectedLanguage.code] ?? "<translation was empty>",
-        style: serifFont(context: context)
-    );
     return RepaintBoundary(
       key: _renderKey,
       child: Stack(
@@ -152,7 +146,7 @@ class _DohaCardState extends State<DohaCard> {
                           _translationVisible = !_translationVisible;
                         });
                       },
-                      child: pali,
+                      child: getPaliText(),
                     ),
                   ),
                 ),
@@ -163,7 +157,7 @@ class _DohaCardState extends State<DohaCard> {
                   visible: _translationVisible,
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
-                    child: eng,
+                    child: getTranslationText(),
                   ),
                 ),
               ),
@@ -173,6 +167,12 @@ class _DohaCardState extends State<DohaCard> {
       ),
     );
   }
+
+  Text getTranslationText() => Text(getTranslation(), style: serifFont(context: context));
+  String getTranslation() => widget.data.translations![_selectedLanguage.code] ?? "<translation was empty>";
+
+  Text getPaliText() => Text(getPali(), style: serifFont(context: context));
+  String getPali() => widget.data.doha ?? "<words field was empty>";
 
   Container buildButtonFooter() {
     return Container(
@@ -201,8 +201,9 @@ class _DohaCardState extends State<DohaCard> {
         sharePopupTitle: AppStrings.get().labelShareInspiration,
         mimeType: 'image/$extension',
         fileName: '$filename.$extension',
-        bytesOfFile: imageData,
-        text: widget.data.doha,
+        bytesOfFile: imageData
+        // // if we exclude this, everything tries to share the images instead:
+        // ,text: getPali() + "\n\n" + getTranslation()
       );
     } : null);
   }
