@@ -74,8 +74,8 @@ class AppThemes {
   static Image quoteBackground(BuildContext context) {
     var themeProvider = Provider.of<ThemeProvider>(context, listen: true);
     return themeProvider.isLight(context)
-        ? Image.asset("assets/images/quote-bg-light-700px.png", fit: BoxFit.fitWidth)
-        : Image.asset("assets/images/quote-bg-dark-brown-700px.png", fit: BoxFit.fitWidth);
+        ? Image.asset("assets/images/quote-bg-light-700x1400.png", fit: BoxFit.fitWidth)
+        : Image.asset("assets/images/quote-bg-dark-brown-700x1400.png", fit: BoxFit.fitWidth);
   }
 
   static Color contextFreeDefault = const Color(0xff8f7140);
