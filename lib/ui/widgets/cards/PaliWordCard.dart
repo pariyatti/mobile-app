@@ -71,7 +71,7 @@ class PaliWordCard extends StatelessWidget {
                     ),
                     child: Text(
                         data.pali ?? "<pali text was empty>",
-                        style: sanSerifFont(context: context, fontSize: 18.0, color: Theme.of(context).colorScheme.onSurface)
+                        style: serifFont(context: context, fontSize: 18.0, color: Theme.of(context).colorScheme.onSurface)
                     ),
                   )
                 ),
@@ -95,7 +95,7 @@ class PaliWordCard extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(12.0, 0.0, 12.0, 12.0),
                     child: Text(
                         data.translation ?? "<translation was empty>",
-                        style: sanSerifFont(context: context, fontSize: 18.0, color: Theme.of(context).colorScheme.onSurface)
+                        style: serifFont(context: context, fontSize: 18.0, color: Theme.of(context).colorScheme.onSurface)
                     ),
                   )
                 )
@@ -117,7 +117,7 @@ class PaliWordCard extends StatelessWidget {
         await WcFlutterShare.share(
           sharePopupTitle: AppStrings.get().labelSharePaliWord,
           mimeType: 'text/plain',
-          text: '${data.header}: ${data.pali}\n${AppStrings.get().labelTranslation}: ${data.translation}',
+          text: '${data.header}: \n${data.pali}\n\n${AppStrings.get().labelTranslation}: \n${data.translation}',
         );
       },
     ));

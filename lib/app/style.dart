@@ -14,11 +14,11 @@ sanSerifFont({BuildContext? context, double? fontSize, Color? color, TextStyle? 
       color: color ?? getColor(context)));
 }
 
-serifFont({BuildContext? context, TextStyle? textStyle}) {
+serifFont({BuildContext? context, double? fontSize, Color? color, TextStyle? textStyle}) {
   return GoogleFonts.getFont('Gentium Book Basic', textStyle: TextStyle(
       inherit: true,
-      fontSize: textStyle?.fontSize ?? 18.0,
+      fontSize: fontSize ?? textStyle?.fontSize ?? 18.0,
       fontWeight: FontWeight.normal,
       fontStyle: textStyle?.fontStyle ?? FontStyle.normal,
-      color: getColor(context)));
+      color: color ?? getColor(context)));
 }
