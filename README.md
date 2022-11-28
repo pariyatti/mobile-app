@@ -173,8 +173,6 @@ Upon re-installation, you will need to trust the app on your phone again:
 
 ## Run release build with production servers (signed APK)
 
-NOTE: All mentions of CodeMagic are currently out-of-date. Please see the [CI/CD issue](https://github.com/pariyatti/mobile-app/issues/41).
-
 In order of preference:
 
 1. Use a build from [CodeMagic](https://github.com/pariyatti/mobile-app#ci--cd-builds). Avoid locally signed release builds.
@@ -221,11 +219,9 @@ We have two builds:
 * To configure the App Store, go to https://developer.apple.com
 * To configure the Play Store, go to https://play.google.com/console/
 
-### Managing Tracks
+## Releasing / Managing Tracks
 
-We should only ever have one published track in the Play Store. At this stage, our only track is the `Internal` track. When the first public release is ready, this will change to the `Production` track. Both of these tracks use the same signed release build targetting the `production` kosa server. The only difference is that the `Production` track is publicly visible.
-
-When we're ready for our first public release, we will need to change `Publish => Google Play => Track` to `Production` and `Build => Trigger on Push` to `false` (public builds will be manual).
+To release a new version publicly, please see https://github.com/pariyatti/mobile-app/blob/master/doc/RELEASING.md
 
 ## App Design - Outstanding Questions
 
@@ -239,6 +235,6 @@ If you have answers to these questions, please move them to the top and put the 
 
 ## License and Copyright
 
-[AGPL-3](https://github.com/pariyatti/mobile-app/blob/development/LICENSE)
+[AGPL-3](https://github.com/pariyatti/mobile-app/blob/master/LICENSE)
 
 Copyright (c) 2019-present, Pariyatti
