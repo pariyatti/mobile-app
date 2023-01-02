@@ -33,6 +33,7 @@ class _AudioButtonState extends State<AudioButton> {
     // Try to load audio from a source and catch any errors.
     try {
       await _player.setAudioSource(AudioSource.uri(widget.audioUrl!));
+      print("loaded ${widget.audioUrl!}");
     } catch (e) {
       print("Error loading audio source: $e");
     }

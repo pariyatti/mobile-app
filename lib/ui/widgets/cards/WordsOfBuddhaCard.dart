@@ -31,7 +31,9 @@ class WordsOfBuddhaCard extends StatefulWidget {
 class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   final GlobalKey _renderKey = new GlobalKey();
   bool _translationVisible = true;
+  bool _sngChanting = true;
   late Uri _audioUrl;
+  late Uri _sngUrl;
   Language _selectedLanguage = Language.eng;
   late bool loaded;
 
@@ -61,6 +63,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   void initAudioUrl() {
     try {
       _audioUrl = Uri.parse(widget.data.audioUrl ?? "");
+      _sngUrl = Uri.parse("https://download.pariyatti.org/dwob/sng/dhammapada_11_153_11_154.mp3");
     } catch (e) {
       print("Error parsing audio URL: $e");
     }
@@ -157,7 +160,15 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
                   visible: _translationVisible,
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
-                    child: getTranslationText(),
+                    child: GestureDetector(
+                      onDoubleTap: () {
+                        setState(() {
+                          _sngChanting = !_sngChanting;
+                        });
+                        print("Discourse chanting toggled by double-tap: $_sngChanting");
+                      },
+                      child: getTranslationText(),
+                    ),
                   ),
                 ),
               ),
@@ -175,21 +186,41 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   String getPali() => widget.data.words ?? "<words field was empty>";
 
   Container buildButtonFooter() {
+    print("Rebuilding button footer");
     return Container(
       color: Theme.of(context).colorScheme.secondary,
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          buildAudioButton(),
-          buildBookmarkButton(),
-          buildShareButton()
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Visibility(
+            visible: !_sngChanting,
+            child: Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              buildAudioButton(_audioUrl),
+              buildBookmarkButton(),
+              buildShareButton()
+            ],
+          ),),
+          Visibility(
+            visible: _sngChanting,
+            child: Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              buildAudioButton(_sngUrl),
+              buildBookmarkButton(),
+              buildShareButton()
+            ],
+          ),),
         ],
       ),
     );
   }
 
-  AudioButton buildAudioButton() {
-    return AudioButton(audioUrl: _audioUrl);
+  AudioButton buildAudioButton(Uri? url) {
+    print("URL is: $url");
+    return AudioButton(audioUrl: url);
   }
 
   ShareButton buildShareButton() {
