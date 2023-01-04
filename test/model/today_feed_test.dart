@@ -35,6 +35,6 @@ void main() {
   });
 
   test('date cards return human-readable dates', () {
-    expect('sunday 17 july', DateCardModel(id: "ignore", url: "ignore", publishedAt: DateTime(2022, 07, 17), isBookmarkable: false, isShareable: false).humanDate);
+    expect('sunday 17 july, 2022', DateCardModel(id: "ignore", url: "ignore", publishedAt: DateTime(2022, 07, 17), isBookmarkable: false, isShareable: false).humanDate);
   });
 }
