@@ -4,8 +4,8 @@ class Chanting {
   late bool _isSngChanting;
 
   Uri get audioUrl => _audioUrl;
-  Uri get sngUrl => _sngUrl;
-  bool get isSngChanting => _isSngChanting;
+  Uri get specialUrl => _sngUrl;
+  bool get isSpecialVisible => _isSngChanting;
 
   final List<Uri> sngSupported = [Uri.parse("https://download.pariyatti.org/dwob/sutta_nipata_2_271.mp3"),
     Uri.parse("https://download.pariyatti.org/dwob/digha_nikaya_2_221.mp3"),
@@ -20,10 +20,10 @@ class Chanting {
 
   Chanting tryToggle() {
     print("list contains? ${sngSupported.contains(_audioUrl)}");
-    if (!isSngChanting && sngSupported.contains(_audioUrl)) {
+    if (!isSpecialVisible && sngSupported.contains(_audioUrl)) {
       return new Chanting(_audioUrl, true);
     }
-    if (isSngChanting) {
+    if (isSpecialVisible) {
       return new Chanting(_audioUrl, false);
     }
     return this;
