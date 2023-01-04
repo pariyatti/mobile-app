@@ -17,6 +17,7 @@ class AppThemes {
     onSecondary: const Color(0xff6d695f),
     surface: const Color(0xffffffff),
     onSurface: const Color(0xff000000),
+    onSurfaceVariant: const Color(0xff3171cc), // const Color(0xff26589f), // Color(0xff205292), // SNG audio highlight
     background: const Color(0xfff4efe7),
     onBackground: const Color(0xff6d695f),
     error: const Color(0xffBA5626),
@@ -49,6 +50,7 @@ class AppThemes {
       onSecondary: const Color(0xffc1b196), // ok  c1b196 / 89857d
       surface: const Color(0xff524025), // ok
       onSurface: const Color(0xffcbc7be), // ok
+      onSurfaceVariant: const Color(0xffffc72c), // SNG audio highlight
       background: const Color(0xff292112), // ok
       onBackground: const Color(0xff908573), // ok
       error: const Color(0xffBA5626), // ok
@@ -68,7 +70,8 @@ class AppThemes {
       tileDescriptionTextColor: darkColorScheme.onBackground,
       settingsTileTextColor: darkColorScheme.onPrimary,
       inactiveTitleColor: darkColorScheme.inverseSurface,
-      inactiveSubtitleColor: darkColorScheme.inverseSurface
+      inactiveSubtitleColor: darkColorScheme.inverseSurface,
+
   );
 
   static Image quoteBackground(BuildContext context) {

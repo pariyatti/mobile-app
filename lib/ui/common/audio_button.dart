@@ -4,8 +4,9 @@ import 'package:just_audio/just_audio.dart';
 
 class AudioButton extends StatefulWidget {
   final Uri? audioUrl;
+  final Color? overrideColor;
 
-  AudioButton({this.audioUrl, Key? key}) : super(key: key);
+  AudioButton({this.audioUrl, Key? key, this.overrideColor}) : super(key: key);
 
   @override
   _AudioButtonState createState() => _AudioButtonState();
@@ -13,6 +14,12 @@ class AudioButton extends StatefulWidget {
 
 class _AudioButtonState extends State<AudioButton> {
   final _player = AudioPlayer();
+  late Color? _color;
+
+  Color? get color {
+    _color = widget.overrideColor ?? Theme.of(context).colorScheme.onSecondary;
+    return _color;
+  }
 
   @override
   void initState() {
@@ -66,19 +73,19 @@ class _AudioButtonState extends State<AudioButton> {
             } else if (playing != true) {
               return MaterialButton(
                 padding: EdgeInsets.zero,
-                child: Icon(PariyattiIcons.get(IconName.play), color: Theme.of(context).colorScheme.onSecondary),
+                child: Icon(PariyattiIcons.get(IconName.play), color: color),
                 onPressed: _player.play,
               );
             } else if (processingState != ProcessingState.completed) {
               return MaterialButton(
                 padding: EdgeInsets.zero,
-                child: Icon(PariyattiIcons.get(IconName.pause), color: Theme.of(context).colorScheme.onSecondary),
+                child: Icon(PariyattiIcons.get(IconName.pause), color: color),
                 onPressed: _player.pause,
               );
             } else {
               return MaterialButton(
                 padding: EdgeInsets.zero,
-                child: Icon(PariyattiIcons.get(IconName.play), color: Theme.of(context).colorScheme.onSecondary),
+                child: Icon(PariyattiIcons.get(IconName.play), color: color),
                 onPressed: play,
               );
             }

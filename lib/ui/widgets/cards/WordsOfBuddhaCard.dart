@@ -164,7 +164,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
                         setState(() {
                           _chanting = _chanting.tryToggle();
                         });
-                        print("Discourse chanting toggled by double-tap: ${_chanting.isSngChanting}");
+                        print("Discourse chanting toggled by double-tap: ${_chanting.isSpecialVisible}");
                       },
                       child: getTranslationText(),
                     ),
@@ -193,7 +193,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Visibility(
-            visible: !_chanting.isSngChanting,
+            visible: !_chanting.isSpecialVisible,
             child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -203,11 +203,11 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
             ],
           ),),
           Visibility(
-            visible: _chanting.isSngChanting,
+            visible: _chanting.isSpecialVisible,
             child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
-              buildAudioButton(_chanting.sngUrl),
+              buildAudioButton(_chanting.specialUrl, Theme.of(context).colorScheme.onSurfaceVariant),
               buildBookmarkButton(),
               buildShareButton()
             ],
@@ -217,9 +217,9 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
     );
   }
 
-  AudioButton buildAudioButton(Uri? url) {
+  AudioButton buildAudioButton(Uri? url, [Color? color]) {
     print("URL is: $url");
-    return AudioButton(audioUrl: url);
+    return AudioButton(audioUrl: url, overrideColor: color);
   }
 
   ShareButton buildShareButton() {
