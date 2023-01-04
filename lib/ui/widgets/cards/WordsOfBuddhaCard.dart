@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:patta/local_database/database.dart';
+import 'package:patta/model/Chanting.dart';
 import 'package:patta/model/Language.dart';
 import 'package:patta/app/strings.dart';
 import 'package:patta/ui/common/audio_button.dart';
@@ -31,9 +32,7 @@ class WordsOfBuddhaCard extends StatefulWidget {
 class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   final GlobalKey _renderKey = new GlobalKey();
   bool _translationVisible = true;
-  bool _sngChanting = true;
-  late Uri _audioUrl;
-  late Uri _sngUrl;
+  late Chanting _chanting;
   Language _selectedLanguage = Language.eng;
   late bool loaded;
 
@@ -54,6 +53,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   @override
   void initState() {
     // Check if image is in cache in case widget gets rebuilt and the onLoaded callback doesn't respond.
+    // ignore: unnecessary_null_comparison
     loaded = DefaultCacheManager().getFileFromMemory(widget.data.imageUrl!) != null;
     initAudioUrl();
     initLanguage();
@@ -62,8 +62,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
 
   void initAudioUrl() {
     try {
-      _audioUrl = Uri.parse(widget.data.audioUrl ?? "");
-      _sngUrl = Uri.parse("https://download.pariyatti.org/dwob/sng/dhammapada_11_153_11_154.mp3");
+      _chanting = new Chanting(Uri.parse(widget.data.audioUrl ?? ""));
     } catch (e) {
       print("Error parsing audio URL: $e");
     }
@@ -163,9 +162,9 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
                     child: GestureDetector(
                       onDoubleTap: () {
                         setState(() {
-                          _sngChanting = !_sngChanting;
+                          _chanting = _chanting.tryToggle();
                         });
-                        print("Discourse chanting toggled by double-tap: $_sngChanting");
+                        print("Discourse chanting toggled by double-tap: ${_chanting.isSngChanting}");
                       },
                       child: getTranslationText(),
                     ),
@@ -194,21 +193,21 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Visibility(
-            visible: !_sngChanting,
+            visible: !_chanting.isSngChanting,
             child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
-              buildAudioButton(_audioUrl),
+              buildAudioButton(_chanting.audioUrl),
               buildBookmarkButton(),
               buildShareButton()
             ],
           ),),
           Visibility(
-            visible: _sngChanting,
+            visible: _chanting.isSngChanting,
             child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
-              buildAudioButton(_sngUrl),
+              buildAudioButton(_chanting.sngUrl),
               buildBookmarkButton(),
               buildShareButton()
             ],
