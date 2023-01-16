@@ -5,6 +5,7 @@ class WordsOfBuddhaCardModel extends CardModel {
   final String? header;
   final String? words;
   final String? citepali;
+  final String? citebook;
   final Translations? translations;
   final String? imageUrl;
   final String? audioUrl;
@@ -17,10 +18,11 @@ class WordsOfBuddhaCardModel extends CardModel {
     required bool isShareable,
     this.header,
     this.words,
-    this.citepali,
     this.translations,
+    this.citepali,
+    this.citebook,
     this.imageUrl,
-    this.audioUrl
+    this.audioUrl,
   }) : super(id, url, publishedAt, isBookmarkable, isShareable);
 
   @override

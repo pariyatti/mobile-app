@@ -11,10 +11,12 @@ import 'package:patta/app/strings.dart';
 import 'package:patta/ui/common/audio_button.dart';
 import 'package:patta/ui/common/bookmark_button.dart';
 import 'package:patta/ui/common/card_header.dart';
+import 'package:patta/ui/common/info_button.dart';
 import 'package:patta/ui/common/share_button.dart';
 import 'package:patta/model/WordsOfBuddhaCardModel.dart';
 import 'package:patta/app/style.dart';
 import 'package:patta/app/app_themes.dart';
+import 'package:patta/ui/common/toggle.dart';
 import 'package:patta/util.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -32,6 +34,7 @@ class WordsOfBuddhaCard extends StatefulWidget {
 class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   final GlobalKey _renderKey = new GlobalKey();
   bool _translationVisible = true;
+  Toggle _citationToggle = new Toggle(isActive: false);
   late Chanting _chanting;
   Language _selectedLanguage = Language.eng;
   late bool loaded;
@@ -171,6 +174,16 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
                   ),
                 ),
               ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Visibility(
+                  visible: _citationToggle.isActive,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: getCitationText(),
+                    ),
+                  ),
+                ),
             ],
           ),
         ],
@@ -178,11 +191,19 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
     );
   }
 
+  Text getPaliText() => Text(getPali(), style: serifFont(context: context));
+  String getPali() => widget.data.words ?? "<words field was empty>";
+
   Text getTranslationText() => Text(getTranslation(), style: serifFont(context: context));
   String getTranslation() => widget.data.translations![_selectedLanguage.code] ?? "<translation was empty>";
 
-  Text getPaliText() => Text(getPali(), style: serifFont(context: context));
-  String getPali() => widget.data.words ?? "<words field was empty>";
+  Text getCitationText() => Text(getCitation(), style: serifFont(context: context));
+  String getCitation() {
+    if (widget.data.citepali == null && widget.data.citebook == null) {
+      return "<citation was empty>";
+    }
+    return "${widget.data.citepali}\n${widget.data.citebook}";
+  }
 
   Container buildButtonFooter() {
     print("Rebuilding button footer");
@@ -191,6 +212,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
+        // TODO: this funkage with Visibility can be replaced with a Toggle -sd
         children: <Widget>[
           Visibility(
             visible: !_chanting.isSpecialVisible,
@@ -198,6 +220,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
             mainAxisSize: MainAxisSize.max,
             children: [
               buildAudioButton(_chanting.audioUrl),
+              buildInfoButton(),
               buildBookmarkButton(),
               buildShareButton()
             ],
@@ -208,6 +231,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
             mainAxisSize: MainAxisSize.max,
             children: [
               buildAudioButton(_chanting.specialUrl, Theme.of(context).colorScheme.onSurfaceVariant),
+              buildInfoButton(),
               buildBookmarkButton(),
               buildShareButton()
             ],
@@ -241,6 +265,10 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   Visibility buildBookmarkButton() {
     return Visibility(visible: widget.data.isBookmarkable,
                       child: BookmarkButton(widget.data, widget.database));
+  }
+
+  InfoButton buildInfoButton() {
+    return InfoButton(toggle: _citationToggle, onPressed: () { setState(() {}); });
   }
 
 }
