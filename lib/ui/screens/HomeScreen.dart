@@ -3,9 +3,10 @@ import 'package:patta/app/strings.dart';
 import 'package:patta/ui/common/pariyatti_icons.dart';
 import 'package:patta/ui/common/slivered_view.dart';
 import 'package:patta/ui/screens/account/AccountScreen.dart';
+import 'package:patta/ui/screens/donate/DonateScreen.dart';
 import 'package:patta/ui/screens/today/TodayScreen.dart';
 
-enum HomeScreenTab { TODAY, ACCOUNT }
+enum HomeScreenTab { TODAY, ACCOUNT, DONATE }
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -35,6 +36,14 @@ class _HomeScreenState extends State<HomeScreen> {
         bodyWidget = SliveredView(
           title: titleText,
           body: AccountScreen(),
+        );
+        break;
+      case HomeScreenTab.DONATE:
+        bottomNavigationBarIndex = 2;
+        titleText = '${AppStrings.get().labelDonate}';
+        bodyWidget = SliveredView(
+          title: titleText,
+          body: DonateScreen(),
         );
         break;
     }
@@ -68,15 +77,22 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Theme.of(context).colorScheme.inversePrimary,
             ),
             label: AppStrings.get().labelAccount
-          )
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(
+                PariyattiIcons.get(IconName.heart),
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
+              activeIcon: Icon(
+                PariyattiIcons.get(IconName.heart),
+                color: Theme.of(context).colorScheme.inversePrimary,
+              ),
+              label: AppStrings.get().labelDonate
+          ),
         ],
         onTap: (int tappedItemIndex) {
           this.setState(() {
-            if (tappedItemIndex == 0) {
-              this._tab = HomeScreenTab.TODAY;
-            } else if (tappedItemIndex == 1) {
-              this._tab = HomeScreenTab.ACCOUNT;
-            }
+            this._tab = HomeScreenTab.values[tappedItemIndex];
           });
         },
       ),
