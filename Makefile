@@ -27,8 +27,7 @@ init-clean: ##@Setup Remove Flutter packages
 init-flutter:  # Hidden@Setup Download Flutter deps, precompile
 	flutter pub get
 
-init-icons:
-	flutter pub get
+init-icons: init-flutter
 	flutter pub run flutter_launcher_icons:main
 
 init: init-flutter ##@Setup Default config + pub get
@@ -39,14 +38,23 @@ clean_local_environment:
 
 clean: clean_local_environment ##@Development Clean various caches
 	rm -rf ~/.gradle/caches/*
+	cd android && ./gradlew clean
 	cd ios && rm -rf Podfile.lock
 	cd ios && rm -rf ./Pods
 	cd ios && pod cache clean --all
 	cd ios && pod install --repo-update
 	flutter clean
 
+destroy: init-clean clean ##@Development Destroy all caches
+	rm -rf ~/.m2/*
+	rm -rf android/.gradle/*
+	rm -rf build/*
+	flutter packages pub cache clean
+
 repair: clean ##@Development Repair and clean Flutter
 	flutter pub cache repair
+
+repair-hard: destroy repair init init-icons ##@Development Destroy-and-repair
 
 repair-xcode: ##@Development Run a build in XCode to repair mysterious failures
 	open ios/Runner.xcworkspace
