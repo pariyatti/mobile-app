@@ -18,6 +18,7 @@ import 'package:patta/app/style.dart';
 import 'package:patta/app/app_themes.dart';
 import 'package:patta/ui/common/toggle.dart';
 import 'package:patta/util.dart';
+import 'package:url_launcher/link.dart';
 import 'package:wc_flutter_share/wc_flutter_share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -197,12 +198,32 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   Text getTranslationText() => Text(getTranslation(), style: serifFont(context: context));
   String getTranslation() => widget.data.translations![_selectedLanguage.code] ?? "<translation was empty>";
 
-  Text getCitationText() => Text(getCitation(), style: serifFont(context: context));
-  String getCitation() {
+  Widget getCitationText() {
     if (widget.data.citepali == null && widget.data.citebook == null) {
-      return "<citation was empty>";
+      return Text("<citation was empty>", style: serifFont(context: context));
     }
-    return "${widget.data.citepali}\n${widget.data.citebook}";
+    return Column(children: <Widget>[
+      Align(alignment: Alignment.topLeft,
+          child: Link(
+            uri: Uri.parse(widget.data.citepali_url ?? ""),
+            builder: (context, followLink) {
+              return InkWell(
+                onTap: followLink,
+                child: Text(widget.data.citepali ?? "", style: serifFont(context: context)));
+            },
+          ),
+      ),
+      Align(alignment: Alignment.topLeft,
+        child: Link(
+          uri: Uri.parse(widget.data.citebook_url ?? ""),
+          builder: (context, followLink) {
+            return InkWell(
+                onTap: followLink,
+                child: Text(widget.data.citebook ?? "", style: serifFont(context: context)));
+          },
+        ),
+      ),
+    ]);
   }
 
   Container buildButtonFooter() {

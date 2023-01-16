@@ -49,8 +49,14 @@ class ApiCard {
   @JsonKey(name: 'citepali', disallowNullValue: true, required: false)
   final String? citepali;
 
+  @JsonKey(name: 'citepali_url', disallowNullValue: true, required: false)
+  final String? citepali_url;
+
   @JsonKey(name: 'citebook', disallowNullValue: true, required: false)
   final String? citebook;
+
+  @JsonKey(name: 'citebook_url', disallowNullValue: true, required: false)
+  final String? citebook_url;
 
   @JsonKey(name: 'text_color', disallowNullValue: true, required: false)
   final String? textColor;
@@ -71,7 +77,9 @@ class ApiCard {
     this.audioUrl,
     this.translations,
     this.citepali,
+    this.citepali_url,
     this.citebook,
+    this.citebook_url,
     this.textColor,
   });
 

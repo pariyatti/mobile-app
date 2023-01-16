@@ -82,7 +82,9 @@ CardModel? _convertApiCardToCardModel(
           translations: Translations(translationMap),
           audioUrl: card.audioUrl,
           citepali: card.citepali,
+          citepali_url: card.citepali_url,
           citebook: card.citebook,
+          citebook_url: card.citebook_url,
           imageUrl: '$baseUrl${card.image?.url}',
           isBookmarkable: card.isBookmarkable,
           isShareable: card.isShareable

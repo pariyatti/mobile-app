@@ -38,7 +38,6 @@ clean_local_environment:
 
 clean: clean_local_environment ##@Development Clean various caches
 	rm -rf ~/.gradle/caches/*
-	cd android && ./gradlew clean
 	cd ios && rm -rf Podfile.lock
 	cd ios && rm -rf ./Pods
 	cd ios && pod cache clean --all
@@ -49,6 +48,7 @@ destroy: init-clean clean ##@Development Destroy all caches
 	rm -rf ~/.m2/*
 	rm -rf android/.gradle/*
 	rm -rf build/*
+	cd android && ./gradlew clean --warning-mode all
 	flutter packages pub cache clean
 
 repair: clean ##@Development Repair and clean Flutter
