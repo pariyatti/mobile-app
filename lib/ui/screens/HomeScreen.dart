@@ -80,11 +80,11 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
               icon: Icon(
-                PariyattiIcons.get(IconName.heart),
+                Icons.volunteer_activism,
                 color: Theme.of(context).colorScheme.onPrimary,
               ),
               activeIcon: Icon(
-                PariyattiIcons.get(IconName.heart),
+                Icons.volunteer_activism,
                 color: Theme.of(context).colorScheme.inversePrimary,
               ),
               label: AppStrings.get().labelDonate
