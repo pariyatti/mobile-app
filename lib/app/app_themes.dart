@@ -15,13 +15,14 @@ class AppThemes {
     onPrimary: const Color(0xff000000),
     secondary: const Color(0xffdcd3c0),
     onSecondary: const Color(0xff6d695f),
+    onTertiary: const Color(0xff207868),
     surface: const Color(0xffffffff),
     onSurface: const Color(0xff000000),
     onSurfaceVariant: const Color(0xff3171cc), // const Color(0xff26589f), // Color(0xff205292), // SNG audio highlight
     background: const Color(0xfff4efe7),
     onBackground: const Color(0xff6d695f),
     error: const Color(0xffBA5626),
-    onError: const Color(0xfff4efe7)
+    onError: const Color(0xfff4efe7),
   );
 
   static final version1 = ThemeData(colorScheme: version1ColorScheme);
@@ -48,6 +49,7 @@ class AppThemes {
       onPrimary: const Color(0xffeae9e7), // ok
       secondary: const Color(0xff8f7140), // ok
       onSecondary: const Color(0xffc1b196), // ok  c1b196 / 89857d
+      onTertiary: const Color(0xff1a6053),
       surface: const Color(0xff524025), // ok
       onSurface: const Color(0xffcbc7be), // ok
       onSurfaceVariant: const Color(0xffffc72c), // SNG audio highlight
@@ -82,6 +84,7 @@ class AppThemes {
   }
 
   static Color contextFreeDefault = const Color(0xff8f7140);
+  static List<Color> contextFreeButtonGradient = <Color>[Color(0xff207868),Color(0xff1c7063),Color(0xff1a6053),];
 
   static Color overlayText(String? hex) {
     var i = int.tryParse(hex?.replaceFirst('#', '0xFF') ?? "0xFFFFFFFF");

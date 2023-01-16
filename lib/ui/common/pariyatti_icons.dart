@@ -8,6 +8,7 @@ enum IconName {
   bookmark,
   bookmarkFilled,
   today,
+  heart,
   person,
   error,
   play,
@@ -24,9 +25,14 @@ const Map<String, IconData> _iconMissing = {
   'ios': _iosMissing,
 };
 
-// NOTE: For some bizarre reason, the Cupertino Icons gallery is a 404 on the
+// NOTE: [iOS] For some bizarre reason, the Cupertino Icons gallery is a 404 on the
 //       current webpage. To look up Cupertino Icons, use archive.org:
 //       https://web.archive.org/web/20210728212734/https://flutter.github.io/cupertino_icons/
+//
+//       [Android] Check the Flutter `Icons` class:
+//       https://api.flutter.dev/flutter/material/Icons-class.html
+//       Or Material Icons list:
+//       https://fonts.google.com/icons?selected=Material+Icons
 const Map<IconName, Map<String, IconData>> _iconMap = {
   IconName.share: {
     'default': Icons.share,
@@ -42,6 +48,10 @@ const Map<IconName, Map<String, IconData>> _iconMap = {
   },
   IconName.today: {
     'default': Icons.today,
+  },
+  IconName.heart: {
+    'default': Icons.favorite,
+    'ios': CupertinoIcons.heart_fill,
   },
   IconName.person: {
     'default': Icons.person,
