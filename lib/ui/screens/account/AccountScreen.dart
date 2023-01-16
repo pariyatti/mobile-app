@@ -1,42 +1,83 @@
 import 'package:flutter/material.dart';
-import 'package:patta/app/strings.dart';
-import 'package:patta/ui/screens/account/BookmarksTab.dart';
-import 'package:patta/ui/screens/account/SettingsTab.dart';
+import 'package:patta/app/app_themes.dart';
+import 'package:patta/ui/common/pariyatti_icons.dart';
+import 'package:patta/ui/screens/account/BookmarksScreen.dart';
+import 'package:patta/ui/screens/account/SettingsScreen.dart';
+import 'package:settings_ui/settings_ui.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AccountScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              Expanded(
-                child: TabBar(
-                  isScrollable: true,
-                  tabs: <Widget>[
-                    Tab(text: AppStrings.get().labelBookmarks),
-                    Tab(text: AppStrings.get().labelSettings)
-                  ],
-                  labelColor: Theme.of(context).colorScheme.onSecondary,
-                  indicatorColor: Theme.of(context).colorScheme.onSecondary,
-                ),
-              ),
-            ],
+    return SettingsList(
+        lightTheme: AppThemes.version1SettingsThemeData,
+        darkTheme: AppThemes.darkSettingsThemeData,
+        sections: [
+        SettingsSection(tiles: <SettingsTile>[
+          SettingsTile.navigation(
+            leading: Icon(PariyattiIcons.get(IconName.bookmarkFilled)),
+            title: Text('Bookmarks'),
+            onPressed: (context) {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (_) => BookmarksTab(),
+              ));
+            },
           ),
-          Expanded(
-            child: TabBarView(
-              children: <Widget>[
-                BookmarksTab(),
-                SettingsTab()
-              ],
-            ),
+          SettingsTile.navigation(
+            leading: Icon(Icons.mail),
+            title: Text('Subscribe to Newsletter'),
+            onPressed: (context) {
+              // TODO: replace with in-app subscription?
+              tryLaunchUrl("https://store.pariyatti.org/newsletter-subscription");
+            },
+          ),
+          SettingsTile.navigation(
+            // TODO: use PariyattiIcon?
+              leading: Icon(Icons.settings),
+              title: Text('Settings'),
+              onPressed: (context) {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => SettingsTab(),
+                ));
+              },
+          ),
+          ],
+        ),
+
+          SettingsSection( // margin: EdgeInsetsDirectional.only(top: 20.0, bottom: 20.0), -- doesn't seem to do anything?
+            tiles: <SettingsTile>[
+          SettingsTile.navigation(
+            leading: Icon(Icons.contact_support),
+            title: Text('Contact Pariyatti'),
+            onPressed: (context) {
+              tryLaunchUrl("https://pariyatti.org/About#contact");
+            },
+          ),
+          SettingsTile.navigation(
+            leading: Icon(Icons.verified_user),
+            title: Text('Security and Privacy'),
+            onPressed: (context) {
+              tryLaunchUrl("https://pariyatti.org/Security-Privacy");
+            },
+          ),
+          SettingsTile.navigation(
+            leading: Icon(Icons.info),
+            title: Text('About Pariyatti'),
+            onPressed: (context) {
+              tryLaunchUrl("https://pariyatti.org/About");
+            },
           ),
         ],
-      ),
-    );
+        ),
+    ]);
   }
+
+  Future<void> tryLaunchUrl(url) async {
+    var uri = Uri.parse(url);
+    if (!await launchUrl(uri, mode: LaunchMode.inAppWebView)) {
+      throw 'Could not launch $url';
+    }
+  }
+
 }

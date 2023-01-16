@@ -21,20 +21,26 @@ class BookmarksTab extends StatelessWidget {
   Widget build(BuildContext context) {
     final database = Provider.of<PariyattiDatabase>(context);
 
-    return StreamBuilder(
-      stream: database.allCards,
-      builder: (
-        BuildContext context,
-        AsyncSnapshot<List<DatabaseCard>> snapshot,
-      ) {
-        if (snapshot.hasData && snapshot.data != null) {
-          return _buildCardsList(context, snapshot.data!, database);
-        } else if (snapshot.hasError) {
-          return _buildError(context);
-        } else {
-          return _buildLoadingIndicator();
-        }
-      },
+    return Scaffold(
+      appBar: AppBar(
+          title: Text('Bookmarks'),
+          backgroundColor: Theme.of(context).colorScheme.secondary
+      ),
+      body: StreamBuilder(
+        stream: database.allCards,
+        builder: (
+            BuildContext context,
+            AsyncSnapshot<List<DatabaseCard>> snapshot,
+            ) {
+          if (snapshot.hasData && snapshot.data != null) {
+            return _buildCardsList(context, snapshot.data!, database);
+          } else if (snapshot.hasError) {
+            return _buildError(context);
+          } else {
+            return _buildLoadingIndicator();
+          }
+        },
+      )
     );
   }
 
