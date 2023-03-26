@@ -19,7 +19,7 @@ dependencies:
   cached_network_image: ^3.2.1
   connectivity_plus: ^2.3.2
   cupertino_icons: ^1.0.4 # iOS-style icons
-  dio: ^4.0.4
+  dio: ^5.0.3
   dio_cache_interceptor: ^3.2.2
   dio_cache_interceptor_db_store: ^4.1.0
   drift: ^1.6.0
