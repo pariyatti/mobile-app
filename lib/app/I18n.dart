@@ -46,6 +46,14 @@ class I18n {
       contactPariyatti: 'Contact Pariyatti',
       securityAndPrivacy: 'Security and Privacy',
       aboutPariyatti: 'About Pariyatti',
+      feeds: "Feeds",
+      languages: "Languages",
+      language: "Language",
+      languageAlternate: "Alternate",
+      theme: "Theme",
+      lightTheme: "Light Theme",
+      darkTheme: "Dark Theme",
+      systemDefault: "System Default",
     ),
 
     Language.fra: I18nStrings(
@@ -65,6 +73,14 @@ class I18n {
       contactPariyatti: "",
       securityAndPrivacy: "",
       aboutPariyatti: "",
+      feeds: "",
+      languages: "",
+      language: "",
+      languageAlternate: "",
+      theme: "",
+      lightTheme: "",
+      darkTheme: "",
+      systemDefault: "",
     ),
 
     Language.ita: I18nStrings(
@@ -84,6 +100,14 @@ class I18n {
       contactPariyatti: "",
       securityAndPrivacy: "",
       aboutPariyatti: "",
+      feeds: "",
+      languages: "",
+      language: "",
+      languageAlternate: "",
+      theme: "",
+      lightTheme: "",
+      darkTheme: "",
+      systemDefault: "",
     ),
 
     Language.lit: I18nStrings(
@@ -103,6 +127,14 @@ class I18n {
       contactPariyatti: "",
       securityAndPrivacy: "",
       aboutPariyatti: "",
+      feeds: "",
+      languages: "",
+      language: "",
+      languageAlternate: "",
+      theme: "",
+      lightTheme: "",
+      darkTheme: "",
+      systemDefault: "",
     ),
 
     Language.por: I18nStrings(
@@ -122,6 +154,14 @@ class I18n {
       contactPariyatti: "",
       securityAndPrivacy: "",
       aboutPariyatti: "",
+      feeds: "",
+      languages: "",
+      language: "",
+      languageAlternate: "",
+      theme: "",
+      lightTheme: "",
+      darkTheme: "",
+      systemDefault: "",
     ),
 
     Language.spa: I18nStrings(
@@ -141,6 +181,14 @@ class I18n {
       contactPariyatti: "",
       securityAndPrivacy: "",
       aboutPariyatti: "",
+      feeds: "",
+      languages: "",
+      language: "",
+      languageAlternate: "",
+      theme: "",
+      lightTheme: "",
+      darkTheme: "",
+      systemDefault: "",
     ),
 
     Language.srp: I18nStrings(
@@ -160,6 +208,14 @@ class I18n {
       contactPariyatti: "",
       securityAndPrivacy: "",
       aboutPariyatti: "",
+      feeds: "",
+      languages: "",
+      language: "",
+      languageAlternate: "",
+      theme: "",
+      lightTheme: "",
+      darkTheme: "",
+      systemDefault: "",
     ),
 
     Language.zho_hant: I18nStrings(
@@ -179,6 +235,14 @@ class I18n {
       contactPariyatti: "",
       securityAndPrivacy: "",
       aboutPariyatti: "",
+      feeds: "",
+      languages: "",
+      language: "",
+      languageAlternate: "",
+      theme: "",
+      lightTheme: "",
+      darkTheme: "",
+      systemDefault: "",
     ),
 
   };

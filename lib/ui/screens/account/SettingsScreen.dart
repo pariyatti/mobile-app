@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patta/app/I18n.dart';
 import 'package:patta/model/Language.dart';
 import 'package:patta/ui/screens/account/FeedsScreen.dart';
 import 'package:patta/ui/screens/account/LanguagesScreen.dart';
@@ -41,7 +42,7 @@ class _SettingsTabState extends State<SettingsTab> {
     // example: https://github.com/yako-dev/flutter-settings-ui/blob/master/example/lib/screens/settings_screen.dart
     return Scaffold(
       appBar: AppBar(
-          title: Text('Settings'),
+          title: Text(I18n.get().settings),
           backgroundColor: Theme.of(context).colorScheme.secondary
       ),
       body: SettingsList(
@@ -54,7 +55,7 @@ class _SettingsTabState extends State<SettingsTab> {
               SettingsTile.navigation(
                 // TODO: use PariyattiIcon
                 leading: Icon(Icons.language),
-                title: Text('Language'),
+                title: Text(I18n.get().language),
                 value: Text(selectedLanguage.name),
                 onPressed: (context) {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -65,14 +66,14 @@ class _SettingsTabState extends State<SettingsTab> {
               SettingsTile.navigation(
                 // TODO: use PariyattiIcon
                   leading: Icon(Icons.language),
-                  title: Text('Alternate'),
+                  title: Text(I18n.get().languageAlternate),
                   value: Text(Language.eng.name),
                   onPressed: _showToast
               ),
               SettingsTile.navigation(
                 // TODO: use PariyattiIcon
                 leading: Icon(Icons.feed),
-                title: Text('Feeds'),
+                title: Text(I18n.get().feeds),
                 value: Text(''),
                 onPressed: (context) {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -83,7 +84,7 @@ class _SettingsTabState extends State<SettingsTab> {
               SettingsTile.navigation(
                 // TODO: use PariyattiIcon
                 leading: Icon(Icons.nightlight_round),
-                title: Text('Theme'),
+                title: Text(I18n.get().theme),
                 value: Text(''),
                 onPressed: (context) {
                   Navigator.of(context).push(MaterialPageRoute(

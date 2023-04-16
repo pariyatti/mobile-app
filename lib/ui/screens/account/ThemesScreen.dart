@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patta/app/I18n.dart';
 import 'package:patta/app/app_themes.dart';
 import 'package:patta/app/theme_provider.dart';
 import 'package:provider/provider.dart';
@@ -40,7 +41,7 @@ class _ThemesScreenState extends State<ThemesScreen> {
     themeProvider = Provider.of<ThemeProvider>(context, listen:false);
     return Scaffold(
       appBar: AppBar(
-          title: Text('Theme'),
+          title: Text(I18n.get().theme),
           backgroundColor: Theme.of(context).colorScheme.secondary
       ),
       body: SettingsList(
@@ -49,9 +50,9 @@ class _ThemesScreenState extends State<ThemesScreen> {
         sections: [
           SettingsSection(tiles:
           [
-            tile(context, themeProvider, "Light Theme", ThemeMode.light),
-            tile(context, themeProvider, "Dark Theme", ThemeMode.dark),
-            tile(context, themeProvider, "System Default", ThemeMode.system)
+            tile(context, themeProvider, I18n.get().lightTheme, ThemeMode.light),
+            tile(context, themeProvider, I18n.get().darkTheme, ThemeMode.dark),
+            tile(context, themeProvider, I18n.get().systemDefault, ThemeMode.system)
           ]),
         ],
       ),

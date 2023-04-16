@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:patta/app/I18n.dart';
 import 'package:patta/app/app_themes.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -45,7 +46,7 @@ class _FeedsScreenState extends State<FeedsScreen> {
 
     return Scaffold(
       appBar: AppBar(
-          title: Text('Feeds'),
+          title: Text(I18n.get().feeds),
           backgroundColor: Theme.of(context).colorScheme.secondary
       ),
       body: SettingsList(
