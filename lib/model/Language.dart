@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:patta/app/log.dart';
+
 class Language {
   static const String SETTINGS_KEY = 'language';
 
@@ -23,9 +25,14 @@ class Language {
 
   static Language from(String? code) {
     if (code == null) {
-      log("Language.from 'code' was null. Assuming English.", level: 1, name: "language");
+      log2("Language.from 'code' was null. Assuming English.");
       return Language.eng;
     }
     return all.firstWhere((lang) => lang.code == code);
+  }
+
+  @override
+  String toString() {
+    return 'Language{code: $code, name: $name}';
   }
 }

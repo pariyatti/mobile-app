@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:patta/local_database/database.dart';
-import 'package:patta/app/strings.dart';
+import 'package:patta/app/I18n.dart';
 import 'package:patta/ui/common/bookmark_button.dart';
 import 'package:patta/ui/common/card_header.dart';
 import 'package:patta/ui/common/pariyatti_icons.dart';
@@ -161,7 +161,7 @@ class _StackedInspirationCardState extends State<StackedInspirationCard> {
       final String extension = extractFileExtension(widget.data.imageUrl);
       final String filename = toFilename(widget.data.header!);
       await WcFlutterShare.share(
-        sharePopupTitle: AppStrings.get().labelShareInspiration,
+        sharePopupTitle: I18n.get().labelShareInspiration,
         mimeType: 'image/$extension',
         fileName: '$filename.$extension',
         bytesOfFile: imageData,

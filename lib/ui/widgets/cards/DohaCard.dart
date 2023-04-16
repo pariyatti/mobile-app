@@ -6,7 +6,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/model/Language.dart';
-import 'package:patta/app/strings.dart';
+import 'package:patta/app/I18n.dart';
 import 'package:patta/ui/common/audio_button.dart';
 import 'package:patta/ui/common/bookmark_button.dart';
 import 'package:patta/ui/common/card_header.dart';
@@ -198,7 +198,7 @@ class _DohaCardState extends State<DohaCard> {
       final String filename = toFilename(widget.data.header!);
       final String extension = extractFileExtension(widget.data.imageUrl);
       await WcFlutterShare.share(
-        sharePopupTitle: AppStrings.get().labelShareInspiration,
+        sharePopupTitle: I18n.get().labelShareInspiration,
         mimeType: 'image/$extension',
         fileName: '$filename.$extension',
         bytesOfFile: imageData

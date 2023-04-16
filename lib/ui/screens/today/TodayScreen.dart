@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:patta/api/api.dart';
 import 'package:patta/local_database/database.dart';
-import 'package:patta/app/strings.dart';
+import 'package:patta/app/I18n.dart';
 import 'package:patta/ui/widgets/cards/DateCard.dart';
 import 'package:patta/ui/widgets/cards/DohaCard.dart';
 import 'package:patta/ui/widgets/cards/EmptyCard.dart';
@@ -101,7 +101,7 @@ class TodayScreen extends StatelessWidget {
   }
 
   Widget _buildError(BuildContext context, Object error) {
-    var errorMessage = AppStrings.get().errorMessageTryAgainLater
+    var errorMessage = I18n.get().errorMessageTryAgainLater
         + "\n\nError:\n"
         + error.toString()
         + "\n\nException Details:\n"

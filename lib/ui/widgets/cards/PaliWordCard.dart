@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:patta/local_database/database.dart';
-import 'package:patta/app/strings.dart';
+import 'package:patta/app/I18n.dart';
 import 'package:patta/ui/common/bookmark_button.dart';
 import 'package:patta/ui/common/card_header.dart';
 import 'package:patta/ui/common/share_button.dart';
@@ -84,7 +84,7 @@ class PaliWordCard extends StatelessWidget {
                       vertical: 8.0,
                     ),
                     child: Text(
-                        AppStrings.get().labelTranslation,
+                        I18n.get().labelTranslation,
                         style: sanSerifFont(context: context, fontSize: 14.0, color: Theme.of(context).colorScheme.onBackground)
                     ),
                   ),
@@ -115,9 +115,9 @@ class PaliWordCard extends StatelessWidget {
     listOfButtons.add(ShareButton(
       onPressed: () async {
         await WcFlutterShare.share(
-          sharePopupTitle: AppStrings.get().labelSharePaliWord,
+          sharePopupTitle: I18n.get().labelSharePaliWord,
           mimeType: 'text/plain',
-          text: '${data.header}: \n${data.pali}\n\n${AppStrings.get().labelTranslation}: \n${data.translation}',
+          text: '${data.header}: \n${data.pali}\n\n${I18n.get().labelTranslation}: \n${data.translation}',
         );
       },
     ));

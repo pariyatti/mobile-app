@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patta/app/app_themes.dart';
-import 'package:patta/app/strings.dart';
+import 'package:patta/app/I18n.dart';
 import 'package:patta/app/style.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -19,7 +19,7 @@ class DonateScreen extends StatelessWidget {
                   alignment: Alignment.topLeft,
                     child: Padding(
                       padding: const EdgeInsets.all(20.0),
-                      child: Text(AppStrings.get().donatePreamble,
+                      child: Text(I18n.get().donatePreamble,
                           style: serifFont(context: context)),
                     ),
                   ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/local_database/drift_converters.dart' as drift_converters;
-import 'package:patta/app/strings.dart';
+import 'package:patta/app/I18n.dart';
 import 'package:patta/ui/common/pariyatti_icons.dart';
 import 'package:patta/model/DohaCardModel.dart';
 import 'package:patta/model/OverlayInspirationCardModel.dart';
@@ -64,7 +64,7 @@ class BookmarksTab extends StatelessWidget {
             ),
           ),
           Text(
-            AppStrings.get().errorMessageTryAgainLater,
+            I18n.get().errorMessageTryAgainLater,
             style: TextStyle(
               inherit: true,
               color: Theme.of(context).colorScheme.onSecondary,
@@ -84,7 +84,7 @@ class BookmarksTab extends StatelessWidget {
     if (cardModels.isEmpty) {
       return Center(
         child: Text(
-          AppStrings.get().messageNothingBookmarked,
+          I18n.get().messageNothingBookmarked,
           style: TextStyle(
             inherit: true,
             color: Theme.of(context).colorScheme.onBackground,

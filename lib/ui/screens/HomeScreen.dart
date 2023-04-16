@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:patta/app/strings.dart';
+import 'package:patta/app/I18n.dart';
 import 'package:patta/ui/common/pariyatti_icons.dart';
 import 'package:patta/ui/common/slivered_view.dart';
 import 'package:patta/ui/screens/account/AccountScreen.dart';
@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
     switch (_tab) {
       case HomeScreenTab.TODAY:
         bottomNavigationBarIndex = 0;
-        titleText = '${AppStrings.get().labelToday}';
+        titleText = '${I18n.get().labelToday}';
         bodyWidget = SliveredView(
           title: titleText,
           body: TodayScreen(),
@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
         break;
       case HomeScreenTab.ACCOUNT:
         bottomNavigationBarIndex = 1;
-        titleText = '${AppStrings.get().labelAccount}';
+        titleText = '${I18n.get().labelAccount}';
         bodyWidget = SliveredView(
           title: titleText,
           body: AccountScreen(),
@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
         break;
       case HomeScreenTab.DONATE:
         bottomNavigationBarIndex = 2;
-        titleText = '${AppStrings.get().labelDonate}';
+        titleText = '${I18n.get().labelDonate}';
         bodyWidget = SliveredView(
           title: titleText,
           body: DonateScreen(),
@@ -65,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
               PariyattiIcons.get(IconName.today),
               color: Theme.of(context).colorScheme.inversePrimary,
             ),
-            label: AppStrings.get().labelToday
+            label: I18n.get().labelToday
           ),
           BottomNavigationBarItem(
             icon: Icon(
@@ -76,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
               PariyattiIcons.get(IconName.person),
               color: Theme.of(context).colorScheme.inversePrimary,
             ),
-            label: AppStrings.get().labelAccount
+            label: I18n.get().labelAccount
           ),
           BottomNavigationBarItem(
               icon: Icon(
@@ -87,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Icons.volunteer_activism,
                 color: Theme.of(context).colorScheme.inversePrimary,
               ),
-              label: AppStrings.get().labelDonate
+              label: I18n.get().labelDonate
           ),
         ],
         onTap: (int tappedItemIndex) {
