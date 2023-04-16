@@ -16,6 +16,12 @@ class I18nStrings {
 
   final String subscribeToNewsletter;
 
+  final String contactPariyatti;
+
+  final String securityAndPrivacy;
+
+  final String aboutPariyatti;
+
   const I18nStrings({
     @required required this.appName,
     @required required this.donatePreamble,
@@ -30,7 +36,9 @@ class I18nStrings {
     @required required this.bookmarks,
     @required required this.settings,
     @required required this.subscribeToNewsletter,
-
+    @required required this.contactPariyatti,
+    @required required this.securityAndPrivacy,
+    @required required this.aboutPariyatti,
   });
 
 }

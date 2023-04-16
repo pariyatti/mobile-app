@@ -36,7 +36,7 @@ class AccountScreen extends StatelessWidget {
           SettingsTile.navigation(
             // TODO: use PariyattiIcon?
               leading: Icon(Icons.settings),
-              title: Text('Settings'),
+              title: Text(I18n.get().settings),
               onPressed: (context) {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (_) => SettingsTab(),
@@ -50,21 +50,21 @@ class AccountScreen extends StatelessWidget {
             tiles: <SettingsTile>[
           SettingsTile.navigation(
             leading: Icon(Icons.contact_support),
-            title: Text('Contact Pariyatti'),
+            title: Text(I18n.get().contactPariyatti),
             onPressed: (context) {
               tryLaunchUrl("https://pariyatti.org/About#contact");
             },
           ),
           SettingsTile.navigation(
             leading: Icon(Icons.verified_user),
-            title: Text('Security and Privacy'),
+            title: Text(I18n.get().securityAndPrivacy),
             onPressed: (context) {
               tryLaunchUrl("https://pariyatti.org/Security-Privacy");
             },
           ),
           SettingsTile.navigation(
             leading: Icon(Icons.info),
-            title: Text('About Pariyatti'),
+            title: Text(I18n.get().aboutPariyatti),
             onPressed: (context) {
               tryLaunchUrl("https://pariyatti.org/About");
             },
