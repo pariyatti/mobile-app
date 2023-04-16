@@ -23,6 +23,11 @@ class I18n {
     return strings[_selectedLanguage]!;
   }
 
+  static I18nStrings getForced(Language lang) {
+    log2("I18n.getForced selected language: $lang");
+    return strings[lang]!;
+  }
+
   static const Map<Language, I18nStrings> strings = {
     Language.eng: I18nStrings(
         appName: 'Pariyatti',
@@ -38,18 +43,112 @@ class I18n {
         labelBookmarks: 'Bookmarks',
         labelSettings: 'Settings'
     ),
-    Language.fra: I18nStrings(appName: "appName",
-        donatePreamble: "donatePreamble",
-        errorMessageTryAgainLater: "errorMessageTryAgainLater",
-        messageNothingBookmarked: "messageNothingBookmarked",
+
+    Language.fra: I18nStrings(
+        appName: "",
+        donatePreamble: "",
+        errorMessageTryAgainLater: "",
+        messageNothingBookmarked: "",
         labelToday: "aujourd'hui",
-        labelAccount: "labelAccount",
-        labelDonate: "labelDonate",
-        labelShareInspiration: "labelShareInspiration",
-        labelSharePaliWord: "labelSharePaliWord",
-        labelTranslation: "labelTranslation",
-        labelBookmarks: "labelBookmarks",
-        labelSettings: "labelSettings")
+        labelAccount: "",
+        labelDonate: "",
+        labelShareInspiration: "",
+        labelSharePaliWord: "",
+        labelTranslation: "",
+        labelBookmarks: "",
+        labelSettings: ""
+    ),
+
+    Language.ita: I18nStrings(
+        appName: "",
+        donatePreamble: "",
+        errorMessageTryAgainLater: "",
+        messageNothingBookmarked: "",
+        labelToday: "",
+        labelAccount: "",
+        labelDonate: "",
+        labelShareInspiration: "",
+        labelSharePaliWord: "",
+        labelTranslation: "",
+        labelBookmarks: "",
+        labelSettings: ""
+    ),
+
+    Language.lit: I18nStrings(
+        appName: "",
+        donatePreamble: "",
+        errorMessageTryAgainLater: "",
+        messageNothingBookmarked: "",
+        labelToday: "",
+        labelAccount: "",
+        labelDonate: "",
+        labelShareInspiration: "",
+        labelSharePaliWord: "",
+        labelTranslation: "",
+        labelBookmarks: "",
+        labelSettings: ""
+    ),
+
+    Language.por: I18nStrings(
+        appName: "",
+        donatePreamble: "",
+        errorMessageTryAgainLater: "",
+        messageNothingBookmarked: "",
+        labelToday: "",
+        labelAccount: "",
+        labelDonate: "",
+        labelShareInspiration: "",
+        labelSharePaliWord: "",
+        labelTranslation: "",
+        labelBookmarks: "",
+        labelSettings: ""
+    ),
+
+    Language.spa: I18nStrings(
+        appName: "",
+        donatePreamble: "",
+        errorMessageTryAgainLater: "",
+        messageNothingBookmarked: "",
+        labelToday: "",
+        labelAccount: "",
+        labelDonate: "",
+        labelShareInspiration: "",
+        labelSharePaliWord: "",
+        labelTranslation: "",
+        labelBookmarks: "",
+        labelSettings: ""
+    ),
+
+    Language.srp: I18nStrings(
+        appName: "",
+        donatePreamble: "",
+        errorMessageTryAgainLater: "",
+        messageNothingBookmarked: "",
+        labelToday: "",
+        labelAccount: "",
+        labelDonate: "",
+        labelShareInspiration: "",
+        labelSharePaliWord: "",
+        labelTranslation: "",
+        labelBookmarks: "",
+        labelSettings: ""
+    ),
+
+    Language.zho_hant: I18nStrings(
+        appName: "",
+        donatePreamble: "",
+        errorMessageTryAgainLater: "",
+        messageNothingBookmarked: "",
+        labelToday: "",
+        labelAccount: "",
+        labelDonate: "",
+        labelShareInspiration: "",
+        labelSharePaliWord: "",
+        labelTranslation: "",
+        labelBookmarks: "",
+        labelSettings: ""
+    ),
+
   };
 
 }

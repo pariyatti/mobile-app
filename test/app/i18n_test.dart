@@ -4,10 +4,11 @@ import 'package:patta/app/I18n.dart';
 
 
 void main() {
-  // TODO: finish test
   test('sanity: all languages the user can select return something meaningful (non-English) for "Today"', () {
-    // for (var l in Language.all) {
-    //   expect(i18n.);
-    // }
+    for (var l in Language.all) {
+      if (l != Language.eng) {
+        expect(I18n.getForced(l).labelToday, isNot(equals("Today")));
+      }
+    }
   });
 }
