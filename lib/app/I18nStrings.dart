@@ -3,30 +3,34 @@ import 'package:flutter/foundation.dart';
 class I18nStrings {
   final String appName;
   final String donatePreamble;
-  final String errorMessageTryAgainLater;
-  final String messageNothingBookmarked;
-  final String labelToday;
-  final String labelAccount;
-  final String labelDonate;
-  final String labelShareInspiration;
-  final String labelSharePaliWord;
-  final String labelTranslation;
-  final String labelBookmarks;
-  final String labelSettings;
+  final String tryAgainLater;
+  final String nothingBookmarked;
+  final String today;
+  final String account;
+  final String donate;
+  final String shareInspiration;
+  final String sharePaliWord;
+  final String translation;
+  final String bookmarks;
+  final String settings;
+
+  final String subscribeToNewsletter;
 
   const I18nStrings({
     @required required this.appName,
     @required required this.donatePreamble,
-    @required required this.errorMessageTryAgainLater,
-    @required required this.messageNothingBookmarked,
-    @required required this.labelToday,
-    @required required this.labelAccount,
-    @required required this.labelDonate,
-    @required required this.labelShareInspiration,
-    @required required this.labelSharePaliWord,
-    @required required this.labelTranslation,
-    @required required this.labelBookmarks,
-    @required required this.labelSettings
+    @required required this.tryAgainLater,
+    @required required this.nothingBookmarked,
+    @required required this.today,
+    @required required this.account,
+    @required required this.donate,
+    @required required this.shareInspiration,
+    @required required this.sharePaliWord,
+    @required required this.translation,
+    @required required this.bookmarks,
+    @required required this.settings,
+    @required required this.subscribeToNewsletter,
+
   });
 
 }

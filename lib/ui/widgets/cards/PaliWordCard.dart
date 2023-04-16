@@ -84,7 +84,7 @@ class PaliWordCard extends StatelessWidget {
                       vertical: 8.0,
                     ),
                     child: Text(
-                        I18n.get().labelTranslation,
+                        I18n.get().translation,
                         style: sanSerifFont(context: context, fontSize: 14.0, color: Theme.of(context).colorScheme.onBackground)
                     ),
                   ),
@@ -115,9 +115,9 @@ class PaliWordCard extends StatelessWidget {
     listOfButtons.add(ShareButton(
       onPressed: () async {
         await WcFlutterShare.share(
-          sharePopupTitle: I18n.get().labelSharePaliWord,
+          sharePopupTitle: I18n.get().sharePaliWord,
           mimeType: 'text/plain',
-          text: '${data.header}: \n${data.pali}\n\n${I18n.get().labelTranslation}: \n${data.translation}',
+          text: '${data.header}: \n${data.pali}\n\n${I18n.get().translation}: \n${data.translation}',
         );
       },
     ));

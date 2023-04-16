@@ -101,7 +101,7 @@ class TodayScreen extends StatelessWidget {
   }
 
   Widget _buildError(BuildContext context, Object error) {
-    var errorMessage = I18n.get().errorMessageTryAgainLater
+    var errorMessage = I18n.get().tryAgainLater
         + "\n\nError:\n"
         + error.toString()
         + "\n\nException Details:\n"

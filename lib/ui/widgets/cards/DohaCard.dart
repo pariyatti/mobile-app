@@ -198,7 +198,7 @@ class _DohaCardState extends State<DohaCard> {
       final String filename = toFilename(widget.data.header!);
       final String extension = extractFileExtension(widget.data.imageUrl);
       await WcFlutterShare.share(
-        sharePopupTitle: I18n.get().labelShareInspiration,
+        sharePopupTitle: I18n.get().shareInspiration,
         mimeType: 'image/$extension',
         fileName: '$filename.$extension',
         bytesOfFile: imageData
