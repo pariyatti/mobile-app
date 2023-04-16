@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patta/app/I18n.dart';
 import 'package:patta/model/Language.dart';
 import 'package:patta/app/app_themes.dart';
 import 'package:settings_ui/settings_ui.dart';
@@ -27,10 +28,11 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
   }
 
   void _setLanguage(Language? newValue) async {
-    // TODO: SharedPreferences, Language.SETTINGS_KEY, etc. all belong in a wrapper (just "Preferences"?)
+    // TODO: SharedPreferences, Language.SETTINGS_KEY, I18n.set, etc. all belong in a wrapper (just "Preferences"?)
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       selectedLanguage = newValue!;
+      I18n.set(newValue!);
       prefs.setString(Language.SETTINGS_KEY, newValue.code);
     });
   }

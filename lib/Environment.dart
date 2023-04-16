@@ -22,5 +22,5 @@ class LocalEnvironment extends Environment {
   // This variable is filled by the Makefile, which generates
   // 'Environment.dart' from 'EnvironmentTemplate.dart'.
   // Do not edit 'Environment.dart' because it will be overwritten.
-  LocalEnvironment() : super('http://192.168.68.130:3000');
+  LocalEnvironment() : super('http://solasa.local:3000');
 }

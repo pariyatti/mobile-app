@@ -7,7 +7,7 @@ import 'package:patta/app/global.dart';
 import 'package:patta/app/theme_provider.dart';
 import 'package:patta/config_reader.dart';
 import 'package:patta/local_database/database.dart';
-import 'package:patta/app/strings.dart';
+import 'package:patta/app/I18n.dart';
 import 'package:patta/ui/screens/HomeScreen.dart';
 import 'package:patta/app/app_themes.dart';
 import 'package:provider/provider.dart';
@@ -23,8 +23,8 @@ Future<void> mainCommon(Environment environment) async {
   );
 
   await Future.wait([setupAppCache()]);
-
   await Preferences.init();
+  await I18n.init();
 
   runApp(PariyattiApp(environment, configReader));
 }
@@ -71,7 +71,7 @@ class PariyattiApp extends StatelessWidget {
       builder: (context, _) {
         final themeProvider = Provider.of<ThemeProvider>(context, listen: true);
         return MaterialApp(
-          title: AppStrings.get().appName,
+          title: I18n.get().appName,
           themeMode: themeProvider.themeMode,
           theme: ThemeData(
               colorScheme: AppThemes.version1ColorScheme,
