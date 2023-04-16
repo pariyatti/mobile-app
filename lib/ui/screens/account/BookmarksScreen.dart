@@ -23,7 +23,7 @@ class BookmarksTab extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-          title: Text('Bookmarks'),
+          title: Text(I18n.get().bookmarks),
           backgroundColor: Theme.of(context).colorScheme.secondary
       ),
       body: StreamBuilder(
