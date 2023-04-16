@@ -43,6 +43,9 @@ class I18n {
       bookmarks: 'Bookmarks',
       settings: 'Settings',
       subscribeToNewsletter: 'Subscribe to Newsletter',
+      contactPariyatti: 'Contact Pariyatti',
+      securityAndPrivacy: 'Security and Privacy',
+      aboutPariyatti: 'About Pariyatti',
     ),
 
     Language.fra: I18nStrings(
@@ -59,6 +62,9 @@ class I18n {
       bookmarks: "",
       settings: "",
       subscribeToNewsletter: "",
+      contactPariyatti: "",
+      securityAndPrivacy: "",
+      aboutPariyatti: "",
     ),
 
     Language.ita: I18nStrings(
@@ -75,6 +81,9 @@ class I18n {
       bookmarks: "",
       settings: "",
       subscribeToNewsletter: "",
+      contactPariyatti: "",
+      securityAndPrivacy: "",
+      aboutPariyatti: "",
     ),
 
     Language.lit: I18nStrings(
@@ -91,6 +100,9 @@ class I18n {
       bookmarks: "",
       settings: "",
       subscribeToNewsletter: "",
+      contactPariyatti: "",
+      securityAndPrivacy: "",
+      aboutPariyatti: "",
     ),
 
     Language.por: I18nStrings(
@@ -107,6 +119,9 @@ class I18n {
       bookmarks: "",
       settings: "",
       subscribeToNewsletter: "",
+      contactPariyatti: "",
+      securityAndPrivacy: "",
+      aboutPariyatti: "",
     ),
 
     Language.spa: I18nStrings(
@@ -123,6 +138,9 @@ class I18n {
       bookmarks: "",
       settings: "",
       subscribeToNewsletter: "",
+      contactPariyatti: "",
+      securityAndPrivacy: "",
+      aboutPariyatti: "",
     ),
 
     Language.srp: I18nStrings(
@@ -139,6 +157,9 @@ class I18n {
       bookmarks: "",
       settings: "",
       subscribeToNewsletter: "",
+      contactPariyatti: "",
+      securityAndPrivacy: "",
+      aboutPariyatti: "",
     ),
 
     Language.zho_hant: I18nStrings(
@@ -155,6 +176,9 @@ class I18n {
       bookmarks: "",
       settings: "",
       subscribeToNewsletter: "",
+      contactPariyatti: "",
+      securityAndPrivacy: "",
+      aboutPariyatti: "",
     ),
 
   };
