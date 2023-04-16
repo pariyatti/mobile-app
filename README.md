@@ -8,6 +8,23 @@
 - [Design Docs & Wireframes](https://drive.google.com/drive/folders/1Iga6z-5tndLJ411XG5ibimLwNC5VZDVv?usp=sharing) (public)
 - `patta [m.]: _leaf; alms bowl; attained_`
 
+## Tool Versions
+
+* Ubuntu 22.04
+* MacOS 13.2.1
+* JDK 17
+* Android Studio 22.2.1
+* XCode 14.3
+* Flutter:
+
+```
+% flutter --version
+Flutter 3.7.11 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision f72efea43c (5 days ago) • 2023-04-11 11:57:21 -0700
+Engine • revision 1a65d409c7
+Tools • Dart 2.19.6 • DevTools 2.20.1
+```
+
 ## Dev Setup: Android
 
 1. Install Java (Linux or MacOS): `sudo apt-get install openjdk-17-jdk`
