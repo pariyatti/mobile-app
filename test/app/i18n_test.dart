@@ -7,7 +7,7 @@ void main() {
   test('sanity: all languages the user can select return something meaningful (non-English) for "Today"', () {
     for (var l in Language.all) {
       if (l != Language.eng) {
-        expect(I18n.getForced(l).labelToday, isNot(equals("Today")));
+        expect(I18n.getForced(l).today, isNot(equals("Today")));
       }
     }
   });

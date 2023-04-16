@@ -169,7 +169,7 @@ class _OverlayInspirationCardState extends State<OverlayInspirationCard> {
             final String extension = extractFileExtension(widget.data.imageUrl);
             await WcFlutterShare.share(
               sharePopupTitle:
-              I18n.get().labelShareInspiration,
+              I18n.get().shareInspiration,
               mimeType: 'image/$extension',
               fileName: '$filename.$extension',
               bytesOfFile: imageData,

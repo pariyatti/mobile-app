@@ -64,7 +64,7 @@ class BookmarksTab extends StatelessWidget {
             ),
           ),
           Text(
-            I18n.get().errorMessageTryAgainLater,
+            I18n.get().tryAgainLater,
             style: TextStyle(
               inherit: true,
               color: Theme.of(context).colorScheme.onSecondary,
@@ -84,7 +84,7 @@ class BookmarksTab extends StatelessWidget {
     if (cardModels.isEmpty) {
       return Center(
         child: Text(
-          I18n.get().messageNothingBookmarked,
+          I18n.get().nothingBookmarked,
           style: TextStyle(
             inherit: true,
             color: Theme.of(context).colorScheme.onBackground,

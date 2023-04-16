@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patta/app/I18n.dart';
 import 'package:patta/app/app_themes.dart';
 import 'package:patta/ui/common/pariyatti_icons.dart';
 import 'package:patta/ui/screens/account/BookmarksScreen.dart';
@@ -17,7 +18,7 @@ class AccountScreen extends StatelessWidget {
         SettingsSection(tiles: <SettingsTile>[
           SettingsTile.navigation(
             leading: Icon(PariyattiIcons.get(IconName.bookmarkFilled)),
-            title: Text('Bookmarks'),
+            title: Text(I18n.get().bookmarks),
             onPressed: (context) {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (_) => BookmarksTab(),
@@ -26,7 +27,7 @@ class AccountScreen extends StatelessWidget {
           ),
           SettingsTile.navigation(
             leading: Icon(Icons.mail),
-            title: Text('Subscribe to Newsletter'),
+            title: Text(I18n.get().subscribeToNewsletter),
             onPressed: (context) {
               // TODO: replace with in-app subscription?
               tryLaunchUrl("https://store.pariyatti.org/newsletter-subscription");
