@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:patta/app/I18n.dart';
 import 'package:patta/app/app_themes.dart';
+import 'package:patta/model/FeedList.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../model/Feed.dart';
@@ -12,7 +13,8 @@ class FeedsScreen extends StatefulWidget {
 }
 
 class _FeedsScreenState extends State<FeedsScreen> {
-  Map<String, bool> enabledFeeds = Map.fromIterable(Feed.all, key: (e) => e.key, value: (e) => true);
+  var feedList = FeedList();
+  Map<String, bool> enabledFeeds = Map.fromIterable(FeedList().all(), key: (e) => e.key, value: (e) => true);
 
   @override
   void initState() {
@@ -42,7 +44,7 @@ class _FeedsScreenState extends State<FeedsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List<SettingsTile> tiles = List.from(Feed.all.map((e) => buildSettingsTile(e)));
+    List<SettingsTile> tiles = List.from(feedList.all().map((e) => buildSettingsTile(e)));
 
     return Scaffold(
       appBar: AppBar(

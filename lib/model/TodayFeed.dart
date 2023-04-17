@@ -2,8 +2,8 @@ import 'package:patta/model/CardModel.dart';
 import 'package:patta/model/DateCardModel.dart';
 
 import 'package:patta/app/preferences.dart';
-import 'Feed.dart';
 import 'DohaCardModel.dart';
+import 'FeedList.dart';
 import 'OverlayInspirationCardModel.dart';
 import 'PaliWordCardModel.dart';
 import 'StackedInspirationCardModel.dart';
@@ -11,8 +11,10 @@ import 'WordsOfBuddhaCardModel.dart';
 
 class TodayFeed {
   late List<CardModel> _list;
+  late FeedList _feedList;
   TodayFeed(List<CardModel> list) {
     _list = list;
+    _feedList = FeedList();
   }
 
   get length => _list.length;
@@ -48,11 +50,11 @@ class TodayFeed {
 
   isCardVisible(CardModel card) {
     // prepare for a horror show of poorly-managed types...
-    return (card is PaliWordCardModel && isFeedEnabled(Feed.pali)) ||
-        (card is WordsOfBuddhaCardModel && isFeedEnabled(Feed.buddha)) ||
-        (card is DohaCardModel && isFeedEnabled(Feed.dohas)) ||
-        (card is StackedInspirationCardModel && isFeedEnabled(Feed.inspiration)) ||
-        (card is OverlayInspirationCardModel && isFeedEnabled(Feed.inspiration));
+    return (card is PaliWordCardModel && isFeedEnabled(_feedList.pali)) ||
+        (card is WordsOfBuddhaCardModel && isFeedEnabled(_feedList.buddha)) ||
+        (card is DohaCardModel && isFeedEnabled(_feedList.dohas)) ||
+        (card is StackedInspirationCardModel && isFeedEnabled(_feedList.inspiration)) ||
+        (card is OverlayInspirationCardModel && isFeedEnabled(_feedList.inspiration));
   }
 
   isFeedEnabled(feed) => Preferences.getBool(feed.key) ?? true;
