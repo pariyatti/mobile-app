@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:patta/app/I18n.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/ui/common/bookmark_button.dart';
 import 'package:patta/ui/common/card_header.dart';
@@ -69,7 +70,7 @@ class _EmptyCardState extends State<EmptyCard> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              CardHeader(context, "Empty Card"),
+              CardHeader(context, I18n.get().emptyCard),
               RepaintBoundary(
                 key: _renderKey,
                 child: Stack(
@@ -97,7 +98,7 @@ class _EmptyCardState extends State<EmptyCard> {
                           ),
                         ),
                       ),
-                      imageUrl: "<empty card>",
+                      imageUrl: "<${I18n.get().emptyCard}>",
                       imageBuilder: (context, imageProvider) {
                         return Image(
                           image: imageProvider,
@@ -113,7 +114,7 @@ class _EmptyCardState extends State<EmptyCard> {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              "<empty card was empty>",
+                              "<empty card ${I18n.get().wasEmpty}>",
                               style: TextStyle(
                                   inherit: true,
                                   fontSize: 20.0,

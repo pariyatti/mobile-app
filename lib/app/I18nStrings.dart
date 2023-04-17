@@ -15,28 +15,26 @@ class I18nStrings {
   final String settings;
 
   final String subscribeToNewsletter;
-
   final String contactPariyatti;
-
   final String securityAndPrivacy;
-
   final String aboutPariyatti;
-
   final String feeds;
-
   final String languages;
-
   final String language;
-
   final String languageAlternate;
-
   final String theme;
-
   final String lightTheme;
-
   final String darkTheme;
-
   final String systemDefault;
+  final String couldNotLaunch;
+  final String wasEmpty;
+  final String dhammaVerse;
+  final String emptyCard;
+  final String inspiration;
+  final String paliWord;
+  final String onlyEnglish;
+  final String error;
+  final String wordsOfTheBuddha;
 
   const I18nStrings({
     @required required this.appName,
@@ -63,6 +61,15 @@ class I18nStrings {
     @required required this.lightTheme,
     @required required this.darkTheme,
     @required required this.systemDefault,
+    @required required this.couldNotLaunch,
+    @required required this.wasEmpty,
+    @required required this.dhammaVerse, // "Dhamma Verse"
+    @required required this.emptyCard,   // "Empty Card"
+    @required required this.inspiration, // "Inspiration"
+    @required required this.paliWord,    // "Pāli Word"
+    @required required this.onlyEnglish, // "Only English is available as an Alternate Language at this time."
+    @required required this.error,       // "Error"
+    @required required this.wordsOfTheBuddha, // "Words of the Buddha"
   });
 
 }

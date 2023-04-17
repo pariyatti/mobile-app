@@ -103,7 +103,7 @@ class _DohaCardState extends State<DohaCard> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    CardHeader(context, widget.data.header ?? "Dhamma Verse"),
+                    CardHeader(context, widget.data.header ?? I18n.get().dhammaVerse),
                     buildOverlayWords(),
                     buildButtonFooter(),
                   ],
@@ -169,10 +169,10 @@ class _DohaCardState extends State<DohaCard> {
   }
 
   Text getTranslationText() => Text(getTranslation(), style: serifFont(context: context));
-  String getTranslation() => widget.data.translations![_selectedLanguage.code] ?? "<translation was empty>";
+  String getTranslation() => widget.data.translations![_selectedLanguage.code] ?? "<translation ${I18n.get().wasEmpty}>";
 
   Text getPaliText() => Text(getPali(), style: serifFont(context: context));
-  String getPali() => widget.data.doha ?? "<words field was empty>";
+  String getPali() => widget.data.doha ?? "<words field ${I18n.get().wasEmpty}>";
 
   Container buildButtonFooter() {
     return Container(

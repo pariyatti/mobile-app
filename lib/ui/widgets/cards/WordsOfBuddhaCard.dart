@@ -4,6 +4,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:patta/app/log.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/model/Chanting.dart';
 import 'package:patta/model/Language.dart';
@@ -68,7 +69,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
     try {
       _chanting = new Chanting(Uri.parse(widget.data.audioUrl ?? ""));
     } catch (e) {
-      print("Error parsing audio URL: $e");
+      print("${I18n.get().error} parsing audio URL: $e");
     }
   }
 
@@ -109,7 +110,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    CardHeader(context, widget.data.header ?? "Words of the Buddha"),
+                    CardHeader(context, widget.data.header ?? I18n.get().wordsOfTheBuddha),
                     buildOverlayWords(),
                     buildButtonFooter(),
                   ],
@@ -168,7 +169,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
                         setState(() {
                           _chanting = _chanting.tryToggle();
                         });
-                        print("Discourse chanting toggled by double-tap: ${_chanting.isSpecialVisible}");
+                        log2("Discourse chanting toggled by double-tap: ${_chanting.isSpecialVisible}");
                       },
                       child: getTranslationText(),
                     ),
@@ -193,14 +194,14 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   }
 
   Text getPaliText() => Text(getPali(), style: serifFont(context: context));
-  String getPali() => widget.data.words ?? "<words field was empty>";
+  String getPali() => widget.data.words ?? "<words field ${I18n.get().wasEmpty}>";
 
   Text getTranslationText() => Text(getTranslation(), style: serifFont(context: context));
-  String getTranslation() => widget.data.translations![_selectedLanguage.code] ?? "<translation was empty>";
+  String getTranslation() => widget.data.translations![_selectedLanguage.code] ?? "<translation ${I18n.get().wasEmpty}>";
 
   Widget getCitationText() {
     if (widget.data.citepali == null && widget.data.citebook == null) {
-      return Text("<citation was empty>", style: serifFont(context: context));
+      return Text("<citation ${I18n.get().wasEmpty}>", style: serifFont(context: context));
     }
     return Column(children: <Widget>[
       Align(alignment: Alignment.topLeft,
@@ -227,7 +228,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   }
 
   Container buildButtonFooter() {
-    print("Rebuilding button footer");
+    log2("Rebuilding button footer");
     return Container(
       color: Theme.of(context).colorScheme.secondary,
       child: Column(
@@ -263,7 +264,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   }
 
   AudioButton buildAudioButton(Uri? url, [Color? color]) {
-    print("URL is: $url");
+    log2("Audio button URL is: $url");
     return AudioButton(audioUrl: url, overrideColor: color);
   }
 
