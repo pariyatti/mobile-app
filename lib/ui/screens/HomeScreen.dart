@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
     switch (_tab) {
       case HomeScreenTab.TODAY:
         bottomNavigationBarIndex = 0;
-        titleText = '${I18n.get().today}';
+        titleText = '${I18n.get("today")}';
         bodyWidget = SliveredView(
           title: titleText,
           body: TodayScreen(),
@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
         break;
       case HomeScreenTab.ACCOUNT:
         bottomNavigationBarIndex = 1;
-        titleText = '${I18n.get().account}';
+        titleText = '${I18n.get("account")}';
         bodyWidget = SliveredView(
           title: titleText,
           body: AccountScreen(),
@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
         break;
       case HomeScreenTab.DONATE:
         bottomNavigationBarIndex = 2;
-        titleText = '${I18n.get().donate}';
+        titleText = '${I18n.get("donate")}';
         bodyWidget = SliveredView(
           title: titleText,
           body: DonateScreen(),
@@ -65,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
               PariyattiIcons.get(IconName.today),
               color: Theme.of(context).colorScheme.inversePrimary,
             ),
-            label: I18n.get().today
+            label: I18n.get("today")
           ),
           BottomNavigationBarItem(
             icon: Icon(
@@ -76,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
               PariyattiIcons.get(IconName.person),
               color: Theme.of(context).colorScheme.inversePrimary,
             ),
-            label: I18n.get().account
+            label: I18n.get("account")
           ),
           BottomNavigationBarItem(
               icon: Icon(
@@ -87,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Icons.volunteer_activism,
                 color: Theme.of(context).colorScheme.inversePrimary,
               ),
-              label: I18n.get().donate
+              label: I18n.get("donate")
           ),
         ],
         onTap: (int tappedItemIndex) {

@@ -69,7 +69,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
     try {
       _chanting = new Chanting(Uri.parse(widget.data.audioUrl ?? ""));
     } catch (e) {
-      print("${I18n.get().error} parsing audio URL: $e");
+      print("${I18n.get("error")} parsing audio URL: $e");
     }
   }
 
@@ -110,7 +110,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    CardHeader(context, widget.data.header ?? I18n.get().wordsOfTheBuddha),
+                    CardHeader(context, widget.data.header ?? I18n.get("wordsOfTheBuddha")),
                     buildOverlayWords(),
                     buildButtonFooter(),
                   ],
@@ -194,14 +194,14 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   }
 
   Text getPaliText() => Text(getPali(), style: serifFont(context: context));
-  String getPali() => widget.data.words ?? "<words field ${I18n.get().wasEmpty}>";
+  String getPali() => widget.data.words ?? "<words field ${I18n.get("wasEmpty")}>";
 
   Text getTranslationText() => Text(getTranslation(), style: serifFont(context: context));
-  String getTranslation() => widget.data.translations![_selectedLanguage.code] ?? "<translation ${I18n.get().wasEmpty}>";
+  String getTranslation() => widget.data.translations![_selectedLanguage.code] ?? "<translation ${I18n.get("wasEmpty")}>";
 
   Widget getCitationText() {
     if (widget.data.citepali == null && widget.data.citebook == null) {
-      return Text("<citation ${I18n.get().wasEmpty}>", style: serifFont(context: context));
+      return Text("<citation ${I18n.get("wasEmpty")}>", style: serifFont(context: context));
     }
     return Column(children: <Widget>[
       Align(alignment: Alignment.topLeft,
@@ -274,7 +274,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
       final String filename = toFilename(widget.data.header!);
       final String extension = extractFileExtension(widget.data.imageUrl);
       await WcFlutterShare.share(
-        sharePopupTitle: I18n.get().shareInspiration,
+        sharePopupTitle: I18n.get("shareInspiration"),
         mimeType: 'image/$extension',
         fileName: '$filename.$extension',
         bytesOfFile: imageData

@@ -41,7 +41,7 @@ class PaliWordCard extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    CardHeader(context, data.header ?? I18n.get().paliWord),
+                    CardHeader(context, data.header ?? I18n.get("paliWord")),
                     buildPaliWord(context),
                     buildButtonFooter(context)
                   ],
@@ -70,7 +70,7 @@ class PaliWordCard extends StatelessWidget {
                       vertical: 0.0,
                     ),
                     child: Text(
-                        data.pali ?? "<pali text ${I18n.get().wasEmpty}>",
+                        data.pali ?? "<pali text ${I18n.get("wasEmpty")}>",
                         style: serifFont(context: context, fontSize: 18.0, color: Theme.of(context).colorScheme.onSurface)
                     ),
                   )
@@ -84,7 +84,7 @@ class PaliWordCard extends StatelessWidget {
                       vertical: 8.0,
                     ),
                     child: Text(
-                        I18n.get().translation,
+                        I18n.get("translation"),
                         style: sanSerifFont(context: context, fontSize: 14.0, color: Theme.of(context).colorScheme.onBackground)
                     ),
                   ),
@@ -94,7 +94,7 @@ class PaliWordCard extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(12.0, 0.0, 12.0, 12.0),
                     child: Text(
-                        data.translation ?? "<translation ${I18n.get().wasEmpty}>",
+                        data.translation ?? "<translation ${I18n.get("wasEmpty")}>",
                         style: serifFont(context: context, fontSize: 18.0, color: Theme.of(context).colorScheme.onSurface)
                     ),
                   )
@@ -115,9 +115,9 @@ class PaliWordCard extends StatelessWidget {
     listOfButtons.add(ShareButton(
       onPressed: () async {
         await WcFlutterShare.share(
-          sharePopupTitle: I18n.get().sharePaliWord,
+          sharePopupTitle: I18n.get("sharePaliWord"),
           mimeType: 'text/plain',
-          text: '${data.header}: \n${data.pali}\n\n${I18n.get().translation}: \n${data.translation}',
+          text: '${data.header}: \n${data.pali}\n\n${I18n.get("translation")}: \n${data.translation}',
         );
       },
     ));
