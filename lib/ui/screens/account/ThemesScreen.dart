@@ -41,7 +41,7 @@ class _ThemesScreenState extends State<ThemesScreen> {
     themeProvider = Provider.of<ThemeProvider>(context, listen:false);
     return Scaffold(
       appBar: AppBar(
-          title: Text(I18n.get().theme),
+          title: Text(I18n.get("theme")),
           backgroundColor: Theme.of(context).colorScheme.secondary
       ),
       body: SettingsList(
@@ -50,9 +50,9 @@ class _ThemesScreenState extends State<ThemesScreen> {
         sections: [
           SettingsSection(tiles:
           [
-            tile(context, themeProvider, I18n.get().lightTheme, ThemeMode.light),
-            tile(context, themeProvider, I18n.get().darkTheme, ThemeMode.dark),
-            tile(context, themeProvider, I18n.get().systemDefault, ThemeMode.system)
+            tile(context, themeProvider, I18n.get("lightTheme"), ThemeMode.light),
+            tile(context, themeProvider, I18n.get("darkTheme"), ThemeMode.dark),
+            tile(context, themeProvider, I18n.get("systemDefault"), ThemeMode.system)
           ]),
         ],
       ),

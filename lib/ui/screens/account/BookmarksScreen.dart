@@ -23,7 +23,7 @@ class BookmarksTab extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-          title: Text(I18n.get().bookmarks),
+          title: Text(I18n.get("bookmarks")),
           backgroundColor: Theme.of(context).colorScheme.secondary
       ),
       body: StreamBuilder(
@@ -64,7 +64,7 @@ class BookmarksTab extends StatelessWidget {
             ),
           ),
           Text(
-            I18n.get().tryAgainLater,
+            I18n.get("tryAgainLater"),
             style: TextStyle(
               inherit: true,
               color: Theme.of(context).colorScheme.onSecondary,
@@ -84,7 +84,7 @@ class BookmarksTab extends StatelessWidget {
     if (cardModels.isEmpty) {
       return Center(
         child: Text(
-          I18n.get().nothingBookmarked,
+          I18n.get("nothingBookmarked"),
           style: TextStyle(
             inherit: true,
             color: Theme.of(context).colorScheme.onBackground,

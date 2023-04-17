@@ -42,7 +42,7 @@ class _SettingsTabState extends State<SettingsTab> {
     // example: https://github.com/yako-dev/flutter-settings-ui/blob/master/example/lib/screens/settings_screen.dart
     return Scaffold(
       appBar: AppBar(
-          title: Text(I18n.get().settings),
+          title: Text(I18n.get("settings")),
           backgroundColor: Theme.of(context).colorScheme.secondary
       ),
       body: SettingsList(
@@ -55,7 +55,7 @@ class _SettingsTabState extends State<SettingsTab> {
               SettingsTile.navigation(
                 // TODO: use PariyattiIcon
                 leading: Icon(Icons.language),
-                title: Text(I18n.get().language),
+                title: Text(I18n.get("language")),
                 value: Text(selectedLanguage.name),
                 onPressed: (context) {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -66,14 +66,14 @@ class _SettingsTabState extends State<SettingsTab> {
               SettingsTile.navigation(
                 // TODO: use PariyattiIcon
                   leading: Icon(Icons.language),
-                  title: Text(I18n.get().languageAlternate),
+                  title: Text(I18n.get("languageAlternate")),
                   value: Text(Language.eng.name),
                   onPressed: _showToast
               ),
               SettingsTile.navigation(
                 // TODO: use PariyattiIcon
                 leading: Icon(Icons.feed),
-                title: Text(I18n.get().feeds),
+                title: Text(I18n.get("feeds")),
                 value: Text(''),
                 onPressed: (context) {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -84,7 +84,7 @@ class _SettingsTabState extends State<SettingsTab> {
               SettingsTile.navigation(
                 // TODO: use PariyattiIcon
                 leading: Icon(Icons.nightlight_round),
-                title: Text(I18n.get().theme),
+                title: Text(I18n.get("theme")),
                 value: Text(''),
                 onPressed: (context) {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -104,7 +104,7 @@ class _SettingsTabState extends State<SettingsTab> {
     final scaffold = ScaffoldMessenger.of(context);
     scaffold.showSnackBar(
       SnackBar(
-        content: Text(I18n.get().onlyEnglish),
+        content: Text(I18n.get("onlyEnglish")),
         action: SnackBarAction(label: 'OK', onPressed: scaffold.hideCurrentSnackBar),
       ),
     );

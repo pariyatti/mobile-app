@@ -2,8 +2,10 @@ import 'package:patta/model/CardModel.dart';
 import 'package:patta/model/DateCardModel.dart';
 
 import 'package:patta/app/preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'DohaCardModel.dart';
 import 'FeedList.dart';
+import 'Language.dart';
 import 'OverlayInspirationCardModel.dart';
 import 'PaliWordCardModel.dart';
 import 'StackedInspirationCardModel.dart';
@@ -12,9 +14,11 @@ import 'WordsOfBuddhaCardModel.dart';
 class TodayFeed {
   late List<CardModel> _list;
   late FeedList _feedList;
+  Language _selectedLanguage = Language.eng;
   TodayFeed(List<CardModel> list) {
+    initLanguage();
     _list = list;
-    _feedList = FeedList();
+    _feedList = FeedList(_selectedLanguage);
   }
 
   get length => _list.length;
@@ -25,6 +29,12 @@ class TodayFeed {
 
   get(int index) {
     return _list[index];
+  }
+
+  // FIXME: this is only required to provide a Language to FeedList
+  void initLanguage() async {
+    final prefs = await SharedPreferences.getInstance();
+    _selectedLanguage = Language.from(prefs.getString(Language.SETTINGS_KEY));
   }
 
   TodayFeed filter() {

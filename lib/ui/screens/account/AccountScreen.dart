@@ -18,7 +18,7 @@ class AccountScreen extends StatelessWidget {
         SettingsSection(tiles: <SettingsTile>[
           SettingsTile.navigation(
             leading: Icon(PariyattiIcons.get(IconName.bookmarkFilled)),
-            title: Text(I18n.get().bookmarks),
+            title: Text(I18n.get("bookmarks")),
             onPressed: (context) {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (_) => BookmarksTab(),
@@ -27,7 +27,7 @@ class AccountScreen extends StatelessWidget {
           ),
           SettingsTile.navigation(
             leading: Icon(Icons.mail),
-            title: Text(I18n.get().subscribeToNewsletter),
+            title: Text(I18n.get("subscribeToNewsletter")),
             onPressed: (context) {
               // TODO: replace with in-app subscription?
               tryLaunchUrl("https://store.pariyatti.org/newsletter-subscription");
@@ -36,7 +36,7 @@ class AccountScreen extends StatelessWidget {
           SettingsTile.navigation(
             // TODO: use PariyattiIcon?
               leading: Icon(Icons.settings),
-              title: Text(I18n.get().settings),
+              title: Text(I18n.get("settings")),
               onPressed: (context) {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (_) => SettingsTab(),
@@ -50,21 +50,21 @@ class AccountScreen extends StatelessWidget {
             tiles: <SettingsTile>[
           SettingsTile.navigation(
             leading: Icon(Icons.contact_support),
-            title: Text(I18n.get().contactPariyatti),
+            title: Text(I18n.get("contactPariyatti")),
             onPressed: (context) {
               tryLaunchUrl("https://pariyatti.org/About#contact");
             },
           ),
           SettingsTile.navigation(
             leading: Icon(Icons.verified_user),
-            title: Text(I18n.get().securityAndPrivacy),
+            title: Text(I18n.get("securityAndPrivacy")),
             onPressed: (context) {
               tryLaunchUrl("https://pariyatti.org/Security-Privacy");
             },
           ),
           SettingsTile.navigation(
             leading: Icon(Icons.info),
-            title: Text(I18n.get().aboutPariyatti),
+            title: Text(I18n.get("aboutPariyatti")),
             onPressed: (context) {
               tryLaunchUrl("https://pariyatti.org/About");
             },
