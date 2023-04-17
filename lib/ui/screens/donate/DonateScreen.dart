@@ -48,7 +48,7 @@ class DonateScreen extends StatelessWidget {
                           textStyle: const TextStyle(fontSize: 20),
                         ),
                         onPressed: tryLaunchDonateUrl,
-                        child: const Text('Donate'),
+                        child: Text(I18n.get().donate),
                       ),
                     ],
                   ),
@@ -62,7 +62,7 @@ class DonateScreen extends StatelessWidget {
   Future<void> tryLaunchDonateUrl() async {
     var url = Uri.parse("https://pariyatti.org/Donate-Now");
     if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
-      throw 'Could not launch $url';
+      throw "{$I18n.get().couldNotLaunch} $url";
     }
   }
 }

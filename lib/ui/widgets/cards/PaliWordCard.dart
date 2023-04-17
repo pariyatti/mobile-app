@@ -41,7 +41,7 @@ class PaliWordCard extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    CardHeader(context, data.header ?? "Pāli Word"),
+                    CardHeader(context, data.header ?? I18n.get().paliWord),
                     buildPaliWord(context),
                     buildButtonFooter(context)
                   ],
@@ -70,7 +70,7 @@ class PaliWordCard extends StatelessWidget {
                       vertical: 0.0,
                     ),
                     child: Text(
-                        data.pali ?? "<pali text was empty>",
+                        data.pali ?? "<pali text ${I18n.get().wasEmpty}>",
                         style: serifFont(context: context, fontSize: 18.0, color: Theme.of(context).colorScheme.onSurface)
                     ),
                   )
@@ -94,7 +94,7 @@ class PaliWordCard extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(12.0, 0.0, 12.0, 12.0),
                     child: Text(
-                        data.translation ?? "<translation was empty>",
+                        data.translation ?? "<translation ${I18n.get().wasEmpty}>",
                         style: serifFont(context: context, fontSize: 18.0, color: Theme.of(context).colorScheme.onSurface)
                     ),
                   )

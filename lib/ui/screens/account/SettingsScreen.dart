@@ -104,7 +104,7 @@ class _SettingsTabState extends State<SettingsTab> {
     final scaffold = ScaffoldMessenger.of(context);
     scaffold.showSnackBar(
       SnackBar(
-        content: const Text('Only English is available as an Alternate Language at this time.'),
+        content: Text(I18n.get().onlyEnglish),
         action: SnackBarAction(label: 'OK', onPressed: scaffold.hideCurrentSnackBar),
       ),
     );

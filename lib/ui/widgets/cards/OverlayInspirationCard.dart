@@ -81,7 +81,7 @@ class _OverlayInspirationCardState extends State<OverlayInspirationCard> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              CardHeader(context, widget.data.header ?? "Inspiration"),
+              CardHeader(context, widget.data.header ?? I18n.get().inspiration),
               buildOverlayWords(),
               buildButtonFooter(),
             ],
@@ -135,7 +135,7 @@ class _OverlayInspirationCardState extends State<OverlayInspirationCard> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            widget.data.text ?? "<inspiration text was empty>",
+                            widget.data.text ?? "<inspiration text ${I18n.get().wasEmpty}>",
                             style: TextStyle(
                                 inherit: true,
                                 fontSize: 20.0,
