@@ -6,5 +6,5 @@ String extractFileExtension(String? filePath) {
 }
 
 String toFilename(String s) {
-  return s.replaceAll(" ", "_");
+  return s.replaceAll(" ", "_").replaceAll(".", "");
 }
