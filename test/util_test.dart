@@ -14,4 +14,8 @@ void main() {
   test('removes periods from filenames', () {
     expect(toFilename("Daily Dhamma Verse from S.N. Goenka"), "Daily_Dhamma_Verse_from_SN_Goenka");
   });
+
+  test('removes diacritics', () {
+    expect(toFilename("Pāli Word of the Day"), "Pali_Word_of_the_Day");
+  });
 }

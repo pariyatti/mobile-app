@@ -1,3 +1,5 @@
+import 'package:patta/extensions/string_ext.dart';
+
 String extractFileExtension(String? filePath) {
   if (filePath!.endsWith("null")) {
     return "jpg";
@@ -6,5 +8,8 @@ String extractFileExtension(String? filePath) {
 }
 
 String toFilename(String s) {
-  return s.replaceAll(" ", "_").replaceAll(".", "");
+  return s
+      .replaceAll(" ", "_")
+      .replaceAll(".", "")
+      .removeDiacritics();
 }
