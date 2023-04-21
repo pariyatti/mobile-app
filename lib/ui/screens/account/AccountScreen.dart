@@ -27,7 +27,7 @@ class AccountScreen extends StatelessWidget {
           ),
           SettingsTile.navigation(
             leading: Icon(Icons.mail),
-            title: Text(I18n.get("subscribeToNewsletter")),
+            title: Text(I18n.get("subscribe_to_newsletter")),
             onPressed: (context) {
               // TODO: replace with in-app subscription?
               tryLaunchUrl("https://store.pariyatti.org/newsletter-subscription");
@@ -50,21 +50,21 @@ class AccountScreen extends StatelessWidget {
             tiles: <SettingsTile>[
           SettingsTile.navigation(
             leading: Icon(Icons.contact_support),
-            title: Text(I18n.get("contactPariyatti")),
+            title: Text(I18n.get("contact_pariyatti")),
             onPressed: (context) {
               tryLaunchUrl("https://pariyatti.org/About#contact");
             },
           ),
           SettingsTile.navigation(
             leading: Icon(Icons.verified_user),
-            title: Text(I18n.get("securityAndPrivacy")),
+            title: Text(I18n.get("security_and_privacy")),
             onPressed: (context) {
               tryLaunchUrl("https://pariyatti.org/Security-Privacy");
             },
           ),
           SettingsTile.navigation(
             leading: Icon(Icons.info),
-            title: Text(I18n.get("aboutPariyatti")),
+            title: Text(I18n.get("about_pariyatti")),
             onPressed: (context) {
               tryLaunchUrl("https://pariyatti.org/About");
             },

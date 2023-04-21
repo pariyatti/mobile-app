@@ -71,7 +71,7 @@ class PariyattiApp extends StatelessWidget {
       builder: (context, _) {
         final themeProvider = Provider.of<ThemeProvider>(context, listen: true);
         return MaterialApp(
-          title: I18n.get("appName"),
+          title: I18n.get("app_name"),
           themeMode: themeProvider.themeMode,
           theme: ThemeData(
               colorScheme: AppThemes.version1ColorScheme,
