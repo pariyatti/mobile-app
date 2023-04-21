@@ -110,7 +110,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    CardHeader(context, widget.data.header ?? I18n.get("wordsOfTheBuddha")),
+                    CardHeader(context, I18n.get("wordsOfTheBuddha")),
                     buildOverlayWords(),
                     buildButtonFooter(),
                   ],
@@ -271,10 +271,10 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   ShareButton buildShareButton() {
     return ShareButton(onPressed: loaded == true ? () async {
       Uint8List imageData = await _getImage();
-      final String filename = toFilename(widget.data.header!);
+      final String filename = toFilename(I18n.get("wordsOfTheBuddha"));
       final String extension = extractFileExtension(widget.data.imageUrl);
       await WcFlutterShare.share(
-        sharePopupTitle: I18n.get("shareInspiration"),
+        sharePopupTitle: I18n.get("shareWordOfBuddha"),
         mimeType: 'image/$extension',
         fileName: '$filename.$extension',
         bytesOfFile: imageData

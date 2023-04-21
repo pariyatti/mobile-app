@@ -10,4 +10,8 @@ void main() {
   test('removes spaces from filenames', () {
     expect(toFilename("Daily Doha"), "Daily_Doha");
   });
+  
+  test('removes periods from filenames', () {
+    expect(toFilename("Daily Dhamma Verse from S.N. Goenka"), "Daily_Dhamma_Verse_from_SN_Goenka");
+  });
 }

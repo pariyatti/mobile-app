@@ -103,7 +103,7 @@ class _DohaCardState extends State<DohaCard> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    CardHeader(context, widget.data.header ?? I18n.get("dhammaVerse")),
+                    CardHeader(context, I18n.get("dhammaVerse")),
                     buildOverlayWords(),
                     buildButtonFooter(),
                   ],
@@ -195,10 +195,10 @@ class _DohaCardState extends State<DohaCard> {
   ShareButton buildShareButton() {
     return ShareButton(onPressed: loaded == true ? () async {
       Uint8List imageData = await _getImage();
-      final String filename = toFilename(widget.data.header!);
+      final String filename = toFilename(I18n.get("dhammaVerse"));
       final String extension = extractFileExtension(widget.data.imageUrl);
       await WcFlutterShare.share(
-        sharePopupTitle: I18n.get("shareInspiration"),
+        sharePopupTitle: I18n.get("shareDhammaVerse"),
         mimeType: 'image/$extension',
         fileName: '$filename.$extension',
         bytesOfFile: imageData
