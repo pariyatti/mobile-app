@@ -127,7 +127,7 @@ class _StackedInspirationCardState extends State<StackedInspirationCard> {
                     Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: Text(
-                        widget.data.text ?? "<text ${I18n.get("wasEmpty")}>",
+                        widget.data.text ?? "<text ${I18n.get("was_empty")}>",
                         style: serifFont(context: context, textStyle: TextStyle(fontStyle: FontStyle.italic, fontSize: 21.0))
                       ),
                     ),
@@ -161,7 +161,7 @@ class _StackedInspirationCardState extends State<StackedInspirationCard> {
       final String extension = extractFileExtension(widget.data.imageUrl);
       final String filename = toFilename(widget.data.header!);
       await WcFlutterShare.share(
-        sharePopupTitle: I18n.get("shareInspiration"),
+        sharePopupTitle: I18n.get("share_inspiration"),
         mimeType: 'image/$extension',
         fileName: '$filename.$extension',
         bytesOfFile: imageData,

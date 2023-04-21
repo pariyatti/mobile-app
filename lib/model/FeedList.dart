@@ -11,9 +11,9 @@ class FeedList {
 
   FeedList(Language selectedLanguage) {
     I18n.set(selectedLanguage);
-    pali = Feed("pali", I18n.get("paliWordOfTheDay"));
-    buddha = Feed("buddha", I18n.get("wordsOfTheBuddha"));
-    dohas = Feed("dohas", I18n.get("dhammaVerse"));
+    pali = Feed("pali", I18n.get("pali_word_of_the_day"));
+    buddha = Feed("buddha", I18n.get("words_of_the_buddha"));
+    dohas = Feed("dohas", I18n.get("dhamma_verse"));
     inspiration = Feed("inspiration", I18n.get("inspiration"));
   }
 

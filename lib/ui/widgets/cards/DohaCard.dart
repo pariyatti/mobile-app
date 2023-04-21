@@ -103,7 +103,7 @@ class _DohaCardState extends State<DohaCard> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    CardHeader(context, I18n.get("dhammaVerse")),
+                    CardHeader(context, I18n.get("dhamma_verse")),
                     buildOverlayWords(),
                     buildButtonFooter(),
                   ],
@@ -169,10 +169,10 @@ class _DohaCardState extends State<DohaCard> {
   }
 
   Text getTranslationText() => Text(getTranslation(), style: serifFont(context: context));
-  String getTranslation() => widget.data.translations![_selectedLanguage.code] ?? "<translation ${I18n.get("wasEmpty")}>";
+  String getTranslation() => widget.data.translations![_selectedLanguage.code] ?? "<translation ${I18n.get("was_empty")}>";
 
   Text getPaliText() => Text(getPali(), style: serifFont(context: context));
-  String getPali() => widget.data.doha ?? "<words field ${I18n.get("wasEmpty")}>";
+  String getPali() => widget.data.doha ?? "<words field ${I18n.get("was_empty")}>";
 
   Container buildButtonFooter() {
     return Container(
@@ -195,10 +195,10 @@ class _DohaCardState extends State<DohaCard> {
   ShareButton buildShareButton() {
     return ShareButton(onPressed: loaded == true ? () async {
       Uint8List imageData = await _getImage();
-      final String filename = toFilename(I18n.get("dhammaVerse"));
+      final String filename = toFilename(I18n.get("dhamma_verse"));
       final String extension = extractFileExtension(widget.data.imageUrl);
       await WcFlutterShare.share(
-        sharePopupTitle: I18n.get("shareDhammaVerse"),
+        sharePopupTitle: I18n.get("share_dhamma_verse"),
         mimeType: 'image/$extension',
         fileName: '$filename.$extension',
         bytesOfFile: imageData

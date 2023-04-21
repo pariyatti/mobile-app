@@ -66,7 +66,7 @@ class _SettingsTabState extends State<SettingsTab> {
               SettingsTile.navigation(
                 // TODO: use PariyattiIcon
                   leading: Icon(Icons.language),
-                  title: Text(I18n.get("languageAlternate")),
+                  title: Text(I18n.get("language_alternate")),
                   value: Text(Language.eng.name),
                   onPressed: _showToast
               ),
@@ -104,7 +104,7 @@ class _SettingsTabState extends State<SettingsTab> {
     final scaffold = ScaffoldMessenger.of(context);
     scaffold.showSnackBar(
       SnackBar(
-        content: Text(I18n.get("onlyEnglish")),
+        content: Text(I18n.get("only_english")),
         action: SnackBarAction(label: 'OK', onPressed: scaffold.hideCurrentSnackBar),
       ),
     );

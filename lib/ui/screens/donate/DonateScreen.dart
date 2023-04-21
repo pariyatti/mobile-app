@@ -19,7 +19,7 @@ class DonateScreen extends StatelessWidget {
                   alignment: Alignment.topLeft,
                     child: Padding(
                       padding: const EdgeInsets.all(20.0),
-                      child: Text(I18n.get("donatePreamble"),
+                      child: Text(I18n.get("donate_preamble"),
                           style: serifFont(context: context)),
                     ),
                   ),
@@ -62,7 +62,7 @@ class DonateScreen extends StatelessWidget {
   Future<void> tryLaunchDonateUrl() async {
     var url = Uri.parse("https://pariyatti.org/Donate-Now");
     if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
-      throw "{$I18n.get('couldNotLaunch')} $url";
+      throw "{$I18n.get('could_not_launch')} $url";
     }
   }
 }

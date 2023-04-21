@@ -41,7 +41,7 @@ class PaliWordCard extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    CardHeader(context, data.header ?? I18n.get("paliWord")),
+                    CardHeader(context, data.header ?? I18n.get("pali_word")),
                     buildPaliWord(context),
                     buildButtonFooter(context)
                   ],
@@ -70,7 +70,7 @@ class PaliWordCard extends StatelessWidget {
                       vertical: 0.0,
                     ),
                     child: Text(
-                        data.pali ?? "<pali text ${I18n.get("wasEmpty")}>",
+                        data.pali ?? "<pali text ${I18n.get("was_empty")}>",
                         style: serifFont(context: context, fontSize: 18.0, color: Theme.of(context).colorScheme.onSurface)
                     ),
                   )
@@ -94,7 +94,7 @@ class PaliWordCard extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(12.0, 0.0, 12.0, 12.0),
                     child: Text(
-                        data.translation ?? "<translation ${I18n.get("wasEmpty")}>",
+                        data.translation ?? "<translation ${I18n.get("was_empty")}>",
                         style: serifFont(context: context, fontSize: 18.0, color: Theme.of(context).colorScheme.onSurface)
                     ),
                   )
@@ -115,7 +115,7 @@ class PaliWordCard extends StatelessWidget {
     listOfButtons.add(ShareButton(
       onPressed: () async {
         await WcFlutterShare.share(
-          sharePopupTitle: I18n.get("sharePaliWord"),
+          sharePopupTitle: I18n.get("share_pali_word"),
           mimeType: 'text/plain',
           text: '${data.header}: \n${data.pali}\n\n${I18n.get("translation")}: \n${data.translation}',
         );

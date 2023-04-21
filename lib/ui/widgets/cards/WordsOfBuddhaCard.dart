@@ -110,7 +110,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    CardHeader(context, I18n.get("wordsOfTheBuddha")),
+                    CardHeader(context, I18n.get("words_of_the_buddha")),
                     buildOverlayWords(),
                     buildButtonFooter(),
                   ],
@@ -194,14 +194,14 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   }
 
   Text getPaliText() => Text(getPali(), style: serifFont(context: context));
-  String getPali() => widget.data.words ?? "<words field ${I18n.get("wasEmpty")}>";
+  String getPali() => widget.data.words ?? "<words field ${I18n.get("was_empty")}>";
 
   Text getTranslationText() => Text(getTranslation(), style: serifFont(context: context));
-  String getTranslation() => widget.data.translations![_selectedLanguage.code] ?? "<translation ${I18n.get("wasEmpty")}>";
+  String getTranslation() => widget.data.translations![_selectedLanguage.code] ?? "<translation ${I18n.get("was_empty")}>";
 
   Widget getCitationText() {
     if (widget.data.citepali == null && widget.data.citebook == null) {
-      return Text("<citation ${I18n.get("wasEmpty")}>", style: serifFont(context: context));
+      return Text("<citation ${I18n.get("was_empty")}>", style: serifFont(context: context));
     }
     return Column(children: <Widget>[
       Align(alignment: Alignment.topLeft,
@@ -271,10 +271,10 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   ShareButton buildShareButton() {
     return ShareButton(onPressed: loaded == true ? () async {
       Uint8List imageData = await _getImage();
-      final String filename = toFilename(I18n.get("wordsOfTheBuddha"));
+      final String filename = toFilename(I18n.get("words_of_the_buddha"));
       final String extension = extractFileExtension(widget.data.imageUrl);
       await WcFlutterShare.share(
-        sharePopupTitle: I18n.get("shareWordOfBuddha"),
+        sharePopupTitle: I18n.get("share_words_of_buddha"),
         mimeType: 'image/$extension',
         fileName: '$filename.$extension',
         bytesOfFile: imageData

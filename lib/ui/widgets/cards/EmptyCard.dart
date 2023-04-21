@@ -70,7 +70,7 @@ class _EmptyCardState extends State<EmptyCard> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              CardHeader(context, I18n.get("emptyCard")),
+              CardHeader(context, I18n.get("empty_card")),
               RepaintBoundary(
                 key: _renderKey,
                 child: Stack(
@@ -98,7 +98,7 @@ class _EmptyCardState extends State<EmptyCard> {
                           ),
                         ),
                       ),
-                      imageUrl: "<${I18n.get("emptyCard")}>",
+                      imageUrl: "<${I18n.get("empty_card")}>",
                       imageBuilder: (context, imageProvider) {
                         return Image(
                           image: imageProvider,
@@ -114,7 +114,7 @@ class _EmptyCardState extends State<EmptyCard> {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              "<empty card ${I18n.get("wasEmpty")}>",
+                              "<empty card ${I18n.get("was_empty")}>",
                               style: TextStyle(
                                   inherit: true,
                                   fontSize: 20.0,

@@ -50,9 +50,9 @@ class _ThemesScreenState extends State<ThemesScreen> {
         sections: [
           SettingsSection(tiles:
           [
-            tile(context, themeProvider, I18n.get("lightTheme"), ThemeMode.light),
-            tile(context, themeProvider, I18n.get("darkTheme"), ThemeMode.dark),
-            tile(context, themeProvider, I18n.get("systemDefault"), ThemeMode.system)
+            tile(context, themeProvider, I18n.get("light_theme"), ThemeMode.light),
+            tile(context, themeProvider, I18n.get("dark_theme"), ThemeMode.dark),
+            tile(context, themeProvider, I18n.get("system_default"), ThemeMode.system)
           ]),
         ],
       ),
