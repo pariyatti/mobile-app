@@ -50,6 +50,7 @@ class DonateScreen extends StatelessWidget {
                         onPressed: tryLaunchDonateUrl,
                         child: Text(I18n.get("donate")),
                       ),
+                      // TODO: link to "Donate Time" - https://pariyatti.org/Donate-Now#section4
                     ],
                   ),
               ),
