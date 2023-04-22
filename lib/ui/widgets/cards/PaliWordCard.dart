@@ -41,7 +41,7 @@ class PaliWordCard extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    CardHeader(context, data.header ?? I18n.get("pali_word")),
+                    CardHeader(context, I18n.get("pali_word")),
                     buildPaliWord(context),
                     buildButtonFooter(context)
                   ],
