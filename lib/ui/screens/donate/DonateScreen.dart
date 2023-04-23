@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:patta/app/app_constants.dart';
 import 'package:patta/app/app_themes.dart';
 import 'package:patta/app/I18n.dart';
 import 'package:patta/app/style.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:patta/app/url_launcher.dart';
 
 class DonateScreen extends StatelessWidget {
 
@@ -26,44 +27,44 @@ class DonateScreen extends StatelessWidget {
                 ),
             ],
           ),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-                ClipRRect(borderRadius: BorderRadius.circular(4),
-                  child: Stack(
-                    children: <Widget>[
-                      Positioned.fill(
-                        child: Container(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: AppThemes.contextFreeButtonGradient
-                            ),
-                          ),
-                        ),
-                      ),
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.all(16.0),
-                          textStyle: const TextStyle(fontSize: 20),
-                        ),
-                        onPressed: tryLaunchDonateUrl,
-                        child: Text(I18n.get("donate")),
-                      ),
-                      // TODO: link to "Donate Time" - https://pariyatti.org/Donate-Now#section4
-                    ],
-                  ),
-              ),
-            ]
+          Row(mainAxisSize: MainAxisSize.min,
+              children: <Widget>[ buildGradientButton(donateUrl, I18n.get("donate")) ]
+          ),
+          Row(mainAxisSize: MainAxisSize.min,
+              children: <Widget>[ buildGradientButton(donateTimeUrl, I18n.get("donate_time")) ]
           ),
         ],
       );
   }
 
-  Future<void> tryLaunchDonateUrl() async {
-    var url = Uri.parse("https://pariyatti.org/Donate-Now");
-    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
-      throw "{$I18n.get('could_not_launch')} $url";
-    }
+  buildGradientButton(url, text) {
+    return Padding(padding: const EdgeInsets.all(6.0),
+      child:
+      ClipRRect(borderRadius: BorderRadius.circular(4),
+        child: Stack(
+          children: <Widget>[
+            Positioned.fill(
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: AppThemes.contextFreeButtonGradient
+                  ),
+                ),
+              ),
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.all(16.0),
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: tryLaunchUrl(url),
+              child: Text(text),
+            ),
+          ],
+        ),
+      ),
+    );
   }
+
 }
