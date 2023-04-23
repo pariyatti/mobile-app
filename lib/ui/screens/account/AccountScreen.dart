@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:patta/app/I18n.dart';
 import 'package:patta/app/app_themes.dart';
@@ -7,7 +8,18 @@ import 'package:patta/ui/screens/account/SettingsScreen.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class AccountScreen extends StatelessWidget {
+// NOTE: needs to be a stateful widget to force redraw when a new language is
+//       selected in the settings screen
+class AccountScreen extends StatefulWidget {
+  final void Function() rebuildParent;
+
+  AccountScreen(this.rebuildParent, {Key? key}) : super(key: key);
+
+  @override
+  State<AccountScreen> createState() => _AccountScreenState();
+}
+
+class _AccountScreenState extends State<AccountScreen> {
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +34,7 @@ class AccountScreen extends StatelessWidget {
             onPressed: (context) {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (_) => BookmarksTab(),
-              ));
+              )).then(rebuild);
             },
           ),
           SettingsTile.navigation(
@@ -40,7 +52,7 @@ class AccountScreen extends StatelessWidget {
               onPressed: (context) {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (_) => SettingsTab(),
-                ));
+                )).then(rebuild);
               },
           ),
           ],
@@ -72,6 +84,11 @@ class AccountScreen extends StatelessWidget {
         ],
         ),
     ]);
+  }
+
+  FutureOr<Null> rebuild(value) {
+    setState(() => {});
+    widget.rebuildParent();
   }
 
   Future<void> tryLaunchUrl(url) async {

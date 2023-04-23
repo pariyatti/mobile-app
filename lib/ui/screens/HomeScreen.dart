@@ -16,6 +16,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   HomeScreenTab _tab = HomeScreenTab.TODAY;
 
+  void rebuild() {
+    setState(() => {});
+  }
+
   @override
   Widget build(BuildContext context) {
     int bottomNavigationBarIndex;
@@ -35,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
         titleText = '${I18n.get("account")}';
         bodyWidget = SliveredView(
           title: titleText,
-          body: AccountScreen(),
+          body: AccountScreen(rebuild),
         );
         break;
       case HomeScreenTab.DONATE:
@@ -98,4 +102,5 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
 }
