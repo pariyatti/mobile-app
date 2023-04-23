@@ -1,5 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../model/Language.dart';
+
 // NOTE: as per some stack overflow warning, remember to use a relative
 //       import to access this static class
 class Preferences {
@@ -14,6 +16,10 @@ class Preferences {
 
   static String? getString(String key) {
     return prefs.getString(key);
+  }
+
+  static Language getLanguage(String key) {
+    return Language.from(Preferences.getString(key));
   }
 
 }

@@ -38,7 +38,7 @@ class _FeedsScreenState extends State<FeedsScreen> {
   }
 
   FeedList getFeedList() {
-    Language selectedLanguage = Language.from(Preferences.getString(Language.SETTINGS_KEY));
+    Language selectedLanguage = Preferences.getLanguage(Language.SETTINGS_KEY);
     log2("[TodayFeed] Calling FeedList constructor with: $selectedLanguage");
     return FeedList(selectedLanguage);
   }
