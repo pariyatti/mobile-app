@@ -1,7 +1,7 @@
 
 # The Pariyatti mobile app.
 
-[![Codemagic build status](https://api.codemagic.io/apps/623f06b866f7430a541f6528/623f06b866f7430a541f6527/status_badge.svg)](https://codemagic.io/apps/623f06b866f7430a541f6528/623f06b866f7430a541f6527/latest_build)
+[![Codemagic build status](https://api.codemagic.io/apps/623f06b866f7430a541f6528/default-workflow/status_badge.svg)](https://codemagic.io/apps/623f06b866f7430a541f6528/623f06b866f7430a541f6527/latest_build)
 
 ## Design
 
