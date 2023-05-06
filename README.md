@@ -1,5 +1,5 @@
 
-# The Pariyatti mobile app.
+# The Pariyatti mobile app. - demo build
 
 [![Codemagic build status](https://api.codemagic.io/apps/623f06b866f7430a541f6528/default-workflow/status_badge.svg)](https://codemagic.io/apps/623f06b866f7430a541f6528/default-workflow/latest_build)
 
