@@ -10,31 +10,35 @@ class DonateScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Column(
+    return SingleChildScrollView(
+      child: Column(
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
-          Row(
-            children: <Widget>[
-              Expanded(
-                child: Align(
-                  alignment: Alignment.topLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Text(I18n.get("donate_preamble"),
-                          style: serifFont(context: context)),
-                    ),
-                  ),
-                ),
-            ],
-          ),
+          Row(children: <Widget>[ buildPreamble(context, I18n.get("donate_preamble")) ]),
           Row(mainAxisSize: MainAxisSize.min,
               children: <Widget>[ buildGradientButton(donateUrl, I18n.get("donate")) ]
           ),
+          Row(children: <Widget>[ buildPreamble(context, I18n.get("donate_time_preamble")) ]),
           Row(mainAxisSize: MainAxisSize.min,
               children: <Widget>[ buildGradientButton(donateTimeUrl, I18n.get("donate_time")) ]
           ),
+          Row(children: <Widget>[ SizedBox(height: 40) ]),
         ],
-      );
+      )
+    );
+  }
+
+  Expanded buildPreamble(BuildContext context, text) {
+    return Expanded(
+              child: Align(
+                alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(text,
+                        style: serifFont(context: context)),
+                  ),
+                ),
+              );
   }
 
   buildGradientButton(url, text) {

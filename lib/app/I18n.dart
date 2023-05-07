@@ -43,6 +43,7 @@ class I18n {
       "donate": "Donate",
       "donate_preamble": "Pariyatti is an independent USA 501(c)(3) non-profit organization and is not part of the Vipassana organization. Pariyatti relies on a combination of sales revenue and donations to offer its services. All donations are tax-deductible in accordance with US tax law.\n\nIf you would like to have your donation be matched by your employer, request it for Pariyatti (EIN 80-0038336).",
       "donate_time": "Donate Time",
+      "donate_time_preamble": "Pariyatti relies on the vibrant participation of our supporters to continue our service programs. Volunteers are welcome to contribute to the Pariyatti mobile app or a variety of other Pariyatti projects.\n\nThe mobile app team is currently seeking non-technical volunteers with skills in translation from English and Pāli. We are also seeking technical volunteers with skills in Flutter, Clojure, Rails, Docker, and Terraform.\n\nTo learn about Pariyatti's other volunteer needs, please click the button below.",
       "empty_card": "Empty Card",
       "error": "Error",
       "feeds": "Feeds",
