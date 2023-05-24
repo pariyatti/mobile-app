@@ -222,13 +222,13 @@ class I18n {
       "light_theme": "Tema Claro",
       "nothing_bookmarked": "Você ainda não marcou nada",
       "only_english": "Apenas o inglês está disponível como idioma alternativo no momento.",
-      "pali_word": "Palavra em Pāli",
-      "pali_word_of_the_day": "Palavra do dia em Pāli",
+      "pali_word": "Palavra em páli",
+      "pali_word_of_the_day": "Palavra do dia em páli",
       "security_and_privacy": "Segurança e Privacidade",
       "settings": "Configurações",
       "share_dhamma_verse": "Compartilhar verso diário do Dhamma",
       "share_inspiration": "Compartilhar inspiração",
-      "share_pali_word": "Compartilhar palavra em Pāli",
+      "share_pali_word": "Compartilhar palavra em páli",
       "share_words_of_buddha": "Compartilhar palavras de Buda",
       "subscribe_to_newsletter": "Inscrever-se na newsletter",
       "system_default": "Padrão do sistema",
@@ -237,7 +237,7 @@ class I18n {
       "translation": "Tradução",
       "try_again_later": "Ocorreu um erro. Tente novamente mais tarde.",
       "was_empty": "estava vazio",
-      "words_of_the_buddha": "Palavras de Buda diárias"
+      "words_of_the_buddha": "Palavras diárias do Buda"
     },
 
     Language.spa: {
