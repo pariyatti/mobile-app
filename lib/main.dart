@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=3.0
 import 'package:patta/Environment.dart';
 import 'package:patta/LocalEnvironment.dart';
 import 'package:patta/main_common.dart';

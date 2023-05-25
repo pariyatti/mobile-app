@@ -11,7 +11,7 @@ version: 1.0.1+2
 publish_to: 'none'
 
 environment:
-  sdk: ">=2.17.1 <3.0.0"
+  sdk: ">=2.23.1 <3.0.0"
 
 dependencies:
   flutter:
@@ -25,7 +25,7 @@ dependencies:
   drift: ^1.6.0
   equatable: ^2.0.3
   flutter_cache_manager: ^3.3.0
-  google_fonts: ^2.2.0
+  google_fonts: ^4.0.4
   http: ^0.13.3
   json_annotation: ^4.4.0
   just_audio: ^0.9.18
@@ -36,13 +36,13 @@ dependencies:
   shared_preferences: ^2.0.12
   sqlite3_flutter_libs: ^0.5.7 # Workaround to open sqlite3 on old Android versions
   video_player: ^2.2.11
-  wc_flutter_share: ^0.4.0
+  wc_flutter_share: ^0.4.0 # TODO: upgrade to 'share_plus'
   url_launcher: ^6.1.7
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: ^2.1.5
+  build_runner: ^2.4.4
   drift_dev: ^1.6.0
   flutter_launcher_icons: ^0.9.2
   json_serializable: ^6.1.1
