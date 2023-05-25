@@ -34,7 +34,7 @@ init: init-flutter ##@Setup Default config + pub get
 	sudo gem install cocoapods
 
 clean_local_environment:
-	rm -f lib/Environment.dart
+	rm -f lib/LocalEnvironment.dart
 
 clean: clean_local_environment ##@Development Clean various caches
 	rm -rf ~/.gradle/caches/*
@@ -69,9 +69,9 @@ watch: ##@Development Build continuously (gen files)
 test: ##@Development Run tests against a connected device
 	flutter test --machine
 
-lib/Environment.dart:
+lib/LocalEnvironment.dart:
 	./bin/configure_local_environment.sh
 
-run: clean_local_environment lib/Environment.dart ##@Development Run a debug build against 'env' (local, sandbox, or production)
+run: clean_local_environment lib/LocalEnvironment.dart ##@Development Run a debug build against 'env' (local, sandbox, or production)
 	flutter run --dart-define=BUILD_ENV=$(env)
 

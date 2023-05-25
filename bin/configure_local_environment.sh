@@ -24,10 +24,10 @@ printf " └─Android? = '%s'\n" "$ANDROID_DETECTED"
 # TODO: this should check for an attached iPhone in addition to the host OS
 if [ "$(uname)" == "Darwin" ] && [[ "$IS_IOS" == *"iPhone"* ]]; then
   printf " └─iPhone (MacOS) found: setting local hostname in lib/Environment.dart...\n"
-  sed -e "s/%MAKE_IP%/$LOCAL_HOST/g" './lib/EnvironmentTemplate.dart' > './lib/Environment.dart'
+  sed -e "s/%MAKE_IP%/$LOCAL_HOST/g" './lib/LocalEnvironmentTemplate.dart' > './lib/LocalEnvironment.dart'
 else
   printf " └─Android found: setting local IP in lib/Environment.dart...\n"
-  sed -e "s/%MAKE_IP%/$LOCAL_IP/g" './lib/EnvironmentTemplate.dart' > './lib/Environment.dart'
+  sed -e "s/%MAKE_IP%/$LOCAL_IP/g" './lib/LocalEnvironmentTemplate.dart' > './lib/LocalEnvironment.dart'
 fi
 
 printf "\n"
