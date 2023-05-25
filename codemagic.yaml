@@ -31,6 +31,9 @@ workflows:
           include: true
     scripts:
       - |
+        # create local environment (required for compile)
+        make lib/LocalEnvironment.dart
+      - |
         # set up key.properties
         echo $FCI_KEYSTORE | base64 --decode > $FCI_KEYSTORE_PATH
         cat >> "$FCI_BUILD_DIR/android/key.properties" <<EOF

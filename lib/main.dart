@@ -12,5 +12,4 @@ Future<void> main() async {
   } else {
       await mainCommon(LocalEnvironment());
   }
-  
 }
