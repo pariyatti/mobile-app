@@ -31,13 +31,13 @@ dependencies:
   just_audio: ^0.9.18
   logging: 1.1.1 # TODO: un-pin this; 1.2.0 was failing build - see build_runner_core
   path: ^1.8.0
-  path_provider: ^2.0.7
+  path_provider: ^2.0.15
   provider: ^6.0.1
   settings_ui: ^2.0.2
   shared_preferences: ^2.0.12
   sqlite3_flutter_libs: ^0.5.7 # Workaround to open sqlite3 on old Android versions
   video_player: ^2.2.11
-  wc_flutter_share: ^0.4.0 # TODO: upgrade to 'share_plus'
+  share_plus: ^7.0.1
   url_launcher: ^6.1.7
 
 dev_dependencies:

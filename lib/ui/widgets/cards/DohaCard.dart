@@ -1,8 +1,6 @@
 import 'dart:typed_data';
-import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/model/Language.dart';
@@ -14,9 +12,10 @@ import 'package:patta/ui/common/share_button.dart';
 import 'package:patta/model/DohaCardModel.dart';
 import 'package:patta/app/style.dart';
 import 'package:patta/app/app_themes.dart';
-import 'package:patta/util.dart';
-import 'package:wc_flutter_share/wc_flutter_share.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../common/shared_image.dart';
 
 class DohaCard extends StatefulWidget {
   final DohaCardModel data;
@@ -35,23 +34,10 @@ class _DohaCardState extends State<DohaCard> {
   Language _selectedLanguage = Language.eng;
   late bool loaded;
 
-  Future<Uint8List> _getImage() async {
-    try {
-      RenderRepaintBoundary boundary =
-          _renderKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
-      ui.Image image = await boundary.toImage(pixelRatio: 3.0);
-      ByteData byteData = await image.toByteData(format: ui.ImageByteFormat.png) as ByteData;
-      var pngBytes = byteData.buffer.asUint8List();
-      return pngBytes;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
-  }
-
   @override
   void initState() {
     // Check if image is in cache in case widget gets rebuilt and the onLoaded callback doesn't respond.
+    // ignore: unnecessary_null_comparison
     loaded = DefaultCacheManager().getFileFromMemory(widget.data.imageUrl!) != null;
     initAudioUrl();
     initLanguage();
@@ -194,17 +180,11 @@ class _DohaCardState extends State<DohaCard> {
 
   ShareButton buildShareButton() {
     return ShareButton(onPressed: loaded == true ? () async {
-      Uint8List imageData = await _getImage();
-      final String filename = toFilename(I18n.get("dhamma_verse"));
-      final String extension = extractFileExtension(widget.data.imageUrl);
-      await WcFlutterShare.share(
-        sharePopupTitle: I18n.get("share_dhamma_verse"),
-        mimeType: 'image/$extension',
-        fileName: '$filename.$extension',
-        bytesOfFile: imageData
-        // // if we exclude this, everything tries to share the images instead:
-        // ,text: getPali() + "\n\n" + getTranslation()
-      );
+      Uint8List bytes = await SharedImage.getBytesFromRenderKey(_renderKey);
+      SharedImage img = SharedImage(bytes, I18n.get("dhamma_verse"), widget.data.imageUrl);
+      await Share.shareXFiles(
+          [await img.toXFile()],
+          subject: I18n.get("share_dhamma_verse"));
     } : null);
   }
 
