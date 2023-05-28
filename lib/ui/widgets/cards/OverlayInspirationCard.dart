@@ -1,9 +1,7 @@
 import 'dart:typed_data';
-import 'dart:ui' as ui;
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/app/I18n.dart';
@@ -13,9 +11,9 @@ import 'package:patta/ui/common/pariyatti_icons.dart';
 import 'package:patta/ui/common/share_button.dart';
 import 'package:patta/model/OverlayInspirationCardModel.dart';
 import 'package:patta/app/app_themes.dart';
-import 'package:wc_flutter_share/wc_flutter_share.dart';
+import 'package:patta/ui/common/shared_image.dart';
+import 'package:share_plus/share_plus.dart';
 
-import 'package:patta/util.dart';
 
 class OverlayInspirationCard extends StatefulWidget {
   final OverlayInspirationCardModel data;
@@ -31,27 +29,11 @@ class _OverlayInspirationCardState extends State<OverlayInspirationCard> {
   final GlobalKey _renderKey = new GlobalKey();
   bool loaded = false;
 
-  Future<Uint8List> _getImageWithText() async {
-    try {
-      RenderRepaintBoundary boundary =
-          _renderKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
-      ui.Image image = await boundary.toImage(pixelRatio: 3.0);
-      ByteData byteData =
-          await image.toByteData(format: ui.ImageByteFormat.png) as ByteData;
-      var pngBytes = byteData.buffer.asUint8List();
-      return pngBytes;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
-    // was: return null;
-  }
-
   @override
   void initState() {
-    //Check if image is in cache in case widget gets rebuilt and the onLoaded callback doesn't respond.
-    loaded =
-        DefaultCacheManager().getFileFromMemory(widget.data.imageUrl!) != null;
+    // Check if image is in cache in case widget gets rebuilt and the onLoaded callback doesn't respond.
+    // ignore: unnecessary_null_comparison
+    loaded = DefaultCacheManager().getFileFromMemory(widget.data.imageUrl!) != null;
     super.initState();
   }
 
@@ -156,29 +138,27 @@ class _OverlayInspirationCardState extends State<OverlayInspirationCard> {
     return Container(
       color: Theme.of(context).colorScheme.secondary,
       child: Row(mainAxisSize: MainAxisSize.max, children: [
-        Visibility(
-          child: BookmarkButton(widget.data, widget.database),
-          visible: widget.data.isBookmarkable,
-        ),
-        ShareButton(
-          onPressed:
-          loaded
-              ? () async {
-            Uint8List imageData = await _getImageWithText();
-            final String filename = toFilename(widget.data.header!);
-            final String extension = extractFileExtension(widget.data.imageUrl);
-            await WcFlutterShare.share(
-              sharePopupTitle:
-              I18n.get("share_inspiration"),
-              mimeType: 'image/$extension',
-              fileName: '$filename.$extension',
-              bytesOfFile: imageData,
-            );
-          }
-              : null,
-        ),
+        buildBookmarkButton(),
+        buildShareButton(),
       ]),
     );
+  }
+
+  Visibility buildBookmarkButton() {
+    return Visibility(
+        child: BookmarkButton(widget.data, widget.database),
+        visible: widget.data.isBookmarkable,
+      );
+  }
+
+  ShareButton buildShareButton() {
+    return ShareButton(onPressed: loaded == true ? () async {
+      Uint8List bytes = await SharedImage.getBytesFromRenderKey(_renderKey);
+      SharedImage img = SharedImage(bytes, widget.data.header!, widget.data.imageUrl);
+      await Share.shareXFiles(
+          [await img.toXFile()],
+          subject: I18n.get("share_inspiration"));
+    } : null);
   }
 
 }

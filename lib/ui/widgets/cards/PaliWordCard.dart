@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/app/I18n.dart';
@@ -7,7 +6,7 @@ import 'package:patta/ui/common/card_header.dart';
 import 'package:patta/ui/common/share_button.dart';
 import 'package:patta/model/PaliWordCardModel.dart';
 import 'package:patta/app/style.dart';
-import 'package:wc_flutter_share/wc_flutter_share.dart';
+import 'package:share_plus/share_plus.dart';
 
 class PaliWordCard extends StatelessWidget {
   final PaliWordCardModel data;
@@ -114,10 +113,9 @@ class PaliWordCard extends StatelessWidget {
 
     listOfButtons.add(ShareButton(
       onPressed: () async {
-        await WcFlutterShare.share(
-          sharePopupTitle: I18n.get("share_pali_word"),
-          mimeType: 'text/plain',
-          text: '${data.header}: \n${data.pali}\n\n${I18n.get("translation")}: \n${data.translation}',
+        await Share.share(
+          '${data.header}: \n${data.pali}\n\n${I18n.get("translation")}: \n${data.translation}',
+          subject: I18n.get("share_pali_word")
         );
       },
     ));
