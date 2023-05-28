@@ -84,4 +84,4 @@ workflows:
         submit_to_testflight: true
         submit_to_app_store: false
         beta_groups:
-          - pariyatti-beta-testers
+          - Staff and Volunteers
