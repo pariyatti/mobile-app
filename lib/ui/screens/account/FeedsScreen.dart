@@ -6,8 +6,7 @@ import 'package:patta/app/log.dart';
 import 'package:patta/model/FeedList.dart';
 import 'package:patta/model/Language.dart';
 import 'package:settings_ui/settings_ui.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import '../../../app/preferences.dart';
+import 'package:patta/app/preferences.dart';
 import '../../../model/Feed.dart';
 
 class FeedsScreen extends StatefulWidget {
@@ -44,10 +43,9 @@ class _FeedsScreenState extends State<FeedsScreen> {
   }
 
   void _toggleFeed(String feedKey) async {
-    final prefs = await SharedPreferences.getInstance();
     setState(() {
       enabledFeeds[feedKey] = !(_readPreference(feedKey));
-      prefs.setBool(feedKey, enabledFeeds[feedKey]!);
+      Preferences.setBool(feedKey, enabledFeeds[feedKey]!);
     });
   }
 

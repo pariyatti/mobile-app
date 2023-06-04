@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:patta/app/I18n.dart';
 import 'package:patta/app/app_themes.dart';
+import 'package:patta/app/preferences.dart';
 import 'package:patta/app/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:settings_ui/settings_ui.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 
 class ThemesScreen extends StatefulWidget {
   @override
@@ -22,17 +21,15 @@ class _ThemesScreenState extends State<ThemesScreen> {
   }
 
   void _loadTheme() async {
-    final prefs = await SharedPreferences.getInstance();
     setState(() {
-      themeProvider.setThemeByString(prefs.getString(AppThemes.SETTINGS_KEY));
+      themeProvider.setThemeByString(Preferences.getString(AppThemes.SETTINGS_KEY));
     });
   }
 
   void _setLanguage(ThemeMode newValue) async {
-    final prefs = await SharedPreferences.getInstance();
     setState(() {
       themeProvider.setTheme(newValue);
-      prefs.setString(AppThemes.SETTINGS_KEY, newValue.toString());
+      Preferences.setString(AppThemes.SETTINGS_KEY, newValue.toString());
     });
   }
 

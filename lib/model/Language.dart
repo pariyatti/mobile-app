@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:patta/app/log.dart';
 
 class Language {

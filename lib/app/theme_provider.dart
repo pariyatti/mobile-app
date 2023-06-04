@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patta/app/app_themes.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:patta/app/preferences.dart';
 
 class ThemeProvider extends ChangeNotifier {
   ThemeMode themeMode = ThemeMode.system;
@@ -17,8 +17,7 @@ class ThemeProvider extends ChangeNotifier {
   }
 
   Future<void> init() async {
-    final prefs = await SharedPreferences.getInstance();
-    final themeStr = prefs.getString(AppThemes.SETTINGS_KEY) ?? ThemeMode.system.toString();
+    final themeStr = Preferences.getString(AppThemes.SETTINGS_KEY) ?? ThemeMode.system.toString();
     setThemeByString(themeStr);
   }
 

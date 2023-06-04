@@ -1,15 +1,21 @@
 import 'package:patta/app/log.dart';
+import 'package:patta/app/preferences.dart';
 import 'package:patta/model/Language.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class I18n {
   static var _selectedLanguage;
 
   static Future<Language> init() async {
-    final prefs = await SharedPreferences.getInstance();
-    _selectedLanguage = Language.from(prefs.getString(Language.SETTINGS_KEY));
+    initFirstRun();
+    _selectedLanguage = Preferences.getLanguage(Language.SETTINGS_KEY);
     log2("I18n.init selected language: $_selectedLanguage");
     return _selectedLanguage;
+  }
+
+  static void initFirstRun() {
+    if (Preferences.getIsFirstRun()) {
+      Preferences.setLanguage(Language.SETTINGS_KEY, Language.eng);
+    }
   }
 
   static void set(Language language) {
