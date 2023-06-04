@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:patta/app/I18n.dart';
+import 'package:patta/app/preferences.dart';
 import 'package:patta/model/Language.dart';
 import 'package:patta/ui/screens/account/FeedsScreen.dart';
 import 'package:patta/ui/screens/account/LanguagesScreen.dart';
 import 'package:patta/app/app_themes.dart';
 import 'package:patta/ui/screens/account/ThemesScreen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:settings_ui/settings_ui.dart';
 
 class SettingsTab extends StatefulWidget {
@@ -25,12 +25,9 @@ class _SettingsTabState extends State<SettingsTab> {
   }
 
   void _loadLanguage() async {
-    // TODO: use 'Preferences' to remove duplication between this and WordsOfBuddhaCard.dart
-    final prefs = await SharedPreferences.getInstance();
     if (mounted) {
       setState(() {
-        selectedLanguage =
-            Language.from(prefs.getString(Language.SETTINGS_KEY));
+        selectedLanguage = Preferences.getLanguage(Language.SETTINGS_KEY);
       });
     }
   }

@@ -10,16 +10,36 @@ class Preferences {
     prefs = await SharedPreferences.getInstance();
   }
 
-  static getBool(key) {
+  static bool? getBool(key) {
     return prefs.getBool(key);
+  }
+
+  static void setBool(String key, bool flag) {
+    prefs.setBool(key, flag);
   }
 
   static String? getString(String key) {
     return prefs.getString(key);
   }
 
+  static void setString(String key, String value) {
+    prefs.setString(key, value);
+  }
+
   static Language getLanguage(String key) {
     return Language.from(Preferences.getString(key));
+  }
+
+  static void setLanguage(String key, Language language) {
+    prefs.setString(key, language.code);
+  }
+
+  static bool getIsFirstRun() {
+    if (Preferences.getBool("first_run_flagged") == null) {
+      Preferences.setBool("first_run_flagged", true);
+      return true;
+    }
+    return false;
   }
 
 }

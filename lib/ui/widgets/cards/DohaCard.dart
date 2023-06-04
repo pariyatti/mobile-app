@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:patta/app/preferences.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/model/Language.dart';
 import 'package:patta/app/I18n.dart';
@@ -13,7 +14,6 @@ import 'package:patta/model/DohaCardModel.dart';
 import 'package:patta/app/style.dart';
 import 'package:patta/app/app_themes.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../common/shared_image.dart';
 
@@ -53,9 +53,8 @@ class _DohaCardState extends State<DohaCard> {
   }
 
   void initLanguage() async {
-    final prefs = await SharedPreferences.getInstance();
     setState(() {
-      _selectedLanguage = Language.from(prefs.getString(Language.SETTINGS_KEY));
+      _selectedLanguage = Preferences.getLanguage(Language.SETTINGS_KEY);
     });
   }
 
