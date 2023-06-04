@@ -6,4 +6,8 @@ class Feed {
 
   get getKey => key;
 
+  @override
+  String toString() {
+    return 'Feed{key: $key, title: $title}';
+  }
 }

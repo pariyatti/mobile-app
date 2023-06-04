@@ -2,12 +2,13 @@
 import 'package:flutter/material.dart';
 import 'package:patta/app/I18n.dart';
 import 'package:patta/app/app_themes.dart';
+import 'package:patta/app/feed_preferences.dart';
 import 'package:patta/app/log.dart';
-import 'package:patta/model/FeedList.dart';
-import 'package:patta/model/Language.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:patta/app/preferences.dart';
 import '../../../model/Feed.dart';
+import '../../../model/FeedList.dart';
+import '../../../model/Language.dart';
 
 class FeedsScreen extends StatefulWidget {
   @override
@@ -16,24 +17,13 @@ class FeedsScreen extends StatefulWidget {
 
 class _FeedsScreenState extends State<FeedsScreen> {
   var feedList;
-  Map<String, bool> enabledFeeds = Map();
+  var feedPreferences;
 
   @override
   void initState() {
     super.initState();
-    loadFeedPreferences();
     feedList = getFeedList();
-    enabledFeeds = Map.fromIterable(feedList.all(), key: (e) => e.key, value: (e) => true);
-  }
-
-  bool _readPreference(String key) {
-    return Preferences.getBool(key) ?? enabledFeeds[key]!;
-  }
-
-  void loadFeedPreferences() async {
-    setState(() {
-      enabledFeeds.keys.forEach((key) { enabledFeeds[key] = _readPreference(key); });
-    });
+    feedPreferences = FeedPreferences();
   }
 
   FeedList getFeedList() {
@@ -42,10 +32,9 @@ class _FeedsScreenState extends State<FeedsScreen> {
     return FeedList(selectedLanguage);
   }
 
-  void _toggleFeed(String feedKey) async {
+  void _toggleFeed(Feed feed) async {
     setState(() {
-      enabledFeeds[feedKey] = !(_readPreference(feedKey));
-      Preferences.setBool(feedKey, enabledFeeds[feedKey]!);
+      feedPreferences.toggle(feed);
     });
   }
 
@@ -71,8 +60,8 @@ class _FeedsScreenState extends State<FeedsScreen> {
   SettingsTile buildSettingsTile(Feed feed) {
     return SettingsTile(
       title: Text(feed.title),
-      trailing: trailingWidget(enabledFeeds[feed.key]!),
-      onPressed: (BuildContext context) { _toggleFeed(feed.key); });
+      trailing: trailingWidget(feedPreferences.getFeedFlag(feed)),
+      onPressed: (BuildContext context) { _toggleFeed(feed); });
   }
 
   Widget trailingWidget(bool enabled) {

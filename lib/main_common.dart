@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:patta/Environment.dart';
-import 'package:patta/LocalEnvironment.dart';
 import 'package:patta/api/api.dart';
+import 'package:patta/app/feed_preferences.dart';
 import 'package:patta/app/global.dart';
 import 'package:patta/app/theme_provider.dart';
 import 'package:patta/config_reader.dart';
@@ -26,8 +26,17 @@ Future<void> mainCommon(Environment environment) async {
   await Future.wait([setupAppCache()]);
   await Preferences.init();
   await I18n.init();
+  await FeedPreferences.init();
 
+  initFirstRun();
   runApp(PariyattiApp(environment, configReader));
+}
+
+void initFirstRun() {
+  if (Preferences.getIsFirstRun()) {
+    I18n.initFirstRun();
+    FeedPreferences.initFirstRun();
+  }
 }
 
 class PariyattiApp extends StatelessWidget {

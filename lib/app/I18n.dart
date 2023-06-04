@@ -6,16 +6,13 @@ class I18n {
   static var _selectedLanguage;
 
   static Future<Language> init() async {
-    initFirstRun();
     _selectedLanguage = Preferences.getLanguage(Language.SETTINGS_KEY);
     log2("I18n.init selected language: $_selectedLanguage");
     return _selectedLanguage;
   }
 
   static void initFirstRun() {
-    if (Preferences.getIsFirstRun()) {
-      Preferences.setLanguage(Language.SETTINGS_KEY, Language.eng);
-    }
+    Preferences.setLanguage(Language.SETTINGS_KEY, Language.eng);
   }
 
   static void set(Language language) {
