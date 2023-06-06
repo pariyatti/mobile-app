@@ -11,6 +11,7 @@ enum IconName {
   heart,
   person,
   error,
+  networkError,
   play,
   pause,
   stop,
@@ -60,6 +61,10 @@ const Map<IconName, Map<String, IconData>> _iconMap = {
   IconName.error: {
     'default': Icons.error_outline,
     'ios': CupertinoIcons.info,
+  },
+  IconName.networkError: {
+    'default': Icons.cloud_off_outlined,
+    'ios': Icons.cloud_off_outlined
   },
   IconName.play: {
     'default': Icons.play_circle_fill,

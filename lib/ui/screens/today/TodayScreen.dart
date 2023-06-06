@@ -36,14 +36,14 @@ class TodayScreen extends StatelessWidget {
         if (snapshot.hasData && snapshot.data != null) {
           var firstCard = snapshot.data![0];
           if (firstCard is NetworkErrorCardModel) {
-            return _buildError(context, new Exception(firstCard.errorMsg));
+            return _buildError(context, new Exception(firstCard.errorMsg), IconName.networkError);
           }
           var feed = TodayFeed.from(snapshot.data!).filter().tagDates();
           return _buildCardsList(feed, context);
         } else if (snapshot.hasError) {
           //  TODO: Log the error
           log("Data from snapshot: ${snapshot.data.toString()}");
-          return _buildError(context, snapshot.error!);
+          return _buildError(context, snapshot.error!, IconName.error);
         } else {
           return _buildLoadingIndicator();
         }
@@ -100,7 +100,7 @@ class TodayScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildError(BuildContext context, Object error) {
+  Widget _buildError(BuildContext context, Object error, IconName iconName) {
     var errorMessage = I18n.get("try_again_later")
         + "\n\nError:\n"
         + error.toString()
@@ -114,7 +114,7 @@ class TodayScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Icon(
-              PariyattiIcons.get(IconName.error),
+              PariyattiIcons.get(iconName),
               color: Theme.of(context).colorScheme.error,
             ),
           ),

@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:http/http.dart';
 import 'package:patta/api/converter/today_converter.dart' as today_converter;
 import 'package:patta/app/dio.dart';
+import 'package:patta/app/log.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/model/CardModel.dart';
 
@@ -30,24 +31,24 @@ class PariyattiApi {
       log(response.data.toString(), level: 1, name: "json");
       return today_converter.convertJsonToCardModels(response.data, baseUrl);
     } on DioError catch (e) {
-      if (e.response != null) {
-        print(e.response!.data);
-        print(e.response!.headers);
-        print(e.response!.requestOptions);
-      } else {
-        // Something happened in setting up or sending the request that triggered an Error
-        print("Request options: ${e.requestOptions}");
-        print("DioError Type: ${e.type}");
-        print("DioError Message: ${e.message}");
-      }
-      var eString = e.toString();
-      return [NetworkErrorCardModel.create("Could not reach Pariyatti server '$baseUrl': \n\n$eString")];
+      logError(e);
+      return [NetworkErrorCardModel.create("Could not reach Pariyatti server '$baseUrl'.")];
     } catch (se) {
-      // FIXME: This is really kind of a hack. I can't see an obvious way to convince FutureBuilder not to die
-      //        when the Future it's calculating throws an exception. The nice way to do this would be to set
-      //        snapshot.hasError somehow, but I'm not sure if that's possible. For now, the sentinel works. -sd
-      var seString = se.toString();
-      return [NetworkErrorCardModel.create("Could not reach Pariyatti server '$baseUrl': \n\n$seString")];
+      logError(se);
+      return [NetworkErrorCardModel.create("Could not reach Pariyatti server '$baseUrl'.")];
+    }
+  }
+
+  void logError(e) {
+    if (e.response != null) {
+      log2(e.response!.data);
+      log2(e.response!.headers as String);
+      log2(e.response!.requestOptions as String);
+    } else {
+      // Something happened in setting up or sending the request that triggered an Error
+      log2("Request options: ${e.requestOptions}");
+      log2("DioError Type: ${e.type}");
+      log2("DioError Message: ${e.message}");
     }
   }
 }
