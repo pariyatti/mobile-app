@@ -38,6 +38,7 @@ DatabaseCard toDatabaseCard(
       paliWord: cardModel.pali,
       audioUrl: cardModel.audioUrl,
       translation: cardModel.translation,
+      translations: jsonEncode(cardModel.translations),
       createdAt: createdAt,
     );
   } else if (cardModel is OverlayInspirationCardModel) {
@@ -117,20 +118,6 @@ CardModel? toCardModel(DatabaseCard databaseCard) {
           imageUrl: databaseCard.imageUrl,
         );
       }
-    case 'pali_word':
-      {
-        return PaliWordCardModel(
-          id: databaseCard.id,
-          url: databaseCard.url,
-          publishedAt: databaseCard.publishedAt,
-          isBookmarkable: databaseCard.isBookmarkable,
-          isShareable: databaseCard.isShareable,
-          header: databaseCard.header,
-          pali: databaseCard.paliWord,
-          audioUrl: databaseCard.audioUrl,
-          translation: databaseCard.translation,
-        );
-      }
     case 'overlay_inspiration':
       {
         return OverlayInspirationCardModel(
@@ -143,6 +130,21 @@ CardModel? toCardModel(DatabaseCard databaseCard) {
           isShareable: databaseCard.isShareable,
           imageUrl: databaseCard.imageUrl,
           textColor: databaseCard.textColor,
+        );
+      }
+    case 'pali_word':
+      {
+        return PaliWordCardModel(
+          id: databaseCard.id,
+          url: databaseCard.url,
+          publishedAt: databaseCard.publishedAt,
+          isBookmarkable: databaseCard.isBookmarkable,
+          isShareable: databaseCard.isShareable,
+          header: databaseCard.header,
+          pali: databaseCard.paliWord,
+          audioUrl: databaseCard.audioUrl,
+          translation: databaseCard.translation,
+          translations: Translations.fromJson(jsonDecode(databaseCard.translations!))
         );
       }
     case 'words_of_buddha':

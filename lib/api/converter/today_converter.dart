@@ -52,6 +52,7 @@ CardModel? _convertApiCardToCardModel(
       }
     case 'pali_word':
       {
+        var translationMap = Map<String,String>.fromIterable(card.translations!, key: (e) => e.language, value: (e) => e.translation);
         PaliWordCardModel? model;
         if (card.translations!.isNotEmpty) {
           model = PaliWordCardModel(
@@ -62,6 +63,7 @@ CardModel? _convertApiCardToCardModel(
             pali: card.pali,
             audioUrl: '$baseUrl${card.audio?.url}',
             translation: card.translations![0].translation,
+            translations: Translations(translationMap),
             isBookmarkable: card.isBookmarkable,
             isShareable: card.isShareable
           );

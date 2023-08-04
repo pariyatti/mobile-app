@@ -17,22 +17,22 @@ class Cards extends Table {
   TextColumn? get imageUrl => text().named('imageUrl').nullable()();
   TextColumn? get textColor => text().named('textColor').nullable()();
 
-  // PaliWord + WordsOfBuddha + Doha
+  // PaliWord + Doha + WordsOfBuddha
+  TextColumn? get translations => text().named('translations').nullable()();
   TextColumn? get audioUrl => text().named('audioUrl').nullable()();
+
+  // PaliWord LEGACY
+  TextColumn? get translation => text().named('translation').nullable()();
 
   // PaliWord
   TextColumn? get paliWord => text().named('paliWord').nullable()();
-  TextColumn? get translation => text().named('translation').nullable()();
 
-  // WordsOfBuddha + Doha
-  TextColumn? get translations => text().named('translations').nullable()();
+  // Doha
+  TextColumn? get doha => text().named('doha').nullable()();
 
   // WordsOfBuddha
   TextColumn? get words => text().named('words').nullable()();
   TextColumn? get citepali => text().named('citepali').nullable()();
-
-  // Doha
-  TextColumn? get doha => text().named('doha').nullable()();
 
   @override
   Set<Column>? get primaryKey => {id};
