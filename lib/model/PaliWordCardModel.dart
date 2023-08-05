@@ -1,10 +1,12 @@
 import 'package:patta/model/CardModel.dart';
+import 'package:patta/model/Translations.dart';
 
 class PaliWordCardModel extends CardModel {
   final String? header;
   final String? pali;
+  final String? translation; // legacy, from when only English was available
+  final Translations? translations;
   final String? audioUrl;
-  final String? translation;
 
   PaliWordCardModel({
     required String id,
@@ -14,11 +16,12 @@ class PaliWordCardModel extends CardModel {
     required bool isShareable,
     this.header,
     this.pali,
+    this.translation, // legacy
+    this.translations,
     this.audioUrl,
-    this.translation,
   }) : super(id, url, publishedAt, isBookmarkable, isShareable);
 
   @override
   List<Object?> get props =>
-      [id, url, publishedAt, header, pali, audioUrl, translation, isBookmarkable, isShareable];
+      [id, url, publishedAt, header, pali, translation, translations, audioUrl, isBookmarkable, isShareable];
 }
