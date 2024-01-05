@@ -1,6 +1,8 @@
+import 'package:equatable/equatable.dart';
+
 import 'Language.dart';
 
-class Translations {
+class Translations extends Equatable {
   final Map<String, String> translations;
 
   Translations(this.translations);
@@ -23,4 +25,7 @@ class Translations {
   Map<String, String> toJson() {
     return translations;
   }
+
+  @override
+  List<Object?> get props => [translations];
 }

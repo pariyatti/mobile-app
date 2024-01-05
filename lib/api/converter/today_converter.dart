@@ -1,6 +1,7 @@
 import 'package:patta/api/model/today.dart';
 import 'package:patta/model/CardModel.dart';
 import 'package:patta/model/DohaCardModel.dart';
+import 'package:patta/model/KosaAudio.dart';
 import 'package:patta/model/OverlayInspirationCardModel.dart';
 import 'package:patta/model/PaliWordCardModel.dart';
 import 'package:patta/model/StackedInspirationCardModel.dart';
@@ -83,6 +84,7 @@ CardModel? _convertApiCardToCardModel(
           words: card.words,
           translations: Translations(translationMap),
           audioUrl: card.audioUrl,
+          kosaAudio: KosaAudio(card.audio?.url),
           citepali: card.citepali,
           citepali_url: card.citepali_url,
           citebook: card.citebook,
@@ -103,6 +105,7 @@ CardModel? _convertApiCardToCardModel(
           doha: card.doha,
           translations: Translations(translationMap),
           audioUrl: card.audioUrl,
+          kosaAudio: KosaAudio(card.audio?.url),
           imageUrl: '$baseUrl${card.image?.url}',
           isBookmarkable: card.isBookmarkable,
           isShareable: card.isShareable

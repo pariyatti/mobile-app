@@ -6,6 +6,7 @@ import 'package:patta/api/converter/today_converter.dart' as today_converter;
 import 'package:patta/model/OverlayInspirationCardModel.dart';
 import 'package:patta/model/PaliWordCardModel.dart';
 import 'package:patta/model/StackedInspirationCardModel.dart';
+import 'package:patta/model/Translations.dart';
 
 void main() {
   test('Test whether sample today api is parsed correctly or not', () {
@@ -42,6 +43,7 @@ void main() {
         audioUrl:
             '$baseUrl/uploads/cards/pali_word_card/audio/98955ba9-3819-4662-bd7c-6bff3d035d6e',
         translation: 'storehouse',
+        translations: Translations({"eng": "storehouse"}),
       ),
     );
 

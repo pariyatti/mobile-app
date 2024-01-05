@@ -52,6 +52,8 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   void initAudioUrl() {
     try {
       _chanting = new Chanting(Uri.parse(widget.data.audioUrl ?? ""));
+      // TODO: expose both audio URLs to Chanting + AudioButton so it can play the backup
+      // _chanting = new Chanting(Uri.parse(widget.data.kosaAudio?.url ?? ""));
     } catch (e) {
       print("${I18n.get("error")} parsing audio URL: $e");
     }

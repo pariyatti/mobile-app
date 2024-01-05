@@ -30,7 +30,7 @@ class DohaCard extends StatefulWidget {
 class _DohaCardState extends State<DohaCard> {
   final GlobalKey _renderKey = new GlobalKey();
   bool _translationVisible = true;
-  late Uri _audioUrl;
+  late Uri _originalAudioUrl;
   Language _selectedLanguage = Language.eng;
   late bool loaded;
 
@@ -46,7 +46,9 @@ class _DohaCardState extends State<DohaCard> {
 
   void initAudioUrl() {
     try {
-      _audioUrl = Uri.parse(widget.data.audioUrl ?? "");
+      _originalAudioUrl = Uri.parse(widget.data.audioUrl ?? "");
+      // TODO: expose both audio URLs to AudioButton so it can play the backup
+      // _audioUrl = Uri.parse(widget.data.kosaAudio?.url ?? "");
     } catch (e) {
       print("Error parsing audio URL: $e");
     }
@@ -174,7 +176,7 @@ class _DohaCardState extends State<DohaCard> {
   }
 
   AudioButton buildAudioButton() {
-    return AudioButton(audioUrl: _audioUrl);
+    return AudioButton(audioUrl: _originalAudioUrl);
   }
 
   ShareButton buildShareButton() {

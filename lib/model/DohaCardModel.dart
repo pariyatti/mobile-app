@@ -1,4 +1,5 @@
 import 'package:patta/model/CardModel.dart';
+import 'package:patta/model/KosaAudio.dart';
 import 'package:patta/model/Translations.dart';
 
 class DohaCardModel extends CardModel {
@@ -7,6 +8,7 @@ class DohaCardModel extends CardModel {
   final Translations? translations;
   final String? imageUrl;
   final String? audioUrl;
+  final KosaAudio? kosaAudio;
 
   DohaCardModel({
     required String id,
@@ -18,9 +20,11 @@ class DohaCardModel extends CardModel {
     this.doha,
     this.translations,
     this.imageUrl,
-    this.audioUrl
+    this.audioUrl,
+    this.kosaAudio
   }) : super(id, url, publishedAt, isBookmarkable, isShareable);
 
   @override
-  List<Object?> get props => [id, url, publishedAt, header, doha, translations, imageUrl, audioUrl, isBookmarkable, isShareable];
+  List<Object?> get props => [id, url, publishedAt, header, doha, translations,
+    imageUrl, audioUrl, kosaAudio, isBookmarkable, isShareable];
 }
