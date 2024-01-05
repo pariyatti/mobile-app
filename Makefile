@@ -41,7 +41,6 @@ clean: clean_local_environment ##@Development Clean various caches
 	cd ios && rm -rf Podfile.lock
 	cd ios && rm -rf ./Pods
 	cd ios && pod cache clean --all
-	cd ios && pod install --repo-update
 	flutter clean
 
 destroy: init-clean clean ##@Development Destroy all caches
@@ -61,6 +60,7 @@ repair-xcode: ##@Development Run a build in XCode to repair mysterious failures
 
 build: ##@Development (Re)build project
 	flutter pub get
+	cd ios && pod install --repo-update
 	flutter pub run build_runner build --delete-conflicting-outputs
 
 watch: ##@Development Build continuously (gen files)
