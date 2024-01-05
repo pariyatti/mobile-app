@@ -14,15 +14,15 @@
 * MacOS 13.2.1
 * JDK 17
 * Android Studio 22.2.1
-* XCode 14.3
+* XCode 15
 * Flutter:
 
 ```
 % flutter --version
-Flutter 3.7.11 • channel stable • https://github.com/flutter/flutter.git
-Framework • revision f72efea43c (5 days ago) • 2023-04-11 11:57:21 -0700
-Engine • revision 1a65d409c7
-Tools • Dart 2.19.6 • DevTools 2.20.1
+Flutter 3.16.5 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision 78666c8dc5 (2 weeks ago) • 2023-12-19 16:14:14 -0800
+Engine • revision 3f3e560236
+Tools • Dart 3.2.3 • DevTools 2.28.4
 ```
 
 ## Dev Setup: Android
@@ -54,9 +54,13 @@ See: https://stackoverflow.com/questions/46402772/failed-to-install-android-sdk-
    - `cd ~/Downloads && tar xzf tar xzf openjdk-17.0.0_osx-x64_bin.tar.gz`
    - `sudo mv jdk-17.0.0.jdk /Library/Java/JavaVirtualMachines/.`
    - `echo 'export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.0.0.jdk/Contents/Home' >> ~/.zshrc` # or `.bash_profile`
-1. Install Xcode
-2. Install Flutter: https://flutter.dev/docs/get-started/install
+2. Install Ruby (MacOS, rbenv):
+   - https://github.com/rbenv/rbenv
+   - `rbenv install 3.2.2`
+3. Install Xcode
+4. Install Flutter: https://flutter.dev/docs/get-started/install
    - run `flutter precache` and `flutter doctor` and follow any remaining instructions
+   - when installing CocoaPods, prefer the local, rbenv-managed `--user-install` option
    - required on Mac as of 2021-02-06: `ln -s ~/Library/Application\ Support/Google/AndroidStudio4.1/plugins ~/Library/Application\ Support/AndroidStudio4.1`
    - run `flutter devices` - if you get a "device busy" message, reboot MacOS and phone. This might be helpful: https://github.com/flutter/flutter/issues/66862 and https://github.com/flutter/flutter/issues/66862#issuecomment-758967875
 
