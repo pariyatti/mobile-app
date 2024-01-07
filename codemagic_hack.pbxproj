@@ -1,0 +1,3 @@
+						/* added by codemagic_hack */
+						DevelopmentTeam = Z8C46829M8;
+						ProvisioningStyle = Manual;

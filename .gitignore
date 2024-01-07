@@ -33,6 +33,9 @@ doc/api/
 android/keystore.jks
 android/keystore.properties
 
+# Ignore iOS / XCode Project sed Linux/MacOS x-plat hack
+ios/Runner.xcodeproj/project.pbxproj.bak
+
 # Generated Local Environment
 lib/LocalEnvironment.dart
 

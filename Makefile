@@ -33,6 +33,9 @@ init-icons: init-flutter
 init: init-flutter ##@Setup Default config + pub get
 	sudo gem install cocoapods
 
+configure-ci-xcode:  # Hidden@Setup Force Codemagic XCode Profile
+	./bin/configure_ci_xcode.sh
+
 clean_local_environment:
 	rm -f lib/LocalEnvironment.dart
 
