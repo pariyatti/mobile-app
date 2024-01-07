@@ -16,11 +16,11 @@ class DonateScreen extends StatelessWidget {
         children: <Widget>[
           Row(children: <Widget>[ buildPreamble(context, I18n.get("donate_preamble")) ]),
           Row(mainAxisSize: MainAxisSize.min,
-              children: <Widget>[ buildGradientButton(donateUrl, I18n.get("donate")) ]
+              children: <Widget>[ buildGradientButton(AppConstants.DONATE_URL, I18n.get("donate")) ]
           ),
           Row(children: <Widget>[ buildPreamble(context, I18n.get("donate_time_preamble")) ]),
           Row(mainAxisSize: MainAxisSize.min,
-              children: <Widget>[ buildGradientButton(donateTimeUrl, I18n.get("donate_time")) ]
+              children: <Widget>[ buildGradientButton(AppConstants.DONATE_TIME_URL, I18n.get("donate_time")) ]
           ),
           Row(children: <Widget>[ SizedBox(height: 40) ]),
         ],

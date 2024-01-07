@@ -26,6 +26,14 @@ class Preferences {
     prefs.setString(key, value);
   }
 
+  static int? getInt(String key) {
+    return prefs.getInt(key);
+  }
+
+  static void setInt(String key, int value) {
+    prefs.setInt(key, value);
+  }
+
   static Language getLanguage(String key) {
     return Language.from(Preferences.getString(key));
   }

@@ -8,4 +8,9 @@ abstract class CardModel extends Equatable {
   final bool isShareable;
 
   CardModel(this.id, this.url, this.publishedAt, this.isBookmarkable, this.isShareable);
+
+  static bool Function(CardModel value) laterThan(int maxDays) {
+    var laterThanTime = DateTime.now().subtract(Duration(days: maxDays));
+    return (model) { return model.publishedAt.isAfter(laterThanTime); };
+  }
 }

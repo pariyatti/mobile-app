@@ -1,12 +1,14 @@
 
 import 'package:patta/app/log.dart';
-import 'package:patta/app/preferences.dart';
+import 'preferences.dart';
 
 import '../model/Feed.dart';
 import '../model/FeedList.dart';
 import '../model/Language.dart';
+import 'app_constants.dart';
 
 class FeedPreferences {
+  static const TODAY_MAX_DAYS = "TODAY_MAX_DAYS";
 
   static Future<void> init() async {
     for (Feed feed in _getFeedList().all()) {
@@ -14,6 +16,10 @@ class FeedPreferences {
         log2("[FeedPreferences] WARNING: $feed flag not found; force-enabling feed...");
         Preferences.setBool(feed.key, true);
       }
+    }
+    if (Preferences.getInt(TODAY_MAX_DAYS) == null) {
+      log2("[FeedPreferences] WARNING: Preference '$TODAY_MAX_DAYS' not found; defaulting to ${AppConstants.DEFAULT_TODAY_MAX_DAYS} ...");
+      Preferences.setInt(TODAY_MAX_DAYS, AppConstants.DEFAULT_TODAY_MAX_DAYS);
     }
   }
 
@@ -23,6 +29,7 @@ class FeedPreferences {
       log2("[FeedPreferences] First run: setting $feed");
       Preferences.setBool(feed.key, true);
     }
+    Preferences.setInt(TODAY_MAX_DAYS, AppConstants.DEFAULT_TODAY_MAX_DAYS);
   }
 
   static FeedList _getFeedList() {
@@ -40,4 +47,19 @@ class FeedPreferences {
     Preferences.setBool(feed.key, !oldValue);
   }
 
+  int getTodayMaxDays() {
+    log2("[FeedPreferences] 'TODAY_MAX_DAYS' is = ${Preferences.getInt(TODAY_MAX_DAYS)}.");
+    return Preferences.getInt(TODAY_MAX_DAYS) ?? AppConstants.DEFAULT_TODAY_MAX_DAYS;
+  }
+
+  void setTodayMaxDays(String? days) {
+    if (days == null || days.isEmpty) {
+      log2("[FeedPreferences] 'days' was empty; setting prefs to default.");
+      Preferences.setInt(TODAY_MAX_DAYS, AppConstants.DEFAULT_TODAY_MAX_DAYS);
+      return;
+    }
+    var d = int.parse(days);
+    log2("[FeedPreferences] 'days' was $d, setting prefs.");
+    Preferences.setInt(TODAY_MAX_DAYS, d);
+  }
 }

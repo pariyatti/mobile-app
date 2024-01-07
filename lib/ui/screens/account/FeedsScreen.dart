@@ -1,9 +1,12 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:patta/app/I18n.dart';
+import 'package:patta/app/app_constants.dart';
 import 'package:patta/app/app_themes.dart';
 import 'package:patta/app/feed_preferences.dart';
 import 'package:patta/app/log.dart';
+import 'package:patta/services/numerical_range_formatter.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:patta/app/preferences.dart';
 import '../../../model/Feed.dart';
@@ -40,7 +43,8 @@ class _FeedsScreenState extends State<FeedsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List<SettingsTile> tiles = List.from(feedList.all().map((e) => buildSettingsTile(e)));
+    List<SettingsTile> feedToggleTiles = List.from(feedList.all().map((e) => buildFeedToggleTiles(e)));
+    List<SettingsTile> todayMaxDays = [buildTodayMaxDaysTile()];
 
     return Scaffold(
       appBar: AppBar(
@@ -51,20 +55,53 @@ class _FeedsScreenState extends State<FeedsScreen> {
         lightTheme: AppThemes.version1SettingsThemeData,
         darkTheme: AppThemes.darkSettingsThemeData,
         sections: [
-          SettingsSection(tiles: tiles),
+          SettingsSection(tiles: feedToggleTiles),
+          SettingsSection(tiles: todayMaxDays)
         ],
       ),
     );
   }
 
-  SettingsTile buildSettingsTile(Feed feed) {
+  SettingsTile buildFeedToggleTiles(Feed feed) {
     return SettingsTile(
       title: Text(feed.title),
-      trailing: trailingWidget(feedPreferences.getFeedFlag(feed)),
+      trailing: checkmark(feedPreferences.getFeedFlag(feed)),
       onPressed: (BuildContext context) { _toggleFeed(feed); });
   }
 
-  Widget trailingWidget(bool enabled) {
+  SettingsTile buildTodayMaxDaysTile() {
+    var focus = FocusNode();
+    var numberInput = number(feedPreferences.getTodayMaxDays(), focus);
+    return SettingsTile(
+        title: Text("Days Visible (1-${AppConstants.MAX_DAYS_PERMITTED})"),
+        trailing: numberInput,
+        onPressed: (BuildContext context) { focus.requestFocus(); });
+  }
+
+  Widget checkmark(bool enabled) {
     return enabled ? AppThemes.checkIcon(context) : Icon(null);
+  }
+
+  Widget number(int count, FocusNode focus) {
+    var settingsStyle = TextStyle(color: Theme.of(context).colorScheme.inversePrimary, fontWeight: FontWeight.w700);
+    return rangeEntry(settingsStyle, focus);
+  }
+
+  Widget rangeEntry(TextStyle settingsStyle, FocusNode focus) {
+    return Flexible(
+        child:
+        TextFormField(
+          focusNode: focus,
+          onChanged: (text) { feedPreferences.setTodayMaxDays(text); },
+          keyboardType: TextInputType.number,
+          inputFormatters: <TextInputFormatter>[
+            FilteringTextInputFormatter.digitsOnly,
+            NumericalRangeFormatter(min: 1, max: AppConstants.MAX_DAYS_PERMITTED)
+          ],
+          initialValue: feedPreferences.getTodayMaxDays().toString(),
+          textAlign: TextAlign.right,
+          style: settingsStyle,
+          decoration: InputDecoration(border: UnderlineInputBorder().copyWith(borderSide: BorderSide.none))
+        ));
   }
 }

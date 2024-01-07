@@ -72,7 +72,7 @@ class PariyattiApp extends StatelessWidget {
             PariyattiDatabase database,
             PariyattiApi? previousApi,
           ) =>
-              PariyattiApi(environment.kosaBaseUrl, database),
+              PariyattiApi(environment.kosaBaseUrl, FeedPreferences()),
         ),
         ChangeNotifierProvider<ThemeProvider>(
           create: (context) => ThemeProvider(),
