@@ -15,7 +15,7 @@ sanSerifFont({BuildContext? context, double? fontSize, Color? color, TextStyle? 
 }
 
 serifFont({BuildContext? context, double? fontSize, Color? color, TextStyle? textStyle}) {
-  return GoogleFonts.getFont('Gentium Book Basic', textStyle: TextStyle(
+  return GoogleFonts.getFont('Gentium Book Plus', textStyle: TextStyle(
       inherit: true,
       fontSize: fontSize ?? textStyle?.fontSize ?? 18.0,
       fontWeight: FontWeight.normal,
