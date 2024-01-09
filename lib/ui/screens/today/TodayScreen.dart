@@ -34,6 +34,9 @@ class TodayScreen extends StatelessWidget {
         AsyncSnapshot<List<CardModel>> snapshot,
       ) {
         if (snapshot.hasData && snapshot.data != null) {
+          if (snapshot.data == null || snapshot.data?.length == 0) {
+            return _buildError(context, new Exception("No Today Cards Found."), IconName.today);
+          }
           var firstCard = snapshot.data![0];
           if (firstCard is NetworkErrorCardModel) {
             return _buildError(context, new Exception(firstCard.errorMsg), IconName.networkError);
