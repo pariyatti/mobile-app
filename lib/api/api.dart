@@ -9,7 +9,7 @@ import 'package:patta/model/CardModel.dart';
 import '../model/NetworkErrorCardModel.dart';
 
 class PariyattiApi {
-  final TODAY_URL = '/api/v1/today.json';
+  final TODAY_URL = '/api/v2/today.json';
 
   String baseUrl;
   FeedPreferences feedPreferences;
@@ -21,7 +21,9 @@ class PariyattiApi {
       var response = await GetDio.getDio(baseURL: baseUrl).get(TODAY_URL);
       log(response.data.toString(), level: 1, name: "json");
       var models = today_converter.convertJsonToCardModels(response.data, baseUrl);
-      return models.takeWhile(CardModel.laterThan(feedPreferences.getTodayMaxDays())).toList();
+      models.removeWhere(CardModel.inFuture());
+      var trimmed = models.takeWhile(CardModel.laterThan(feedPreferences.getTodayMaxDays())).toList();
+      return trimmed;
     } on DioException catch (e) {
       logError(e);
       return [NetworkErrorCardModel.create("Could not reach Pariyatti server '$baseUrl'.")];

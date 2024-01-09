@@ -49,7 +49,7 @@ class TodayFeed {
       if (!sameDay(current, card.publishedAt)) {
         var nextDay = DateTime(card.publishedAt.year, card.publishedAt.month, card.publishedAt.day);
         current = nextDay;
-        tagging.add(DateCardModel(id: nextDay.toIso8601String(), url: "NONE", publishedAt: nextDay, isBookmarkable: false, isShareable: false));
+        tagging.add(DateCardModel(id: nextDay.toIso8601String(), url: "NONE", publishedDate: nextDay, publishedAt: nextDay, isBookmarkable: false, isShareable: false));
       }
       tagging.add(card);
     });

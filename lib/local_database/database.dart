@@ -7,8 +7,9 @@ import 'package:path_provider/path_provider.dart';
 import 'package:patta/local_database/network_cache_table.dart';
 import 'package:patta/local_database/cards.dart';
 
-// Run the following command to generate 'database.g.dart':
-// flutter packages pub run build_runner watch --delete-conflicting-outputs
+// Run the following commands to generate 'database.g.dart' based on 'cards.dart':
+// make clean && make build && make lib/LocalEnvironment.dart
+// flutter pub get && dart run build_runner build
 part 'database.g.dart';
 
 LazyDatabase _openConnection() {
@@ -30,7 +31,7 @@ class PariyattiDatabase extends _$PariyattiDatabase {
   PariyattiDatabase() : super(_openConnection());
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 3;
 
   @override
   MigrationStrategy get migration {
@@ -41,6 +42,9 @@ class PariyattiDatabase extends _$PariyattiDatabase {
       onUpgrade: (Migrator m, int from, int to) async {
         if (from < 2) {
           await m.addColumn(cards, cards.citepali);
+        }
+        if (from < 3) {
+          await m.addColumn(cards, cards.publishedDate);
         }
       },
     );

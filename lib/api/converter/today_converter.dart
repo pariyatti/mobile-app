@@ -30,6 +30,7 @@ CardModel? _convertApiCardToCardModel(
         return StackedInspirationCardModel(
           id: card.id,
           url: card.url,
+          publishedDate: card.publishedDate,
           publishedAt: card.publishedAt,
           header: card.header,
           text: card.text,
@@ -43,6 +44,7 @@ CardModel? _convertApiCardToCardModel(
         return OverlayInspirationCardModel(
             id: card.id,
             url: card.url,
+            publishedDate: card.publishedDate,
             publishedAt: card.publishedAt,
             header: card.header,
             text: card.text,
@@ -59,6 +61,7 @@ CardModel? _convertApiCardToCardModel(
           model = PaliWordCardModel(
             id: card.id,
             url: card.url,
+            publishedDate: card.publishedDate,
             publishedAt: card.publishedAt,
             header: card.header,
             pali: card.pali,
@@ -79,6 +82,7 @@ CardModel? _convertApiCardToCardModel(
         return WordsOfBuddhaCardModel(
           id: card.id,
           url: card.url,
+          publishedDate: card.publishedDate,
           publishedAt: card.publishedAt,
           header: card.header,
           words: card.words,
@@ -100,6 +104,7 @@ CardModel? _convertApiCardToCardModel(
         return DohaCardModel(
           id: card.id,
           url: card.url,
+          publishedDate: card.publishedDate,
           publishedAt: card.publishedAt,
           header: card.header,
           doha: card.doha,
