@@ -9,8 +9,7 @@ class CardHeader extends Padding {
         fontSize: 14.0,
         fontWeight: FontWeight.normal,
         color: Theme.of(context).colorScheme.onBackground,
-        backgroundColor: Theme.of(context).colorScheme.surface
-      ))
-          ));
-
+        backgroundColor: Theme.of(context).colorScheme.surface.withOpacity(0.0)
+      )))
+  );
 }
