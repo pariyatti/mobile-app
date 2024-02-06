@@ -31,7 +31,8 @@ init-icons: init-flutter
 	flutter pub run flutter_launcher_icons:main
 
 init: init-flutter ##@Setup Default config + pub get
-	sudo gem install cocoapods
+	# sudo gem install cocoapods
+	gem install cocoapods # assume rbenv, not system ruby
 
 configure-ci-xcode:  # Hidden@Setup Force Codemagic XCode Profile
 	./bin/configure_ci_xcode.sh
@@ -72,7 +73,7 @@ watch: ##@Development Build continuously (gen files)
 test: ##@Development Run tests against a connected device
 	flutter test --machine
 
-lib/LocalEnvironment.dart:
+lib/LocalEnvironment.dart: ##@Development Build local config (usually 'make run' does this)
 	./bin/configure_local_environment.sh
 
 run: clean_local_environment lib/LocalEnvironment.dart ##@Development Run a debug build against 'env' (local, sandbox, or production)

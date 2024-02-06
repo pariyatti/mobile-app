@@ -17,6 +17,7 @@ DatabaseCard toDatabaseCard(
     return DatabaseCard(
       id: cardModel.id,
       url: cardModel.url,
+      publishedDate: cardModel.publishedDate,
       publishedAt: cardModel.publishedAt,
       isBookmarkable: cardModel.isBookmarkable,
       isShareable: cardModel.isShareable,
@@ -30,6 +31,7 @@ DatabaseCard toDatabaseCard(
     return DatabaseCard(
       id: cardModel.id,
       url: cardModel.url,
+      publishedDate: cardModel.publishedDate,
       publishedAt: cardModel.publishedAt,
       isBookmarkable: cardModel.isBookmarkable,
       isShareable: cardModel.isShareable,
@@ -45,6 +47,7 @@ DatabaseCard toDatabaseCard(
     return DatabaseCard(
       id: cardModel.id,
       url: cardModel.url,
+      publishedDate: cardModel.publishedDate,
       publishedAt: cardModel.publishedAt,
       isBookmarkable: cardModel.isBookmarkable,
       isShareable: cardModel.isShareable,
@@ -59,6 +62,7 @@ DatabaseCard toDatabaseCard(
     return DatabaseCard(
       id: cardModel.id,
       url: cardModel.url,
+      publishedDate: cardModel.publishedDate,
       publishedAt: cardModel.publishedAt,
       isBookmarkable: cardModel.isBookmarkable,
       isShareable: cardModel.isShareable,
@@ -74,6 +78,7 @@ DatabaseCard toDatabaseCard(
     return DatabaseCard(
       id: cardModel.id,
       url: cardModel.url,
+      publishedDate: cardModel.publishedDate,
       publishedAt: cardModel.publishedAt,
       isBookmarkable: cardModel.isBookmarkable,
       isShareable: cardModel.isShareable,
@@ -90,6 +95,7 @@ DatabaseCard toDatabaseCard(
     return DatabaseCard(
       id: "NULL",
       url: "NULL",
+      publishedDate: DateTime.now(),
       publishedAt: DateTime.now(),
       isBookmarkable: false,
       isShareable: false,
@@ -110,6 +116,7 @@ CardModel? toCardModel(DatabaseCard databaseCard) {
         return StackedInspirationCardModel(
           id: databaseCard.id,
           url: databaseCard.url,
+          publishedDate: databaseCard.publishedDate,
           publishedAt: databaseCard.publishedAt,
           isBookmarkable: databaseCard.isBookmarkable,
           isShareable: databaseCard.isShareable,
@@ -123,6 +130,7 @@ CardModel? toCardModel(DatabaseCard databaseCard) {
         return OverlayInspirationCardModel(
           id: databaseCard.id,
           url: databaseCard.url,
+          publishedDate: databaseCard.publishedDate,
           publishedAt: databaseCard.publishedAt,
           header: databaseCard.header,
           text: databaseCard.textData,
@@ -137,6 +145,7 @@ CardModel? toCardModel(DatabaseCard databaseCard) {
         return PaliWordCardModel(
           id: databaseCard.id,
           url: databaseCard.url,
+          publishedDate: databaseCard.publishedDate,
           publishedAt: databaseCard.publishedAt,
           isBookmarkable: databaseCard.isBookmarkable,
           isShareable: databaseCard.isShareable,
@@ -152,6 +161,7 @@ CardModel? toCardModel(DatabaseCard databaseCard) {
         return WordsOfBuddhaCardModel(
           id: databaseCard.id,
           url: databaseCard.url,
+          publishedDate: databaseCard.publishedDate,
           publishedAt: databaseCard.publishedAt,
           header: databaseCard.header,
           isBookmarkable: databaseCard.isBookmarkable,
@@ -167,6 +177,7 @@ CardModel? toCardModel(DatabaseCard databaseCard) {
         return DohaCardModel(
           id: databaseCard.id,
           url: databaseCard.url,
+          publishedDate: databaseCard.publishedDate,
           publishedAt: databaseCard.publishedAt,
           header: databaseCard.header,
           isBookmarkable: databaseCard.isBookmarkable,

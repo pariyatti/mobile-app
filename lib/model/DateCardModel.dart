@@ -7,13 +7,14 @@ class DateCardModel extends CardModel {
   DateCardModel({
     required String id,
     required String url,
+    required DateTime publishedDate,
     required DateTime publishedAt,
     required bool isBookmarkable,
     required bool isShareable,
-  }) : super(id, url, publishedAt, isBookmarkable, isShareable);
+  }) : super(id, url, publishedDate, publishedAt, isBookmarkable, isShareable);
 
   @override
-  List<Object?> get props => [id, url, publishedAt, isBookmarkable, isShareable];
+  List<Object?> get props => [id, url, publishedDate, publishedAt, isBookmarkable, isShareable];
 
   get humanDate => HumanDate(publishedAt).toString();
 }

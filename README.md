@@ -171,7 +171,7 @@ Promotion:
 To add a new "Today" card, there is quite a bit of duplication. Please see:
 
 * `lib/model/*CardModel.dart`
-* `lib/ui/common_widgets/cards/*Card.dart`
+* `lib/ui/widgets/cards/*Card.dart`
 * `lib/ui/screens/today/TodayScreen.dart          -> _buildCardsList()`
 * `lib/ui/screens/account/tabs/BookmarksTab.dart  -> _buildCardsList()`
 * `lib/local_database/cards.dart`
@@ -185,12 +185,7 @@ make clean
 make build
 ```
 
-If you are changing the schema of the SQLite database, you will need to uninstall
-and reinstall the mobile app for the changes to take effect. This is a limitation
-of the current method of bookmarking because we do not have database migrations.
-Upon re-installation, you will need to trust the app on your phone again:
-
-`Settings > General > VPN & Device Management > Developer App > {your email} > Trust`
+Database migrations are done in `database.dart` by bumping `schemaVersion`.
 
 ## Run release build with production servers (signed APK)
 

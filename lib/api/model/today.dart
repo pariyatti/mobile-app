@@ -10,6 +10,9 @@ class ApiCard {
   @JsonKey(name: 'url', disallowNullValue: true, required: true)
   late final String url;
 
+  @JsonKey(name: 'published_date', disallowNullValue: true, required: true)
+  late final DateTime publishedDate;
+
   @JsonKey(name: 'published_at', disallowNullValue: true, required: true)
   late final DateTime publishedAt;
 

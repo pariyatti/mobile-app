@@ -13,6 +13,7 @@ class DohaCardModel extends CardModel {
   DohaCardModel({
     required String id,
     required String url,
+    required DateTime publishedDate,
     required DateTime publishedAt,
     required bool isBookmarkable,
     required bool isShareable,
@@ -22,9 +23,9 @@ class DohaCardModel extends CardModel {
     this.imageUrl,
     this.audioUrl,
     this.kosaAudio
-  }) : super(id, url, publishedAt, isBookmarkable, isShareable);
+  }) : super(id, url, publishedDate, publishedAt, isBookmarkable, isShareable);
 
   @override
-  List<Object?> get props => [id, url, publishedAt, header, doha, translations,
+  List<Object?> get props => [id, url, publishedDate, publishedAt, header, doha, translations,
     imageUrl, audioUrl, kosaAudio, isBookmarkable, isShareable];
 }
