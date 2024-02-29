@@ -22,6 +22,10 @@ class PariyattiApi {
       log(response.data.toString(), level: 1, name: "json");
       var models = today_converter.convertJsonToCardModels(response.data, baseUrl);
       models.removeWhere(CardModel.inFuture());
+      if (notEnoughCardsPublished(models))
+      {
+        return [NetworkErrorCardModel.create("Cards have not been published for today yet.")];
+      }
       var trimmed = models.takeWhile(CardModel.laterThan(feedPreferences.getTodayMaxDays())).toList();
       return trimmed;
     } on DioException catch (e) {
@@ -31,6 +35,13 @@ class PariyattiApi {
       logError(se);
       return [NetworkErrorCardModel.create("Could not reach Pariyatti server '$baseUrl'.")];
     }
+  }
+
+  bool notEnoughCardsPublished(List<CardModel> models) {
+    var today = DateTime.now();
+    var onlyOneDayVisible = feedPreferences.getTodayMaxDays() == 1;
+    var todayIsntVisible = models.first.publishedDate != DateTime(today.year, today.month, today.day);
+    return onlyOneDayVisible && todayIsntVisible;
   }
 
   void logError(e) {

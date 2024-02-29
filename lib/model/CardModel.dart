@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:patta/app/log.dart';
 
 abstract class CardModel extends Equatable {
   final String id;
@@ -16,7 +17,11 @@ abstract class CardModel extends Equatable {
   }
 
   static bool Function(CardModel cm) laterThan(int maxDays) {
-    var laterThanTime = DateTime.now().subtract(Duration(days: maxDays));
-    return (model) { return model.publishedAt.isAfter(laterThanTime); };
+    var start = DateTime.now().subtract(Duration(days: maxDays));
+    return (model) {
+      log2("CardModel.laterThan - publishedDate: " + model.publishedDate.toString());
+      log2("CardModel.laterThan - start: ${DateTime(start.year, start.month, start.day)}");
+      return model.publishedDate.isAfter(DateTime(start.year, start.month, start.day));
+    };
   }
 }
