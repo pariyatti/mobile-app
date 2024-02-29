@@ -35,11 +35,9 @@ class SharedImage {
 
   static Future<Uint8List> getBytesFromRenderKey(GlobalKey renderKey) async {
     try {
-      RenderRepaintBoundary boundary =
-          renderKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+      RenderRepaintBoundary boundary = renderKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
       ui.Image image = await boundary.toImage(pixelRatio: 3.0);
-      ByteData byteData =
-          await image.toByteData(format: ui.ImageByteFormat.png) as ByteData;
+      ByteData byteData = await image.toByteData(format: ui.ImageByteFormat.png) as ByteData;
       var pngBytes = byteData.buffer.asUint8List();
       return pngBytes;
     } catch (e) {

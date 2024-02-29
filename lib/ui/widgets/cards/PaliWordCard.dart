@@ -46,7 +46,6 @@ class _PaliWordCardState extends State<PaliWordCard> {
               horizontal: 12.0,
             ),
             child: Card(
-              color: Theme.of(context).colorScheme.surface,
               elevation: 2.0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
@@ -61,7 +60,7 @@ class _PaliWordCardState extends State<PaliWordCard> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    CardHeader(context, I18n.get("pali_word")),
+                    CardHeader(context, I18n.get("pali_word"), Theme.of(context).colorScheme.surface),
                     buildPaliWord(context),
                     buildButtonFooter(context)
                   ],
@@ -76,7 +75,9 @@ class _PaliWordCardState extends State<PaliWordCard> {
 
   buildPaliWord(context) {
     return RepaintBoundary(
-      child: Stack(
+      child: Container(decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface),
+        child:
+        Stack(
           clipBehavior: Clip.hardEdge,
           children: [
             Column(
@@ -115,8 +116,9 @@ class _PaliWordCardState extends State<PaliWordCard> {
                 )
               ],
             )
-        ]
-      )
+          ]
+        ),
+      ),
     );
   }
 

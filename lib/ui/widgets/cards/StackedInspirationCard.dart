@@ -47,7 +47,6 @@ class _StackedInspirationCardState extends State<StackedInspirationCard> {
               horizontal: 12.0,
             ),
             child: Card(
-              color: Theme.of(context).colorScheme.surface,
               elevation: 2.0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(
@@ -66,7 +65,7 @@ class _StackedInspirationCardState extends State<StackedInspirationCard> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    CardHeader(context, widget.data.header ?? I18n.get("inspiration")),
+                    CardHeader(context, widget.data.header ?? I18n.get("inspiration"), Theme.of(context).colorScheme.surface),
                     RepaintBoundary(
                       key: _renderKey,
                       child:

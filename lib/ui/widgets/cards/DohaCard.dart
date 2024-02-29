@@ -71,7 +71,6 @@ class _DohaCardState extends State<DohaCard> {
               horizontal: 12.0,
             ),
             child: Card(
-              color: Theme.of(context).colorScheme.surface,
               elevation: 2.0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(
@@ -90,7 +89,7 @@ class _DohaCardState extends State<DohaCard> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    CardHeader(context, I18n.get("dhamma_verse")),
+                    CardHeader(context, I18n.get("dhamma_verse"), Theme.of(context).colorScheme.surface),
                     buildOverlayWords(),
                     buildButtonFooter(),
                   ],
@@ -106,51 +105,54 @@ class _DohaCardState extends State<DohaCard> {
   buildOverlayWords() {
     return RepaintBoundary(
       key: _renderKey,
-      child: Stack(
-        clipBehavior: Clip.hardEdge,
-        children: [
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              child: Align(alignment: Alignment.bottomRight,
-                child: AppThemes.quoteBackground(context)
+      child: Container(decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface),
+        child:
+        Stack(
+          clipBehavior: Clip.hardEdge,
+          children: [
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                child: Align(alignment: Alignment.bottomRight,
+                  child: AppThemes.quoteBackground(context)
+                )
               )
-            )
-          ),
-          Column(
-            children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: Visibility(
-                  visible: loaded,
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          _translationVisible = !_translationVisible;
-                        });
-                      },
-                      child: getPaliText(),
+            ),
+            Column(
+              children: [
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Visibility(
+                    visible: loaded,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _translationVisible = !_translationVisible;
+                          });
+                        },
+                        child: getPaliText(),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Align(
-                alignment: Alignment.topLeft,
-                child: Visibility(
-                  visible: _translationVisible,
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: getTranslationText(),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Visibility(
+                    visible: _translationVisible,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: getTranslationText(),
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

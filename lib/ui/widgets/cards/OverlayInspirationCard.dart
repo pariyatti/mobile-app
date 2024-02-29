@@ -63,7 +63,7 @@ class _OverlayInspirationCardState extends State<OverlayInspirationCard> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              CardHeader(context, widget.data.header ?? I18n.get("inspiration")),
+              CardHeader(context, widget.data.header ?? I18n.get("inspiration"), Theme.of(context).colorScheme.surface),
               buildOverlayWords(),
               buildButtonFooter(),
             ],

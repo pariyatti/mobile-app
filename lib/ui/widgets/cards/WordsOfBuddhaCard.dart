@@ -76,7 +76,6 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
               horizontal: 12.0,
             ),
             child: Card(
-              color: Theme.of(context).colorScheme.surface,
               elevation: 2.0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(
@@ -95,7 +94,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    CardHeader(context, I18n.get("words_of_the_buddha")),
+                    CardHeader(context, I18n.get("words_of_the_buddha"), Theme.of(context).colorScheme.surface),
                     buildOverlayWords(),
                     buildButtonFooter(),
                   ],
@@ -111,69 +110,72 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
   buildOverlayWords() {
     return RepaintBoundary(
       key: _renderKey,
-      child: Stack(
-        clipBehavior: Clip.hardEdge,
-        children: [
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              child: Align(alignment: Alignment.bottomRight,
-                child: AppThemes.quoteBackground(context)
+      child: Container(decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface),
+        child:
+        Stack(
+          clipBehavior: Clip.hardEdge,
+          children: [
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                child: Align(alignment: Alignment.bottomRight,
+                  child: AppThemes.quoteBackground(context)
+                )
               )
-            )
-          ),
-          Column(
-            children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: Visibility(
-                  visible: loaded,
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          _translationVisible = !_translationVisible;
-                        });
-                      },
-                      child: getPaliText(),
+            ),
+            Column(
+              children: [
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Visibility(
+                    visible: loaded,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _translationVisible = !_translationVisible;
+                          });
+                        },
+                        child: getPaliText(),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Align(
-                alignment: Alignment.topLeft,
-                child: Visibility(
-                  visible: _translationVisible,
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: GestureDetector(
-                      onDoubleTap: () {
-                        setState(() {
-                          _chanting = _chanting.tryToggle();
-                        });
-                        log2("Discourse chanting toggled by double-tap: ${_chanting.isSpecialVisible}");
-                      },
-                      child: getTranslationText(),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Visibility(
+                    visible: _translationVisible,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: GestureDetector(
+                        onDoubleTap: () {
+                          setState(() {
+                            _chanting = _chanting.tryToggle();
+                          });
+                          log2("Discourse chanting toggled by double-tap: ${_chanting.isSpecialVisible}");
+                        },
+                        child: getTranslationText(),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Align(
-                alignment: Alignment.topLeft,
-                child: Visibility(
-                  visible: _citationToggle.isActive,
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: getCitationText(),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Visibility(
+                    visible: _citationToggle.isActive,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: getCitationText(),
+                      ),
                     ),
                   ),
-                ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -255,6 +257,7 @@ class _WordsOfBuddhaCardState extends State<WordsOfBuddhaCard> {
 
   ShareButton buildShareButton() {
     return ShareButton(onPressed: loaded == true ? () async {
+      // (((_renderKey.currentWidget as RepaintBoundary).child as Container).decoration as BoxDecoration).color = Theme.of(context).colorScheme.surface;
       Uint8List bytes = await SharedImage.getBytesFromRenderKey(_renderKey);
       SharedImage img = SharedImage(bytes, I18n.get("words_of_the_buddha"), widget.data.imageUrl);
       await Share.shareXFiles(
