@@ -55,8 +55,8 @@ class _FeedsScreenState extends State<FeedsScreen> {
         lightTheme: AppThemes.version1SettingsThemeData,
         darkTheme: AppThemes.darkSettingsThemeData,
         sections: [
-          SettingsSection(tiles: feedToggleTiles),
-          SettingsSection(tiles: todayMaxDays)
+          SettingsSection(tiles: feedToggleTiles, title: Text("Toggle Feeds")),
+          SettingsSection(tiles: todayMaxDays, title: Text("Options"))
         ],
       ),
     );
@@ -74,7 +74,7 @@ class _FeedsScreenState extends State<FeedsScreen> {
     var numberInput = number(feedPreferences.getTodayMaxDays(), focus);
     return SettingsTile(
         title: Text("Days Visible (1-${AppConstants.MAX_DAYS_PERMITTED})"),
-        trailing: numberInput,
+        trailing: Column(mainAxisSize: MainAxisSize.min, children: [numberInput]),
         onPressed: (BuildContext context) { focus.requestFocus(); });
   }
 
@@ -90,18 +90,21 @@ class _FeedsScreenState extends State<FeedsScreen> {
   Widget rangeEntry(TextStyle settingsStyle, FocusNode focus) {
     return Flexible(
         child:
-        TextFormField(
-          focusNode: focus,
-          onChanged: (text) { feedPreferences.setTodayMaxDays(text); },
-          keyboardType: TextInputType.number,
-          inputFormatters: <TextInputFormatter>[
-            FilteringTextInputFormatter.digitsOnly,
-            NumericalRangeFormatter(min: 1, max: AppConstants.MAX_DAYS_PERMITTED)
-          ],
-          initialValue: feedPreferences.getTodayMaxDays().toString(),
-          textAlign: TextAlign.right,
-          style: settingsStyle,
-          decoration: InputDecoration(border: UnderlineInputBorder().copyWith(borderSide: BorderSide.none))
+        SizedBox(width: 100,
+          child:
+          TextFormField(
+              focusNode: focus,
+              onChanged: (text) { feedPreferences.setTodayMaxDays(text); },
+              keyboardType: TextInputType.number,
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.digitsOnly,
+                NumericalRangeFormatter(min: 1, max: AppConstants.MAX_DAYS_PERMITTED)
+              ],
+              initialValue: feedPreferences.getTodayMaxDays().toString(),
+              textAlign: TextAlign.right,
+              style: settingsStyle,
+              decoration: InputDecoration(border: UnderlineInputBorder().copyWith(borderSide: BorderSide.none))
+          )
         ));
   }
 }
