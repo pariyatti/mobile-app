@@ -39,3 +39,6 @@ ios/Runner.xcodeproj/project.pbxproj.bak
 # Generated Local Environment
 lib/LocalEnvironment.dart
 
+# local dev options
+devtools_options.yaml
+

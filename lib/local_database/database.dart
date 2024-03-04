@@ -2,8 +2,11 @@ import 'dart:io';
 
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
+// import 'package:drift_dev/api/migrations.dart';
+
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
+import 'package:patta/app/log.dart';
 import 'package:patta/local_database/network_cache_table.dart';
 import 'package:patta/local_database/cards.dart';
 
@@ -15,10 +18,7 @@ part 'database.g.dart';
 LazyDatabase _openConnection() {
   return LazyDatabase(() async {
     final databaseFolder = await getApplicationDocumentsDirectory();
-    final file = File(path.join(
-      databaseFolder.path,
-      'pariyatti_db.sqlite',
-    ));
+    final file = File(path.join(databaseFolder.path, 'pariyatti_db.sqlite'));
     return NativeDatabase(file);
   });
 }
@@ -40,12 +40,17 @@ class PariyattiDatabase extends _$PariyattiDatabase {
         await m.createAll();
       },
       onUpgrade: (Migrator m, int from, int to) async {
+        log2("migrating from ${from} to ${to}");
         if (from < 2) {
-          await m.addColumn(cards, cards.citepali);
+          log2("adding citepali column");
+          m.addColumn(cards, cards.citepali);
         }
         if (from < 3) {
-          await m.addColumn(cards, cards.publishedDate);
+          log2("adding publishedDate column");
+          m.addColumn(cards, cards.publishedDate);
         }
+        // log2("validating database schema...");
+        // validateDatabaseSchema(); // debug-only
       },
     );
   }
