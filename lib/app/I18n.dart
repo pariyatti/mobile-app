@@ -335,8 +335,8 @@ class I18n {
       "contact_pariyatti": "聯繫Pariyatti",
       "could_not_launch": "無法啟動",
       "dark_theme": "暗黑主題",
-      "dhamma_verse": "S.N. Goenka的每日法句",
-      "dhamma_verse_short": "每日法句",
+      "dhamma_verse": "葛印卡老师的每日法语",
+      "dhamma_verse_short": "每日法语",
       "donate": "捐贈",
       "donate_preamble": "Pariyatti是一家獨立的美國501(c)(3)非營利組織，並不是正念組織的一部分。Pariyatti依靠銷售收入和捐款來提供其服務。根據美國稅法，所有捐款均可享受減稅優惠。\n\n如果您希望雇主匹配您的捐款，請為Pariyatti（EIN 80-0038336）提出申請。",
       "donate_time": "捐赠时间",
@@ -351,7 +351,7 @@ class I18n {
       "light_theme": "明亮主題",
       "nothing_bookmarked": "您還沒有書籤",
       "only_english": "目前僅提供英文作為替代語言",
-      "pali_word": "Pāli詞語",
+      "pali_word": "每日一个巴利语单词",
       "pali_word_of_the_day": "Pāli詞語之日",
       "security_and_privacy": "安全與隱私",
       "settings": "設定",
@@ -366,7 +366,7 @@ class I18n {
       "translation": "翻譯",
       "try_again_later": "發生錯誤，請稍後再試。",
       "was_empty": "沒有內容",
-      "words_of_the_buddha": "佛陀的話語"
+      "words_of_the_buddha": "佛陀每日法语"
     },
 
   };
