@@ -37,7 +37,7 @@ dependencies:
   shared_preferences: ^2.0.12
   sqlite3_flutter_libs: ^0.5.7 # Workaround to open sqlite3 on old Android versions
   video_player: ^2.2.11
-  share_plus: ^9.0.0
+  share_plus: ^10.0.2
   url_launcher: ^6.1.7
 
 dev_dependencies:
@@ -47,7 +47,7 @@ dev_dependencies:
   build_runner: ^2.4.7
   build_runner_core: ^7.2.11
   drift_dev: ^2.14.1
-  flutter_launcher_icons: ^0.13.1
+  flutter_launcher_icons: ^0.14.1
   json_serializable: ^6.1.1
 
 
