@@ -22,7 +22,6 @@ IS_ANDROID=$(system_profiler SPUSBDataType 2>/dev/null | grep "Android")
 if [[ "$IS_ANDROID" == *"Android"* ]]; then ANDROID_DETECTED="yes"; else ANDROID_DETECTED="no"; fi
 printf " └─Android? = '%s'\n" "$ANDROID_DETECTED"
 
-# TODO: this should check for an attached iPhone in addition to the host OS
 if [ "$(uname)" == "Darwin" ] && [[ "$IS_IOS" == *"iP"* ]]; then
   printf " └─iPhone (MacOS) found: setting local hostname in lib/LocalEnvironment.dart...\n"
   sed -e "s/%MAKE_IP%/$LOCAL_HOST/g" './lib/LocalEnvironmentTemplate.dart' > './lib/LocalEnvironment.dart'
@@ -31,6 +30,8 @@ elif [[ "$IS_ANDROID" == *"Android"* ]]; then
   sed -e "s/%MAKE_IP%/$LOCAL_IP/g" './lib/LocalEnvironmentTemplate.dart' > './lib/LocalEnvironment.dart'
 else
   printf " └─NO DEVICE FOUND: Did you connect the phone, unlock it, and trust the computer?\n"
+  printf "                    Using local IP address to create lib/LocalEnvironment.dart (for CI)...\n"
+  sed -e "s/%MAKE_IP%/$LOCAL_IP/g" './lib/LocalEnvironmentTemplate.dart' > './lib/LocalEnvironment.dart'
 fi
 
 printf "\n"
