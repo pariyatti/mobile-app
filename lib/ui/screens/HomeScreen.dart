@@ -4,9 +4,10 @@ import 'package:patta/ui/common/pariyatti_icons.dart';
 import 'package:patta/ui/common/slivered_view.dart';
 import 'package:patta/ui/screens/account/AccountScreen.dart';
 import 'package:patta/ui/screens/donate/DonateScreen.dart';
+import 'package:patta/ui/screens/resources/ResourcesScreen.dart';
 import 'package:patta/ui/screens/today/TodayScreen.dart';
 
-enum HomeScreenTab { TODAY, ACCOUNT, DONATE }
+enum HomeScreenTab { TODAY, ACCOUNT, DONATE,  RESOURCES }
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -50,6 +51,12 @@ class _HomeScreenState extends State<HomeScreen> {
           body: DonateScreen(),
         );
         break;
+
+      case HomeScreenTab.RESOURCES:
+        bottomNavigationBarIndex = 3;
+        titleText = '${I18n.get("resources")} ';
+        bodyWidget = ResourcesScreen();
+        break;
     }
 
     return Scaffold(
@@ -59,6 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
         currentIndex: bottomNavigationBarIndex,
         backgroundColor: Theme.of(context).colorScheme.background,
         fixedColor: Theme.of(context).colorScheme.inversePrimary,
+        type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
@@ -92,6 +100,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Theme.of(context).colorScheme.inversePrimary,
               ),
               label: I18n.get("donate")
+          ),
+
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.video_library_rounded,
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
+              activeIcon: Icon(
+                Icons.video_library_rounded,
+                color: Theme.of(context).colorScheme.inversePrimary,
+              ),
+              label: I18n.get("resources")
           ),
         ],
         onTap: (int tappedItemIndex) {

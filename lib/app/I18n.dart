@@ -73,6 +73,8 @@ class I18n {
       "try_again_later": "An error occurred. Please try again later.",
       "was_empty": "was empty",
       "words_of_the_buddha": "Daily Words of the Buddha",
+      "resources": "Resources",
+      "old student?": "Old Student?",
     },
 
     Language.fra: {
