@@ -28,14 +28,21 @@ Tools • Dart 3.4.3 • DevTools 2.34.3
 ## Dev Setup: Android
 
 1. Install Java (Linux or MacOS): `sudo apt-get install openjdk-17-jdk`
-2. Install Android Studio: https://developer.android.com/studio
-   - Install Android SDK Tools (obsolete) in `Tools > SDK Manager`
-   - Install Android SDK Command-line Tools in `Tools > SDK Manager`
-   - Install Android SDK Command-line Tools (latest) in `Preferences > Appearance & Behavior > System Settings > Android SDK > SDK Tools`
+2. Install Linux deps:
+   - `sudo apt install net-tools`
+3. Install Android Studio:
+   - MacOS: https://developer.android.com/studio
+   - Linux: https://flathub.org/apps/com.google.AndroidStudio
+   - Install Android SDK: `Settings > Languages & Frameworks > Android SDK > click 'edit'` (SDK will be installed to a directory like `/home/steven/Android/Sdk`)
+   - In `Settings > Languages & Frameworks > Android SDK > SDK Tools`, install:
+      - Android SDK Command-line Tools
+      - Android SDK Build-Tools
+      - Android SDK Platform-Tools
+      - Android Emulator
    - Install the Android Studio Flutter Plugin
    - (Optional, Linux) Configure udev to collect logs from a hardware device attached by USB:
      - `sudo apt-get install adb && sudo usermod -aG plugdev $LOGNAME`
-3. Install Flutter: https://flutter.dev/docs/get-started/install
+4. Install Flutter: https://flutter.dev/docs/get-started/install
    - run `flutter doctor` and follow any remaining instructions
 
 ### Troubleshooting Android
@@ -109,9 +116,10 @@ Error (Xcode): No profiles for 'app.pariyatti' were found: Xcode couldn't find a
 ## Flutter Setup
 
 ```
-make help
-make init-clean
+make help    # optional: view targets, if you like
+make clean
 make init
+make build
 ```
 
 ## Local Build Process
@@ -119,6 +127,7 @@ make init
 ```
 make help
 make clean
+make init
 make build
 make test
 make run env=local      # local Kosa server to test Kosa dev changes
