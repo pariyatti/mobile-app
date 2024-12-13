@@ -29,7 +29,7 @@ Tools • Dart 3.4.3 • DevTools 2.34.3
 
 1. Install Java (Linux or MacOS): `sudo apt-get install openjdk-17-jdk`
 2. Install Linux deps:
-   - `sudo apt install net-tools`
+   - `sudo apt install net-tools clang ninja-build google-android-platform-tools-installer`
 3. Install Android Studio:
    - MacOS: https://developer.android.com/studio
    - Linux: https://flathub.org/apps/com.google.AndroidStudio
@@ -53,6 +53,13 @@ Exception in thread "main" java.lang.NoClassDefFoundError: javax/xml/bind/annota
 ```
 
 See: https://stackoverflow.com/questions/46402772/failed-to-install-android-sdk-java-lang-noclassdeffounderror-javax-xml-bind-a/64389804#64389804
+
+Can't find device? Make sure `google-android-platform-tools-installer` is installed (Linux). Then try:
+
+```sh 
+adb kill-server
+adb start-server
+```
 
 ## Dev Setup: iOS
 
@@ -238,7 +245,7 @@ https://codemagic.io/app/623f06b866f7430a541f6528
 
 We have two builds:
 
-1. Sandbox, which emails builds to developers
+1. Staging, which emails builds to developers
 2. Production, which publishes signed release builds to App/Play Stores
 
 * To configure the App Store, go to https://developer.apple.com

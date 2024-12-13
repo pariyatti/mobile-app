@@ -7,8 +7,8 @@ import 'package:patta/main_config.dart';
 Future<void> main() async {
   if(EnvironmentConfig.BUILD_ENV == "production"){
       await mainCommon(ProductionEnvironment());
-  } else if(EnvironmentConfig.BUILD_ENV == "sandbox"){
-      await mainCommon(SandboxEnvironment());
+  } else if(EnvironmentConfig.BUILD_ENV == "staging"){
+      await mainCommon(StagingEnvironment());
   } else {
       await mainCommon(LocalEnvironment());
   }

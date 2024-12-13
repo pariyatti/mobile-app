@@ -1,4 +1,4 @@
-env = sandbox
+env = staging
 .PHONY: help init-flutter init test run
 # HELP sourced from https://gist.github.com/prwhite/8168133
 
@@ -11,7 +11,7 @@ HELP_FUNC = \
             push(@{$$help{$$2}}, [$$1, $$3]); \
         } \
     }; \
-    print "usage: make [target] env=<sandbox>\n\n"; \
+    print "usage: make [target] env=<staging>\n\n"; \
     for ( sort keys %help ) { \
         print "$$_:\n"; \
         printf("  %-20s %s\n", $$_->[0], $$_->[1]) for @{$$help{$$_}}; \
@@ -74,6 +74,6 @@ test: ##@Development Run tests against a connected device
 lib/LocalEnvironment.dart: ##@Development Build local config (usually 'make run' does this)
 	./bin/configure_local_environment.sh
 
-run: clean_local_environment lib/LocalEnvironment.dart ##@Development Run a debug build against 'env' (local, sandbox, or production)
+run: clean_local_environment lib/LocalEnvironment.dart ##@Development Run a debug build against 'env' (local, staging, or production)
 	flutter run --dart-define=BUILD_ENV=$(env)
 

@@ -4,8 +4,8 @@ abstract class Environment {
   Environment(this.kosaBaseUrl);
 }
 
-class SandboxEnvironment extends Environment {
-  SandboxEnvironment() : super('https://kosa-sandbox.pariyatti.app');
+class StagingEnvironment extends Environment {
+  StagingEnvironment() : super('https://kosa-staging.pariyatti.app');
 }
 
 class ProductionEnvironment extends Environment {
