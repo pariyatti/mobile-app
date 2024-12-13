@@ -4,10 +4,11 @@ import 'package:patta/ui/common/pariyatti_icons.dart';
 import 'package:patta/ui/common/slivered_view.dart';
 import 'package:patta/ui/screens/account/AccountScreen.dart';
 import 'package:patta/ui/screens/donate/DonateScreen.dart';
-import 'package:patta/ui/screens/resources/ResourcesScreen.dart';
+import 'package:patta/ui/screens/library/LibraryScreen.dart';
 import 'package:patta/ui/screens/today/TodayScreen.dart';
 
-enum HomeScreenTab { TODAY, ACCOUNT, DONATE,  RESOURCES }
+
+enum HomeScreenTab { TODAY, ACCOUNT, DONATE, LIBRARY }
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -52,11 +53,17 @@ class _HomeScreenState extends State<HomeScreen> {
         );
         break;
 
-      case HomeScreenTab.RESOURCES:
-        bottomNavigationBarIndex = 3;
-        titleText = '${I18n.get("resources")} ';
-        bodyWidget = ResourcesScreen();
-        break;
+    case HomeScreenTab.LIBRARY:
+      bottomNavigationBarIndex = 3;
+      titleText = '${I18n.get("library")} ';
+      bodyWidget = LibraryScreen();
+      break;
+
+      // case HomeScreenTab.LIBRARY:
+      //   bottomNavigationBarIndex = 3;
+      //   titleText = '${I18n.get("library")} ';
+      //   bodyWidget = LibraryScreen();
+      //   break;
     }
 
     return Scaffold(
@@ -111,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Icons.video_library_rounded,
                 color: Theme.of(context).colorScheme.inversePrimary,
               ),
-              label: I18n.get("resources")
+              label: I18n.get("library")
           ),
         ],
         onTap: (int tappedItemIndex) {

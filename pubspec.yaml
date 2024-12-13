@@ -40,6 +40,8 @@ dependencies:
   share_plus: ^10.0.2
   url_launcher: ^6.1.7
   smooth_page_indicator: ^1.2.0+3
+  vimeo_player_flutter: ^0.1.0
+
 
 dev_dependencies:
   #analyzer: ^6.3.0
