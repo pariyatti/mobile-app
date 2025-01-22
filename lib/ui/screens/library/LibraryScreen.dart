@@ -1,9 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:patta/app/app_themes.dart';
 import 'package:patta/ui/screens/library/VideoScreen.dart';
 import 'package:patta/app/I18n.dart';
 
@@ -40,7 +37,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
   @override
   void initState() {
     super.initState();
-    _videoList = fetchVideos(); // Ensure the type matches here
+    _videoList = fetchVideos();
   }
 
   /// Fetches videos from the API
