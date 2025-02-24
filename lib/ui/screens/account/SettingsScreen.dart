@@ -6,6 +6,7 @@ import 'package:patta/ui/screens/account/FeedsScreen.dart';
 import 'package:patta/ui/screens/account/LanguagesScreen.dart';
 import 'package:patta/app/app_themes.dart';
 import 'package:patta/ui/screens/account/ThemesScreen.dart';
+import 'package:patta/ui/screens/logs/LogsScreen.dart';
 import 'package:settings_ui/settings_ui.dart';
 
 class SettingsTab extends StatefulWidget {
@@ -86,6 +87,16 @@ class _SettingsTabState extends State<SettingsTab> {
                 onPressed: (context) {
                   Navigator.of(context).push(MaterialPageRoute(
                     builder: (_) => ThemesScreen(),
+                  ));
+                },
+              ),
+              SettingsTile.navigation(
+                leading: Icon(Icons.list_alt),
+                title: Text(I18n.get("logs")),
+                value: Text(''),
+                onPressed: (context) {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => LogsScreen(),
                   ));
                 },
               ),

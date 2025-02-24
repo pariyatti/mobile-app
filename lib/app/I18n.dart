@@ -73,6 +73,14 @@ class I18n {
       "try_again_later": "An error occurred. Please try again later.",
       "was_empty": "was empty",
       "words_of_the_buddha": "Daily Words of the Buddha",
+      "logs": "Logs",
+      "logs_empty": "No logs available",
+      "refresh_logs": "Refresh Logs",
+      "clear_logs": "Clear Logs",
+      "share_logs": "Share Logs",
+      "clear_logs_confirm": "Are you sure you want to clear all logs?",
+      "cancel": "Cancel",
+      "clear": "Clear",
     },
 
     Language.fra: {
@@ -115,6 +123,14 @@ class I18n {
       "try_again_later": "Une erreur s'est produite. Veuillez réessayer plus tard.",
       "was_empty": "était vide",
       "words_of_the_buddha": "Paroles quotidiennes de Bouddha",
+      "logs": "Journaux",
+      "logs_empty": "Aucun journal disponible",
+      "refresh_logs": "Actualiser les journaux",
+      "clear_logs": "Effacer les journaux",
+      "share_logs": "Partager les journaux",
+      "clear_logs_confirm": "Voulez-vous vraiment effacer tous les journaux ?",
+      "cancel": "Annuler",
+      "clear": "Effacer",
     },
 
     Language.ita: {
@@ -157,6 +173,14 @@ class I18n {
       "try_again_later": "Si è verificato un errore. Riprova più tardi.",
       "was_empty": "era vuoto",
       "words_of_the_buddha": "Parole quotidiane del Buddha",
+      "logs": "Registri",
+      "logs_empty": "Nessun registro disponibile",
+      "refresh_logs": "Aggiorna registri",
+      "clear_logs": "Cancella registri",
+      "share_logs": "Condividi registri",
+      "clear_logs_confirm": "Sei sicuro di voler cancellare tutti i registri?",
+      "cancel": "Annulla",
+      "clear": "Cancella",
     },
 
     Language.lit: {
@@ -199,6 +223,14 @@ class I18n {
       "try_again_later": "Įvyko klaida. Bandykite vėliau.",
       "was_empty": "buvo tuščias",
       "words_of_the_buddha": "Budos žodžiai dienai",
+      "logs": "Žurnalai",
+      "logs_empty": "Nėra žurnalų",
+      "refresh_logs": "Atnaujinti žurnalus",
+      "clear_logs": "Išvalyti žurnalus",
+      "share_logs": "Dalintis žurnalais",
+      "clear_logs_confirm": "Ar tikrai norite išvalyti visus žurnalus?",
+      "cancel": "Atšaukti",
+      "clear": "Išvalyti",
     },
 
     Language.por: {
@@ -240,7 +272,15 @@ class I18n {
       "translation": "Tradução",
       "try_again_later": "Ocorreu um erro. Tente novamente mais tarde.",
       "was_empty": "estava vazio",
-      "words_of_the_buddha": "Palavras diárias do Buda"
+      "words_of_the_buddha": "Palavras diárias do Buda",
+      "logs": "Registros",
+      "logs_empty": "Nenhum registro disponível",
+      "refresh_logs": "Atualizar registros",
+      "clear_logs": "Limpar registros",
+      "share_logs": "Compartilhar registros",
+      "clear_logs_confirm": "Tem certeza que deseja limpar todos os registros?",
+      "cancel": "Cancelar",
+      "clear": "Limpar",
     },
 
     Language.spa: {
@@ -282,7 +322,15 @@ class I18n {
       "translation": "Traducción",
       "try_again_later": "Ha ocurrido un error. Por favor, inténtelo de nuevo más tarde.",
       "was_empty": "estaba vacío",
-      "words_of_the_buddha": "Palabras de Buda diarias"
+      "words_of_the_buddha": "Palabras de Buda diarias",
+      "logs": "Registros",
+      "logs_empty": "No hay registros disponibles",
+      "refresh_logs": "Actualizar registros",
+      "clear_logs": "Borrar registros",
+      "share_logs": "Compartir registros",
+      "clear_logs_confirm": "¿Está seguro de que desea borrar todos los registros?",
+      "cancel": "Cancelar",
+      "clear": "Borrar",
     },
 
     Language.srp: {
@@ -325,6 +373,14 @@ class I18n {
       "try_again_later": "Одбијање. Покушајте поново касније.",
       "was_empty": "било је празно",
       "words_of_the_buddha": "Дневне речи Буде",
+      "logs": "Дневници",
+      "logs_empty": "Нема доступних дневника",
+      "refresh_logs": "Освежи дневнике",
+      "clear_logs": "Обриши дневнике",
+      "share_logs": "Дели дневнике",
+      "clear_logs_confirm": "Да ли сте сигурни да желите да обришете све дневнике?",
+      "cancel": "Откажи",
+      "clear": "Обриши",
     },
 
     Language.zho_hant: {
@@ -351,7 +407,7 @@ class I18n {
       "light_theme": "明亮主題",
       "nothing_bookmarked": "您還沒有書籤",
       "only_english": "目前僅提供英文作為替代語言",
-      "pali_word": "每日一个巴利语单词",
+      "pali_word": "每日一个巴利語單詞",
       "pali_word_of_the_day": "Pāli詞語之日",
       "security_and_privacy": "安全與隱私",
       "settings": "設定",
@@ -366,7 +422,15 @@ class I18n {
       "translation": "翻譯",
       "try_again_later": "發生錯誤，請稍後再試。",
       "was_empty": "沒有內容",
-      "words_of_the_buddha": "佛陀每日法语"
+      "words_of_the_buddha": "佛陀每日法語",
+      "logs": "日誌",
+      "logs_empty": "沒有可用的日誌",
+      "refresh_logs": "刷新日誌",
+      "clear_logs": "清除日誌",
+      "share_logs": "分享日誌",
+      "clear_logs_confirm": "您確定要清除所有日誌嗎？",
+      "cancel": "取消",
+      "clear": "清除",
     },
 
   };
