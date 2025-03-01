@@ -1,5 +1,5 @@
 
-# The Pariyatti mobile app. - demo build
+# The Pariyatti mobile app
 
 [![Codemagic build status](https://api.codemagic.io/apps/623f06b866f7430a541f6528/default-workflow/status_badge.svg)](https://codemagic.io/apps/623f06b866f7430a541f6528/default-workflow/latest_build)
 
@@ -264,6 +264,21 @@ If you have answers to these questions, please move them to the top and put the 
 
 - Could the HomeScreen state switch be a tiny object unto itself?
 - Can Drift Converters move into multiple files?
+
+## Troubleshooting
+
+On an error like `Error (Xcode): Provisioning profile "Pariyatti App Dev" expired on Jan 4, 2025.`
+
+* Xcode => Preferences => Accounts => Manage Certificates
+    * A new Development cert might automatically be created
+    * ...if not, click "+" => Apple Development Certificate
+* Check for cert in https://developer.apple.com/account/resources/certificates/list
+* Go to https://developer.apple.com/account/resources/profiles/
+    * Open "Pariyatti App Dev" profile
+    * Associate (select) new certificate(s)
+    * Click "Save" => you should see a new expiration date on the "Download and Install" page
+* Xcode => Preferences => Accounts => "Download Manual Profiles"
+* Check Runner => Signing & Capabilities => Provisioning Profile and Signing Certificate should be ok
 
 ## License and Copyright
 
