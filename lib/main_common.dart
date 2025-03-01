@@ -12,6 +12,8 @@ import 'package:patta/app/I18n.dart';
 import 'package:patta/ui/screens/HomeScreen.dart';
 import 'package:patta/app/app_themes.dart';
 import 'package:provider/provider.dart';
+import 'package:patta/app/logger.dart';
+import 'package:patta/model/Language.dart';
 
 import 'app/preferences.dart';
 
@@ -27,7 +29,13 @@ Future<void> mainCommon(Environment environment) async {
   await Preferences.init();
   await I18n.init();
   await FeedPreferences.init();
-
+  await AppLogger.init();
+  
+  // Add some initial log entries
+  AppLogger.info('Application started');
+  AppLogger.debug('Environment: ${environment.kosaBaseUrl}');
+  AppLogger.debug('Language: ${Preferences.getLanguage(Language.SETTINGS_KEY)}');
+  
   initFirstRun();
   runApp(PariyattiApp(environment, configReader));
 }
