@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:patta/app/I18n.dart';
-import 'package:patta/app/logger.dart';
+import 'package:patta/app/log_manager.dart';
+import 'package:patta/app/log_entry.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:patta/ui/common/pariyatti_icons.dart';
 
@@ -14,7 +15,7 @@ class LogsScreen extends StatefulWidget {
 }
 
 class _LogsScreenState extends State<LogsScreen> {
-  List<String> _logs = [];
+  List<LogEntry> _logs = [];
   bool _isLoading = false;
 
   @override
@@ -30,15 +31,15 @@ class _LogsScreenState extends State<LogsScreen> {
       });
       
       setState(() {
-        _logs = AppLogger.getLogs();
+        _logs = logManager.getLogs();
         _isLoading = false;
       });
-      AppLogger.debug('Logs loaded successfully');
+      logManager.addLog('Logs loaded successfully', 'DEBUG');
     } catch (e, st) {
       setState(() {
         _isLoading = false;
       });
-      AppLogger.error('Failed to load logs', e, st);
+      logManager.addLog('Failed to load logs: $e\n$st', 'ERROR');
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(I18n.get('try_again_later')))
       );
@@ -64,11 +65,11 @@ class _LogsScreenState extends State<LogsScreen> {
               onPressed: () async {
                 Navigator.of(context).pop();
                 try {
-                  await AppLogger.clearLogs();
+                  logManager.clearLogs();
                   _loadLogs();
-                  AppLogger.debug('Logs cleared successfully');
+                  logManager.addLog('Logs cleared successfully', 'DEBUG');
                 } catch (e, st) {
-                  AppLogger.error('Failed to clear logs', e, st);
+                  logManager.addLog('Failed to clear logs: $e\n$st', 'ERROR');
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text(I18n.get('try_again_later')))
                   );
@@ -90,11 +91,11 @@ class _LogsScreenState extends State<LogsScreen> {
     }
     
     try {
-      final String logsText = _logs.join('\n\n');
+      final String logsText = _logs.map((log) => log.toString()).join('\n\n');
       Share.share(logsText, subject: 'Pariyatti App Logs');
-      AppLogger.debug('Logs shared successfully');
+      logManager.addLog('Logs shared successfully', 'DEBUG');
     } catch (e, st) {
-      AppLogger.error('Failed to share logs', e, st);
+      logManager.addLog('Failed to share logs: $e\n$st', 'ERROR');
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(I18n.get('try_again_later')))
       );
@@ -141,8 +142,9 @@ class _LogsScreenState extends State<LogsScreen> {
                     itemCount: _logs.length,
                     itemBuilder: (context, index) {
                       final log = _logs[index];
-                      final isError = log.contains('ERROR') || log.contains('SEVERE');
-                      final isWarning = log.contains('WARNING');
+                      final logText = log.toString();
+                      final isError = log.level == 'ERROR' || logText.contains('ERROR') || logText.contains('SEVERE');
+                      final isWarning = log.level == 'WARNING' || logText.contains('WARNING');
                       
                       return Container(
                         margin: const EdgeInsets.symmetric(
@@ -167,7 +169,7 @@ class _LogsScreenState extends State<LogsScreen> {
                           ),
                         ),
                         child: Text(
-                          log,
+                          logText,
                           style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                 color: isError
                                     ? Theme.of(context).colorScheme.onErrorContainer
