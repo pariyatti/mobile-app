@@ -52,18 +52,14 @@ class _HomeScreenState extends State<HomeScreen> {
           body: DonateScreen(),
         );
         break;
-
-    case HomeScreenTab.LIBRARY:
-      bottomNavigationBarIndex = 3;
-      titleText = '${I18n.get("library")} ';
-      bodyWidget = LibraryScreen();
-      break;
-
-      // case HomeScreenTab.LIBRARY:
-      //   bottomNavigationBarIndex = 3;
-      //   titleText = '${I18n.get("library")} ';
-      //   bodyWidget = LibraryScreen();
-      //   break;
+      case HomeScreenTab.LIBRARY:
+        bottomNavigationBarIndex = 3;
+        titleText = '${I18n.get("library")} ';
+        bodyWidget = SliveredView(
+            title: titleText,
+            body: LibraryScreen()
+        );
+        break;
     }
 
     return Scaffold(

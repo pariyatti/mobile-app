@@ -67,51 +67,52 @@ class _LibraryScreenState extends State<LibraryScreen> {
       length: 1,
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.background,
-
-          title: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // InkWell(
-                  //   child: Text(I18n.get(
-                  //     "old_student"),
-                  //     style: TextStyle(color: Colors.red, fontSize: 19),
-                  //   ),
-                  // ),
-                  Text(I18n.get("library"),
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.search,
-                      color: Colors.brown.shade300,
-                      size: 25,
-                    ),
-                  ),
-                ],
-              ),
-              Divider(color: Theme.of(context).colorScheme.onBackground
-            , thickness: 1),
-            ],
-          ),
-          bottom: TabBar(
-            labelColor: Theme.of(context).colorScheme.onPrimary,
-            unselectedLabelColor: Colors.black54,
-            indicatorColor: Colors.red,
-            splashFactory: NoSplash.splashFactory,
-            tabs: [
-              Tab(text:I18n.get("videos"),),
-            ],
-            onTap: _onTabTapped,
-          ),
-        ),
+        // appBar: AppBar(
+        //   backgroundColor: Theme.of(context).colorScheme.background,
+        //
+        //   // title: Column(
+        //   //   children: [
+        //   //     // Row(
+        //   //     //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   //     //   children: [
+        //   //     //     // InkWell(
+        //   //     //     //   child: Text(I18n.get(
+        //   //     //     //     "old_student"),
+        //   //     //     //     style: TextStyle(color: Colors.red, fontSize: 19),
+        //   //     //     //   ),
+        //   //     //     // ),
+        //   //     //     Text(I18n.get("library"),
+        //   //     //       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
+        //   //     //     ),
+        //   //     //     // IconButton(
+        //   //     //     //   onPressed: () {},
+        //   //     //     //   icon: Icon(
+        //   //     //     //     Icons.search,
+        //   //     //     //     color: Colors.brown.shade300,
+        //   //     //     //     size: 25,
+        //   //     //     //   ),
+        //   //     //     // ),
+        //   //     //   ],
+        //   //     // ),
+        //   //     Divider(color: Theme.of(context).colorScheme.onBackground, thickness: 1, height: 1, indent: 0, endIndent: 0)
+        //   //   ],
+        //   // ),
+        //   bottom:
+        // ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Divider(color: Theme.of(context).colorScheme.onBackground, thickness: 1, height: 1, indent: 0, endIndent: 0),
+            TabBar(
+              labelColor: Theme.of(context).colorScheme.onPrimary,
+              unselectedLabelColor: Colors.black54,
+              indicatorColor: Colors.red,
+              splashFactory: NoSplash.splashFactory,
+              tabs: [
+                Tab(text:I18n.get("videos"))
+              ],
+              onTap: _onTabTapped,
+            ),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(I18n.get("recommended"),
