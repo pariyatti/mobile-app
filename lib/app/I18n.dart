@@ -74,12 +74,10 @@ class I18n {
       "was_empty": "was empty",
       "words_of_the_buddha": "Daily Words of the Buddha",
       "library": "Library",
-      "Old students?" : "Old students?",
-      "Top free this week":"Top free this week",
+      "old_student": "Old student?",
+      "Top free this week": "Top free this week",
       'VIDEOS':'VIDEOS',
       "Resources":"Resources"
-
-
     },
 
     Language.fra: {

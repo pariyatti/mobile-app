@@ -77,7 +77,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                 children: [
                   InkWell(
                     child: Text(I18n.get(
-                      "Old students?"),
+                      "old_student"),
                       style: TextStyle(color: Colors.red, fontSize: 19),
                     ),
                   ),
