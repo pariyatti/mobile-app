@@ -42,3 +42,6 @@ lib/LocalEnvironment.dart
 # local dev options
 devtools_options.yaml
 
+# Open WebUI (ollama)
+.webui_secret_key
+

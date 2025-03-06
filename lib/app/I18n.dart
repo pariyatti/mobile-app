@@ -75,9 +75,8 @@ class I18n {
       "words_of_the_buddha": "Daily Words of the Buddha",
       "library": "Library",
       "old_student": "Old student?",
-      "Top free this week": "Top free this week",
-      'VIDEOS':'VIDEOS',
-      "Resources":"Resources"
+      "recommended": "Recommended",
+      "videos": "Videos"
     },
 
     Language.fra: {
@@ -120,7 +119,10 @@ class I18n {
       "try_again_later": "Une erreur s'est produite. Veuillez réessayer plus tard.",
       "was_empty": "était vide",
       "words_of_the_buddha": "Paroles quotidiennes de Bouddha",
-      "library": "Bibliothèque"
+      "library": "Bibliothèque",
+      "old_student": "Étudiant vieux ?",
+      "recommended": "Recommandé",
+      "videos": "Vidéos"
     },
 
     Language.ita: {
@@ -163,7 +165,10 @@ class I18n {
       "try_again_later": "Si è verificato un errore. Riprova più tardi.",
       "was_empty": "era vuoto",
       "words_of_the_buddha": "Parole quotidiane di Buddha",
-      "library": "Biblioteca"
+      'library': 'Bibliothèque',
+      'old_student': 'Étudiant vieux ?',
+      'recommended': 'Recommandé',
+      'videos': 'Vidéos'
     },
 
     Language.lit: {
@@ -206,7 +211,10 @@ class I18n {
       "try_again_later": "Įvyko klaida. Bandykite vėliau.",
       "was_empty": "buvo tuščias",
       "words_of_the_buddha": "Budos žodžiai dienai",
-      "library": "Biblioteka"
+      "library": "Biblioteca",
+      "old_student": "Vecchio studente?",
+      "recommended": "Consigliato",
+      "videos": "Video"
     },
 
     Language.por: {
@@ -249,7 +257,10 @@ class I18n {
       "try_again_later": "Ocorreu um erro. Tente novamente mais tarde.",
       "was_empty": "estava vazio",
       "words_of_the_buddha": "Palavras diárias do Buda",
-      "library": "Biblioteca"
+      "library": "Biblioteca",
+      "old_student": "Aluno velho?",
+      "recommended": "Recomendado",
+      "videos": "Vídeos"
     },
 
     Language.spa: {
@@ -292,7 +303,10 @@ class I18n {
       "try_again_later": "Ha ocurrido un error. Por favor, inténtelo de nuevo más tarde.",
       "was_empty": "estaba vacío",
       "words_of_the_buddha": "Palabras de Buda diarias",
-      "library": "Biblioteca"
+      "library": "Biblioteca",
+      "old_student": "Estudiante viejo?",
+      "recommended": "Recomendado",
+      "videos": "Videos"
     },
 
     Language.srp: {
@@ -335,7 +349,10 @@ class I18n {
       "try_again_later": "Одбијање. Покушајте поново касније.",
       "was_empty": "било је празно",
       "words_of_the_buddha": "Дневне речи Буде",
-      "library": "Библиотека"
+      "library": "Библиотека",
+      "old_student": "Стари студент?",
+      "recommended": "Премештено је",
+      "videos": "Видео"
     },
 
     Language.zho_hant: {
@@ -378,7 +395,10 @@ class I18n {
       "try_again_later": "發生錯誤，請稍後再試。",
       "was_empty": "沒有內容",
       "words_of_the_buddha": "佛陀每日法语",
-      "library": "圖書館"
+      "library": "圖書館",
+      "old_student": "舊生？",
+      "recommended": "推薦",
+      "videos": "影片"
     },
 
   };

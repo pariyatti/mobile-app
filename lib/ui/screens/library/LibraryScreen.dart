@@ -75,14 +75,13 @@ class _LibraryScreenState extends State<LibraryScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  InkWell(
-                    child: Text(I18n.get(
-                      "old_student"),
-                      style: TextStyle(color: Colors.red, fontSize: 19),
-                    ),
-                  ),
-                  Text(I18n.get(
-                    "Resources"),
+                  // InkWell(
+                  //   child: Text(I18n.get(
+                  //     "old_student"),
+                  //     style: TextStyle(color: Colors.red, fontSize: 19),
+                  //   ),
+                  // ),
+                  Text(I18n.get("library"),
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
                   ),
                   IconButton(
@@ -105,7 +104,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
             indicatorColor: Colors.red,
             splashFactory: NoSplash.splashFactory,
             tabs: [
-              Tab(text:I18n.get('VIDEOS'),),
+              Tab(text:I18n.get("videos"),),
             ],
             onTap: _onTabTapped,
           ),
@@ -115,8 +114,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
           children: [
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Text(I18n.get(
-                "Top free this week"),
+              child: Text(I18n.get("recommended"),
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.onPrimary),
               ),
             ),
