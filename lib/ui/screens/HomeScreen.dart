@@ -8,7 +8,8 @@ import 'package:patta/ui/screens/library/LibraryScreen.dart';
 import 'package:patta/ui/screens/today/TodayScreen.dart';
 
 
-enum HomeScreenTab { TODAY, ACCOUNT, DONATE, LIBRARY }
+// TODO: remove duplication
+enum HomeScreenTab { TODAY, LIBRARY, DONATE, ACCOUNT }
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -29,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Widget bodyWidget;
     switch (_tab) {
       case HomeScreenTab.TODAY:
+        // TODO: remove duplication
         bottomNavigationBarIndex = 0;
         titleText = '${I18n.get("today")}';
         bodyWidget = SliveredView(
@@ -36,15 +38,17 @@ class _HomeScreenState extends State<HomeScreen> {
           body: TodayScreen(),
         );
         break;
-      case HomeScreenTab.ACCOUNT:
+      case HomeScreenTab.LIBRARY:
+        // TODO: remove duplication
         bottomNavigationBarIndex = 1;
-        titleText = '${I18n.get("account")}';
+        titleText = '${I18n.get("library")} ';
         bodyWidget = SliveredView(
-          title: titleText,
-          body: AccountScreen(rebuild),
+            title: titleText,
+            body: LibraryScreen()
         );
         break;
       case HomeScreenTab.DONATE:
+        // TODO: remove duplication
         bottomNavigationBarIndex = 2;
         titleText = '${I18n.get("donate")}';
         bodyWidget = SliveredView(
@@ -52,12 +56,13 @@ class _HomeScreenState extends State<HomeScreen> {
           body: DonateScreen(),
         );
         break;
-      case HomeScreenTab.LIBRARY:
+      case HomeScreenTab.ACCOUNT:
+        // TODO: remove duplication
         bottomNavigationBarIndex = 3;
-        titleText = '${I18n.get("library")} ';
+        titleText = '${I18n.get("account")}';
         bodyWidget = SliveredView(
-            title: titleText,
-            body: LibraryScreen()
+          title: titleText,
+          body: AccountScreen(rebuild),
         );
         break;
     }
@@ -71,6 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
         fixedColor: Theme.of(context).colorScheme.inversePrimary,
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
+          // TODO: remove duplication
           BottomNavigationBarItem(
             icon: Icon(
               PariyattiIcons.get(IconName.today),
@@ -83,15 +89,15 @@ class _HomeScreenState extends State<HomeScreen> {
             label: I18n.get("today")
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              PariyattiIcons.get(IconName.person),
-              color: Theme.of(context).colorScheme.onPrimary,
-            ),
-            activeIcon: Icon(
-              PariyattiIcons.get(IconName.person),
-              color: Theme.of(context).colorScheme.inversePrimary,
-            ),
-            label: I18n.get("account")
+              icon: Icon(
+                PariyattiIcons.get(IconName.book),
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
+              activeIcon: Icon(
+                PariyattiIcons.get(IconName.book),
+                color: Theme.of(context).colorScheme.inversePrimary,
+              ),
+              label: I18n.get("library")
           ),
           BottomNavigationBarItem(
               icon: Icon(
@@ -104,17 +110,16 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               label: I18n.get("donate")
           ),
-
           BottomNavigationBarItem(
               icon: Icon(
-                Icons.video_library_rounded,
+                PariyattiIcons.get(IconName.person),
                 color: Theme.of(context).colorScheme.onPrimary,
               ),
               activeIcon: Icon(
-                Icons.video_library_rounded,
+                PariyattiIcons.get(IconName.person),
                 color: Theme.of(context).colorScheme.inversePrimary,
               ),
-              label: I18n.get("library")
+              label: I18n.get("account")
           ),
         ],
         onTap: (int tappedItemIndex) {
