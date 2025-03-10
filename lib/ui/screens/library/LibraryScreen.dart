@@ -1,29 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:patta/model/Video.dart';
 import 'package:patta/ui/screens/library/VideoScreen.dart';
 import 'package:patta/app/I18n.dart';
 
-
-
-/// Video model to hold video details
-class Video {
-  final String id;
-  final String title;
-  final String thumbnailUrl;
-
-
-  Video({required this.id, required this.title, required this.thumbnailUrl});
-
-  factory Video.fromJson(Map<String, dynamic> json) {
-    final embedUrl = json['uri'] as String;
-    final videoId = Uri.parse(embedUrl).pathSegments.last;
-    final title = json['name'] as String;
-    final thumbnailUrl = json['picture_base_link'] as String;
-
-    return Video(id: videoId, title: title, thumbnailUrl: thumbnailUrl );
-  }
-}
 
 class LibraryScreen extends StatefulWidget {
   @override
@@ -40,7 +21,6 @@ class _LibraryScreenState extends State<LibraryScreen> {
     _videoList = fetchVideos();
   }
 
-  /// Fetches videos from the API
   Future<List<Video>> fetchVideos() async {
     final url = Uri.parse('https://kosa-staging.pariyatti.app/api/v1/library/videos.json');
     final response = await http.get(url);
@@ -53,7 +33,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
     }
   }
 
-    void _onTabTapped(int index) {
+  void _onTabTapped(int index) {
     setState(() {
       selectedIndex = index;
     });
@@ -113,12 +93,6 @@ class _LibraryScreenState extends State<LibraryScreen> {
               ],
               onTap: _onTabTapped,
             ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(I18n.get("recommended"),
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.onPrimary),
-              ),
-            ),
             Expanded(
               child: FutureBuilder<List<Video>>(
                 future: _videoList,
@@ -132,58 +106,88 @@ class _LibraryScreenState extends State<LibraryScreen> {
                   }
 
                   final videos = snapshot.data!;
-                  return ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: videos.length,
-                    itemBuilder: (context, index) {
-                      final video = videos[index];
-
-                      return GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => VimeoPlayerScreen(videoId: video.id),
-                            ),
-                          );
-                        },
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 10),
-                          width: screenWidth * 0.6, // 60% of screen width
-                          child: Column(
-                            children: [
-                              // Video Thumbnail Placeholder
-                              Container(
-                                height: 150,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  image: DecorationImage(
-                                    image: NetworkImage(video.thumbnailUrl),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              // Video Title
-                              Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
-                                child: Text(
-                                  video.title,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
-                                ),
-                              ),
-
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  );
+                  prefixVideoCategories(videos);
+                  return buildVideoListView(videos, screenWidth);
                 },
               ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
+  void prefixVideoCategories(List<Video> videos) {
+    if (videos[0] != Video.RECOMMENDED) {
+      videos.insert(0, Video.RECOMMENDED);
+    }
+  }
+
+  ListView buildVideoListView(List<Video> videos, double screenWidth) {
+    return ListView.builder(
+      scrollDirection: Axis.vertical,
+      itemCount: videos.length,
+      itemBuilder: (context, index) {
+        final video = videos[index];
+
+        return video == Video.RECOMMENDED
+            ? buildCategory(video, context)
+            : buildClickableVimeoPlayer(context, video, screenWidth);
+      },
+    );
+  }
+
+  Widget buildCategory(Video category, BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Text(I18n.get(category.title),
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.onPrimary),
+      ),
+    );
+  }
+
+  GestureDetector buildClickableVimeoPlayer(BuildContext context, Video video, double screenWidth) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => VimeoPlayerScreen(videoId: video.id),
+          ),
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 10),
+        // width: screenWidth * 0.6, // 60% of screen width
+        child: Column(
+          children: [
+            Container(
+              // height: 150, // pairs with `screenWidth * 0.6`
+              child: AspectRatio(
+                aspectRatio: 16 / 9,
+                child:
+                ClipPath(
+                  clipper: ShapeBorderClipper(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0)
+                    ),
+                  ),
+                  child: Image(
+                    image: NetworkImage(video.thumbnailUrl),
+                    fit: BoxFit.fill
+                  )
+                )
+              )
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0, bottom: 32.0),
+              child: Text(
+                video.title,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+              ),
             ),
 
           ],
