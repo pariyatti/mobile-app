@@ -31,7 +31,8 @@ class VimeoPlayerScreen extends StatelessWidget {
             },
           ),
         ],
-      ),      body: VimeoPlayer(videoId: '1011864064'),
+      ),
+      body: VimeoPlayer(videoId: this.videoId),
     );
   }
 }
