@@ -135,6 +135,9 @@ class TodayScreen extends StatelessWidget {
   }
 
   String exceptionToString(Object error) {
+    if (error is NoSuchMethodError) {
+      return error.toString();
+    }
     var exception = (error as Exception);
     if (exception.runtimeType is MissingRequiredKeysException)
     {

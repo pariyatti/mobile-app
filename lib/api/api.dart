@@ -29,10 +29,13 @@ class PariyattiApi {
       var trimmed = models.takeWhile(CardModel.laterThan(feedPreferences.getTodayMaxDays())).toList();
       return trimmed;
     } on DioException catch (e) {
-      logError(e);
+      logDioError(e);
       return [NetworkErrorCardModel.create("Could not reach Pariyatti server '$baseUrl'.")];
-    } catch (se) {
-      logError(se);
+    } on StateError catch (se) {
+      logStateError(se);
+      return [NetworkErrorCardModel.create("Bad state returned from Pariyatti server '$baseUrl'.")];
+    } catch (e) {
+      logError(e);
       return [NetworkErrorCardModel.create("Could not reach Pariyatti server '$baseUrl'.")];
     }
   }
@@ -44,7 +47,7 @@ class PariyattiApi {
     return onlyOneDayVisible && todayIsntVisible;
   }
 
-  void logError(e) {
+  void logDioError(DioException e) {
     if (e.response != null) {
       log2(e.response!.data);
       log2(e.response!.headers as String);
@@ -55,5 +58,13 @@ class PariyattiApi {
       log2("DioError Type: ${e.type}");
       log2("DioError Message: ${e.message}");
     }
+  }
+
+  void logStateError(Error e) {
+    log2("StateError: ${e.toString()}");
+  }
+
+  void logError(Object e) {
+    log2("Error: ${e.toString()}");
   }
 }
