@@ -109,7 +109,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
               indicatorColor: Colors.red,
               splashFactory: NoSplash.splashFactory,
               tabs: [
-                Tab(text:I18n.get("videos"))
+                Tab(text: I18n.get("videos").toUpperCase())
               ],
               onTap: _onTabTapped,
             ),
