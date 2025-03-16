@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:patta/api/api.dart';
+import 'package:patta/api/kosa_api.dart';
 import 'package:patta/local_database/database.dart';
 import 'package:patta/app/I18n.dart';
 import 'package:patta/ui/widgets/cards/DateCard.dart';
@@ -28,7 +28,7 @@ class TodayScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<CardModel>>(
-      future: Provider.of<PariyattiApi>(context).fetchToday(),
+      future: Provider.of<KosaApi>(context).fetchToday(),
       builder: (
         BuildContext context,
         AsyncSnapshot<List<CardModel>> snapshot,

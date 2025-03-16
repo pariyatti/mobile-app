@@ -1,10 +1,13 @@
-import 'dart:convert';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:patta/model/Video.dart';
-import 'package:patta/ui/screens/library/VideoScreen.dart';
-import 'package:patta/app/I18n.dart';
+import 'dart:developer';
 
+import 'package:flutter/material.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:patta/api/kosa_api.dart';
+import 'package:patta/model/Video.dart';
+import 'package:patta/ui/common/pariyatti_icons.dart';
+import 'package:patta/ui/screens/library/VimeoPlayerScreen.dart';
+import 'package:patta/app/I18n.dart';
+import 'package:provider/provider.dart';
 
 class LibraryScreen extends StatefulWidget {
   @override
@@ -12,35 +15,46 @@ class LibraryScreen extends StatefulWidget {
 }
 
 class _LibraryScreenState extends State<LibraryScreen> {
-  late Future<List<Video>> _videoList;
-  int selectedIndex = 0;
+  // TODO: separate VideoScreen and LibraryScreen
+  // TODO: ultimately, state like `selectedTab` should all be on-disk, we should avoid StatefulWidget
+  int selectedTab = 0;
 
   @override
   void initState() {
     super.initState();
-    _videoList = fetchVideos();
-  }
-
-  Future<List<Video>> fetchVideos() async {
-    final url = Uri.parse('https://kosa-staging.pariyatti.app/api/v1/library/videos.json');
-    final response = await http.get(url);
-
-    if (response.statusCode == 200) {
-      final List<dynamic> jsonData = jsonDecode(response.body);
-      return jsonData.map<Video>((video) => Video.fromJson(video)).toList();
-    } else {
-      throw Exception('Failed to load videos');
-    }
   }
 
   void _onTabTapped(int index) {
     setState(() {
-      selectedIndex = index;
+      selectedTab = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    return FutureBuilder<List<Video>>(
+      future: Provider.of<KosaApi>(context).fetchVideos(),
+      builder: (
+          BuildContext context,
+          AsyncSnapshot<List<Video>> snapshot,
+          ) {
+        if (snapshot.hasData && snapshot.data != null) {
+          if (snapshot.data == null || snapshot.data?.length == 0) {
+            return _buildError(context, new Exception("No Videos Found."), IconName.book);
+          }
+          return buildTabController(context, snapshot.data!);
+        } else if (snapshot.hasError) {
+          //  TODO: Log the error
+          log("Data from snapshot: ${snapshot.data.toString()}");
+          return _buildError(context, snapshot.error!, IconName.error);
+        } else {
+          return _buildLoadingIndicator();
+        }
+      },
+    );
+  }
+
+  DefaultTabController buildTabController(BuildContext context, List<Video> videoList) {
     final screenWidth = MediaQuery.of(context).size.width;
 
     return DefaultTabController(
@@ -94,22 +108,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
               onTap: _onTabTapped,
             ),
             Expanded(
-              child: FutureBuilder<List<Video>>(
-                future: _videoList,
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(child: CircularProgressIndicator());
-                  } else if (snapshot.hasError) {
-                    return Center(child: Text('Error: ${snapshot.error}'));
-                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                    return const Center(child: Text('No videos available'));
-                  }
-
-                  final videos = snapshot.data!;
-                  prefixVideoCategories(videos);
-                  return buildVideoListView(videos, screenWidth);
-                },
-              ),
+              child: buildVideoListView(videoList, screenWidth)
             ),
           ],
         ),
@@ -194,6 +193,61 @@ class _LibraryScreenState extends State<LibraryScreen> {
         ),
       ),
     );
+  }
+
+  // TODO: remove duplication from TodayScreen
+  Widget _buildLoadingIndicator() {
+    return Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+
+  // TODO: remove duplication from TodayScreen
+  Widget _buildError(BuildContext context, Object error, IconName iconName) {
+    var errorMessage = I18n.get("try_again_later")
+        + "\n\nError:\n"
+        + error.toString()
+        + "\n\nException Details:\n"
+        + exceptionToString(error);
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(
+              PariyattiIcons.get(iconName),
+              color: Theme.of(context).colorScheme.error,
+            ),
+          ),
+          Text(
+            errorMessage,
+            style: TextStyle(
+              inherit: true,
+              color: Theme.of(context).colorScheme.onError,
+              fontSize: 16.0,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  String exceptionToString(Object error) {
+    if (error is NoSuchMethodError) {
+      return error.toString();
+    }
+    var exception = (error as Exception);
+    if (exception.runtimeType is MissingRequiredKeysException)
+    {
+      var mrke = (exception as MissingRequiredKeysException);
+      var s = mrke.missingKeys.toString() + " from "
+          + mrke.message;
+      return s;
+    } else {
+      return exception.toString();
+    }
   }
 }
 
