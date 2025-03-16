@@ -1,6 +1,4 @@
 // @dart=3.0
-import 'dart:developer';
-import 'dart:io';
 
 import 'package:patta/Environment.dart';
 import 'package:patta/LocalEnvironment.dart';
