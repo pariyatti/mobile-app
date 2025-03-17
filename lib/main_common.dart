@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:patta/Environment.dart';
-import 'package:patta/api/api.dart';
+import 'package:patta/api/kosa_api.dart';
 import 'package:patta/app/feed_preferences.dart';
 import 'package:patta/app/global.dart';
 import 'package:patta/app/theme_provider.dart';
@@ -65,14 +65,14 @@ class PariyattiApp extends StatelessWidget {
             database.close();
           },
         ),
-        ProxyProvider2<Environment, PariyattiDatabase, PariyattiApi?>(
+        ProxyProvider2<Environment, PariyattiDatabase, KosaApi?>(
           update: (
             BuildContext context,
             Environment environment,
             PariyattiDatabase database,
-            PariyattiApi? previousApi,
+            KosaApi? previousApi,
           ) =>
-              PariyattiApi(environment.kosaBaseUrl, FeedPreferences()),
+              KosaApi(environment.kosaBaseUrl, FeedPreferences()),
         ),
         ChangeNotifierProvider<ThemeProvider>(
           create: (context) => ThemeProvider(),

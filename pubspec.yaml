@@ -27,7 +27,7 @@ dependencies:
   flutter_cache_manager: ^3.3.0
   google_fonts: ^6.1.0
   http: ^1.1.2
-  json_annotation: ^4.4.0 # TODO: upgrade to 4.8.1?
+  json_annotation: ^4.9.0 # TODO: upgrade to 4.8.1?
   just_audio: ^0.9.18
   logging: ^1.2.0
   path: ^1.8.0
@@ -39,6 +39,9 @@ dependencies:
   video_player: ^2.2.11
   share_plus: ^10.0.2
   url_launcher: ^6.1.7
+  smooth_page_indicator: ^1.2.0+3
+  vimeo_player_flutter: ^0.1.0
+
 
 dev_dependencies:
   #analyzer: ^6.3.0
