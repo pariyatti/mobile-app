@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 enum IconName {
   share,
+  book,
   bookmark,
   bookmarkFilled,
   today,
@@ -38,6 +39,11 @@ const Map<IconName, Map<String, IconData>> _iconMap = {
   IconName.share: {
     'default': Icons.share,
     'ios': CupertinoIcons.share,
+  },
+  IconName.book: {
+    // Icons.my_library_books = two square files
+    'default': Icons.menu_book,
+    'ios': CupertinoIcons.book_solid,
   },
   IconName.bookmark: {
     'default': Icons.bookmark_border,

@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:patta/model/Language.dart';
-import 'package:patta/model/translations.dart';
+import 'package:patta/model/Translations.dart';
 
 
 void main() {
