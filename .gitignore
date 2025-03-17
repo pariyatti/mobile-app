@@ -29,6 +29,10 @@ doc/api/
 .idea/
 *.iml
 
+# Ignore C/C++/Cmake files generated for Android build
+.cxx/
+/android/app/.cxx
+
 # Ignore Android Signing Keystore and its properties
 android/keystore.jks
 android/keystore.properties
