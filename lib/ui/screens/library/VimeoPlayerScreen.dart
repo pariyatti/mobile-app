@@ -17,20 +17,6 @@ class VimeoPlayerScreen extends StatelessWidget {
           icon: Icon(Icons.arrow_back_ios, color: Theme.of(context).colorScheme.onPrimary),
           onPressed: () => Navigator.pop(context),
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.file_upload_outlined, color: Theme.of(context).colorScheme.onPrimary),
-            onPressed: () {
-              // Implement download functionality here
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.bookmark_outline_outlined, color: Theme.of(context).colorScheme.onPrimary),
-            onPressed: () {
-              // Implement bookmark functionality here
-            },
-          ),
-        ],
       ),
       body: VimeoPlayer(videoId: this.videoId),
     );
