@@ -1,4 +1,4 @@
-env = local
+env = staging
 .PHONY: help init-flutter init test run
 # HELP sourced from https://gist.github.com/prwhite/8168133
 
