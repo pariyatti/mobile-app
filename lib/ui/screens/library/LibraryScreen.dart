@@ -38,6 +38,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
       selectedTab = index;
     });
   }
+
   void _onSearchTextChanged() {
     final query = _searchController.text.toLowerCase();
     setState(() {
@@ -50,6 +51,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
       }
     });
   }
+
   TextSpan _buildHighlightedText(String title, String query, Color baseColor) {
     if (query.isEmpty) {
       return TextSpan(text: title, style: TextStyle(color: baseColor));
@@ -170,7 +172,6 @@ class _LibraryScreenState extends State<LibraryScreen> {
                       SizedBox(
                         width: totalWidth * 0.80,
                         child: Container(
-                          // height: 40,
                           child: TextField(
                             controller: _searchController,
                             style: TextStyle(fontSize: 14, color: Theme.of(context).colorScheme.onPrimary),
@@ -194,7 +195,6 @@ class _LibraryScreenState extends State<LibraryScreen> {
                       // 9.5% width for Switch Button
                       SizedBox(
                         width: totalWidth * 0.17,
-                        // height: 40,
                         child: ElevatedButton(
                           onPressed: () {
                             setState(() {
@@ -204,7 +204,6 @@ class _LibraryScreenState extends State<LibraryScreen> {
                                 final titleB = b.title.toLowerCase();
                                 return switch_AZ ? titleA.compareTo(titleB) : titleB.compareTo(titleA);
                               });
-                              // is_selectedContainer = 'true';
                             });
                           },
                           style: ElevatedButton.styleFrom(
@@ -212,8 +211,6 @@ class _LibraryScreenState extends State<LibraryScreen> {
                             backgroundColor: Theme.of(context).colorScheme.primaryFixed,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
-                              // side: BorderSide(color: Theme.of(context).colorScheme.onPrimary)
-
                             ),
                           ),
                           child: FittedBox(
@@ -233,7 +230,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Wrap(
-                spacing: 6, // only between items
+                spacing: 6,
                 children: [
                   ElevatedButton(
                     onPressed: () {
@@ -249,7 +246,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      elevation: 1, // Optional: flat button look
+                      elevation: 1,
                     ),
                     child: Text(I18n.get('All'),style: TextStyle(fontSize: 15, color: Theme.of(context).colorScheme.onPrimary),),
                   ),
@@ -266,7 +263,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      elevation: 1, // Optional: flat button look
+                      elevation: 1,
                     ),
                     child: Text(I18n.get('Pali'),style: TextStyle(fontSize: 15, color: Theme.of(context).colorScheme.onPrimary),),
                   ),
@@ -282,7 +279,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      elevation: 1, // Optional: flat button look
+                      elevation: 1,
                     ),
                     child: Text(I18n.get('Vipassana'),style: TextStyle(fontSize: 15, color: Theme.of(context).colorScheme.onPrimary),),
                   ),
@@ -301,7 +298,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      elevation: 1, // Optional: flat button look
+                      elevation: 1,
                     ),
                     child: Text(I18n.get('Newest'),style: TextStyle(fontSize: 15, color: Theme.of(context).colorScheme.onPrimary),),
                   ),
@@ -319,9 +316,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
               ],
               onTap: _onTabTapped,
             ),
-            Expanded(
-                child: buildVideoListView(videoList, screenWidth)
-            ),
+            Expanded(child: buildVideoListView(videoList, screenWidth)),
           ],
         ),
       ),
@@ -385,11 +380,9 @@ class _LibraryScreenState extends State<LibraryScreen> {
       },
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 10),
-        // width: screenWidth * 0.6, // 60% of screen width
         child: Column(
           children: [
             Container(
-              // height: 150, // pairs with `screenWidth * 0.6`
                 child: AspectRatio(
                     aspectRatio: 16 / 9,
                     child:
