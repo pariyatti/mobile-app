@@ -1,3 +1,4 @@
+
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -18,10 +19,18 @@ class _LibraryScreenState extends State<LibraryScreen> {
   // TODO: separate VideoScreen and LibraryScreen
   // TODO: ultimately, state like `selectedTab` should all be on-disk, we should avoid StatefulWidget
   int selectedTab = 0;
+  bool switch_AZ = true;
+  List<Video> sortedVideoList = [];
+  TextEditingController _searchController = TextEditingController();
+  List<Video> allVideos = [];
+  String is_selectedButton = 'All';
+
+
 
   @override
   void initState() {
     super.initState();
+    _searchController.addListener(_onSearchTextChanged);
   }
 
   void _onTabTapped(int index) {
@@ -30,8 +39,56 @@ class _LibraryScreenState extends State<LibraryScreen> {
     });
   }
 
+  void _onSearchTextChanged() {
+    final query = _searchController.text.toLowerCase();
+    setState(() {
+      if (query.isEmpty) {
+        sortedVideoList = List.from(allVideos);
+      } else {
+        sortedVideoList = allVideos.where((video) {
+          return video.title.toLowerCase().startsWith(query);
+        }).toList();
+      }
+    });
+  }
+
+  TextSpan _buildHighlightedText(String title, String query, Color baseColor) {
+    if (query.isEmpty) {
+      return TextSpan(text: title, style: TextStyle(color: baseColor));
+    }
+
+    final lowerTitle = title.toLowerCase();
+    final lowerQuery = query.toLowerCase();
+
+    final startIndex = lowerTitle.indexOf(lowerQuery);
+    if (startIndex == -1) {
+      return TextSpan(text: title, style: TextStyle(color: baseColor));
+    }
+
+    final beforeMatch = title.substring(0, startIndex);
+    final matchText = title.substring(startIndex, startIndex + query.length);
+    final afterMatch = title.substring(startIndex + query.length);
+
+    return TextSpan(
+      children: [
+        TextSpan(text: beforeMatch, style: TextStyle(color: baseColor)),
+        TextSpan(
+          text: matchText,
+          style: TextStyle(
+            color: Colors.blue,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        TextSpan(text: afterMatch, style: TextStyle(color: baseColor)),
+      ],
+    );
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
+
     return FutureBuilder<List<Video>>(
       future: Provider.of<KosaApi>(context).fetchVideos(),
       builder: (
@@ -40,9 +97,15 @@ class _LibraryScreenState extends State<LibraryScreen> {
           ) {
         if (snapshot.hasData && snapshot.data != null) {
           if (snapshot.data == null || snapshot.data?.length == 0) {
-            return _buildError(context, new Exception("No Videos Found."), IconName.book);
+            return _buildError(context, new Exception(I18n.get("No Videos Found.")), IconName.book);
           }
-          return buildTabController(context, snapshot.data!);
+
+          if (allVideos.isEmpty) {
+            allVideos = List.from(snapshot.data!);
+            sortedVideoList = List.from(allVideos);
+          }
+
+          return buildTabController(context, sortedVideoList);
         } else if (snapshot.hasError) {
           //  TODO: Log the error
           log("Data from snapshot: ${snapshot.data.toString()}");
@@ -96,7 +159,153 @@ class _LibraryScreenState extends State<LibraryScreen> {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Divider(color: Theme.of(context).colorScheme.onBackground, thickness: 1, height: 1, indent: 0, endIndent: 0),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  double totalWidth = constraints.maxWidth;
+
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      SizedBox(
+                        width: totalWidth * 0.80,
+                        child: Container(
+                          child: TextField(
+                            controller: _searchController,
+                            style: TextStyle(fontSize: 14, color: Theme.of(context).colorScheme.onPrimary),
+                            decoration: InputDecoration(
+                              isDense: true,
+                              hintText: I18n.get('Search video here..'),
+                              hintStyle: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+                              prefixIcon: Icon(Icons.search, size: 20,color: Theme.of(context).colorScheme.onPrimary,),
+                              contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50.0),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      // 0.5% gap
+                      SizedBox(width: totalWidth * 0.03),
+
+                      // 9.5% width for Switch Button
+                      SizedBox(
+                        width: totalWidth * 0.17,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              switch_AZ = !switch_AZ;
+                              sortedVideoList.sort((a, b) {
+                                final titleA = a.title.toLowerCase();
+                                final titleB = b.title.toLowerCase();
+                                return switch_AZ ? titleA.compareTo(titleB) : titleB.compareTo(titleA);
+                              });
+                            });
+                          },
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.zero,
+                            backgroundColor: Theme.of(context).colorScheme.primaryFixed,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                          child: FittedBox(
+                            child: Text(switch_AZ ? I18n.get('a-z') : I18n.get('z-a'),
+                                style: TextStyle(fontSize: 15, color: Theme.of(context).colorScheme.onPrimary)),
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+
+
+            SizedBox(height: 12,),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Wrap(
+                spacing: 6,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        sortedVideoList.shuffle();
+                        is_selectedButton = 'All';
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                      backgroundColor: is_selectedButton == I18n.get('All')
+                          ?   Theme.of(context).colorScheme.inversePrimary : Theme.of(context).colorScheme.onBackground,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      elevation: 1,
+                    ),
+                    child: Text(I18n.get('All'),style: TextStyle(fontSize: 15, color: Theme.of(context).colorScheme.onPrimary),),
+                  ),
+                  ElevatedButton(
+                    onPressed: (){
+                      setState(() {
+                        is_selectedButton = I18n.get('Pali');
+
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                      backgroundColor: is_selectedButton == I18n.get('Pali') ?  Theme.of(context).colorScheme.inversePrimary : Theme.of(context).colorScheme.onBackground,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      elevation: 1,
+                    ),
+                    child: Text(I18n.get('Pali'),style: TextStyle(fontSize: 15, color: Theme.of(context).colorScheme.onPrimary),),
+                  ),
+                  ElevatedButton(
+                    onPressed: (){
+                      setState(() {
+                        is_selectedButton = I18n.get('Vipassana');
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                      backgroundColor:is_selectedButton == I18n.get('Vipassana')?  Theme.of(context).colorScheme.inversePrimary : Theme.of(context).colorScheme.onBackground,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      elevation: 1,
+                    ),
+                    child: Text(I18n.get('Vipassana'),style: TextStyle(fontSize: 15, color: Theme.of(context).colorScheme.onPrimary),),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        sortedVideoList.sort((a, b) =>
+                            DateTime.parse(b.createdAt).compareTo(DateTime.parse(a.createdAt)));
+                        is_selectedButton = I18n.get('Newest');
+                      });
+
+                    },
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                      backgroundColor: is_selectedButton == I18n.get('Newest')?  Theme.of(context).colorScheme.inversePrimary : Theme.of(context).colorScheme.onBackground,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      elevation: 1,
+                    ),
+                    child: Text(I18n.get('Newest'),style: TextStyle(fontSize: 15, color: Theme.of(context).colorScheme.onPrimary),),
+                  ),
+                ],
+              ),
+            ),
+
             TabBar(
               labelColor: Theme.of(context).colorScheme.onPrimary,
               unselectedLabelColor: Colors.black54,
@@ -107,9 +316,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
               ],
               onTap: _onTabTapped,
             ),
-            Expanded(
-              child: buildVideoListView(videoList, screenWidth)
-            ),
+            Expanded(child: buildVideoListView(videoList, screenWidth)),
           ],
         ),
       ),
@@ -122,7 +329,23 @@ class _LibraryScreenState extends State<LibraryScreen> {
     }
   }
 
-  ListView buildVideoListView(List<Video> videos, double screenWidth) {
+  Widget buildVideoListView(List<Video> videos, double screenWidth) {
+    if (videos.isEmpty) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 40.0),
+          child: Text(
+            I18n.get('Not found'),
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.7),
+            ),
+          ),
+        ),
+      );
+    }
+
     return ListView.builder(
       scrollDirection: Axis.vertical,
       itemCount: videos.length,
@@ -157,38 +380,39 @@ class _LibraryScreenState extends State<LibraryScreen> {
       },
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 10),
-        // width: screenWidth * 0.6, // 60% of screen width
         child: Column(
           children: [
             Container(
-              // height: 150, // pairs with `screenWidth * 0.6`
-              child: AspectRatio(
-                aspectRatio: 16 / 9,
-                child:
-                ClipPath(
-                  clipper: ShapeBorderClipper(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0)
-                    ),
-                  ),
-                  child: Image(
-                    image: NetworkImage(video.thumbnailUrl),
-                    fit: BoxFit.fill
-                  )
+                child: AspectRatio(
+                    aspectRatio: 16 / 9,
+                    child:
+                    ClipPath(
+                        clipper: ShapeBorderClipper(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0)
+                          ),
+                        ),
+                        child: Image(
+                            image: NetworkImage(video.thumbnailUrl),
+                            fit: BoxFit.fill
+                        )
+                    )
                 )
-              )
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0, bottom: 32.0),
-              child: Text(
-                video.title,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
-              ),
             ),
 
+            Padding(
+                padding: const EdgeInsets.only(top: 8.0, bottom: 32.0),
+                child: Text.rich(
+                  _buildHighlightedText(
+                    video.title,
+                    _searchController.text,
+                    Theme.of(context).colorScheme.onPrimary,
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.center,
+                )
+            ),
           ],
         ),
       ),
@@ -250,4 +474,3 @@ class _LibraryScreenState extends State<LibraryScreen> {
     }
   }
 }
-

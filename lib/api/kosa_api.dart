@@ -52,8 +52,6 @@ class KosaApi {
 
   Future<List<Video>> fetchVideos() async {
     var response = await GetDio.getDio(baseURL: baseUrl, cacheEnabled: false).get(VIDEOS_URL);
-    log(response.data.toString(), level: 1, name: "json");
-
     if (response.statusCode == 200) {
       final List<dynamic> jsonData = decodeDio(response);
       return jsonData.map<Video>((video) => Video.fromJson(video)).toList();

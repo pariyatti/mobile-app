@@ -76,7 +76,16 @@ class I18n {
       "library": "Library",
       "old_student": "Old student?",
       "recommended": "Recommended",
-      "videos": "Videos"
+      "videos": "Videos",
+      "All": "All",
+      "No videos found.": "No videos found.",
+      "Search video here..": "Search video here..",
+      "a-z": "A-Z",
+      "z-a": "Z-A",
+      "Pali": "Pali",
+      "Vipassana": "Vipassana",
+      "Newest": "Newest",
+      "Not found": "Not Found"
     },
 
     Language.fra: {
@@ -122,8 +131,19 @@ class I18n {
       "library": "Bibliothèque",
       "old_student": "Étudiant vieux ?",
       "recommended": "Recommandé",
-      "videos": "Vidéos"
-    },
+      "videos": "Vidéos",
+      "All": "Tout",
+      "No videos found.": "Aucune vidéo trouvée.",
+      "Search video here..": "Recherchez la vidéo ici..",
+      "a-z": "A-Z",
+      "z-a": "Z-A",
+      "Pali": "Pali",
+      "Vipassana": "Vipassana",
+      "Newest": "Le plus récent",
+      "Not found": "Introuvable"
+
+
+},
 
     Language.ita: {
       "about_pariyatti": "Sulla'applicazione",
@@ -168,7 +188,18 @@ class I18n {
       'library': 'Bibliothèque',
       'old_student': 'Étudiant vieux ?',
       'recommended': 'Recommandé',
-      'videos': 'Vidéos'
+      'videos': 'Vidéos',
+      "All": "Tutto",
+      "No videos found.": "Nessun video trovato.",
+      "Search video here..": "Cerca video qui..",
+      "a-z": "A-Z",
+      "z-a": "Z-A",
+      "Pali": "Pali",
+      "Vipassana": "Vipassana",
+      "Newest": "Più recente",
+      "Not found": "Non trovato"
+
+
     },
 
     Language.lit: {
@@ -214,7 +245,18 @@ class I18n {
       "library": "Biblioteca",
       "old_student": "Vecchio studente?",
       "recommended": "Consigliato",
-      "videos": "Video"
+      "videos": "Video",
+      "All": "Visi",
+      "No videos found.": "Vaizdo įrašų nerasta.",
+      "Search video here..": "Ieškoti vaizdo įrašo čia..",
+      "A-Z": "A–Ž",
+      "Z-A": "Ž–A",
+      "Pali": "Pali",
+      "Vipassana": "Vipassana",
+      "Newest": "Naujausi",
+      "Not found": "Nerasta"
+
+
     },
 
     Language.por: {
@@ -260,7 +302,18 @@ class I18n {
       "library": "Biblioteca",
       "old_student": "Aluno velho?",
       "recommended": "Recomendado",
-      "videos": "Vídeos"
+      "videos": "Vídeos",
+      "All": "Tudo",
+      "No videos found.": "Nenhum vídeo encontrado.",
+      "Search video here..": "Pesquisar vídeo aqui..",
+      "a-z": "A-Z",
+      "z-a": "Z-A",
+      "Pali": "Pali",
+      "Vipassana": "Vipassana",
+      "Newest": "Mais recente",
+      "Not found": "Não encontrado"
+
+
     },
 
     Language.spa: {
@@ -306,7 +359,18 @@ class I18n {
       "library": "Biblioteca",
       "old_student": "Estudiante viejo?",
       "recommended": "Recomendado",
-      "videos": "Videos"
+      "videos": "Videos",
+      "All": "Todo",
+      "No videos found.": "No se encontraron videos.",
+      "Search video here..": "Buscar video aquí..",
+      "a-z": "A-Z",
+      "z-a": "Z-A",
+      "Pali": "Pali",
+      "Vipassana": "Vipassana",
+      "Newest": "Más reciente",
+      "Not found": "No encontrado"
+
+
     },
 
     Language.srp: {
@@ -352,7 +416,18 @@ class I18n {
       "library": "Библиотека",
       "old_student": "Стари студент?",
       "recommended": "Премештено је",
-      "videos": "Видео"
+      "videos": "Видео",
+      "All": "Sve",
+      "No videos found.": "Nema pronađenih video zapisa.",
+      "Search video here..": "Pretraži video ovde..",
+      "a-z": "A-Z",
+      "z-a": "Z-A",
+      "Pali": "Pali",
+      "Vipassana": "Vipassana",
+      "Newest": "Najnovije",
+      "Not found": "Nije pronađeno"
+
+
     },
 
     Language.zho_hant: {
@@ -398,7 +473,18 @@ class I18n {
       "library": "圖書館",
       "old_student": "舊生？",
       "recommended": "推薦",
-      "videos": "影片"
+      "videos": "影片",
+      "All": "全部",
+      "No videos found.": "未找到影片。",
+      "Search video here..": "在此搜尋影片..",
+      "a-z": "A-Z",
+      "z-a": "Z-A",
+      "Pali": "巴利語",
+      "Vipassana": "內觀",
+      "Newest": "最新",
+      "Not found": "未找到"
+
+
     },
 
   };
