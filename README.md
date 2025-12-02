@@ -1,5 +1,5 @@
 
-# The Pariyatti mobile app. - demo build
+# The Pariyatti mobile app
 
 [![Codemagic build status](https://api.codemagic.io/apps/623f06b866f7430a541f6528/default-workflow/status_badge.svg)](https://codemagic.io/apps/623f06b866f7430a541f6528/default-workflow/latest_build)
 
@@ -29,7 +29,7 @@ Tools • Dart 3.4.3 • DevTools 2.34.3
 
 1. Install Java (Linux or MacOS): `sudo apt-get install openjdk-17-jdk`
 2. Install Linux deps:
-   - `sudo apt install net-tools`
+   - `sudo apt install net-tools clang ninja-build google-android-platform-tools-installer`
 3. Install Android Studio:
    - MacOS: https://developer.android.com/studio
    - Linux: https://flathub.org/apps/com.google.AndroidStudio
@@ -53,6 +53,13 @@ Exception in thread "main" java.lang.NoClassDefFoundError: javax/xml/bind/annota
 ```
 
 See: https://stackoverflow.com/questions/46402772/failed-to-install-android-sdk-java-lang-noclassdeffounderror-javax-xml-bind-a/64389804#64389804
+
+Can't find device? Make sure `google-android-platform-tools-installer` is installed (Linux). Then try:
+
+```sh 
+adb kill-server
+adb start-server
+```
 
 ## Dev Setup: iOS
 
@@ -238,7 +245,7 @@ https://codemagic.io/app/623f06b866f7430a541f6528
 
 We have two builds:
 
-1. Sandbox, which emails builds to developers
+1. Staging, which emails builds to developers
 2. Production, which publishes signed release builds to App/Play Stores
 
 * To configure the App Store, go to https://developer.apple.com
@@ -257,6 +264,21 @@ If you have answers to these questions, please move them to the top and put the 
 
 - Could the HomeScreen state switch be a tiny object unto itself?
 - Can Drift Converters move into multiple files?
+
+## Troubleshooting
+
+On an error like `Error (Xcode): Provisioning profile "Pariyatti App Dev" expired on Jan 4, 2025.`
+
+* Xcode => Preferences => Accounts => Manage Certificates
+    * A new Development cert might automatically be created
+    * ...if not, click "+" => Apple Development Certificate
+* Check for cert in https://developer.apple.com/account/resources/certificates/list
+* Go to https://developer.apple.com/account/resources/profiles/
+    * Open "Pariyatti App Dev" profile
+    * Associate (select) new certificate(s)
+    * Click "Save" => you should see a new expiration date on the "Download and Install" page
+* Xcode => Preferences => Accounts => "Download Manual Profiles"
+* Check Runner => Signing & Capabilities => Provisioning Profile and Signing Certificate should be ok
 
 ## License and Copyright
 
