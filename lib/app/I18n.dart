@@ -78,14 +78,14 @@ class I18n {
       "recommended": "Recommended",
       "videos": "Videos",
       "All": "All",
-      "No videos found.": "No videos found.",
-      "Search video here..": "Search video here..",
-      "a-z": "A-Z",
-      "z-a": "Z-A",
+      "No_videos_found.": "No videos found.",
+      "Search_video_here..": "Search video here..",
+      "a_z": "A-Z",
+      "z_a": "Z-A",
       "Pali": "Pali",
       "Vipassana": "Vipassana",
       "Newest": "Newest",
-      "Not found": "Not Found"
+      "Not_found": "Not Found"
     },
 
     Language.fra: {
@@ -133,14 +133,14 @@ class I18n {
       "recommended": "Recommandé",
       "videos": "Vidéos",
       "All": "Tout",
-      "No videos found.": "Aucune vidéo trouvée.",
-      "Search video here..": "Recherchez la vidéo ici..",
-      "a-z": "A-Z",
-      "z-a": "Z-A",
+      "No_videos_found.": "Aucune vidéo trouvée.",
+      "Search_video_here..": "Recherchez la vidéo ici..",
+      "a_z": "A-Z",
+      "z_a": "Z-A",
       "Pali": "Pali",
       "Vipassana": "Vipassana",
       "Newest": "Le plus récent",
-      "Not found": "Introuvable"
+      "Not_found": "Introuvable"
 
 
 },
@@ -190,14 +190,14 @@ class I18n {
       'recommended': 'Recommandé',
       'videos': 'Vidéos',
       "All": "Tutto",
-      "No videos found.": "Nessun video trovato.",
-      "Search video here..": "Cerca video qui..",
-      "a-z": "A-Z",
-      "z-a": "Z-A",
+      "No_videos_found.": "Nessun video trovato.",
+      "Search_video_here..": "Cerca video qui..",
+      "a_z": "A-Z",
+      "z_a": "Z-A",
       "Pali": "Pali",
       "Vipassana": "Vipassana",
       "Newest": "Più recente",
-      "Not found": "Non trovato"
+      "Not_found": "Non trovato"
 
 
     },
@@ -247,14 +247,14 @@ class I18n {
       "recommended": "Consigliato",
       "videos": "Video",
       "All": "Visi",
-      "No videos found.": "Vaizdo įrašų nerasta.",
-      "Search video here..": "Ieškoti vaizdo įrašo čia..",
-      "A-Z": "A–Ž",
-      "Z-A": "Ž–A",
+      "No_videos_found.": "Vaizdo įrašų nerasta.",
+      "Search_video_here..": "Ieškoti vaizdo įrašo čia..",
+      "a_z": "A–Ž",
+      "z_a": "Ž–A",
       "Pali": "Pali",
       "Vipassana": "Vipassana",
       "Newest": "Naujausi",
-      "Not found": "Nerasta"
+      "Not_found": "Nerasta"
 
 
     },
@@ -304,14 +304,14 @@ class I18n {
       "recommended": "Recomendado",
       "videos": "Vídeos",
       "All": "Tudo",
-      "No videos found.": "Nenhum vídeo encontrado.",
-      "Search video here..": "Pesquisar vídeo aqui..",
-      "a-z": "A-Z",
-      "z-a": "Z-A",
+      "No_videos_found.": "Nenhum vídeo encontrado.",
+      "Search_video_here..": "Pesquisar vídeo aqui..",
+      "a_z": "A-Z",
+      "z_a": "Z-A",
       "Pali": "Pali",
       "Vipassana": "Vipassana",
       "Newest": "Mais recente",
-      "Not found": "Não encontrado"
+      "Not_found": "Não encontrado"
 
 
     },
@@ -361,14 +361,14 @@ class I18n {
       "recommended": "Recomendado",
       "videos": "Videos",
       "All": "Todo",
-      "No videos found.": "No se encontraron videos.",
-      "Search video here..": "Buscar video aquí..",
-      "a-z": "A-Z",
-      "z-a": "Z-A",
+      "No_videos_found.": "No se encontraron videos.",
+      "Search_video_here..": "Buscar video aquí..",
+      "a_z": "A-Z",
+      "z_a": "Z-A",
       "Pali": "Pali",
       "Vipassana": "Vipassana",
       "Newest": "Más reciente",
-      "Not found": "No encontrado"
+      "Not_found": "No encontrado"
 
 
     },
@@ -418,14 +418,14 @@ class I18n {
       "recommended": "Премештено је",
       "videos": "Видео",
       "All": "Sve",
-      "No videos found.": "Nema pronađenih video zapisa.",
-      "Search video here..": "Pretraži video ovde..",
-      "a-z": "A-Z",
-      "z-a": "Z-A",
+      "No_videos_found.": "Nema pronađenih video zapisa.",
+      "Search_video_here..": "Pretraži video ovde..",
+      "a_z": "A-Z",
+      "z_a": "Z-A",
       "Pali": "Pali",
       "Vipassana": "Vipassana",
       "Newest": "Najnovije",
-      "Not found": "Nije pronađeno"
+      "Not_found": "Nije pronađeno"
 
 
     },
@@ -475,14 +475,14 @@ class I18n {
       "recommended": "推薦",
       "videos": "影片",
       "All": "全部",
-      "No videos found.": "未找到影片。",
-      "Search video here..": "在此搜尋影片..",
-      "a-z": "A-Z",
-      "z-a": "Z-A",
+      "No_videos_found.": "未找到影片。",
+      "Search_video_here..": "在此搜尋影片..",
+      "a_z": "A-Z",
+      "z_a": "Z-A",
       "Pali": "巴利語",
       "Vipassana": "內觀",
       "Newest": "最新",
-      "Not found": "未找到"
+      "Not_found": "未找到"
 
 
     },

@@ -49,3 +49,6 @@ devtools_options.yaml
 # Open WebUI (ollama)
 .webui_secret_key
 
+# Ignore Mac OS system files
+.DS_Store
+
