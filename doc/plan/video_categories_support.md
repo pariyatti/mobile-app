@@ -1,39 +1,59 @@
-# Plan: Support Video Categories in Mobile App and kosa2 API
+# Updated Plan: Supporting Video Categories, Search, and Sorting
 
-This plan outlines the changes required to support video categories, search, and sorting in the Pariyatti mobile app and the kosa2 Rails API, based on the requirements in issues #169, #165, #164 and kosa2 #31.
+This document outlines the end-to-end technical strategy for implementing video categorization, search, and sorting. It addresses gaps identified in PR #171 and aligns with requirements from issues #169, #165, #164, and kosa2 #31.
 
-## 1. kosa2 (Rails API) Changes
+## 1. Backend: `kosa2` (Rails API)
 
-### 1.1 Update Vimeo Sync Logic
-- **Fix `XlsxUpdatable`**: The `TODO` in `app/models/concerns/xlsx_updatable.rb` indicates that `vimeo_video.update` might not be pushing tags correctly. 
-    - Investigate the `vimeo_me2` fork to confirm the correct way to update tags.
-    - Ensure `category:#{category_str}` and `tag:#{tag_str}` are properly pushed to Vimeo.
-- **Sanitize Descriptions**: Update `Video.to_video` or the XLSX import logic to sanitize descriptions by removing "coded content" and handling empty values.
+The backend maintains the master list of videos, syncs with Vimeo, and serves categorized data.
 
-### 1.2 API Enhancements
-- **JSON Response**: Update the `Video` model or controller to ensure the `category` field is included in the JSON response for `api/v1/library/videos.json`.
-- **Filtering (Optional but Recommended)**: Consider adding a `category` parameter to the index action to allow server-side filtering, although frontend filtering is acceptable for small datasets.
+### 1.1 `XlsxUpdatable` Concern Fixes
+- **Update Descriptions**: Modify `kosa:videos:update_from_xlsx` to:
+    - Read the `Description` column from the spreadsheet.
+    - Sanitize it by removing "coded content" (e.g., HTML tags or internal tracking strings).
+    - Update both the local database and the Vimeo API.
+- **Fix Vimeo API Push**: Resolve the `TODO` in `XlsxUpdatable`.
+    - Ensure the `vimeo_me2` gem correctly pushes `name`, `description`, and `tags` (including `category:xxx`) to Vimeo.
+- **Category Extraction**: Update `Video.sync_all!` (Vimeo -> DB) to parse the `category:xxx` tag back into the `category` column.
 
-## 2. mobile-app (Flutter) Changes
+### 1.2 API Enhancement
+- **Expose Fields**: Update `VideosController` and the `Video` model to include `category` and `release_time` (or `created_time`) in the JSON response for `api/v1/library/videos.json`.
+- **Sorting**: Default the API response to descending `release_time`.
 
-### 2.1 Review and Improve PR #171
-- **Model Update (`lib/model/Video.dart`)**:
-    - Add the `category` field to the `Video` class.
-    - Update `Video.fromJson` to parse the `category` field from the API response.
-- **I18n Cleanup (`lib/app/I18n.dart`)**:
-    - Standardize new keys to use `all_lowercase_underscores` (e.g., `no_videos_found`, `search_videos_hint`, `sort_a_z`).
-    - Remove trailing dots from keys.
-- **UI Enhancements (`lib/ui/screens/library/LibraryScreen.dart`)**:
-    - **Horizontal Category Scrolling**: Replace the `Wrap` widget with a `SingleChildScrollView` containing a `Row` of category buttons.
-    - **Canonical Categories**: Use the required categories: `All`, `Audiobooks`, `Interviews`, `Movies`, `Talks` (or fetch unique categories from the video list).
-    - **Search Logic**: Ensure `_onSearchTextChanged` matches the query anywhere in the title, not just at the start.
-    - **Sorting**: Verify that "Newest" sorting uses the `release_time` or `createdAt` field correctly.
+## 2. Frontend: `mobile-app` (Flutter)
 
-### 2.2 Integration
-- Ensure the app correctly handles the case where a video might not have a category assigned yet.
-- Match the visual style of the category buttons to the existing app theme.
+### 2.1 Review of PR #171 (Mergability)
+- **Status**: **Do not merge as-is.**
+- **Issues**:
+    - Uses hardcoded categories ("Pali", "Vipassana") instead of spreadsheet-defined ones.
+    - Filter logic is unimplemented (buttons don't filter).
+    - Inconsistent I18n keys.
+    - `createdAt` parsing crashes on `Video.RECOMMENDED` (empty string).
 
-## 3. Data Migration & Validation
-1. **Upload Spreadsheet**: Use the provided `vimeo.xlsx` to update `kosa2` and Vimeo using the `kosa:videos:update_from_xlsx` Rake task.
-2. **Sync and Verify**: Run `kosa:videos:sync` to pull the latest data back into the local database and `kosa:videos:sanity_update_from_xlsx` to verify the Vimeo update was successful.
-3. **App Testing**: Verify that the mobile app correctly displays categories and filters videos as expected.
+### 2.2 Model & Data Layer
+- **Update `lib/model/Video.dart`**:
+    - Add `final String category;` and `final DateTime releaseTime;`.
+    - Update `Video.fromJson` to handle these fields and provide safe defaults for `Video.RECOMMENDED`.
+- **I18n Standards**: Refactor `lib/app/I18n.dart`:
+    - Use `all_lowercase_underscores` (e.g., `no_videos_found`, `search_videos_hint`, `sort_alphabetical`).
+    - Use "Portuguese" instead of "Brazilian Portuguese".
+
+### 2.3 UI Refinement (`LibraryScreen.dart`)
+- **Horizontal Category Scroll**: Replace `Wrap` with a `SingleChildScrollView` + `Row`.
+- **Dynamic Categories**: Fetch unique categories from the video list dynamically, plus an "All" option.
+- **Filter & Search Logic**: 
+    - Implement a `filteredVideos` list that updates on category selection or search query change.
+    - Search should use `contains` (case-insensitive) rather than `startsWith`.
+- **Sorting Logic**: Correctly sort by alphabetical (title) and chronological (`releaseTime`) order.
+
+## 3. Data Migration & Validation Sequence
+
+1.  **Stage Data**: Place master `vimeo.xlsx` in `kosa2/tmp/vimeo_latest_with_categories.xlsx`.
+2.  **Import**: Run `rake kosa:videos:update_from_xlsx`.
+3.  **Validate Sync**: Run `rake kosa:videos:sanity_update_from_xlsx` to verify Vimeo updates.
+4.  **App Verification**:
+    - Categories scroll horizontally.
+    - Selection filters the list correctly.
+    - Search and sort work without crashes.
+
+---
+**Next Implementation Step**: Fix the Backend `XlsxUpdatable` logic to ensure data integrity before proceeding to UI changes.
