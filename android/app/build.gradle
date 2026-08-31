@@ -1,6 +1,5 @@
 plugins {
     id 'com.android.application'
-    id 'kotlin-android'
     id 'dev.flutter.flutter-gradle-plugin'
 }
 
@@ -33,9 +32,6 @@ android {
     buildToolsVersion '36.0.0'
     namespace 'com.example.patta'
 
-    kotlinOptions {
-        jvmTarget = '17'
-    }
     compileOptions {
         sourceCompatibility '17'
         targetCompatibility '17'
@@ -71,6 +67,12 @@ android {
         release {
             signingConfig signingConfigs.release
         }
+    }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
     }
 }
 
