@@ -68,7 +68,5 @@
 	</array>
 	<key>FLTEnableImpeller</key>
 	<true />
-	<key>NSMicrophoneUsageDescription</key>
-	<string>This app does not record audio. This permission is required by a media playback library and is never requested.</string>
 </dict>
 </plist>
