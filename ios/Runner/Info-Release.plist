@@ -29,6 +29,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app does not record audio. This permission is required by a media playback library and is never requested.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>

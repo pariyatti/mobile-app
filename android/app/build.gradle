@@ -1,6 +1,5 @@
 plugins {
     id 'com.android.application'
-    id 'kotlin-android'
     id 'dev.flutter.flutter-gradle-plugin'
 }
 
@@ -29,13 +28,10 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    compileSdkVersion 35
-    buildToolsVersion '35.0.0'
+    compileSdkVersion 36
+    buildToolsVersion '36.0.0'
     namespace 'com.example.patta'
 
-    kotlinOptions {
-        jvmTarget = '17'
-    }
     compileOptions {
         sourceCompatibility '17'
         targetCompatibility '17'
@@ -52,7 +48,7 @@ android {
     defaultConfig {
         applicationId 'app.pariyatti'
         minSdkVersion 24
-        targetSdkVersion 35
+        targetSdkVersion 36
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
@@ -71,6 +67,12 @@ android {
         release {
             signingConfig signingConfigs.release
         }
+    }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
     }
 }
 
